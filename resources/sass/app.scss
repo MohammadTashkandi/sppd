@@ -1,0 +1,38 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.nav-link.side {
+  color: white;
+}
+
+#project-pills {
+  float: left;
+  background-color: #C4C4C4;
+  width:90%;
+  height: 100vh;
+  overflow: hidden;
+  -webkit-transition: width 0.5s; /* For Safari 3.1 to 6.0 */
+  transition: width 0.5s;
+}
+
+#task-pills {
+  float: left;
+  background-color: #A6A5A5;
+  width:10%;
+  height: 100vh;
+  overflow: hidden;
+  -webkit-transition: width 0.5s; /* For Safari 3.1 to 6.0 */
+  transition: width 0.5s;
+}
