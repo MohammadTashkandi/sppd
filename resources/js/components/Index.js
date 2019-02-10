@@ -8,6 +8,7 @@ export default class Index extends React.Component {
     render() {
         return (
             <div>
+                push test
                 <Header />
                 <SideBar />
             </div>
