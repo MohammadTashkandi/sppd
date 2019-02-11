@@ -59996,15 +59996,7 @@ function (_React$Component) {
         className: "grid-item"
       }, "4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-item"
-      }, "5"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "grid-item"
-      }, "6"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "grid-item"
-      }, "7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "grid-item"
-      }, "8"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "grid-item"
-      }, "9")));
+      }, "5")));
     }
   }]);
 
