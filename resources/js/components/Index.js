@@ -7,8 +7,7 @@ import SideBar from './SideBar';
 export default class Index extends React.Component {
     render() {
         return (
-            <div>
-                pull this 
+            <div> 
                 <Header />
                 <SideBar />
             </div>

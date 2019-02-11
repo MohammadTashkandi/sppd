@@ -60244,7 +60244,7 @@ function (_React$Component) {
         style: {
           marginLeft: '20%'
         }
-      }, "hi"), "//delete later");
+      }, "TESSST"), "//delete later");
     }
   }]);
 
@@ -60273,8 +60273,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laravelProjects\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laravelProjects\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laravelProjects\sppd\sppd\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laravelProjects\sppd\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
