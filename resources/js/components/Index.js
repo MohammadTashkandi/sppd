@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from './Header';
 import SideBar from './SideBar';
+import Canvas from './Canvas';
 
 
 export default class Index extends React.Component {
@@ -10,6 +11,7 @@ export default class Index extends React.Component {
             <div> 
                 <Header />
                 <SideBar />
+                <Canvas style={{marginLeft: '20%'}} />
             </div>
             
         );

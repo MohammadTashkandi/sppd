@@ -58,7 +58,6 @@ export default class SideBar extends React.Component {
                         </div>
                     </div>
                 </div>
-                <p style={{marginLeft:'20%'}}>TESSST</p>//delete later
             </div>
         );
     }
