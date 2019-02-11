@@ -60147,15 +60147,31 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(SideBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "projectPillsRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "taskPillsRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "backButtonRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "vPillsTab", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "vPillsTabContent", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function () {
-      if (document.getElementById('project-pills').offsetWidth == '343') {
-        document.getElementById('project-pills').style.width = '20%';
-        document.getElementById('task-pills').style.width = '80%';
-        document.getElementById('v-pills-tabContent').style.display = 'block';
-      } else if (document.getElementById('project-pills').offsetWidth == '76') {
-        document.getElementById('project-pills').style.width = "90%";
-        document.getElementById('task-pills').style.width = "10%";
-        document.getElementById('v-pills-tabContent').style.display = 'none';
+      if (_this.projectPillsRef.current.className == 'active') {
+        _this.projectPillsRef.current.className = 'inactive';
+        _this.projectPillsRef.current.style.width = '15%';
+        _this.taskPillsRef.current.style.width = '85%';
+        _this.vPillsTabContent.current.style.display = 'block';
+        _this.vPillsTab.current.style.display = 'none';
+        _this.backButtonRef.current.style.display = 'block';
+      } else if (_this.projectPillsRef.current.className == 'inactive') {
+        _this.projectPillsRef.current.className = 'active';
+        _this.projectPillsRef.current.style.width = "90%";
+        _this.taskPillsRef.current.style.width = "10%";
+        _this.vPillsTabContent.current.style.display = 'none';
+        _this.vPillsTab.current.style.display = 'block';
+        _this.backButtonRef.current.style.display = 'none';
       }
     });
 
@@ -60170,10 +60186,21 @@ function (_React$Component) {
           width: '20%'
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "project-pills"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "project-pills",
+        className: "active",
+        ref: this.projectPillsRef
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-outline-primary",
+        onClick: this.handleClick,
+        ref: this.backButtonRef,
+        style: {
+          display: 'none',
+          fontSize: '2.5em'
+        }
+      }, "\u21E6"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nav flex-column nav-pills",
         id: "v-pills-tab",
+        ref: this.vPillsTab,
         role: "tablist",
         "aria-orientation": "vertical"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -60213,12 +60240,15 @@ function (_React$Component) {
         "aria-controls": "v-pills-settings",
         "aria-selected": "true"
       }, "Settings"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "task-pills"
+        id: "task-pills",
+        ref: this.taskPillsRef
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tab-content",
         id: "v-pills-tabContent",
+        ref: this.vPillsTabContent,
         style: {
-          display: 'none'
+          display: 'none',
+          margin: '1em'
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tab-pane fade",
