@@ -59983,6 +59983,8 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "canvas-background"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-item-large"
@@ -60002,7 +60004,7 @@ function (_React$Component) {
         className: "grid-item"
       }, "8"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-item"
-      }, "9"));
+      }, "9")));
     }
   }]);
 
