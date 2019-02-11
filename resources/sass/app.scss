@@ -41,3 +41,20 @@
   display: grid;
   grid-gap: 1rem 5rem;
 }
+
+#header-nav{
+  margin-bottom: 0px;
+}
+
+#header-first {
+  margin-right: 530px;
+}
+
+#header-middle {
+  flex-direction: row;
+  margin-right: 200px;
+}
+
+#header-last {
+  flex-direction: row;
+}

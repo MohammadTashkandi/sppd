@@ -3,22 +3,20 @@ import React from 'react';
 export default class Header extends React.Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light" style={{backgroundColor: '#30C2FF'}}>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item">
-                            <a className="nav-link" href="#" style={{marginRight:'50em'}}><em>SPPD</em> <span className="sr-only">(current)</span></a>
-                        </li>
-                        <li className="nav-item active">
-                            <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Notifications <span className="sr-only">(current)</span></a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Search <span className="sr-only">(current)</span></a>
-                        </li>
-                    </ul>
+            <nav className="navbar navbar-inverse" id="header-nav">
+                <div className="container-fluid">
+                    <div className="navbar-header" id="header-first">
+                        <a className="navbar-brand" href="#">WebSiteName</a>
+                    </div>
+                        <ul className="nav navbar-nav" id="header-middle">
+                            <li className="active"><a href="#">Home</a></li>
+                            <li className="inactive"><a href="#">Notifications</a></li>
+                            <li className="inactive"><a href="#">Search</a></li>
+                        </ul>
+                        <ul className="nav navbar-nav navbar-right" id="header-last">
+                            <li><a href="#"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li><a href="#"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        </ul>
                 </div>
             </nav>
         );
