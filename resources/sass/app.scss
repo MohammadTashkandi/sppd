@@ -37,3 +37,7 @@
   transition: width 0.5s;
 }
 
+.grid-container {
+  display: grid;
+  grid-gap: 1rem 5rem;
+}
