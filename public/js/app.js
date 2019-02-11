@@ -60093,6 +60093,13 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "nav-link",
         href: "#"
+      }, "Notifications ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "sr-only"
+      }, "(current)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "nav-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "nav-link",
+        href: "#"
       }, "Search ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "sr-only"
       }, "(current)"))))));
@@ -60384,8 +60391,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laravelProjects\sppd\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laravelProjects\sppd\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\majed\Documents\School Stuff\Second Semester\Coding\sppd\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\majed\Documents\School Stuff\Second Semester\Coding\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
