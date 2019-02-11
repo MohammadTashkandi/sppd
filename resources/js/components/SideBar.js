@@ -30,7 +30,6 @@ export default class SideBar extends React.Component {
 
     render() {
         return (
-            <div>
                 <div style={{width:'20%'}}>
                     <div id="project-pills" className="active" ref={this.projectPillsRef}>{/* this should be added from state */}
                         <button className="btn btn-outline-primary" onClick={this.handleClick} ref={this.backButtonRef} style={{display:'none', fontSize:'2.5em'}}>&#8678;</button>
@@ -57,8 +56,7 @@ export default class SideBar extends React.Component {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>  
         );
     }
 }

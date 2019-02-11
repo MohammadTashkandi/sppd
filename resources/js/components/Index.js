@@ -3,15 +3,17 @@ import ReactDOM from 'react-dom';
 import Header from './Header';
 import SideBar from './SideBar';
 import Canvas from './Canvas';
+import InfoBar from './InfoBar';
 
 
 export default class Index extends React.Component {
     render() {
         return (
-            <div> 
+            <div style={{maxHeight:'100vh'}}> 
                 <Header />
                 <SideBar />
-                <Canvas style={{marginLeft: '20%'}} />
+                <InfoBar />
+                <Canvas />
             </div>
             
         );
