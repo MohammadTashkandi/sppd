@@ -3,7 +3,7 @@ import React from 'react';
 export default class Header extends React.Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light" style={{backgroundColor: '#30C2FF'}}>
+            <nav className="navbar navbar-expand-lg navbar-light" style={{backgroundColor: '#002536'}}>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">

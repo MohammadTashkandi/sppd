@@ -60054,7 +60054,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
         className: "navbar navbar-expand-lg navbar-light",
         style: {
-          backgroundColor: '#30C2FF'
+          backgroundColor: '#002536'
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "collapse navbar-collapse",
@@ -60124,13 +60124,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -60145,9 +60147,48 @@ function (_React$Component) {
   _inherits(Index, _React$Component);
 
   function Index() {
+    var _getPrototypeOf2;
+
+    var _this;
+
     _classCallCheck(this, Index);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Index).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Index)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      projects: {
+        project1: {
+          name: "Project 1",
+          task1: "Fix that",
+          task2: "repair that",
+          task3: "do that"
+        },
+        project2: {
+          name: "Project 2",
+          task1: "Fix what",
+          task2: "repair what",
+          task3: "do what"
+        },
+        project3: {
+          name: "Project 3",
+          task1: "Fix this",
+          task2: "repair this",
+          task3: "do this"
+        },
+        project4: {
+          name: "Project 4",
+          task1: "Fix who",
+          task2: "repair who",
+          task3: "do who"
+        }
+      }
+    });
+
+    return _this;
   }
 
   _createClass(Index, [{
@@ -60157,7 +60198,9 @@ function (_React$Component) {
         style: {
           maxHeight: '100vh'
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SideBar__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InfoBar__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Canvas__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SideBar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        projects: this.state.projects
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InfoBar__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Canvas__WEBPACK_IMPORTED_MODULE_4__["default"], null));
     }
   }]);
 
@@ -60299,6 +60342,32 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "vPillsTabContent", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProject", function (key) {
+      var project = _this.props.projects[key];
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        key: key,
+        onClick: _this.handleClick,
+        className: "nav-link",
+        id: "v-pills-" + key + "-tab",
+        "data-toggle": "pill",
+        href: "#v-pills-" + key,
+        role: "tab",
+        "aria-controls": "#v-pills-" + key,
+        "aria-selected": "false"
+      }, project.name);
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderTask", function (key) {
+      var project = _this.props.projects[key];
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        key: key,
+        className: "tab-pane fade",
+        id: "v-pills-" + key,
+        role: "tabpanel",
+        "aria-labelledby": "v-pills-" + key + "-tab"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, project.task1), " ");
+    });
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function () {
       if (_this.projectPillsRef.current.className == 'active') {
         _this.projectPillsRef.current.className = 'inactive';
@@ -60323,6 +60392,7 @@ function (_React$Component) {
   _createClass(SideBar, [{
     key: "render",
     value: function render() {
+      var projectIds = Object.keys(this.props.projects);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           width: '20%'
@@ -60333,55 +60403,16 @@ function (_React$Component) {
         ref: this.projectPillsRef
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-outline-primary",
+        id: "back-button",
         onClick: this.handleClick,
-        ref: this.backButtonRef,
-        style: {
-          display: 'none',
-          fontSize: '2.5em'
-        }
+        ref: this.backButtonRef
       }, "\u21E6"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nav flex-column nav-pills",
         id: "v-pills-tab",
         ref: this.vPillsTab,
         role: "tablist",
         "aria-orientation": "vertical"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        onClick: this.handleClick,
-        className: "nav-link",
-        id: "v-pills-home-tab",
-        "data-toggle": "pill",
-        href: "#v-pills-home",
-        role: "tab",
-        "aria-controls": "v-pills-home",
-        "aria-selected": "false"
-      }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        onClick: this.handleClick,
-        className: "nav-link",
-        id: "v-pills-profile-tab",
-        "data-toggle": "pill",
-        href: "#v-pills-profile",
-        role: "tab",
-        "aria-controls": "v-pills-profile",
-        "aria-selected": "false"
-      }, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        onClick: this.handleClick,
-        className: "nav-link",
-        id: "v-pills-messages-tab",
-        "data-toggle": "pill",
-        href: "#v-pills-messages",
-        role: "tab",
-        "aria-controls": "v-pills-messages",
-        "aria-selected": "false"
-      }, "Messages"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        onClick: this.handleClick,
-        className: "nav-link active show",
-        id: "v-pills-settings-tab",
-        "data-toggle": "pill",
-        href: "#v-pills-settings",
-        role: "tab",
-        "aria-controls": "v-pills-settings",
-        "aria-selected": "true"
-      }, "Settings"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, projectIds.map(this.renderProject))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "task-pills",
         ref: this.taskPillsRef
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -60392,27 +60423,7 @@ function (_React$Component) {
           display: 'none',
           margin: '1em'
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tab-pane fade",
-        id: "v-pills-home",
-        role: "tabpanel",
-        "aria-labelledby": "v-pills-home-tab"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Cillum ad ut irure tempor velit nostrud occaecat ullamco aliqua anim Lorem sint. Veniam sint duis incididunt do esse magna mollit excepteur laborum qui. Id id reprehenderit sit est eu aliqua occaecat quis et velit excepteur laborum mollit dolore eiusmod. Ipsum dolor in occaecat commodo et voluptate minim reprehenderit mollit pariatur. Deserunt non laborum enim et cillum eu deserunt excepteur ea incididunt minim occaecat.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tab-pane fade",
-        id: "v-pills-profile",
-        role: "tabpanel",
-        "aria-labelledby": "v-pills-profile-tab"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Culpa dolor voluptate do laboris laboris irure reprehenderit id incididunt duis pariatur mollit aute magna pariatur consectetur. Eu veniam duis non ut dolor deserunt commodo et minim in quis laboris ipsum velit id veniam. Quis ut consectetur adipisicing officia excepteur non sit. Ut et elit aliquip labore Lorem enim eu. Ullamco mollit occaecat dolore ipsum id officia mollit qui esse anim eiusmod do sint minim consectetur qui.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tab-pane fade",
-        id: "v-pills-messages",
-        role: "tabpanel",
-        "aria-labelledby": "v-pills-messages-tab"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Fugiat id quis dolor culpa eiusmod anim velit excepteur proident dolor aute qui magna. Ad proident laboris ullamco esse anim Lorem Lorem veniam quis Lorem irure occaecat velit nostrud magna nulla. Velit et et proident Lorem do ea tempor officia dolor. Reprehenderit Lorem aliquip labore est magna commodo est ea veniam consectetur.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tab-pane fade active show",
-        id: "v-pills-settings",
-        role: "tabpanel",
-        "aria-labelledby": "v-pills-settings-tab"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum duis aliqua do. Aliqua amet qui mollit consectetur nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.")))));
+      }, projectIds.map(this.renderTask))));
     }
   }]);
 

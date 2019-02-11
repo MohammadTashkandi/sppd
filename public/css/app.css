@@ -10495,9 +10495,26 @@ body {
   overflow: hidden;
 }
 
+/* colors: from darkest shade to lightest
+blue: 002536, 003c57, 006491, 0082bd, 009ae0, 00afff
+purple: 544e8a, 7769b5, 907dd5, a38cee, b49aff
+pink: b94f8f, d85ea5, ef6ab5, ff73c2, ff7acd
+Orange: d46204, ff6b67, ff726c, ff7670, ff7b74
+Yellow: ffa600, ffa600, ffa600, ffa600, ffa600
+  */
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-light .navbar-nav .active > .nav-link {
+  color: white;
+  text-decoration: underline;
 }
 
 .nav-link.side {
@@ -10506,7 +10523,7 @@ body {
 
 #project-pills {
   float: left;
-  background-color: #C4C4C4;
+  background-color: #373737;
   width: 90%;
   height: 100vh;
   overflow: hidden;
@@ -10514,14 +10531,35 @@ body {
   transition: width 0.5s;
 }
 
+#v-pills-tab a {
+  color: white;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #c03401;
+}
+
+#v-pills-tabContent {
+  color: white;
+}
+
 #task-pills {
   float: left;
-  background-color: #A6A5A5;
+  background-color: #4b4b4b;
   width: 10%;
   height: 100vh;
   overflow: hidden;
   /* For Safari 3.1 to 6.0 */
   transition: width 0.5s;
+}
+
+#back-button {
+  display: none;
+  font-size: 2.5em;
+  color: #c03401;
+  border-color: #c03401;
 }
 
 .canvas-background {
