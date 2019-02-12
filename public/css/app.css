@@ -10530,15 +10530,55 @@ a.text-dark:focus {
 }
 
 #header-first {
-  margin-right: 530px;
+  margin-right: 0px;
 }
 
 #header-middle {
   flex-direction: row;
-  margin-right: 200px;
+  margin-right: 670px;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 17px;
 }
 
 #header-last {
   flex-direction: row;
+}
+
+#logo {
+  display: block;
+  width: 85px;
+  height: 55px;
+}
+
+#logout-btn {
+  background-color: transparent;
+  border-color: #9d9d9d;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: #9d9d9d;
+  padding: 8px 18px;
+  border-radius: 50px;
+}
+
+a#logout-btn:hover {
+  color: white;
+}
+
+.home-link {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.notification-link {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.search-link {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#bell {
+  font-size: 30px;
 }
 

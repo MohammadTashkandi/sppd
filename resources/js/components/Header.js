@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from '../../LOGO2.png';
 
 export default class Header extends React.Component {
     render() {
@@ -6,16 +7,15 @@ export default class Header extends React.Component {
             <nav className="navbar navbar-inverse" id="header-nav">
                 <div className="container-fluid">
                     <div className="navbar-header" id="header-first">
-                        <a className="navbar-brand" href="#">WebSiteName</a>
+                        <a href="#"><img src={logo} id="logo"/></a>
                     </div>
                         <ul className="nav navbar-nav" id="header-middle">
-                            <li className="active"><a href="#">Home</a></li>
-                            <li className="inactive"><a href="#">Notifications</a></li>
-                            <li className="inactive"><a href="#">Search</a></li>
+                            <li className="home-link"><a href="#">Home</a></li>
+                            <li className="search-link"><a href="#">Search</a></li>
+                            <li className="notification-link"><a href="#"><i className="fas fa-comment-alt" id="bell"></i></a></li>
                         </ul>
-                        <ul className="nav navbar-nav navbar-right" id="header-last">
-                            <li><a href="#"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                            <li><a href="#"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <ul className="nav navbar-nav navbar-right" id="header-last"> 
+                           <a href="#" className="btn btn-info btn-lg" id="logout-btn"> <span className="glyphicon glyphicon-log-out"></span> Logout</a>
                         </ul>
                 </div>
             </nav>
