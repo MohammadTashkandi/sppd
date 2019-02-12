@@ -1,6 +1,15 @@
 import React from 'react';
+import { withRouter } from 'react-router';
+/* import PropTypes from 'prop-types';*/
 
-export default class SideBar extends React.Component {
+class SideBar extends React.Component {
+    /* To get props */
+    /* static propTypes = { 
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+      } */
+
     projectPillsRef = React.createRef();
     taskPillsRef = React.createRef();
     backButtonRef = React.createRef();
@@ -10,7 +19,7 @@ export default class SideBar extends React.Component {
     renderProject = (key) => {
         const project = this.props.projects[key];
         return(
-            <a key={key} onClick={this.handleClick} className="nav-link" id={"v-pills-"+key+"-tab"} data-toggle="pill" href={"#v-pills-"+key} role="tab" aria-controls={"#v-pills-"+key} aria-selected="false">{project.name}</a>
+                <a key={key} onClick={()=> this.handleClick(key)} className="nav-link" id={"v-pills-"+key+"-tab"} data-toggle="pill" href={"#v-pills-"+key} role="tab" aria-controls={"#v-pills-"+key} aria-selected="false">{project.name}</a>
         );
     }
 
@@ -23,7 +32,12 @@ export default class SideBar extends React.Component {
         );
     }
 
-    handleClick = () => {
+    handleClick = (key) => {
+        this.animateSideBar();
+        this.changePath(key);
+    }
+
+    animateSideBar = () => {
         if(this.projectPillsRef.current.className=='active'){
             this.projectPillsRef.current.className='inactive';
             this.projectPillsRef.current.style.width='15%';
@@ -41,6 +55,10 @@ export default class SideBar extends React.Component {
             this.vPillsTab.current.style.display='block';
             this.backButtonRef.current.style.display='none';
         }
+    }
+
+    changePath = (key) => {
+        this.props.history.push(`project/${key}`);
     }
 
     render() {
@@ -79,3 +97,5 @@ export default class SideBar extends React.Component {
         );
     }
 }
+
+export default withRouter(SideBar); {/* to get props */}
