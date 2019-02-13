@@ -10527,6 +10527,7 @@ a.text-dark:focus {
 
 #header-nav {
   margin-bottom: 0px;
+  border-radius: 0px;
 }
 
 #header-first {
@@ -10535,9 +10536,18 @@ a.text-dark:focus {
 
 #header-middle {
   flex-direction: row;
-  margin-right: 670px;
+  margin-right: 630px;
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 17px;
+  color: white;
+}
+
+#link-head:hover {
+  color: black;
+  background-color: white;
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+  transition: 1.5s;
 }
 
 #header-last {
@@ -10560,7 +10570,8 @@ a.text-dark:focus {
 }
 
 a#logout-btn:hover {
-  color: white;
+  background-color: white;
+  color: black;
 }
 
 .home-link {
@@ -10580,5 +10591,33 @@ a#logout-btn:hover {
 
 #bell {
   font-size: 25px;
+}
+
+#search-bar {
+  background-color: #9d9d9d;
+  border-color: #9d9d9d;
+  border-radius: 20px;
+}
+
+#search-bar-bar::-webkit-input-placeholder {
+  color: #333;
+}
+
+#search-bar-bar:-ms-input-placeholder {
+  color: #333;
+}
+
+#search-bar-bar::-ms-input-placeholder {
+  color: #333;
+}
+
+#search-bar-bar::placeholder {
+  color: #333;
+}
+
+#search-bar-bar {
+  background-color: #9d9d9d;
+  border-color: #9d9d9d;
+  width: 310px;
 }
 
