@@ -67,7 +67,7 @@ class SideBar extends React.Component {
         return (
                 <div style={{width:'20%'}}>
                     <div id="project-pills" className="active" ref={this.projectPillsRef}>{/* this should be added from state */}
-                        <button className="btn btn-outline-primary" id="back-button" onClick={this.handleClick} ref={this.backButtonRef}>&#8678;</button>
+                        <button className="btn btn-outline-primary" id="back-button" onClick={this.animateSideBar} ref={this.backButtonRef}>&#8678;</button>
                         <div className="nav flex-column nav-pills" id="v-pills-tab" ref={this.vPillsTab} role="tablist" aria-orientation="vertical">
                             {projectIds.map(this.renderProject)}
                             {/* <a onClick={this.handleClick} className="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false">Home</a>

@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Switch, Route, HashRouter } from 'react-router-dom';
-import NotFound from './NotFound';
 
+import NotFound from './NotFound';
 import Header from './Header';
 import SideBar from './SideBar';
 import Canvas from './Canvas';
 import InfoBar from './InfoBar';
 import Home from './Home';
+import Search from './Search';
+
 
 
 export default class Index extends React.Component {
@@ -25,10 +27,11 @@ export default class Index extends React.Component {
             <HashRouter>
                 <div history={this.props.history} style={{maxHeight:'100vh'}}> 
                         <Header />
-                        <SideBar projects={this.state.projects} history={this.props.history} />
+                        <SideBar projects={this.state.projects}/>
                         <InfoBar />
                     <Switch>
                         <Route exact path="/" component={Home} />
+                        <Route path="/search/:userId" component={Search} />
                         <Route path="/project/:projectId" component={Canvas} />
                         <Route component={NotFound} />
                     </Switch>
