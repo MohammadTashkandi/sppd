@@ -57,8 +57,8 @@ class SideBar extends React.Component {
         }
     }
 
-    changePath = (key) => {
-        this.props.history.push(`project/${key}`);
+    changePath = (key) => {     
+            this.props.history.push(`/project/${key}`);  /* put / before project to make it work correctly */
     }
 
     render() {

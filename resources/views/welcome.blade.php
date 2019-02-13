@@ -7,6 +7,7 @@
         <title>Software Project Performance Dashboard</title>
         <link rel="shortcut icon" type="image/x-icon" src="./favicon.ico"/>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Proza+Libre|Space+Mono|Poppins" rel="stylesheet">
         <link href="/css/app.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

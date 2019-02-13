@@ -10501,7 +10501,16 @@ purple: 544e8a, 7769b5, 907dd5, a38cee, b49aff
 pink: b94f8f, d85ea5, ef6ab5, ff73c2, ff7acd
 Orange: d46204, ff6b67, ff726c, ff7670, ff7b74
 Yellow: ffa600, ffa600, ffa600, ffa600, ffa600
-  */
+font-family: 'Space Mono', monospace;
+font-family: 'Proza Libre', sans-serif;  
+font-family: 'Poppins', sans-serif;
+*/
+
+.nav-link {
+  color: white;
+  font-size: 2.5rem;
+  font-family: "Poppins", sans-serif;
+}
 
 .navbar-laravel {
   background-color: #fff;
@@ -10513,12 +10522,17 @@ Yellow: ffa600, ffa600, ffa600, ffa600, ffa600
 }
 
 .navbar-light .navbar-nav .active > .nav-link {
-  color: white;
+  color: black;
   text-decoration: underline;
 }
 
 .nav-link.side {
   color: white;
+}
+
+.nav-link:hover {
+  background-color: #c03401;
+  color: black;
 }
 
 #project-pills {
@@ -10531,13 +10545,13 @@ Yellow: ffa600, ffa600, ffa600, ffa600, ffa600
   transition: width 0.5s;
 }
 
-#v-pills-tab a {
-  color: white;
+#v-pills-tab a:hover {
+  color: black;
 }
 
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  color: #fff;
+  color: black;
   background-color: #c03401;
 }
 
@@ -10563,15 +10577,16 @@ Yellow: ffa600, ffa600, ffa600, ffa600, ffa600
 }
 
 .canvas-background {
+  height: -webkit-fill-available;
   background-color: #E7F5FD;
 }
 
 .grid-container {
-  padding-top: 3rem;
+  padding-top: 4em;
   display: grid;
-  grid-template-columns: 60rem 25rem;
-  grid-template-rows: 20rem 20rem 20rem;
-  grid-gap: 2rem 1rem;
+  grid-template-columns: 90rem 35rem;
+  grid-template-rows: 35rem 35rem;
+  grid-gap: 3rem 7rem;
   justify-content: center;
 }
 

@@ -64453,9 +64453,9 @@ function (_React$Component) {
       var thisPage = event.currentTarget.name; //pushes the name into the url, loading the corresponding page
 
       if (thisPage == "search") {
-        _this.props.history.push("search/".concat(_this.searchRef.current.value));
+        _this.props.history.push("/search/".concat(_this.searchRef.current.value));
       } else {
-        _this.props.history.push("".concat(thisPage));
+        _this.props.history.push("/".concat(thisPage));
       }
 
       _this.searchRef.current.value = null;
@@ -64996,7 +64996,9 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "changePath", function (key) {
-      _this.props.history.push("project/".concat(key));
+      _this.props.history.push("/project/".concat(key));
+      /* put / before project to make it work correctly */
+
     });
 
     return _this;
@@ -65068,8 +65070,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\School Stuff\Second Semester\Coding\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\School Stuff\Second Semester\Coding\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laravelProjects\sppd\sppd\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laravelProjects\sppd\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

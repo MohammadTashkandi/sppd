@@ -13,10 +13,10 @@ class Header extends React.Component {
         const thisPage = event.currentTarget.name;
         //pushes the name into the url, loading the corresponding page
         if(thisPage == "search"){
-            this.props.history.push(`search/${this.searchRef.current.value}`);
+            this.props.history.push(`/search/${this.searchRef.current.value}`);
             
         }else{
-            this.props.history.push(`${thisPage}`);
+            this.props.history.push(`/${thisPage}`);
         }
         this.searchRef.current.value = null;
 
