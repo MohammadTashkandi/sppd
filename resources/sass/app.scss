@@ -99,10 +99,10 @@ font-family: 'Poppins', sans-serif;
 }
 
 .grid-container {
-  padding-top: 4em;
+  padding-top: 3%;
   display: grid;
-  grid-template-columns: 90rem 35rem;
-  grid-template-rows: 35rem 35rem;
+  grid-template-columns: 60% 20%;
+  grid-template-rows: 400% 400%;
   grid-gap: 3rem 7rem;
   justify-content: center;
   background-image: radial-gradient(#9d9d9d,#818181, #4b4b4b); 
