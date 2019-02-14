@@ -64450,10 +64450,16 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "linkClick", function (event) {
       //takes the name of the clicked link in the header and stores it
+      console.log(_this.searchRef.current.value);
       var thisPage = event.currentTarget.name; //pushes the name into the url, loading the corresponding page
 
       if (thisPage == "search") {
-        _this.props.history.push("/search/".concat(_this.searchRef.current.value));
+        //check if he entered anything in search bar
+        if (_this.searchRef.current.value == "") {
+          alert("Please enter search value");
+        } else {
+          _this.props.history.push("/search/".concat(_this.searchRef.current.value));
+        }
       } else {
         _this.props.history.push("/".concat(thisPage));
       }
@@ -64506,6 +64512,7 @@ function (_React$Component) {
         ref: this.searchRef,
         placeholder: "Enter ID/Name",
         name: "searchbtn",
+        required: true,
         id: "search-bar-bar"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input-group-btn"
@@ -65070,8 +65077,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laravelProjects\sppd\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laravelProjects\sppd\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\majed\Documents\School Stuff\Second Semester\Coding\sppd\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\majed\Documents\School Stuff\Second Semester\Coding\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

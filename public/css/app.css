@@ -10610,6 +10610,12 @@ font-family: 'Poppins', sans-serif;
 #link-head:hover {
   color: black;
   background-color: #c03401;
+  transition: 0.1s;
+}
+
+#link-head:active {
+  color: black;
+  background-color: #c03401;
   transition: 1.5s;
 }
 

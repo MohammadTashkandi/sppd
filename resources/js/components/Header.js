@@ -10,10 +10,16 @@ class Header extends React.Component {
 
     linkClick = (event) =>{
         //takes the name of the clicked link in the header and stores it
+        console.log(this.searchRef.current.value);
         const thisPage = event.currentTarget.name;
         //pushes the name into the url, loading the corresponding page
         if(thisPage == "search"){
-            this.props.history.push(`/search/${this.searchRef.current.value}`);
+            //check if he entered anything in search bar
+            if(this.searchRef.current.value == ""){
+                alert("Please enter search value");
+            }else{
+                this.props.history.push(`/search/${this.searchRef.current.value}`);
+            }
             
         }else{
             this.props.history.push(`/${thisPage}`);
@@ -32,7 +38,7 @@ class Header extends React.Component {
                             <li className="home-link"><a onClick={this.linkClick} ref={this.homeRef} name="/"href="#" id="link-head">Home</a></li>
                             <div className="navbar-form navbar-left" action="/action_page.php">
                                 <div className="input-group" id="search-bar">
-                                    <input type="text" className="form-control" ref={this.searchRef} placeholder="Enter ID/Name" name="searchbtn" id="search-bar-bar"/>
+                                    <input type="text" className="form-control" ref={this.searchRef} placeholder="Enter ID/Name" name="searchbtn" required id="search-bar-bar"/>
                                     <div className="input-group-btn">
                                         <button className="btn btn-default" onClick={this.linkClick}  name="search" id="search-bar">
                                             <i className="glyphicon glyphicon-search"></i>
