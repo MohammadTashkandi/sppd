@@ -64450,7 +64450,6 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "linkClick", function (event) {
       //takes the name of the clicked link in the header and stores it
-      console.log(_this.searchRef.current.value);
       var thisPage = event.currentTarget.name; //pushes the name into the url, loading the corresponding page
 
       if (thisPage == "search") {
