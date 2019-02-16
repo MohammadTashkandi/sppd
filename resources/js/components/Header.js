@@ -10,7 +10,6 @@ class Header extends React.Component {
 
     linkClick = (event) =>{
         //takes the name of the clicked link in the header and stores it
-        console.log(this.searchRef.current.value);
         const thisPage = event.currentTarget.name;
         //pushes the name into the url, loading the corresponding page
         if(thisPage == "search"){

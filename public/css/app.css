@@ -10547,6 +10547,7 @@ font-family: 'Poppins', sans-serif;
 
 #v-pills-tab a:hover {
   color: black;
+  transition: 0.4s;
 }
 
 .nav-pills .nav-link.active,
@@ -10578,7 +10579,7 @@ font-family: 'Poppins', sans-serif;
 
 .canvas-background {
   height: -webkit-fill-available;
-  background-color: #E7F5FD;
+  background-image: radial-gradient(#9d9d9d, #818181, #4b4b4b);
 }
 
 .grid-container {
@@ -10610,13 +10611,7 @@ font-family: 'Poppins', sans-serif;
 #link-head:hover {
   color: black;
   background-color: #c03401;
-  transition: 0.1s;
-}
-
-#link-head:active {
-  color: black;
-  background-color: #c03401;
-  transition: 1.5s;
+  transition: 0.4s;
 }
 
 #header-last {
@@ -10639,8 +10634,10 @@ font-family: 'Poppins', sans-serif;
 }
 
 a#logout-btn:hover {
-  background-color: white;
   color: black;
+  background-color: #c03401;
+  border-color: #c03401;
+  transition: 0.4s;
 }
 
 .home-link {
