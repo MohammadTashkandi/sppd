@@ -64874,7 +64874,25 @@ function (_React$Component) {
   _createClass(Search, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "nandayooo weeb");
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "canvas-background"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "grid-search-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "grid-search-item"
+      }, "1sdadsadasdsa")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "grid-search-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "grid-search-item"
+      }, "1sdadsadasdsa")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "grid-search-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "grid-search-item"
+      }, "1sdadsadasdsa")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "grid-search-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "grid-search-item"
+      }, "1sdadsadasdsa")));
     }
   }]);
 

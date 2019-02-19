@@ -207,3 +207,18 @@ a#logout-btn:hover {
   color: #30C2FF;
 }
 
+.grid-search-container {
+  padding-top: 3%;
+  display: grid;
+  grid-template-columns: 75%;
+  grid-template-rows: 250%;
+  grid-gap: 0%;
+  justify-content: center;
+}
+
+.grid-search-item {
+  display: inline;
+  border-radius: 200px;
+  background-color: white;  
+}
+
