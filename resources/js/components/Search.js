@@ -5,15 +5,12 @@ export default class Search extends React.Component {
         return (
             <div className="canvas-background">
                 <div className="grid-search-container">
-                    <div className="grid-search-item">1sdadsadasdsa</div>
-                </div>
-                <div className="grid-search-container">
-                    <div className="grid-search-item">1sdadsadasdsa</div>
-                </div>
-                <div className="grid-search-container">
-                    <div className="grid-search-item">1sdadsadasdsa</div>
-                </div><div className="grid-search-container">
-                    <div className="grid-search-item">1sdadsadasdsa</div>
+                    <div className="grid-search-item">
+                        <div className="search-tag">MT</div>
+                        <div className="search-name">Mohammad Tashkandi</div>
+                        <div className="search-id">435160085</div>
+                        <div className="search-button">Visit Profile</div>
+                    </div>
                 </div>
             </div>
         );

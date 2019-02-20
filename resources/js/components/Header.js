@@ -15,7 +15,7 @@ class Header extends React.Component {
         if(thisPage == "search"){
             //check if he entered anything in search bar
             if(this.searchRef.current.value == ""){
-                alert("Please enter search value");
+                this.searchRef.reset();
             }else{
                 this.props.history.push(`/search/${this.searchRef.current.value}`);
             }

@@ -64455,7 +64455,7 @@ function (_React$Component) {
       if (thisPage == "search") {
         //check if he entered anything in search bar
         if (_this.searchRef.current.value == "") {
-          alert("Please enter search value");
+          _this.searchRef.reset();
         } else {
           _this.props.history.push("/search/".concat(_this.searchRef.current.value));
         }
@@ -64880,19 +64880,15 @@ function (_React$Component) {
         className: "grid-search-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-search-item"
-      }, "1sdadsadasdsa")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "grid-search-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "grid-search-item"
-      }, "1sdadsadasdsa")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "grid-search-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "grid-search-item"
-      }, "1sdadsadasdsa")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "grid-search-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "grid-search-item"
-      }, "1sdadsadasdsa")));
+        className: "search-tag"
+      }, "MT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-name"
+      }, "Mohammad Tashkandi"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-id"
+      }, "435160085"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-button"
+      }, "Visit Profile"))));
     }
   }]);
 
@@ -65094,8 +65090,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\School Stuff\Second Semester\Coding\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\School Stuff\Second Semester\Coding\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
