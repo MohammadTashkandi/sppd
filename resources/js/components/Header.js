@@ -39,9 +39,9 @@ class Header extends React.Component {
                                 <div className="input-group" id="search-bar">
                                     <input type="text" className="form-control" ref={this.searchRef} placeholder="Enter ID/Name" name="searchbtn" required id="search-bar-bar"/>
                                     <div className="input-group-btn">
-                                        <button className="btn btn-default" onClick={this.linkClick}  name="search" id="search-bar">
-                                            <i className="glyphicon glyphicon-search"></i>
-                                        </button>
+                                        <a className="btn btn-default" onClick={this.linkClick}  name="search" id="search-bar">
+                                            <i className="glyphicon glyphicon-search" id="search-bar-icon"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

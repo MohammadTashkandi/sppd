@@ -64515,13 +64515,14 @@ function (_React$Component) {
         id: "search-bar-bar"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input-group-btn"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "btn btn-default",
         onClick: this.linkClick,
         name: "search",
         id: "search-bar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "glyphicon glyphicon-search"
+        className: "glyphicon glyphicon-search",
+        id: "search-bar-icon"
       })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "nav navbar-nav navbar-right",
         id: "header-last"
@@ -64788,7 +64789,7 @@ function (_React$Component) {
   _createClass(InfoBar, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-bar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "decorative-box"
@@ -64888,7 +64889,12 @@ function (_React$Component) {
         className: "search-id"
       }, "435160085"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-button"
-      }, "Visit Profile"))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "btn btn-default btn-sm",
+        id: "visit-page"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        class: "glyphicon glyphicon-stats"
+      }), " View Stats")))));
     }
   }]);
 

@@ -9,7 +9,11 @@ export default class Search extends React.Component {
                         <div className="search-tag">MT</div>
                         <div className="search-name">Mohammad Tashkandi</div>
                         <div className="search-id">435160085</div>
-                        <div className="search-button">Visit Profile</div>
+                        <div className="search-button">
+                            <a className="btn btn-default btn-sm" id="visit-page">
+                                <span class="glyphicon glyphicon-stats"></span> View Stats
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
