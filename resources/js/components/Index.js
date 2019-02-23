@@ -20,6 +20,15 @@ export default class Index extends React.Component {
             project3:{name: "Project 3", task1:"Fix this", task2:"repair this", task3:"do this" },
             project4:{name: "Project 4", task1:"Fix who", task2:"repair who", task3:"do who" },
         },
+
+        tasks: {
+            task1:{project: "project1", name:"Fix that"},
+            task1:{project: "project1", name:"Fix that"},
+            task1:{project: "project1", name:"Fix that"},
+            task1:{project: "project1", name:"Fix that"},
+            task1:{project: "project1", name:"Fix that"},
+            task1:{project: "project1", name:"Fix that"},
+        },
     }
 
     render() {
