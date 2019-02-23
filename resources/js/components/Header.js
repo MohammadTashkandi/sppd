@@ -8,24 +8,18 @@ class Header extends React.Component {
     searchRef = React.createRef();
     logoutRef = React.createRef();    
 
+    search = (event) =>{
+        event.preventDefault();
+        this.props.history.push(`/search/${this.searchRef.current.value}`);
+    }
+
     linkClick = (event) =>{
         //takes the name of the clicked link in the header and stores it
         const thisPage = event.currentTarget.name;
         //pushes the name into the url, loading the corresponding page
-        if(thisPage == "search"){
-            //check if he entered anything in search bar
-            if(this.searchRef.current.value == ""){
-                this.searchRef.reset();
-            }else{
-                this.props.history.push(`/search/${this.searchRef.current.value}`);
-            }
-            
-        }else{
             this.props.history.push(`/${thisPage}`);
-        }
-        this.searchRef.current.value = null;
-
     }
+
     render() {
         return (
             <nav className="navbar navbar-inverse" id="header-nav">
@@ -37,12 +31,14 @@ class Header extends React.Component {
                             <li className="home-link"><a onClick={this.linkClick} ref={this.homeRef} name="/"href="#" id="link-head">Home</a></li>
                             <div className="navbar-form navbar-left" action="/action_page.php">
                                 <div className="input-group" id="search-bar">
-                                    <input type="text" className="form-control" ref={this.searchRef} placeholder="Enter ID/Name" name="searchbtn" required id="search-bar-bar"/>
-                                    <div className="input-group-btn">
-                                        <a className="btn btn-default" onClick={this.linkClick}  name="search" id="search-bar">
-                                            <i className="glyphicon glyphicon-search" id="search-bar-icon"></i>
-                                        </a>
-                                    </div>
+                                    <form onSubmit={this.search} action="post">
+                                        <input required type="text" className="form-control" ref={this.searchRef} placeholder="Enter ID/Name" name="searchbtn" required id="search-bar-bar"/>
+                                        <div className="input-group-btn">
+                                            <button className="btn btn-default" type="submit"  name="search" id="search-bar">
+                                                <i className="glyphicon glyphicon-search" id="search-bar-icon"></i>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </ul>

@@ -64448,22 +64448,17 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "logoutRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "search", function (event) {
+      event.preventDefault();
+
+      _this.props.history.push("/search/".concat(_this.searchRef.current.value));
+    });
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "linkClick", function (event) {
       //takes the name of the clicked link in the header and stores it
       var thisPage = event.currentTarget.name; //pushes the name into the url, loading the corresponding page
 
-      if (thisPage == "search") {
-        //check if he entered anything in search bar
-        if (_this.searchRef.current.value == "") {
-          _this.searchRef.reset();
-        } else {
-          _this.props.history.push("/search/".concat(_this.searchRef.current.value));
-        }
-      } else {
-        _this.props.history.push("/".concat(thisPage));
-      }
-
-      _this.searchRef.current.value = null;
+      _this.props.history.push("/".concat(thisPage));
     });
 
     return _this;
@@ -64472,6 +64467,8 @@ function (_React$Component) {
   _createClass(Header, [{
     key: "render",
     value: function render() {
+      var _React$createElement;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
         className: "navbar navbar-inverse",
         id: "header-nav"
@@ -64505,25 +64502,27 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input-group",
         id: "search-bar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.search,
+        action: "post"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement = {
+        required: true,
         type: "text",
         className: "form-control",
         ref: this.searchRef,
         placeholder: "Enter ID/Name",
-        name: "searchbtn",
-        required: true,
-        id: "search-bar-bar"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        name: "searchbtn"
+      }, _defineProperty(_React$createElement, "required", true), _defineProperty(_React$createElement, "id", "search-bar-bar"), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input-group-btn"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-default",
-        onClick: this.linkClick,
+        type: "submit",
         name: "search",
         id: "search-bar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "glyphicon glyphicon-search",
         id: "search-bar-icon"
-      })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "nav navbar-nav navbar-right",
         id: "header-last"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -64882,43 +64881,43 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Search)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      programmers: []
+      programmers: [] //componentDidMount(){
+      //    axios.get('/app/Http/Controllers/ProgammerController@FindProgrammer').then(response =>{
+      //    this.setState({programmers:response.data})
+      //  });
+      //}
+
     });
 
     return _this;
   }
 
   _createClass(Search, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      axios.get('api/programmerController@showProgrammers').then(function (response) {
-        _this2.setState({
-          programmers: response.data
-        });
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
-      var programmers = this.state.programmers;
-      return programmers.map()
-      /* <div className="canvas-background">
-          <div className="grid-search-container">
-              <div className="grid-search-item">
-                  <div className="search-tag">MT</div>
-                  <div className="search-name">Mohammad Tashkandi</div>
-                  <div className="search-id">435160085</div>
-                  <div className="search-button">
-                      <a className="btn btn-default btn-sm" id="visit-page">
-                          <span className="glyphicon glyphicon-stats"></span> View Stats
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </div> */
-      ;
+      //    const programmers = this.state.programmers;
+      return (//  programmers.map()
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "canvas-background"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-search-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-search-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "search-tag"
+        }, "MT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "search-name"
+        }, "Mohammad Tashkandi"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "search-id"
+        }, "435160085"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "search-button"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "btn btn-default btn-sm",
+          id: "visit-page"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "glyphicon glyphicon-stats"
+        }), " View Stats")))))
+      );
     }
   }]);
 

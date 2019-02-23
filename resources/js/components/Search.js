@@ -6,19 +6,19 @@ export default class Search extends React.Component {
         programmers: []
     }
 
-    componentDidMount(){
-        axios.get('api/programmerController@showProgrammers').then(response =>{
-            this.setState({programmers:response.data})
-        });
-    }
+    //componentDidMount(){
+    //    axios.get('/app/Http/Controllers/ProgammerController@FindProgrammer').then(response =>{
+        //    this.setState({programmers:response.data})
+      //  });
+    //}
 
     render() {
-        const programmers = this.state.programmers;
+    //    const programmers = this.state.programmers;
 
         return (
-            programmers.map()
+          //  programmers.map()
 
-            /* <div className="canvas-background">
+            <div className="canvas-background">
                 <div className="grid-search-container">
                     <div className="grid-search-item">
                         <div className="search-tag">MT</div>
@@ -31,7 +31,7 @@ export default class Search extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div> */
+            </div>
         );
     }
 }
