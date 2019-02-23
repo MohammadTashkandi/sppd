@@ -16,8 +16,10 @@ class Header extends React.Component {
     linkClick = (event) =>{
         //takes the name of the clicked link in the header and stores it
         const thisPage = event.currentTarget.name;
+        console.log(thisPage);
+
         //pushes the name into the url, loading the corresponding page
-            this.props.history.push(`/${thisPage}`);
+        this.props.history.push(`/${thisPage}`);
     }
 
     render() {
@@ -28,7 +30,7 @@ class Header extends React.Component {
                         <a onClick={this.linkClick} ref={this.logoRef} name="/"href="#"><img src={logo} id="logo"/></a>
                     </div>
                         <ul className="nav navbar-nav" id="header-middle">
-                            <li className="home-link"><a onClick={this.linkClick} ref={this.homeRef} name="/"href="#" id="link-head">Home</a></li>
+                            <li className="home-link"><a onClick={this.linkClick} ref={this.homeRef} name=""href="#" id="link-head">Home</a></li>
                             <div className="navbar-form navbar-left" action="/action_page.php">
                                 <div className="input-group" id="search-bar">
                                     <form onSubmit={this.search} action="post">

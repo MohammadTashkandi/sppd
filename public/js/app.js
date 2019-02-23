@@ -64456,7 +64456,8 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "linkClick", function (event) {
       //takes the name of the clicked link in the header and stores it
-      var thisPage = event.currentTarget.name; //pushes the name into the url, loading the corresponding page
+      var thisPage = event.currentTarget.name;
+      console.log(thisPage); //pushes the name into the url, loading the corresponding page
 
       _this.props.history.push("/".concat(thisPage));
     });
@@ -64493,7 +64494,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: this.linkClick,
         ref: this.homeRef,
-        name: "/",
+        name: "",
         href: "#",
         id: "link-head"
       }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
