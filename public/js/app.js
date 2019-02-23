@@ -64914,7 +64914,7 @@ function (_React$Component) {
         className: "btn btn-default btn-sm",
         id: "visit-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        class: "glyphicon glyphicon-stats"
+        className: "glyphicon glyphicon-stats"
       }), " View Stats")))));
     }
   }]);
