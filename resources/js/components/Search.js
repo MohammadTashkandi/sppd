@@ -1,9 +1,24 @@
 import React from 'react';
 
 export default class Search extends React.Component {
+
+    state = {
+        programmers: []
+    }
+
+    componentDidMount(){
+        axios.get('api/programmerController@showProgrammers').then(response =>{
+            this.setState({programmers:response.data})
+        });
+    }
+
     render() {
+        const programmers = this.state.programmers;
+
         return (
-            <div className="canvas-background">
+            programmers.map()
+
+            /* <div className="canvas-background">
                 <div className="grid-search-container">
                     <div className="grid-search-item">
                         <div className="search-tag">MT</div>
@@ -16,7 +31,7 @@ export default class Search extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */
         );
     }
 }
