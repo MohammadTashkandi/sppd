@@ -9,6 +9,8 @@ import Canvas from './Canvas';
 import InfoBar from './InfoBar';
 import Home from './Home';
 import Search from './Search';
+import Login from './Login';
+import Register from './Register';
 
 
 
@@ -20,19 +22,24 @@ export default class Index extends React.Component {
             project3:{name: "Project 3", task1:"Fix this", task2:"repair this", task3:"do this" },
             project4:{name: "Project 4", task1:"Fix who", task2:"repair who", task3:"do who" },
         },
+
     }
 
     render() {
+        const loggedIn=false;
+     
         return (
             <HashRouter>
                 <div history={this.props.history} style={{maxHeight:'100vh'}}> 
-                        <Header />
-                        <SideBar projects={this.state.projects}/>
-                        <InfoBar />
+                    <Header loggedIn={loggedIn} />
+                    <SideBar loggedIn={loggedIn} projects={this.state.projects}/>
+                    <InfoBar loggedIn={loggedIn} />                              
                     <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route path="/search/:userId" component={Search} />
-                        <Route path="/project/:projectId" component={Canvas} />
+                        <Route exact path="/" component={Login} />
+                        <Route path="/register" component={Register} />
+                        <Route exact path="/index" component={Home} />
+                        <Route path="/index/search/:userId" component={Search} />
+                        <Route path="/index/project/:projectId" component={Canvas} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>
