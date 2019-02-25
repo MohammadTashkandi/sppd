@@ -10795,34 +10795,3 @@ a#visit-page:hover {
   justify-content: center;
 }
 
-.form {
-  margin-top: 10rem;
-  margin-left: 40rem;
-  margin-right: 40rem;
-  text-align: center;
-  background-color: #333;
-  border-radius: 20px;
-}
-
-.login-btn {
-  background-color: transparent;
-  margin-bottom: 3rem;
-  border-color: #9d9d9d;
-  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  color: #9d9d9d;
-  padding: 8px 18px;
-  border-radius: 50px;
-  font-size: 2rem;
-}
-
-.login-btn:hover {
-  color: black;
-  background-color: #c03401;
-  border-color: #c03401;
-  transition: 0.4s;
-}
-
-#form-control {
-  width: 30rem;
-}
-

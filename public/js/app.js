@@ -64389,9 +64389,159 @@ function (_React$Component) {
   !*** ./resources/js/components/Header.js ***!
   \*******************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\majed\\Documents\\Final Project\\sppd\\resources\\js\\components\\Header.js: Unexpected token (11:1)\n\n\u001b[0m \u001b[90m  9 | \u001b[39m    search \u001b[33m=\u001b[39m (event) \u001b[33m=>\u001b[39m{\u001b[0m\n\u001b[0m \u001b[90m 10 | \u001b[39m        event\u001b[33m.\u001b[39mpreventDefault()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m        \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mhistory\u001b[33m.\u001b[39mpush(\u001b[32m`/search/${this.searchRef.current.value}`\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 13 | \u001b[39m    }\u001b[0m\n\u001b[0m \u001b[90m 14 | \u001b[39m\u001b[0m\n    at Object.raise (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:3831:17)\n    at Object.unexpected (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:5143:16)\n    at Object.jsxParseIdentifier (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:3332:12)\n    at Object.jsxParseNamespacedName (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:3342:23)\n    at Object.jsxParseElementName (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:3353:21)\n    at Object.jsxParseOpeningElementAt (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:3438:22)\n    at Object.jsxParseElementAt (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:3471:33)\n    at Object.jsxParseElement (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:3540:17)\n    at Object.parseExprAtom (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:3547:19)\n    at Object.parseExprSubscripts (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:5862:23)\n    at Object.parseMaybeUnary (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:5842:21)\n    at Object.parseExprOps (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:5729:23)\n    at Object.parseMaybeConditional (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:5702:23)\n    at Object.parseMaybeAssign (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:5647:21)\n    at Object.parseExpression (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:5595:23)\n    at Object.parseStatementContent (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:7375:23)\n    at Object.parseStatement (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:7248:17)\n    at Object.parseBlockOrModuleBlockBody (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:7812:25)\n    at Object.parseBlockBody (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:7799:10)\n    at Object.parseBlock (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:7788:10)\n    at Object.parseFunctionBody (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:6876:24)\n    at Object.parseArrowExpression (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:6829:10)\n    at Object.parseParenAndDistinguishExpression (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:6458:12)\n    at Object.parseExprAtom (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:6215:21)\n    at Object.parseExprAtom (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:3552:20)\n    at Object.parseExprSubscripts (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:5862:23)\n    at Object.parseMaybeUnary (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:5842:21)\n    at Object.parseExprOps (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:5729:23)\n    at Object.parseMaybeConditional (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:5702:23)\n    at Object.parseMaybeAssign (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:5647:21)\n    at Object.parseClassProperty (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:8239:25)\n    at Object.pushClassProperty (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:8193:30)\n    at Object.parseClassMemberWithIsStatic (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:8132:14)\n    at Object.parseClassMember (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:8069:10)\n    at withTopicForbiddingContext (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:8024:14)\n    at Object.withTopicForbiddingContext (C:\\Users\\majed\\Documents\\Final Project\\sppd\\node_modules\\@babel\\parser\\lib\\index.js:7150:14)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _LOGO_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../LOGO.png */ "./resources/LOGO.png");
+/* harmony import */ var _LOGO_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_LOGO_png__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+var Header =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Header, _React$Component);
+
+  function Header() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, Header);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Header)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "searchRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "search", function (event) {
+      event.preventDefault();
+
+      _this.props.history.push("/index/search/".concat(_this.searchRef.current.value));
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onClick", function () {
+      alert("hey");
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "logout", function () {
+      localStorage.removeItem('usertoken');
+      console.log('deleted token');
+    });
+
+    return _this;
+  }
+
+  _createClass(Header, [{
+    key: "render",
+    value: function render() {
+      var loggedIn = this.props.loggedIn;
+
+      if (!loggedIn) {
+        return null;
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+          className: "navbar navbar-inverse",
+          id: "header-nav"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "container-fluid"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "navbar-header",
+          id: "header-first"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
+          onClick: this.onClick,
+          to: "/index"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: _LOGO_png__WEBPACK_IMPORTED_MODULE_1___default.a,
+          id: "logo"
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "nav navbar-nav",
+          id: "header-middle"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "home-link"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
+          to: "/index",
+          activeClassName: "link-head-active",
+          activeStyle: {
+            color: "black"
+          },
+          id: "link-head"
+        }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "navbar-form navbar-left",
+          action: "/action_page.php"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "input-group",
+          id: "search-bar"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          onSubmit: this.search,
+          action: "post"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          className: "form-control",
+          ref: this.searchRef,
+          placeholder: "Enter ID/Name",
+          name: "searchbtn",
+          required: true,
+          id: "search-bar-bar"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "input-group-btn"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "btn btn-default",
+          type: "submit",
+          name: "search",
+          id: "search-bar"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "glyphicon glyphicon-search",
+          id: "search-bar-icon"
+        }))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "nav navbar-nav navbar-right",
+          id: "header-last"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
+          onClick: this.logout,
+          to: "/",
+          className: "btn btn-info btn-lg",
+          id: "logout-btn"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "glyphicon glyphicon-log-out"
+        }), " Logout"))));
+      }
+    }
+  }]);
+
+  return Header;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Header));
 
 /***/ }),
 
