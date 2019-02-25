@@ -164,4 +164,23 @@ class ProgrammerController extends Controller
     {
         //
     }
+
+
+    public function findProgrammer(Request $request){
+
+        $input = $request['name'];
+        $user = new User();
+
+
+//        if (is_int($input)) {
+//            $user = $user->find($input);
+//            return
+//        } else {
+//            $user = $user->find()->where()
+//
+//
+//        }
+
+
+    }
 }
