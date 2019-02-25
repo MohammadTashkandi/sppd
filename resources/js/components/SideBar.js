@@ -58,12 +58,13 @@ class SideBar extends React.Component {
     }
 
     changePath = (key) => {     
-            this.props.history.push(`/project/${key}`);  /* put / before project to make it work correctly */
+            this.props.history.push(`/index/project/${key}`);  /* put / before project to make it work correctly */
     }
 
     render() {
         const projectIds = Object.keys(this.props.projects);
 
+        
         return (
                 <div style={{width:'20%'}}>
                     <div id="project-pills" className="active" ref={this.projectPillsRef}>{/* this should be added from state */}

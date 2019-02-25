@@ -10,7 +10,7 @@ class Header extends React.Component {
 
     search = (event) =>{
         event.preventDefault();
-        this.props.history.push(`/search/${this.searchRef.current.value}`);
+        this.props.history.push(`/index/search/${this.searchRef.current.value}`);
     }
 
     linkClick = (event) =>{
@@ -27,10 +27,10 @@ class Header extends React.Component {
             <nav className="navbar navbar-inverse" id="header-nav">
                 <div className="container-fluid">
                     <div className="navbar-header" id="header-first">
-                        <a onClick={this.linkClick} ref={this.logoRef} name="/"href="#"><img src={logo} id="logo"/></a>
+                        <a onClick={this.linkClick} ref={this.logoRef} name="index" href="#"><img src={logo} id="logo"/></a>
                     </div>
                         <ul className="nav navbar-nav" id="header-middle">
-                            <li className="home-link"><a onClick={this.linkClick} ref={this.homeRef} name=""href="#" id="link-head">Home</a></li>
+                            <li className="home-link"><a onClick={this.linkClick} ref={this.homeRef} name="index" href="#" id="link-head">Home</a></li>
                             <div className="navbar-form navbar-left" action="/action_page.php">
                                 <div className="input-group" id="search-bar">
                                     <form onSubmit={this.search} action="post">

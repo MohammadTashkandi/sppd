@@ -1,14 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Switch, Route, HashRouter } from 'react-router-dom';
 
-import NotFound from './NotFound';
 import Header from './Header';
 import SideBar from './SideBar';
-import Canvas from './Canvas';
 import InfoBar from './InfoBar';
-import Home from './Home';
-import Search from './Search';
+
 
 
 
@@ -24,26 +19,11 @@ export default class Index extends React.Component {
 
     render() {
         return (
-            <HashRouter>
                 <div history={this.props.history} style={{maxHeight:'100vh'}}> 
                         <Header />
                         <SideBar projects={this.state.projects}/>
                         <InfoBar />
-                    <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route path="/search/:userId" component={Search} />
-                        <Route path="/project/:projectId" component={Canvas} />
-                        <Route component={NotFound} />
-                    </Switch>
                 </div>
-            </HashRouter>
-            
         );
     }
-}
-
-
-
-if (document.getElementById('app')) {
-    ReactDOM.render(<Index />, document.getElementById('app'));
 }
