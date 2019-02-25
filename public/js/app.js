@@ -64398,6 +64398,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _LOGO_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../LOGO.png */ "./resources/LOGO.png");
 /* harmony import */ var _LOGO_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_LOGO_png__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -64422,6 +64423,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Header =
 /*#__PURE__*/
 function (_React$Component) {
@@ -64440,13 +64442,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Header)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "logoRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "homeRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
-
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "searchRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "logoutRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "search", function (event) {
       event.preventDefault();
@@ -64454,12 +64450,8 @@ function (_React$Component) {
       _this.props.history.push("/index/search/".concat(_this.searchRef.current.value));
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "linkClick", function (event) {
-      //takes the name of the clicked link in the header and stores it
-      var thisPage = event.currentTarget.name;
-      console.log(thisPage); //pushes the name into the url, loading the corresponding page
-
-      _this.props.history.push("/".concat(thisPage));
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onClick", function () {
+      alert("hey");
     });
 
     return _this;
@@ -64468,8 +64460,6 @@ function (_React$Component) {
   _createClass(Header, [{
     key: "render",
     value: function render() {
-      var _React$createElement;
-
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
         className: "navbar navbar-inverse",
         id: "header-nav"
@@ -64478,11 +64468,9 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-header",
         id: "header-first"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        onClick: this.linkClick,
-        ref: this.logoRef,
-        name: "index",
-        href: "#"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
+        onClick: this.onClick,
+        to: "/index"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: _LOGO_png__WEBPACK_IMPORTED_MODULE_1___default.a,
         id: "logo"
@@ -64491,11 +64479,12 @@ function (_React$Component) {
         id: "header-middle"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "home-link"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        onClick: this.linkClick,
-        ref: this.homeRef,
-        name: "index",
-        href: "#",
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
+        to: "/index",
+        activeClassName: "link-head-active",
+        activeStyle: {
+          color: "black"
+        },
         id: "link-head"
       }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-form navbar-left",
@@ -64506,14 +64495,15 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.search,
         action: "post"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement = {
-        required: true,
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         className: "form-control",
         ref: this.searchRef,
         placeholder: "Enter ID/Name",
-        name: "searchbtn"
-      }, _defineProperty(_React$createElement, "required", true), _defineProperty(_React$createElement, "id", "search-bar-bar"), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        name: "searchbtn",
+        required: true,
+        id: "search-bar-bar"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input-group-btn"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-default",
@@ -64527,13 +64517,9 @@ function (_React$Component) {
         className: "nav navbar-nav navbar-right",
         id: "header-last"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        onClick: this.linkClick,
-        ref: this.logoutRef,
-        name: "logout",
-        href: "#",
         className: "btn btn-info btn-lg",
         id: "logout-btn"
-      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "glyphicon glyphicon-log-out"
       }), " Logout"))));
     }

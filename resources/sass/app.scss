@@ -130,6 +130,12 @@ font-family: 'Poppins', sans-serif;
   background-color: rgb(192, 52, 1);
   transition: 0.4s;
 }
+.link-head-active{
+  color: black;
+  background-color: rgb(192, 52, 1);
+  text-decoration: underline;
+  transition: 0.4s;
+}
 
 #header-last {
   flex-direction: row;
