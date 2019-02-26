@@ -64456,6 +64456,9 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "logout", function () {
       localStorage.removeItem('usertoken');
+
+      _this.props.editLoggedIn(false);
+
       console.log('deleted token');
     });
 
@@ -64628,6 +64631,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Register__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Register */ "./resources/js/components/Register.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -64678,6 +64683,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Index)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      loggedIn: localStorage.getItem('usertoken') != null,
       projects: {
         project1: {
           name: "Project 1",
@@ -64706,29 +64712,41 @@ function (_React$Component) {
       }
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "editLoggedIn", function (loggedIn) {
+      _this.setState({
+        loggedIn: loggedIn
+      });
+    });
+
     return _this;
   }
 
   _createClass(Index, [{
     key: "render",
     value: function render() {
-      var loggedIn = false;
+      var _this2 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         history: this.props.history,
         style: {
           maxHeight: '100vh'
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        loggedIn: loggedIn
+        loggedIn: this.state.loggedIn,
+        editLoggedIn: this.editLoggedIn
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SideBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        loggedIn: loggedIn,
+        loggedIn: this.state.loggedIn,
         projects: this.state.projects
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InfoBar__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        loggedIn: loggedIn
+        loggedIn: this.state.loggedIn
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/",
-        component: _Login__WEBPACK_IMPORTED_MODULE_10__["default"]
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Login__WEBPACK_IMPORTED_MODULE_10__["default"], _extends({}, props, {
+            editLoggedIn: _this2.editLoggedIn
+          }));
+        }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/register",
         component: _Register__WEBPACK_IMPORTED_MODULE_11__["default"]
@@ -64842,10 +64860,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Login; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _UserFunctions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserFunctions */ "./resources/js/components/UserFunctions.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-/* harmony import */ var _LOGO_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../LOGO.png */ "./resources/LOGO.png");
-/* harmony import */ var _LOGO_png__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_LOGO_png__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _LOGO_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../LOGO.png */ "./resources/LOGO.png");
+/* harmony import */ var _LOGO_png__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_LOGO_png__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -64865,7 +64882,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -64904,10 +64920,25 @@ function (_React$Component) {
         username: _this.state.username,
         password: _this.state.password
       };
-      Object(_UserFunctions__WEBPACK_IMPORTED_MODULE_1__["login"])(user).then(function (res) {
-        if (res) {
+      axios.post('api/login', {
+        email: user.username,
+        password: user.password
+      }).then(function (res) {
+        console.log(res);
+
+        if (res.status == 201) {
+          localStorage.setItem('usertoken', res.data.token);
+
+          _this.props.editLoggedIn(true);
+
           _this.props.history.push("/index");
         }
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(function (err) {
+        console.log(err);
       });
     });
 
@@ -64920,7 +64951,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: _LOGO_png__WEBPACK_IMPORTED_MODULE_3___default.a,
+        src: _LOGO_png__WEBPACK_IMPORTED_MODULE_2___default.a,
         style: {
           width: '170px',
           height: '110px',
@@ -64958,7 +64989,7 @@ function (_React$Component) {
         type: "submit"
       }, "Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "login-btn"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["NavLink"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         className: "login-btn",
         to: "/register"
       }, "Make a new Account!")));
@@ -65005,9 +65036,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Register; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _UserFunctions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserFunctions */ "./resources/js/components/UserFunctions.js");
-/* harmony import */ var _LOGO_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../LOGO.png */ "./resources/LOGO.png");
-/* harmony import */ var _LOGO_png__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_LOGO_png__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _LOGO_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../LOGO.png */ "./resources/LOGO.png");
+/* harmony import */ var _LOGO_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_LOGO_png__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -65031,7 +65061,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 var Register =
 /*#__PURE__*/
 function (_React$Component) {
@@ -65051,6 +65080,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Register)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      name: "",
       username: "",
       password: ""
     });
@@ -65062,11 +65092,22 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSubmit", function (event) {
       event.preventDefault();
       var newUser = {
-        username: _this.state.username,
+        name: _this.state.name,
+        email: _this.state.username,
         password: _this.state.password
       };
-      Object(_UserFunctions__WEBPACK_IMPORTED_MODULE_1__["register"])(newUser).then(function (res) {
-        _this.history.push("/");
+      axios.post('api/register', newUser, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function (res) {
+        console.log(res);
+
+        if (res.status == 201) {
+          _this.props.history.push("/");
+        }
+      }).catch(function (err) {
+        console.log(err);
       });
     });
 
@@ -65079,7 +65120,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: _LOGO_png__WEBPACK_IMPORTED_MODULE_2___default.a,
+        src: _LOGO_png__WEBPACK_IMPORTED_MODULE_1___default.a,
         style: {
           width: '170px',
           height: '110px',
@@ -65093,6 +65134,16 @@ function (_React$Component) {
       }, "Register"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.onSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Name", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        id: "form-control",
+        type: "text",
+        name: "name",
+        placeholder: "Enter full name",
+        onChange: this.onChange,
+        required: true
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Username", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
@@ -65378,49 +65429,6 @@ function (_React$Component) {
 {
   /* to get props */
 }
-
-/***/ }),
-
-/***/ "./resources/js/components/UserFunctions.js":
-/*!**************************************************!*\
-  !*** ./resources/js/components/UserFunctions.js ***!
-  \**************************************************/
-/*! exports provided: login, register */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register", function() { return register; });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-var login = function login(user) {
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/login', {
-    email: user.username,
-    password: user.password
-  }).then(function (res) {
-    localStorage.setItem('usertoken', res.data.token);
-    console.log(res);
-  }, {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).catch(function (err) {
-    console.log(err);
-  });
-};
-var register = function register(newUser) {
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/register', newUser, {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then(function (res) {
-    console.log(res);
-  }).catch(function (err) {
-    console.log(err);
-  });
-};
 
 /***/ }),
 
