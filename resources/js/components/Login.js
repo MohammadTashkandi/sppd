@@ -36,12 +36,12 @@ export default class Login extends React.Component {
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Username
-                            <input className="form-control" id="form-control" type="text" name="username" placeholder="Enter username" onChange={this.onChange} />
+                            <input className="form-control" id="form-control" type="text" name="username" placeholder="Enter username" onChange={this.onChange} required />
                         </label>
                     </div>
                     <div className="form-group">    
                         <label>Password
-                            <input className="form-control" id="form-control" type="password" name="password" placeholder="Enter password" onChange={this.onChange} />
+                            <input className="form-control" id="form-control" type="password" name="password" placeholder="Enter password" onChange={this.onChange} required />
                         </label>
                     </div>
                         <button className="login-btn" type="submit">Login</button>
