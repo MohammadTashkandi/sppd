@@ -64941,7 +64941,8 @@ function (_React$Component) {
         type: "text",
         name: "username",
         placeholder: "Enter username",
-        onChange: this.onChange
+        onChange: this.onChange,
+        required: true
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -64950,7 +64951,8 @@ function (_React$Component) {
         type: "password",
         name: "password",
         placeholder: "Enter password",
-        onChange: this.onChange
+        onChange: this.onChange,
+        required: true
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "login-btn",
         type: "submit"
@@ -65098,7 +65100,8 @@ function (_React$Component) {
         type: "text",
         name: "username",
         placeholder: "Enter username",
-        onChange: this.onChange
+        onChange: this.onChange,
+        required: true
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -65107,11 +65110,12 @@ function (_React$Component) {
         type: "password",
         name: "password",
         placeholder: "Enter password",
-        onChange: this.onChange
+        onChange: this.onChange,
+        required: true
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "login-btn",
         type: "submit"
-      }, "Login")));
+      }, "Register")));
     }
   }]);
 
