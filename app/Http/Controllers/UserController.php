@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Validator;
 
      public function register(Request $request){
 
-       $validator = Validator::make($request->json()->all , [
+       $validator = Validator::make($request->json()->all() , [
 
          'name' => 'required|string|max:255',
          'email' => 'required|string|email|max:255|unique:users',
@@ -30,17 +30,17 @@ use Illuminate\Support\Facades\Validator;
 
        }
        $user = User::create([
-         'name' => $request->json()->get('name'),
-         'email' => $request->json()->get('email'),
-'passoword' => Hash::make($request->json()->get('password')),
+        'name' => $request->json()->get('name'),
+        'email' => $request->json()->get('email'),
+        'password' => Hash::make($request->json()->get('password')),
 
 
 ]);
 $token = JWTAuth::fromUser($user);
-return resopnse()->json(compact('user', 'token'),201);
+return response()->json(compact('user', 'token'),201);
      }
 
-     public function login(Request $reguest){
+     public function login(Request $request){
        $credentials = $request->json()->all();
 
        try{
@@ -51,7 +51,7 @@ return resopnse()->json(compact('user', 'token'),201);
        }catch(JWTException $e){
          return response()->json(['error' => 'could_not_create_token'], 500);
        }
-       return resopnse()->json(compact('token'));
+       return response()->json(compact('token'),201);
 
 
      }

@@ -16,6 +16,7 @@ class Header extends React.Component {
 
     logout = () =>{
         localStorage.removeItem('usertoken');
+        this.props.editLoggedIn(false);
         console.log('deleted token')
     }
     

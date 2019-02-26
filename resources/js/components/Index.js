@@ -16,6 +16,7 @@ import Register from './Register';
 
 export default class Index extends React.Component {
     state = {
+        loggedIn: localStorage.getItem('usertoken') != null,
         projects: {
             project1:{name:"Project 1", task1:"Fix that", task2:"repair that", task3:"do that" },
             project2:{name: "Project 2", task1:"Fix what", task2:"repair what", task3:"do what" },
@@ -25,17 +26,19 @@ export default class Index extends React.Component {
 
     }
 
+    editLoggedIn = (loggedIn) => {
+        this.setState({loggedIn: loggedIn});
+    }
+    
     render() {
-        const loggedIn=false;
-     
         return (
             <HashRouter>
                 <div history={this.props.history} style={{maxHeight:'100vh'}}> 
-                    <Header loggedIn={loggedIn} />
-                    <SideBar loggedIn={loggedIn} projects={this.state.projects}/>
-                    <InfoBar loggedIn={loggedIn} />                              
+                    <Header loggedIn={this.state.loggedIn} editLoggedIn={this.editLoggedIn} />
+                    <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects}/>
+                    <InfoBar loggedIn={this.state.loggedIn} />                              
                     <Switch>
-                        <Route exact path="/" component={Login} />
+                        <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn} />} />{/* we use render instead of component so we can add props */}
                         <Route path="/register" component={Register} />
                         <Route exact path="/index" component={Home} />
                         <Route path="/index/search/:userId" component={Search} />

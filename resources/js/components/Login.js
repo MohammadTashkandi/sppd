@@ -1,5 +1,4 @@
 import React from 'react';
-import { login } from './UserFunctions';
 import {NavLink} from 'react-router-dom';
 import logo from '../../LOGO.png';
 
@@ -21,10 +20,22 @@ export default class Login extends React.Component {
             password: this.state.password
         }
 
-        login(user).then(res => {
-            if(res) {
+        axios.post('api/login', {
+            email: user.username,
+            password: user.password
+        })
+        .then((res) => {
+            console.log(res);
+            if(res.status==201) {
+                localStorage.setItem('usertoken', res.data.token);
+                this.props.editLoggedIn(true);
                 this.props.history.push(`/index`);
             }
+        },{
+            headers: {'Content-Type': 'application/json'}
+        })
+        .catch((err) => {
+            console.log(err);
         })
 
     }
