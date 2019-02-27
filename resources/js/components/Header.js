@@ -10,9 +10,6 @@ class Header extends React.Component {
         event.preventDefault();
         this.props.history.push(`/index/search/${this.searchRef.current.value}`);
     }
-    onClick = () =>{
-        alert("hey");
-    }
 
     logout = () =>{
         localStorage.removeItem('usertoken');
@@ -34,7 +31,10 @@ class Header extends React.Component {
                     </div>
                         <ul className="nav navbar-nav" id="header-middle">
                             <li className="home-link">
-                                <NavLink to={"/index"} activeClassName={"link-head-active"} activeStyle={{color: "black"}}id="link-head">Home</NavLink>
+                                <NavLink to={"/index"} id="link-head">Home</NavLink>
+                            </li>
+                            <li className="home-link">
+                                <NavLink to={"/index/createProject"} id="link-head">Create a New Project</NavLink>
                             </li>
                             <div className="navbar-form navbar-left" action="/action_page.php">
                                 <div className="input-group" id="search-bar">

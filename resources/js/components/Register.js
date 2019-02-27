@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../../LOGO.png';
+import {NavLink} from 'react-router-dom';
 
 export default class Register extends React.Component {
     state = {
@@ -39,7 +40,7 @@ export default class Register extends React.Component {
         return(
             <div className="form">
             <img src={logo} style={{width:'170px', height:'110px', marginTop:'3rem'}} />
-            <h3 style={{color:'rgb(192, 52, 1)', fontFamily:'"Poppins", sans-serif'}}>Register</h3>
+            <h3 style={{color:'rgb(255, 207, 189)', fontFamily:'"Poppins", sans-serif'}}>Register</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Name
@@ -58,6 +59,7 @@ export default class Register extends React.Component {
                     </div>
                         <button className="login-btn" type="submit">Register</button>
                 </form>
+                <NavLink to={"/"}><button className="login-btn" type="submit">Already have an account?</button></NavLink>
             </div>
         );
     }

@@ -11,6 +11,7 @@ import Home from './Home';
 import Search from './Search';
 import Login from './Login';
 import Register from './Register';
+import CreateProject from './CreateProject'
 
 
 
@@ -38,9 +39,10 @@ export default class Index extends React.Component {
                     <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects}/>
                     <InfoBar loggedIn={this.state.loggedIn} />                              
                     <Switch>
-                        <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn} />} />{/* we use render instead of component so we can add props */}
+                        <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn} />} /> {/* we use render instead of component so we can add props */}
                         <Route path="/register" component={Register} />
                         <Route exact path="/index" component={Home} />
+                        <Route path="/index/createProject" component={CreateProject} />
                         <Route path="/index/search/:userId" component={Search} />
                         <Route path="/index/project/:projectId" component={Canvas} />
                         <Route component={NotFound} />
