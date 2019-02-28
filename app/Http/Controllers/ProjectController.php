@@ -57,16 +57,17 @@ class ProjectController extends Controller
         $user = Auth::user();
         $current = Carbon::now();
          $pro = new Project();
-         $title = $request['title'] ;
+         $title = $request['title'];
+         $PMid = $request['PMid'];
          if($title == null){
              return 'You should put Title';
          }
         $pro->title = $title;
-        $pro->PMid = $user->id;
+        $pro->PMid = $PMid;
         $pro->Start_Date = $current;
         $pro->save();
 
-        return 'Done';
+        return response()->json(201);
     }
 
     /**
@@ -133,13 +134,11 @@ class ProjectController extends Controller
 
     }
 
-    public function findProject(){
+    public function findProject(Request $request){
 
-        $userId= Auth::user()->id;
-        $pm = ProjectManager::find($userId);
-        $projects = $pm->projects;
-        $projects = $projects->pluck('title' , 'Start_Date');
-        return view('project.projects_list' , compact('projects'));
+        $PMid = $request['PMid'];
+        $projects = Project::where('PMid',$PMid);
+        return response()->json($projects->pluck('title','id')); //dont do $projects=$projects->pluck... or the state will have nested object
     }
 
 

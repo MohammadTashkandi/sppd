@@ -28,6 +28,7 @@ export default class Login extends React.Component {
             console.log(res);
             if(res.status==201) {
                 localStorage.setItem('usertoken', res.data.token);
+                localStorage.setItem('PMid', res.data.PMid);
                 this.props.editLoggedIn(true);
                 this.props.history.push(`/index`);
             }

@@ -1,3 +1,4 @@
+{/* /Applications/Development/projects/laravelProjects/sppd/sppd (sppd directory) beta malk d5l */}
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Switch, Route, HashRouter } from 'react-router-dom';
@@ -18,17 +19,31 @@ import CreateProject from './CreateProject'
 export default class Index extends React.Component {
     state = {
         loggedIn: localStorage.getItem('usertoken') != null,
-        projects: {
-            project1:{name:"Project 1", task1:"Fix that", task2:"repair that", task3:"do that" },
-            project2:{name: "Project 2", task1:"Fix what", task2:"repair what", task3:"do what" },
-            project3:{name: "Project 3", task1:"Fix this", task2:"repair this", task3:"do this" },
-            project4:{name: "Project 4", task1:"Fix who", task2:"repair who", task3:"do who" },
-        },
+        projects: {},
 
     }
 
     editLoggedIn = (loggedIn) => {
         this.setState({loggedIn: loggedIn});
+        this.getProjects(); /* I dont think this is best practice, maybe we should use a lifecycle method */
+        console.log('editloggedin '+this.state.loggedIn);
+    }
+
+    getProjects = () => {
+        if(this.state.loggedIn){
+            axios.get('api/findProject', {
+                params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+                    PMid: localStorage.getItem('PMid')
+                }
+            })
+            .then((res) => {
+                if(res.status==200) {
+                    this.setState({projects: res.data})
+                }
+            })
+        }else{
+            console.log('not logged in yet');
+        }
     }
     
     render() {
@@ -42,7 +57,7 @@ export default class Index extends React.Component {
                         <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn} />} /> {/* we use render instead of component so we can add props */}
                         <Route path="/register" component={Register} />
                         <Route exact path="/index" component={Home} />
-                        <Route path="/index/createProject" component={CreateProject} />
+                        <Route path="/index/createProject" render={(props)=> <CreateProject {...props} getProjects={this.getProjects} />} />
                         <Route path="/index/search/:userId" component={Search} />
                         <Route path="/index/project/:projectId" component={Canvas} />
                         <Route component={NotFound} />

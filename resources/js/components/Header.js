@@ -13,6 +13,7 @@ class Header extends React.Component {
 
     logout = () =>{
         localStorage.removeItem('usertoken');
+        localStorage.removeItem('PMid');
         this.props.editLoggedIn(false);
         console.log('deleted token')
     }
@@ -21,6 +22,7 @@ class Header extends React.Component {
 
         const loggedIn=this.props.loggedIn;
         if(!loggedIn) {
+            console.log('header'+loggedIn);
             return(null);
         }else {
         return (
@@ -31,10 +33,10 @@ class Header extends React.Component {
                     </div>
                         <ul className="nav navbar-nav" id="header-middle">
                             <li className="home-link">
-                                <NavLink to={"/index"} id="link-head">Home</NavLink>
+                                <NavLink to={"/index"} id="link-head" style={{color:'#ffc600'}}>Home</NavLink>
                             </li>
                             <li className="home-link">
-                                <NavLink to={"/index/createProject"} id="link-head">Create a New Project</NavLink>
+                                <NavLink to={"/index/createProject"} id="link-head" style={{color:'#ffc600'}}>Create a New Project</NavLink>
                             </li>
                             <div className="navbar-form navbar-left" action="/action_page.php">
                                 <div className="input-group" id="search-bar">

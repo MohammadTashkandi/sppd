@@ -14,18 +14,19 @@ body{
 }
 
 /* colors: from darkest shade to lightest
-blue: 002536, 003c57, 006491, 0082bd, 009ae0, 00afff
+blue: 122738, 15232d, 0d3a58, 
 purple: 544e8a, 7769b5, 907dd5, a38cee, b49aff
-pink: b94f8f, d85ea5, ef6ab5, ff73c2, ff7acd
-Orange: d46204, ff6b67, ff726c, ff7670, ff7b74
-Yellow: ffa600, ffa600, ffa600, ffa600, ffa600
+pink: ff628c, 
+Orange: ff9d00
+Yellow: ffc600,
+red: f44542,
 font-family: 'Space Mono', monospace;
 font-family: 'Proza Libre', sans-serif;  
 font-family: 'Poppins', sans-serif;
 */
 
   .nav-link {
-    color:white;
+    color: #ffc600;
     font-size:2rem;
     font-family: 'Poppins', sans-serif;
   }
@@ -36,25 +37,25 @@ font-family: 'Poppins', sans-serif;
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: white;
+  color: #ffc600;
 }
 .navbar-light .navbar-nav .active > .nav-link {
-  color:black;
+  color:#15232d;
   text-decoration: underline;
 }
 
 .nav-link.side {
-  color: white;
+  color: #ffc600;
 }
 
 .nav-link:hover {
-  background-color: rgb(255, 207, 189);
-  color: black;
+  background-color: #ffc600;
+  color: #15232d;
 }
 
 #project-pills {
   float: left;
-  background-color: #373737;
+  background-color: #122738;
   width:90%;
   height: 100vh;
   overflow: hidden;
@@ -69,17 +70,17 @@ font-family: 'Poppins', sans-serif;
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: black;
-  background-color: rgb(255, 207, 189);
+  background-color: #ffc600;
 }
 
 
 #v-pills-tabContent{
-  color:white;
+  color:#ffc600;
 }
 
 #task-pills {
   float: left;
-  background-color: #4b4b4b;
+  background-color: #0d3a58;
   width:10%;
   height: 100vh;
   overflow: hidden;
@@ -90,8 +91,8 @@ font-family: 'Poppins', sans-serif;
 #back-button {
   display:none;
   font-size: 2.5em;
-  color: rgb(255, 207, 189);
-  border-color: rgb(255, 207, 189);
+  color: #ffc600;
+  border-color: #ffc600;
 }
 
 .canvas-background {
@@ -111,15 +112,17 @@ font-family: 'Poppins', sans-serif;
 #header-nav{
   margin-bottom: 0px;
   border-radius: 0px;
+  background-color: #15232d;
 }
 
 #header-first {
-  margin-right: 0px;
+  margin-left: -2em;
+  margin-right: 4em;
 }
 
 #header-middle {
   flex-direction: row;
-  margin-right: 614px;
+  margin-right: 18em;
   font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   font-size: 17px;
   color: white;
@@ -127,7 +130,7 @@ font-family: 'Poppins', sans-serif;
 
 #link-head:hover{
   color: black;
-  background-color: rgb(255, 207, 189);
+  background-color: #ffc600;
   transition: 0.4s;
 }
 
@@ -143,17 +146,17 @@ font-family: 'Poppins', sans-serif;
 
 #logout-btn{
   background-color: transparent;
-  border-color: #9d9d9d;
+  border-color: #ffc600;
   font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  color: #9d9d9d;
+  color: #ffc600;
   padding: 8px 18px;
   border-radius: 50px;
 }
 
 a#logout-btn:hover {
   color: black;
-  background-color: rgb(255, 207, 189);
-  border-color: rgb(255, 207, 189);
+  background-color: #ffc600;
+  border-color: #ffc600;
   transition: 0.4s;
 }
 
@@ -197,7 +200,7 @@ a#logout-btn:hover {
 .grid-item {
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.753);
-  box-shadow: -2px 2px 10px rgb(255, 207, 189);
+  box-shadow: -2px 2px 10px #ffc600;
 }
 
 .info-bar{
@@ -319,8 +322,8 @@ a#visit-page:hover{
 
 .login-btn:hover {
   color: black;
-  background-color: rgb(255, 207, 189);
-  border-color: rgb(255, 207, 189);
+  background-color: #ffc600;
+  border-color: #ffc600;
   transition: 0.4s;
 }
 
@@ -377,7 +380,7 @@ a#visit-page:hover{
   margin-right: 35rem;
   padding-top: 4rem;
   height: 25rem;
-  background-color: rgb(255, 207, 189);
+  background-color: #ffc600;
   color: #333;
   border-color: #333;
 }
@@ -391,15 +394,15 @@ a#visit-page:hover{
 }
 
 .create-project-btn:hover {
-  color: rgb(255, 207, 189);
-  background-color: #333;
-  border-color: #333;
+  color: #ffc600;
+  background-color: #0d3a58;
+  border-color: #0d3a58;
   transition: 0.2s;
 }
 #plus-sign:hover{
-  color: rgb(255, 207, 189);
-  background-color: #333;
-  border-color: #333;
+  color: #ffc600;
+  background-color: #0d3a58;
+  border-color: #0d3a58;
   transition: 0.2s;
 }
 #plus-sign:active{

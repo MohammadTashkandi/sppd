@@ -64439,7 +64439,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CreateProject)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      projectName: ""
+      title: ""
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
@@ -64448,7 +64448,18 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSubmit", function (event) {
       event.preventDefault();
-      console.log(_this.state.projectName);
+      axios.post('api/storeProject', {
+        title: _this.state.title,
+        PMid: localStorage.getItem('PMid')
+      }).then(function (res) {
+        console.log(res);
+
+        if (res.status == 200) {
+          _this.props.getProjects();
+
+          _this.props.history.push("/index/project/".concat(_this.state.title));
+        }
+      });
     });
 
     return _this;
@@ -64476,7 +64487,7 @@ function (_React$Component) {
         className: "form-control",
         id: "project-control",
         type: "text",
-        name: "projectName",
+        name: "title",
         placeholder: "Enter project name",
         onChange: this.onChange,
         required: true
@@ -64569,6 +64580,7 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "logout", function () {
       localStorage.removeItem('usertoken');
+      localStorage.removeItem('PMid');
 
       _this.props.editLoggedIn(false);
 
@@ -64584,6 +64596,7 @@ function (_React$Component) {
       var loggedIn = this.props.loggedIn;
 
       if (!loggedIn) {
+        console.log('header' + loggedIn);
         return null;
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
@@ -64607,12 +64620,18 @@ function (_React$Component) {
           className: "home-link"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
           to: "/index",
-          id: "link-head"
+          id: "link-head",
+          style: {
+            color: '#ffc600'
+          }
         }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "home-link"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
           to: "/index/createProject",
-          id: "link-head"
+          id: "link-head",
+          style: {
+            color: '#ffc600'
+          }
         }, "Create a New Project")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "navbar-form navbar-left",
           action: "/action_page.php"
@@ -64743,7 +64762,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Search */ "./resources/js/components/Search.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Login */ "./resources/js/components/Login.js");
 /* harmony import */ var _Register__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Register */ "./resources/js/components/Register.js");
-/* harmony import */ var _CreateProject__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./CreateProject */ "./resources/js/components/CreateProject.js");
+/* harmony import */ var _CreateProject__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CreateProject */ "./resources/js/components/CreateProject.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -64766,6 +64785,9 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+{
+  /* /Applications/Development/projects/laravelProjects/sppd/sppd (sppd directory) beta malk d5l */
+}
 
 
 
@@ -64800,38 +64822,38 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       loggedIn: localStorage.getItem('usertoken') != null,
-      projects: {
-        project1: {
-          name: "Project 1",
-          task1: "Fix that",
-          task2: "repair that",
-          task3: "do that"
-        },
-        project2: {
-          name: "Project 2",
-          task1: "Fix what",
-          task2: "repair what",
-          task3: "do what"
-        },
-        project3: {
-          name: "Project 3",
-          task1: "Fix this",
-          task2: "repair this",
-          task3: "do this"
-        },
-        project4: {
-          name: "Project 4",
-          task1: "Fix who",
-          task2: "repair who",
-          task3: "do who"
-        }
-      }
+      projects: {}
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "editLoggedIn", function (loggedIn) {
       _this.setState({
         loggedIn: loggedIn
       });
+
+      _this.getProjects();
+      /* I dont think this is best practice, maybe we should use a lifecycle method */
+
+
+      console.log('editloggedin ' + _this.state.loggedIn);
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getProjects", function () {
+      if (_this.state.loggedIn) {
+        axios.get('api/findProject', {
+          params: {
+            /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+            PMid: localStorage.getItem('PMid')
+          }
+        }).then(function (res) {
+          if (res.status == 200) {
+            _this.setState({
+              projects: res.data
+            });
+          }
+        });
+      } else {
+        console.log('not logged in yet');
+      }
     });
 
     return _this;
@@ -64872,7 +64894,11 @@ function (_React$Component) {
         component: _Home__WEBPACK_IMPORTED_MODULE_8__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/createProject",
-        component: _CreateProject__WEBPACK_IMPORTED_MODULE_13__["default"]
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CreateProject__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({}, props, {
+            getProjects: _this2.getProjects
+          }));
+        }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/search/:userId",
         component: _Search__WEBPACK_IMPORTED_MODULE_9__["default"]
@@ -64945,6 +64971,7 @@ function (_React$Component) {
       var loggedIn = this.props.loggedIn;
 
       if (!loggedIn) {
+        console.log('infobar ' + loggedIn);
         return null;
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -65047,6 +65074,7 @@ function (_React$Component) {
 
         if (res.status == 201) {
           localStorage.setItem('usertoken', res.data.token);
+          localStorage.setItem('PMid', res.data.PMid);
 
           _this.props.editLoggedIn(true);
 
@@ -65469,6 +65497,7 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProject", function (key) {
       var project = _this.props.projects[key];
+      console.log(project);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         key: key,
         onClick: function onClick() {
@@ -65481,7 +65510,7 @@ function (_React$Component) {
         role: "tab",
         "aria-controls": "#v-pills-" + key,
         "aria-selected": "false"
-      }, project.name);
+      }, project);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderTask", function (key) {
@@ -65535,6 +65564,7 @@ function (_React$Component) {
       var loggedIn = this.props.loggedIn;
 
       if (!loggedIn) {
+        console.log('sidebar ' + loggedIn);
         return null;
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -65600,8 +65630,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
