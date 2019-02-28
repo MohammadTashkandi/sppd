@@ -33,10 +33,10 @@ class Header extends React.Component {
                     </div>
                         <ul className="nav navbar-nav" id="header-middle">
                             <li className="home-link">
-                                <NavLink to={"/index"} id="link-head" style={{color:'#ffc600'}}>Home</NavLink>
+                                <NavLink to={"/index"} id="link-head" style={{color:'#2c87c4'}}>Home</NavLink>
                             </li>
                             <li className="home-link">
-                                <NavLink to={"/index/createProject"} id="link-head" style={{color:'#ffc600'}}>Create a New Project</NavLink>
+                                <NavLink to={"/index/createProject"} id="link-head" style={{color:'#2c87c4'}}>Create a New Project</NavLink>
                             </li>
                             <div className="navbar-form navbar-left" action="/action_page.php">
                                 <div className="input-group" id="search-bar">

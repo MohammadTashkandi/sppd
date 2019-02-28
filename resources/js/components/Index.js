@@ -26,7 +26,7 @@ export default class Index extends React.Component {
     editLoggedIn = (loggedIn) => {
         this.setState({loggedIn: loggedIn});
         this.getProjects(); /* I dont think this is best practice, maybe we should use a lifecycle method */
-        console.log('editloggedin '+this.state.loggedIn);
+        console.log('editloggedin '+ this.state.loggedIn);
     }
 
     getProjects = () => {

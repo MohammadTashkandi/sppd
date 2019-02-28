@@ -44,21 +44,23 @@ export default class Login extends React.Component {
         return(
             <div className="form">
                 <img src={logo} style={{width:'170px', height:'110px', marginTop:'3rem'}} />
-                <h3 style={{color:'rgb(255, 207, 189)', fontFamily:'"Poppins", sans-serif'}}>Login</h3>
+                <h3 style={{color:'#ffc600', fontFamily:'"Poppins", sans-serif'}}>Login</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Username
+                        <label style={{color:'#ffc600' , textAlign:'left'}}>Username
+                            <div style={{padding: '0.5rem'}}></div> {/* just to move stuff apart */}
                             <input className="form-control" id="form-control" type="text" name="username" placeholder="Enter username" onChange={this.onChange} required />
                         </label>
                     </div>
                     <div className="form-group">    
-                        <label>Password
+                        <label style={{color:'#ffc600' , textAlign:'left'}}>Password
+                            <div style={{padding: '0.5rem'}}></div> {/* just to move stuff apart */}
                             <input className="form-control" id="form-control" type="password" name="password" placeholder="Enter password" onChange={this.onChange} required />
                         </label>
                     </div>
                         <button className="login-btn" type="submit">Login</button>
                 </form>
-                <button className="login-btn"><NavLink className="login-btn" to={`/register`}>Make a new Account!</NavLink></button>
+                <NavLink to={"/register"}><button className="login-btn">Make a new Account!</button></NavLink>
             </div>
         );
     }

@@ -33,10 +33,6 @@
     },
     "dependencies": {
         "@babel/polyfill": "^7.2.5",
-<<<<<<< .merge_file_a06760
-        "react-router": "^4.3.1",
-=======
->>>>>>> .merge_file_a16172
         "react-router-dom": "^4.3.1"
     }
 }
