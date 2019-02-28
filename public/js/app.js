@@ -65427,43 +65427,66 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Search)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      programmers: [] //componentDidMount(){
-      //    axios.get('/app/Http/Controllers/ProgammerController@FindProgrammer').then(response =>{
-      //    this.setState({programmers:response.data})
-      //  });
-      //}
+      programmers: []
+    });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProgrammer", function () {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "grid-search-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "grid-search-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-tag"
+      }, programmers.id), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-name"
+      }, programmers.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-id"
+      }, programmers.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-button"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "btn btn-default btn-sm",
+        id: "visit-page"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "glyphicon glyphicon-stats"
+      }), " View Stats"))));
     });
 
     return _this;
   }
 
   _createClass(Search, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      /* axios.post('api/findProgrammers', {
+          id: this.props.match.params
+      })
+      .then((res) => {
+          console.log(res);
+          if(res.status==200){
+              this.setState({programmers : res.data})
+          }
+      }) */
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      /* axios.post('api/findProgrammers', {
+          id: this.props.match.params
+      })
+      .then((res) => {
+          console.log(res);
+          if(res.status==200){
+              this.setState({programmers : res.data})
+          }
+      }) */
+    }
+  }, {
     key: "render",
     value: function render() {
-      //    const programmers = this.state.programmers;
-      return (//  programmers.map()
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "canvas-background"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-search-container"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-search-item"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "search-tag"
-        }, "MT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "search-name"
-        }, "Mohammad Tashkandi"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "search-id"
-        }, "435160085"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "search-button"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          className: "btn btn-default btn-sm",
-          id: "visit-page"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "glyphicon glyphicon-stats"
-        }), " View Stats")))))
-      );
+      var programmers = this.state.programmers;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "canvas-background"
+      }, programmers.map(this.renderProgrammer));
     }
   }]);
 
