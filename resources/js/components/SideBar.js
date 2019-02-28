@@ -18,8 +18,9 @@ class SideBar extends React.Component {
     
     renderProject = (key) => {
         const project = this.props.projects[key];
+        console.log(project);
         return(
-                <a key={key} onClick={()=> this.handleClick(key)} className="nav-link" id={"v-pills-"+key+"-tab"} data-toggle="pill" href={"#v-pills-"+key} role="tab" aria-controls={"#v-pills-"+key} aria-selected="false">{project.name}</a>
+                <a key={key} onClick={()=> this.handleClick(key)} className="nav-link" id={"v-pills-"+key+"-tab"} data-toggle="pill" href={"#v-pills-"+key} role="tab" aria-controls={"#v-pills-"+key} aria-selected="false">{project}</a>
         );
     }
 
@@ -66,6 +67,7 @@ class SideBar extends React.Component {
 
         const loggedIn=this.props.loggedIn;
         if(!loggedIn) {
+            console.log('sidebar '+loggedIn);
             return(null);
         }else {
 

@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 
 export default class CreateProject extends React.Component {
     state = {
-        projectName: "",
+        title: "",
     }
 
     onChange = (e) => {
@@ -12,7 +12,19 @@ export default class CreateProject extends React.Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.projectName);
+        
+        axios.post('api/storeProject', {
+            title: this.state.title,
+            PMid: localStorage.getItem('PMid')
+        })
+        .then((res) => {
+            console.log(res);
+            if(res.status==200){
+                this.props.getProjects();
+                this.props.history.push(`/index/project/${this.state.title}`)
+            }
+        })
+        
     }
 
     render() {
@@ -22,7 +34,7 @@ export default class CreateProject extends React.Component {
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label id="create-project-label">
-                            <input className="form-control" id="project-control" type="text" name="projectName" placeholder="Enter project name" onChange={this.onChange} required />
+                            <input className="form-control" id="project-control" type="text" name="title" placeholder="Enter project name" onChange={this.onChange} required />
                         </label>
                         <button className="create-project-btn" type="submit" id="plus-sign">+</button>
                     </div>

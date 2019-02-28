@@ -34,10 +34,9 @@ use Illuminate\Support\Facades\Validator;
         'email' => $request->json()->get('email'),
         'password' => Hash::make($request->json()->get('password')),
 
-
-]);
-$token = JWTAuth::fromUser($user);
-return response()->json(compact('user', 'token'),201);
+      ]);
+      $token = JWTAuth::fromUser($user);
+      return response()->json(compact('user', 'token'),201);
      }
 
      public function login(Request $request){
@@ -51,7 +50,8 @@ return response()->json(compact('user', 'token'),201);
        }catch(JWTException $e){
          return response()->json(['error' => 'could_not_create_token'], 500);
        }
-       return response()->json(compact('token'),201);
+       $PMid = User::where('email',$request['email']) -> first() ->id;
+       return response()->json(compact('token','PMid'),201);
 
 
      }
