@@ -60,7 +60,7 @@ export default class Login extends React.Component {
                     </div>
                         <button className="login-btn" type="submit">Login</button>
                 </form>
-                <NavLink to={"/register"}><button className="login-btn">Make a new Account!</button></NavLink>
+                <NavLink to={"/register"}><button className="login-btn" style={{marginBottom:'2rem'}}>Make a new Account!</button></NavLink>
             </div>
         );
     }

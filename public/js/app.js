@@ -65155,7 +65155,10 @@ function (_React$Component) {
       }, "Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         to: "/register"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "login-btn"
+        className: "login-btn",
+        style: {
+          marginBottom: '2rem'
+        }
       }, "Make a new Account!")));
     }
   }]);
@@ -65247,8 +65250,11 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       name: "",
-      username: "",
-      password: ""
+      email: "",
+      password: "",
+      phonenumber: "",
+      nationality: "",
+      age: ""
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
@@ -65259,7 +65265,7 @@ function (_React$Component) {
       event.preventDefault();
       var newUser = {
         name: _this.state.name,
-        email: _this.state.username,
+        email: _this.state.email,
         password: _this.state.password
       };
       axios.post('api/register', newUser, {
@@ -65302,14 +65308,9 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        style: {
-          color: '#ffc600',
-          textAlign: 'left'
-        }
-      }, "Name", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          padding: '0.5rem'
-        }
+        className: "reg-form-label"
+      }, "Name *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
         id: "form-control",
@@ -65318,36 +65319,24 @@ function (_React$Component) {
         placeholder: "Enter full name",
         onChange: this.onChange,
         required: true
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        style: {
-          color: '#ffc600',
-          textAlign: 'left'
-        }
-      }, "Username", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          padding: '0.5rem'
-        }
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "reg-form-label"
+      }, "Email *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
         id: "form-control",
         type: "text",
-        name: "username",
-        placeholder: "Enter username",
+        name: "email",
+        placeholder: "Enter email",
         onChange: this.onChange,
         required: true
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        style: {
-          color: '#ffc600',
-          textAlign: 'left'
-        }
-      }, "Password", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          padding: '0.5rem'
-        }
+        className: "reg-form-label"
+      }, "Password *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
         id: "form-control",
@@ -65356,13 +65345,51 @@ function (_React$Component) {
         placeholder: "Enter password",
         onChange: this.onChange,
         required: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "reg-form-label"
+      }, "Phone number", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        id: "form-control",
+        type: "text",
+        name: "phonenumber",
+        placeholder: "Enter Phone number",
+        onChange: this.onChange
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "reg-form-label"
+      }, "Age", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        id: "form-control",
+        type: "age",
+        name: "age",
+        placeholder: "Enter age",
+        onChange: this.onChange
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "reg-form-label"
+      }, "Nationality", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        id: "form-control",
+        type: "nationality",
+        name: "nationality",
+        placeholder: "Enter nationality",
+        onChange: this.onChange
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "login-btn",
         type: "submit"
       }, "Register")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["NavLink"], {
         to: "/"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "login-btn"
+        className: "login-btn",
+        style: {
+          marginBottom: '2rem'
+        }
       }, "Already have an account?")));
     }
   }]);
@@ -65696,8 +65723,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
