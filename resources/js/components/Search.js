@@ -3,37 +3,47 @@ import React from 'react';
 export default class Search extends React.Component {
 
     state = {
-        programmers: []
+        programmers: {}
     }
     componentWillMount(){
-        /* axios.post('api/findProgrammers', {
-            id: this.props.match.params
+        axios.post('api/findProgrammers', { 
+            params:{
+                id: this.props.match.params
+            }
         })
         .then((res) => {
             console.log(res);
             if(res.status==200){
                 this.setState({programmers : res.data})
             }
-        }) */
+            else{
+                console.log("no programmers with this id");
+            }
+        })
     }
     componentDidUpdate(){
-        /* axios.post('api/findProgrammers', {
-            id: this.props.match.params
+        axios.post('api/findProgrammers', {
+            params:{
+                id: this.props.match.params
+            }
         })
         .then((res) => {
             console.log(res);
             if(res.status==200){
                 this.setState({programmers : res.data})
             }
-        }) */
+            else{
+                console.log("no programmers with this id");
+            }
+        })
     }
-    renderProgrammer = () => {
+    renderProgrammer = (key) => {
         return(
             <div className="grid-search-container">
                     <div className="grid-search-item">
-                        <div className="search-tag">{programmers.id}</div> {/* how to get letters from string? */}
-                        <div className="search-name">{programmers.name}</div>
-                        <div className="search-id">{programmers.id}</div>
+                        <div className="search-tag">{programmers[key].id}</div> {/* how to get letters from string? */}
+                        <div className="search-name">{programmers[key].name}</div>
+                        <div className="search-id">{programmers[key].id}</div>
                         <div className="search-button">
                             <a className="btn btn-default btn-sm" id="visit-page">
                                 <span className="glyphicon glyphicon-stats"></span> View Stats
@@ -45,7 +55,7 @@ export default class Search extends React.Component {
     }
 
     render() {
-        const programmers = this.state.programmers;
+        const programmers = Object.keys(this.state.programmers);
 
         return (
             <div className="canvas-background">
