@@ -50,7 +50,7 @@ export default class Index extends React.Component {
     isSearchFull = (bool) =>{
         console.log(bool) //here it says true
         this.setState({searchFull: bool}); //i set it to state
-        console.log(this.state.searchFull); //state still stays false?
+        console.log(this.state.searchFull); //state still stays false????
     }
     
     render() {

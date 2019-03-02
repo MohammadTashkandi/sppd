@@ -64222,14 +64222,14 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/LOGO3.png":
+/***/ "./resources/LOGO2.png":
 /*!*****************************!*\
-  !*** ./resources/LOGO3.png ***!
+  !*** ./resources/LOGO2.png ***!
   \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/LOGO3.png?2a117bcf9b63f983acf355169819f4e1";
+module.exports = "/images/LOGO2.png?211f638e9486d4f4245b2da22ab2c1de";
 
 /***/ }),
 
@@ -64897,8 +64897,8 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _LOGO3_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../LOGO3.png */ "./resources/LOGO3.png");
-/* harmony import */ var _LOGO3_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_LOGO3_png__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _LOGO2_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../LOGO2.png */ "./resources/LOGO2.png");
+/* harmony import */ var _LOGO2_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_LOGO2_png__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -64993,7 +64993,7 @@ function (_React$Component) {
           onClick: this.onClick,
           to: "/index"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: _LOGO3_png__WEBPACK_IMPORTED_MODULE_1___default.a,
+          src: _LOGO2_png__WEBPACK_IMPORTED_MODULE_1___default.a,
           id: "logo"
         }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "nav navbar-nav",
@@ -65248,7 +65248,7 @@ function (_React$Component) {
       }); //i set it to state
 
 
-      console.log(_this.state.searchFull); //state still stays false?
+      console.log(_this.state.searchFull); //state still stays false????
     });
 
     return _this;
@@ -65412,8 +65412,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-/* harmony import */ var _LOGO3_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../LOGO3.png */ "./resources/LOGO3.png");
-/* harmony import */ var _LOGO3_png__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_LOGO3_png__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _LOGO2_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../LOGO2.png */ "./resources/LOGO2.png");
+/* harmony import */ var _LOGO2_png__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_LOGO2_png__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -65503,7 +65503,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: _LOGO3_png__WEBPACK_IMPORTED_MODULE_2___default.a,
+        src: _LOGO2_png__WEBPACK_IMPORTED_MODULE_2___default.a,
         style: {
           width: '170px',
           height: '110px',
@@ -65608,8 +65608,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Register; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _LOGO3_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../LOGO3.png */ "./resources/LOGO3.png");
-/* harmony import */ var _LOGO3_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_LOGO3_png__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _LOGO2_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../LOGO2.png */ "./resources/LOGO2.png");
+/* harmony import */ var _LOGO2_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_LOGO2_png__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -65697,7 +65697,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: _LOGO3_png__WEBPACK_IMPORTED_MODULE_1___default.a,
+        src: _LOGO2_png__WEBPACK_IMPORTED_MODULE_1___default.a,
         style: {
           width: '170px',
           height: '110px',
