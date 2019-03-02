@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../LOGO.png';
+import logo from '../../LOGO3.png';
 import {withRouter} from 'react-router';
 import {NavLink} from "react-router-dom";
 

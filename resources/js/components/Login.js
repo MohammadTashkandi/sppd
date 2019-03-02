@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import logo from '../../LOGO.png';
+import logo from '../../LOGO3.png';
 
 export default class Login extends React.Component {
     state = {

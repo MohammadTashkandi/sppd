@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../LOGO.png';
+import logo from '../../LOGO3.png';
 import {NavLink} from 'react-router-dom';
 
 export default class Register extends React.Component {
