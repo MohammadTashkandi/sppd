@@ -7,7 +7,11 @@ export default class Search extends React.Component {
     }
 
     componentWillMount(){
-        axios.get('api/findProgrammer', {     /* in post dont use params, just put the object. you forgot to put .userId after params */
+        /* const searchValue = this.props.match.params.userId;
+        const id = parseInt(searchValue, 10);
+        const res = searchValue.charAt(0) + searchValue.charAt(3);
+        console.log(res) */
+         /* axios.get('api/findProgrammer', {
                 id: this.props.match.params.userId
         })
         .then((res) => {
@@ -18,7 +22,7 @@ export default class Search extends React.Component {
             else{
                 console.log("no programmers with this id");
             }
-        })
+        }) */
     }
     componentDidUpdate(){
         axios.get('api/findProgrammers', {
@@ -33,6 +37,9 @@ export default class Search extends React.Component {
                 console.log("no programmers with this id");
             }
         })
+    }
+    componentWillUnmount(){
+            this.props.isSearchFull(true);
     }
     renderProgrammer = (key) => {
         return(

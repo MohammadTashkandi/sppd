@@ -64966,6 +64966,14 @@ function (_React$Component) {
 
   _createClass(Header, [{
     key: "render",
+    //remind me to explain this to you
+
+    /* componentDidUpdate(){
+        if(this.props.searchFull == true){
+            this.searchRef.current.value = "";
+            this.props.isSearchFull(false);
+        }
+    } */
     value: function render() {
       var loggedIn = this.props.loggedIn;
 
@@ -65196,6 +65204,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Index)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      searchFull: false,
       loggedIn: localStorage.getItem('usertoken') != null,
       projects: {}
     });
@@ -65231,6 +65240,17 @@ function (_React$Component) {
       }
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "isSearchFull", function (bool) {
+      console.log(bool); //here it says true
+
+      _this.setState({
+        searchFull: bool
+      }); //i set it to state
+
+
+      console.log(_this.state.searchFull); //state still stays false?
+    });
+
     return _this;
   }
 
@@ -65246,7 +65266,9 @@ function (_React$Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {
         loggedIn: this.state.loggedIn,
-        editLoggedIn: this.editLoggedIn
+        editLoggedIn: this.editLoggedIn,
+        isSearchFull: this.isSearchFull,
+        searchFull: this.state.searchFull
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SideBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
         loggedIn: this.state.loggedIn,
         projects: this.state.projects
@@ -65276,7 +65298,11 @@ function (_React$Component) {
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/search/:userId",
-        component: _Search__WEBPACK_IMPORTED_MODULE_9__["default"]
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_9__["default"], _extends({}, props, {
+            isSearchFull: _this2.isSearchFull
+          }));
+        }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/project/:projectId",
         component: _Canvas__WEBPACK_IMPORTED_MODULE_6__["default"]
@@ -65863,10 +65889,30 @@ function (_React$Component) {
   _createClass(Search, [{
     key: "componentWillMount",
     value: function componentWillMount() {
+      /* const searchValue = this.props.match.params.userId;
+      const id = parseInt(searchValue, 10);
+      const res = searchValue.charAt(0) + searchValue.charAt(3);
+      console.log(res) */
+
+      /* axios.get('api/findProgrammer', {
+             id: this.props.match.params.userId
+      })
+      .then((res) => {
+         console.log(res);
+         if(res.status==200){
+             this.setState({programmers : res.data})
+         }
+         else{
+             console.log("no programmers with this id");
+         }
+      }) */
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
       var _this2 = this;
 
-      axios.get('api/findProgrammer', {
-        /* in post dont use params, just put the object. you forgot to put .userId after params */
+      axios.get('api/findProgrammers', {
         id: this.props.match.params.userId
       }).then(function (res) {
         console.log(res);
@@ -65881,23 +65927,9 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      var _this3 = this;
-
-      axios.get('api/findProgrammers', {
-        id: this.props.match.params.userId
-      }).then(function (res) {
-        console.log(res);
-
-        if (res.status == 200) {
-          _this3.setState({
-            programmers: res.data
-          });
-        } else {
-          console.log("no programmers with this id");
-        }
-      });
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.isSearchFull(true);
     }
   }, {
     key: "render",

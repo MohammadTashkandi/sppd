@@ -19,6 +19,7 @@ import CreateTask from './CreateTask';
 
 export default class Index extends React.Component {
     state = {
+        searchFull: false,
         loggedIn: localStorage.getItem('usertoken') != null,
         projects: {},
 
@@ -46,20 +47,25 @@ export default class Index extends React.Component {
             console.log('not logged in yet');
         }
     }
+    isSearchFull = (bool) =>{
+        console.log(bool) //here it says true
+        this.setState({searchFull: bool}); //i set it to state
+        console.log(this.state.searchFull); //state still stays false?
+    }
     
     render() {
         return (
             <HashRouter>
                 <div history={this.props.history} style={{maxHeight:'100vh'}}> 
-                    <Header loggedIn={this.state.loggedIn} editLoggedIn={this.editLoggedIn} />
+                    <Header loggedIn={this.state.loggedIn} editLoggedIn={this.editLoggedIn} isSearchFull={this.isSearchFull} searchFull={this.state.searchFull}/>
                     <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects}/>
                     <InfoBar loggedIn={this.state.loggedIn} />                              
                     <Switch>
-                        <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn} />} /> {/* we use render instead of component so we can add props */}
+                        <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn}/>} /> {/* we use render instead of component so we can add props */}
                         <Route path="/register" component={Register} />
                         <Route exact path="/index" component={Home} />
                         <Route path="/index/createProject" render={(props)=> <CreateProject {...props} getProjects={this.getProjects} />} />
-                        <Route path="/index/search/:userId" component={Search} />
+                        <Route path="/index/search/:userId" render={(props)=> <Search {...props} isSearchFull={this.isSearchFull} />} />
                         <Route path="/index/project/:projectId" component={Canvas} />
                         <Route path="/index/createTask/:projectId" component={CreateTask} />
                         <Route component={NotFound} />

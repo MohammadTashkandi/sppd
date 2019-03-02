@@ -17,6 +17,13 @@ class Header extends React.Component {
         this.props.editLoggedIn(false);
         console.log('deleted token')
     }
+    //remind me to explain this to you
+    /* componentDidUpdate(){
+        if(this.props.searchFull == true){
+            this.searchRef.current.value = "";
+            this.props.isSearchFull(false);
+        }
+    } */
     
     render() {
 
