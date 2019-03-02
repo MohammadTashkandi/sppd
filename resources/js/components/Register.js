@@ -70,12 +70,12 @@ export default class Register extends React.Component {
                     <div className="form-group">    
                         <label className="reg-form-label">Age
                             <div className="reg-form-div"></div> {/* just to move stuff apart */}
-                            <input className="form-control" id="form-control" type="age" name="age" placeholder="Enter age" onChange={this.onChange} />
+                            <input className="form-control" id="form-control" type="text" name="age" placeholder="Enter age" onChange={this.onChange} />
                         </label>
                         
                         <label className="reg-form-label">Nationality
                             <div className="reg-form-div"></div> {/* just to move stuff apart */}
-                            <input className="form-control" id="form-control" type="nationality" name="nationality" placeholder="Enter nationality" onChange={this.onChange} />
+                            <input className="form-control" id="form-control" type="text" name="nationality" placeholder="Enter nationality" onChange={this.onChange} />
                         </label>
                     </div>
                         <button className="login-btn" type="submit">Register</button>

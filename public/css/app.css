@@ -10924,3 +10924,44 @@ a#visit-page:hover {
   padding: 0.5rem;
 }
 
+.create-task-form {
+  margin-top: 3rem;
+  margin-left: 40rem;
+}
+
+.hr {
+  border-top: 1px solid lightgray;
+}
+
+.task-detail-seperator {
+  border-top: 1px solid lightgray;
+  margin-right: 18rem;
+}
+
+.task-form-label {
+  color: #ffc600;
+  text-align: left;
+  margin: 0rem 1.5rem;
+}
+
+.task-form-div {
+  color: #ffc600;
+  padding: 0.5rem;
+}
+
+.task-radio {
+  display: inline;
+  margin-left: 4rem;
+}
+
+.task-span {
+  font-weight: bold;
+  min-width: 11em;
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.create-task-header {
+  margin-bottom: 2rem;
+}
+

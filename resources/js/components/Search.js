@@ -5,11 +5,10 @@ export default class Search extends React.Component {
     state = {
         programmers: {}
     }
+
     componentWillMount(){
-        axios.post('api/findProgrammers', { 
-            params:{
-                id: this.props.match.params
-            }
+        axios.post('api/findProgrammer', {     /* in post dont use params, just put the object. you forgot to put .userId after params */
+                id: this.props.match.params.userId
         })
         .then((res) => {
             console.log(res);
@@ -23,9 +22,7 @@ export default class Search extends React.Component {
     }
     componentDidUpdate(){
         axios.post('api/findProgrammers', {
-            params:{
-                id: this.props.match.params
-            }
+                id: this.props.match.params.userId
         })
         .then((res) => {
             console.log(res);

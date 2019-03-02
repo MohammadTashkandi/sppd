@@ -43,18 +43,19 @@ class TaskController extends Controller
 //        dd(Input::get('Stress'));
 
         $task = new Task();
+        $task->PrId     =$request['PrId'];
         $task->Pid      =$request['Pid'];
         $task->title    =$request['title'];
         $task->severity =$request['severity'];
-        $task->tStr     =$request['Stress'];
-        $task->tJud     =$request['Judgment'];
-        $task->tCu      =$request['Communication'];
-        $task->tTech    =$request['Technical'];
+        $task->tStr     =$request['tStr'];
+        $task->tJud     =$request['tJud'];
+        $task->tCu      =$request['tCu'];
+        $task->tTech    =$request['tTech'];
         $task->Open_state = Carbon::now();
 
         $task->save();
 
-        return 'Done';
+        return response()->json('task');
 
     }
 

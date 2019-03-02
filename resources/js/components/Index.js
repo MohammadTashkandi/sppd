@@ -12,7 +12,8 @@ import Home from './Home';
 import Search from './Search';
 import Login from './Login';
 import Register from './Register';
-import CreateProject from './CreateProject'
+import CreateProject from './CreateProject';
+import CreateTask from './CreateTask';
 
 
 
@@ -60,6 +61,7 @@ export default class Index extends React.Component {
                         <Route path="/index/createProject" render={(props)=> <CreateProject {...props} getProjects={this.getProjects} />} />
                         <Route path="/index/search/:userId" component={Search} />
                         <Route path="/index/project/:projectId" component={Canvas} />
+                        <Route path="/index/createTask/:projectId" component={CreateTask} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

@@ -56,12 +56,12 @@ class ProjectController extends Controller
         //
         $user = Auth::user();
         $current = Carbon::now();
-         $pro = new Project();
-         $title = $request['title'];
-         $PMid = $request['PMid'];
-         if($title == null){
-             return 'You should put Title';
-         }
+        $pro = new Project();
+        $title = $request['title'];
+        $PMid = $request['PMid'];
+        if($title == null){
+            return 'You should put Title';
+        }
         $pro->title = $title;
         $pro->PMid = $PMid;
         $pro->Start_Date = $current;

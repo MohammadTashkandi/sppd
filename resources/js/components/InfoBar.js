@@ -14,7 +14,7 @@ export default class InfoBar extends React.Component {
                     <span className="decorative-box">e</span>
                     <span>YOOOOO</span> { /*use the url to putsomething here*/ }
                 </div>
-                <hr style={{margin:'0'}}></hr>
+                <hr className="hr" style={{margin:'0'}} />
             </React.Fragment>
             );
         }

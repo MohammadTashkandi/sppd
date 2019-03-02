@@ -6,7 +6,7 @@ import {NavLink} from "react-router-dom";
 class Header extends React.Component {
     searchRef = React.createRef();
 
-    search = (event) =>{
+    search = (event) => {
         event.preventDefault();
         this.props.history.push(`/index/search/${this.searchRef.current.value}`);
     }
@@ -40,7 +40,7 @@ class Header extends React.Component {
                             </li>
                             <div className="navbar-form navbar-left" action="/action_page.php">
                                 <div className="input-group" id="search-bar">
-                                    <form onSubmit={this.search} action="post">
+                                    <form onSubmit={this.search}>
                                         <input  type="text" className="form-control" ref={this.searchRef} placeholder="Enter ID/Name" name="searchbtn" required id="search-bar-bar"/>
                                         <div className="input-group-btn">
                                             <button className="btn btn-default" type="submit"  name="search" id="search-bar">

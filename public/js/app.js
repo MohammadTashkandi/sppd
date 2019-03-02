@@ -64512,6 +64512,380 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/CreateTask.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/CreateTask.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CreateTask; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var CreateTask =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(CreateTask, _React$Component);
+
+  function CreateTask() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, CreateTask);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CreateTask)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      title: "",
+      PrId: "",
+      severity: "Feature",
+      tStr: "",
+      tJud: "",
+      tCu: "",
+      tTech: ""
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
+      _this.setState(_defineProperty({}, e.target.name, e.target.value));
+
+      console.log(_this.state);
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSubmit", function (event) {
+      event.preventDefault();
+      var newTask = {
+        title: _this.state.title,
+        PrId: _this.state.PrId,
+        severity: _this.state.severity,
+        tStr: _this.state.tStr,
+        tJud: _this.state.tJud,
+        tCu: _this.state.tCu,
+        tTech: _this.state.tTech,
+        Pid: _this.props.match.params.projectId
+      };
+      axios.post('api/addTask', newTask).then(function (res) {
+        console.log(res);
+
+        if (res.status == 200) {
+          _this.props.history.push("/index");
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
+    return _this;
+  }
+
+  _createClass(CreateTask, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "create-task-form",
+        onSubmit: this.onSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "create-task-header"
+      }, "Task info"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "task-form-label"
+      }, "Task name *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        style: {
+          width: '40rem'
+        },
+        className: "form-control",
+        id: "form-control",
+        type: "text",
+        name: "title",
+        placeholder: "Enter task name",
+        onChange: this.onChange,
+        required: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "task-form-label"
+      }, "Programmer ID *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        style: {
+          width: '40rem'
+        },
+        className: "form-control",
+        id: "form-control",
+        type: "text",
+        name: "PrId",
+        placeholder: "Enter ID of programmer you wish to assign this task to",
+        onChange: this.onChange,
+        required: true
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "task-form-label"
+      }, "Severity *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        style: {
+          width: '40rem'
+        },
+        className: "form-control",
+        id: "form-control",
+        name: "severity",
+        placeholder: "Enter severity level",
+        onChange: this.onChange,
+        required: true
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Feature"
+      }, "Feature"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Trivial"
+      }, "Trivial"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Text"
+      }, "Text"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Tweak"
+      }, "Tweak"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Minor"
+      }, "Minor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Major"
+      }, "Major"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Crash"
+      }, "Crash"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Block"
+      }, "Block")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "task-detail-seperator"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "create-task-header"
+      }, "Performance requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-form-div"
+      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "task-span"
+      }, "Stress level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tStr",
+        value: "1"
+      }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tStr",
+        value: "2"
+      }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tStr",
+        value: "3"
+      }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tStr",
+        value: "4"
+      }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tStr",
+        value: "5"
+      }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-form-div"
+      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "task-span"
+      }, "Judgement level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tJud",
+        value: "1"
+      }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tJud",
+        value: "2"
+      }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tJud",
+        value: "3"
+      }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tJud",
+        value: "4"
+      }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tJud",
+        value: "5"
+      }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-form-div"
+      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "task-span"
+      }, "Communication level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tCu",
+        value: "1"
+      }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tCu",
+        value: "2"
+      }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tCu",
+        value: "3"
+      }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tCu",
+        value: "4"
+      }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tCu",
+        value: "5"
+      }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-form-div"
+      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "task-span"
+      }, "Technical level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tTech",
+        value: "1"
+      }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tTech",
+        value: "2"
+      }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tTech",
+        value: "3"
+      }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tTech",
+        value: "4"
+      }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tTech",
+        value: "5"
+      }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "login-btn",
+        type: "submit",
+        style: {
+          marginLeft: '42rem'
+        }
+      }, "Add task"));
+    }
+  }]);
+
+  return CreateTask;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Header.js":
 /*!*******************************************!*\
   !*** ./resources/js/components/Header.js ***!
@@ -64639,8 +65013,7 @@ function (_React$Component) {
           className: "input-group",
           id: "search-bar"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-          onSubmit: this.search,
-          action: "post"
+          onSubmit: this.search
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "text",
           className: "form-control",
@@ -64763,6 +65136,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Login */ "./resources/js/components/Login.js");
 /* harmony import */ var _Register__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Register */ "./resources/js/components/Register.js");
 /* harmony import */ var _CreateProject__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CreateProject */ "./resources/js/components/CreateProject.js");
+/* harmony import */ var _CreateTask__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./CreateTask */ "./resources/js/components/CreateTask.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -64788,6 +65162,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 {
   /* /Applications/Development/projects/laravelProjects/sppd/sppd (sppd directory) beta malk d5l */
 }
+
 
 
 
@@ -64906,6 +65281,9 @@ function (_React$Component) {
         path: "/index/project/:projectId",
         component: _Canvas__WEBPACK_IMPORTED_MODULE_6__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/index/createTask/:projectId",
+        component: _CreateTask__WEBPACK_IMPORTED_MODULE_13__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         component: _NotFound__WEBPACK_IMPORTED_MODULE_3__["default"]
       }))));
     }
@@ -64979,6 +65357,7 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "decorative-box"
         }, "e"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "YOOOOO"), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+          className: "hr",
           style: {
             margin: '0'
           }
@@ -65365,7 +65744,7 @@ function (_React$Component) {
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
         id: "form-control",
-        type: "age",
+        type: "text",
         name: "age",
         placeholder: "Enter age",
         onChange: this.onChange
@@ -65376,7 +65755,7 @@ function (_React$Component) {
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
         id: "form-control",
-        type: "nationality",
+        type: "text",
         name: "nationality",
         placeholder: "Enter nationality",
         onChange: this.onChange
@@ -65454,21 +65833,21 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Search)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      programmers: []
+      programmers: {}
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProgrammer", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProgrammer", function (key) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-search-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-search-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-tag"
-      }, programmers.id), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, programmers[key].id), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-name"
-      }, programmers.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, programmers[key].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-id"
-      }, programmers.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, programmers[key].id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "btn btn-default btn-sm",
@@ -65484,33 +65863,46 @@ function (_React$Component) {
   _createClass(Search, [{
     key: "componentWillMount",
     value: function componentWillMount() {
-      /* axios.post('api/findProgrammers', {
-          id: this.props.match.params
-      })
-      .then((res) => {
-          console.log(res);
-          if(res.status==200){
-              this.setState({programmers : res.data})
-          }
-      }) */
+      var _this2 = this;
+
+      axios.post('api/findProgrammer', {
+        /* in post dont use params, just put the object. you forgot to put .userId after params */
+        id: this.props.match.params.userId
+      }).then(function (res) {
+        console.log(res);
+
+        if (res.status == 200) {
+          _this2.setState({
+            programmers: res.data
+          });
+        } else {
+          console.log("no programmers with this id");
+        }
+      });
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      /* axios.post('api/findProgrammers', {
-          id: this.props.match.params
-      })
-      .then((res) => {
-          console.log(res);
-          if(res.status==200){
-              this.setState({programmers : res.data})
-          }
-      }) */
+      var _this3 = this;
+
+      axios.post('api/findProgrammers', {
+        id: this.props.match.params.userId
+      }).then(function (res) {
+        console.log(res);
+
+        if (res.status == 200) {
+          _this3.setState({
+            programmers: res.data
+          });
+        } else {
+          console.log("no programmers with this id");
+        }
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      var programmers = this.state.programmers;
+      var programmers = Object.keys(this.state.programmers);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "canvas-background"
       }, programmers.map(this.renderProgrammer));
