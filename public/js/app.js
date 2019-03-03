@@ -65864,37 +65864,53 @@ function (_React$Component) {
           id: _this.props.match.params.userId
         }
       }).then(function (res) {
-        console.log(_this.state.programmers);
-        console.log(res.data);
-
         if (res.status == 200) {
-          console.log('hi');
-
           _this.setState({
             programmers: res.data
           });
-
-          console.log(_this.state.programmers);
         } else {
           console.log("no programmers with this id");
         }
       }).catch(function (err) {
-        console.log("err");
+        console.log(err);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentWillMount", function () {
+      axios.get('api/findProgrammer', {
+        params: {
+          /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+          id: _this.props.match.params.userId
+        }
+      }).then(function (res) {
+        if (res.status == 200) {
+          _this.setState({
+            programmers: res.data
+          });
+        } else {
+          console.log("no programmers with this id");
+        }
+      }).catch(function (err) {
+        console.log(err);
       });
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProgrammer", function (key) {
+      var name = _this.state.programmers[key].Username;
+      var index = name.indexOf(' ');
+      var tag = (name.charAt(0) + ' ' + name.charAt(index + 1)).toUpperCase();
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "grid-search-container"
+        className: "grid-search-container",
+        key: key
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-search-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-tag"
-      }, programmers[key].id), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, tag), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-name"
-      }, programmers[key].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-id"
-      }, programmers[key].id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, _this.state.programmers[key].user_id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "btn btn-default btn-sm",

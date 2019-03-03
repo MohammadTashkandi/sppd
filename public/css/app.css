@@ -10735,7 +10735,7 @@ a#logout-btn:hover {
 
 .search-tag {
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-weight: bold;
+  font-weight: 700;
   display: inline;
   margin-left: 5rem;
   margin-right: 7rem;
@@ -10743,6 +10743,7 @@ a#logout-btn:hover {
   text-align: justify;
   justify-content: center;
   color: #ffc600;
+  font-size: 1.4em;
 }
 
 .search-button {
@@ -10756,7 +10757,7 @@ a#logout-btn:hover {
 
 #visit-page {
   background-color: white;
-  font-weight: bold;
+  font-weight: 900;
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   color: #0d3a58;
   border-radius: 10px;
@@ -10773,7 +10774,7 @@ a#visit-page:hover {
 
 .search-name {
   color: #ffc600;
-  font-weight: bold;
+  font-weight: 500;
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   display: inline;
   margin-left: 7rem;
@@ -10785,7 +10786,7 @@ a#visit-page:hover {
 
 .search-id {
   color: #ffc600;
-  font-weight: bold;
+  font-weight: 500;
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   display: inline;
   margin-left: 5rem;

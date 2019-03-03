@@ -13,52 +13,51 @@ export default class Search extends React.Component {
             }
         })
         .then((res) => {
-            console.log(this.state.programmers);
-            console.log(res.data);
+
             if(res.status==200){
-                console.log('hi');
                 this.setState({programmers : res.data})
-                console.log(this.state.programmers)
             }
             else{
                 console.log("no programmers with this id");
             }
         })
         .catch((err) => {
-            console.log("err");
+            console.log(err);
         })
     }
-    /* componentDidUpdate(){
+    componentWillMount = () =>{
         axios.get('api/findProgrammer', {
-            params: { 
-                id: this.props.match.params.userId
-            }
-        })
-        .then((res) => {
-            console.log(res);
-            console.log(res.data);
-            if(res.status==200){
-                console.log('hi');
-                this.setState({programmers : res.data})
-            }
-            else{
-                console.log("no programmers with this id");
-            }
-        })
-        .catch((err) => {
-            console.log("err");
-        })
-    }  */
+           params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+               id: this.props.match.params.userId
+           }
+       })
+       .then((res) => {
+
+           if(res.status==200){
+               this.setState({programmers : res.data})
+           }
+           else{
+               console.log("no programmers with this id");
+           }
+       })
+       .catch((err) => {
+           console.log(err);
+       })
+   }
     /* componentWillUnmount(){
             this.props.isSearchFull(true);
     } */
     renderProgrammer = (key) => {
+        const name = this.state.programmers[key].Username; 
+        var index = name.indexOf(' ');
+        var tag = (name.charAt(0) + ' ' +  name.charAt(index + 1)).toUpperCase();
+
         return(
-            <div className="grid-search-container">
+            <div className="grid-search-container" key={key}>
                     <div className="grid-search-item">
-                        <div className="search-tag">{programmers[key].id}</div> {/* how to get letters from string? */}
-                        <div className="search-name">{programmers[key].name}</div>
-                        <div className="search-id">{programmers[key].id}</div>
+                        <div className="search-tag">{tag}</div> 
+                        <div className="search-name">{name}</div>
+                        <div className="search-id">{this.state.programmers[key].user_id}</div>
                         <div className="search-button">
                             <a className="btn btn-default btn-sm" id="visit-page">
                                 <span className="glyphicon glyphicon-stats"></span> View Stats
