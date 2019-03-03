@@ -167,9 +167,25 @@ class ProgrammerController extends Controller
 
 
     public function findProgrammer(Request $request){
+        $inputId = $request['id'];
+        $inputString = $request['Username'];
 
-        $input = $request['name'];
-        $user = new User();
+
+        //$programmerId = Programmer::where('user_id', $inputId)->first();
+
+        $programmer = Programmer::where('Username', 'like', '%' . $inputString . '%')
+                   ->select('Username','user_id')
+                   ->get();
+        if (count($programmer) > 0 ){
+
+            return response()->json($programmer); //dont do $projects=$projects->pluck... or the state will have nested object
+
+        }
+        return response()->json(['programmer_not_found'], 404);
+
+
+
+
 
 
 //        if (is_int($input)) {

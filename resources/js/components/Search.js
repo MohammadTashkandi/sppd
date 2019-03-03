@@ -6,41 +6,52 @@ export default class Search extends React.Component {
         programmers: {}
     }
 
-    componentWillMount(){
-        /* const searchValue = this.props.match.params.userId;
-        const id = parseInt(searchValue, 10);
-        const res = searchValue.charAt(0) + searchValue.charAt(3);
-        console.log(res) */
-         /* axios.get('api/findProgrammer', {
+    componentWillMount = () =>{
+         axios.get('api/findProgrammer', {
+            params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
                 id: this.props.match.params.userId
+            }
         })
         .then((res) => {
-            console.log(res);
+            console.log(this.state.programmers);
+            console.log(res.data);
             if(res.status==200){
+                console.log('hi');
                 this.setState({programmers : res.data})
-            }
-            else{
-                console.log("no programmers with this id");
-            }
-        }) */
-    }
-    componentDidUpdate(){
-        axios.get('api/findProgrammers', {
-                id: this.props.match.params.userId
-        })
-        .then((res) => {
-            console.log(res);
-            if(res.status==200){
-                this.setState({programmers : res.data})
+                console.log(this.state.programmers)
             }
             else{
                 console.log("no programmers with this id");
             }
         })
+        .catch((err) => {
+            console.log("err");
+        })
     }
-    componentWillUnmount(){
+    /* componentDidUpdate(){
+        axios.get('api/findProgrammer', {
+            params: { 
+                id: this.props.match.params.userId
+            }
+        })
+        .then((res) => {
+            console.log(res);
+            console.log(res.data);
+            if(res.status==200){
+                console.log('hi');
+                this.setState({programmers : res.data})
+            }
+            else{
+                console.log("no programmers with this id");
+            }
+        })
+        .catch((err) => {
+            console.log("err");
+        })
+    }  */
+    /* componentWillUnmount(){
             this.props.isSearchFull(true);
-    }
+    } */
     renderProgrammer = (key) => {
         return(
             <div className="grid-search-container">

@@ -65241,14 +65241,9 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "isSearchFull", function (bool) {
-      console.log(bool); //here it says true
-
-      _this.setState({
-        searchFull: bool
-      }); //i set it to state
-
-
-      console.log(_this.state.searchFull); //state still stays false????
+      /* console.log(bool) //here it says true
+      this.setState({searchFull: bool}); //i set it to state
+      console.log(this.state.searchFull); //state still stays false???? */
     });
 
     return _this;
@@ -65862,6 +65857,32 @@ function (_React$Component) {
       programmers: {}
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentWillMount", function () {
+      axios.get('api/findProgrammer', {
+        params: {
+          /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+          id: _this.props.match.params.userId
+        }
+      }).then(function (res) {
+        console.log(_this.state.programmers);
+        console.log(res.data);
+
+        if (res.status == 200) {
+          console.log('hi');
+
+          _this.setState({
+            programmers: res.data
+          });
+
+          console.log(_this.state.programmers);
+        } else {
+          console.log("no programmers with this id");
+        }
+      }).catch(function (err) {
+        console.log("err");
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProgrammer", function (key) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-search-container"
@@ -65887,51 +65908,6 @@ function (_React$Component) {
   }
 
   _createClass(Search, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      /* const searchValue = this.props.match.params.userId;
-      const id = parseInt(searchValue, 10);
-      const res = searchValue.charAt(0) + searchValue.charAt(3);
-      console.log(res) */
-
-      /* axios.get('api/findProgrammer', {
-             id: this.props.match.params.userId
-      })
-      .then((res) => {
-         console.log(res);
-         if(res.status==200){
-             this.setState({programmers : res.data})
-         }
-         else{
-             console.log("no programmers with this id");
-         }
-      }) */
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      var _this2 = this;
-
-      axios.get('api/findProgrammers', {
-        id: this.props.match.params.userId
-      }).then(function (res) {
-        console.log(res);
-
-        if (res.status == 200) {
-          _this2.setState({
-            programmers: res.data
-          });
-        } else {
-          console.log("no programmers with this id");
-        }
-      });
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.isSearchFull(true);
-    }
-  }, {
     key: "render",
     value: function render() {
       var programmers = Object.keys(this.state.programmers);

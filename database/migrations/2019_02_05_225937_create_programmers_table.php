@@ -21,6 +21,7 @@ class CreateProgrammersTable extends Migration
             $table->integer('pJud');
             $table->integer('PCu');
             $table->integer('pTech');
+            $table->String('Username');
         });
     }
 
