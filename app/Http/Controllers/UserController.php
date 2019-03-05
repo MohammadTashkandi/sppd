@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ProjectManager;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -35,6 +36,9 @@ use Illuminate\Support\Facades\Validator;
         'password' => Hash::make($request->json()->get('password')),
 
       ]);
+         $ProjectManager = new ProjectManager();
+         $ProjectManager->user_id = $user->id ;
+         $ProjectManager->save();
       $token = JWTAuth::fromUser($user);
       return response()->json(compact('user', 'token'),201);
      }
