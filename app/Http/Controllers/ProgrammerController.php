@@ -9,6 +9,8 @@ use function GuzzleHttp\Promise\all;
 use http\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 
 class ProgrammerController extends Controller
 {
@@ -44,78 +46,52 @@ class ProgrammerController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $programmerID = $request['id'];
-        $userP = new User();
-        $userP = $userP->find($programmerID);
+
+        $programmerEmail = $request['email'];
 
 
-        $Pid = $request['Pid'];
-        $pStr = $request['ps'];
-        $pJud = $request['pj'];
-        $pCu = $request['pc'];
-        $pTech = $request['pt'];
-
-        if ($Pid == null || $pStr == null || $pJud == null || $pCu == null || $pTech == null) {
-            return 'please fill all the fields ';
+        if (User::where('email', '=', $programmerEmail)->exists()) {
+            return response()->json(['User exist '], 404);
         }
 
-
-        // check if the user is exist
-        //-----------------------------------------------------------------------
-        if ($userP == null) {
-            return 'there is no user with this ID: ' . $programmerID;
+        if (Programmer::where('email', '=', $programmerEmail)->exists()) {
+            return response()->json(['User exist '], 404);
         }
-
-        // check if the user is already a programmer or tester
-        if ($userP->taken == true) {
-            $name = $userP->name;
-            $role = $userP->role;
-            printf("this user is taken from another department ");
-            printf("name:" . $name . " role: " . $role);
-            return;
-        }
-
-
-
 
 
         // check if the project is exist
         //-----------------------------------------------------------------------
-
+        $Pid = $request['Pid'];
         $project = new Project();
         $project = $project->find($Pid);
 
         if ($project = null) {
-            return 'there is no project with this ID: ' . $Pid;
+            return response()->json(['there is no project with this ID '], 404);
         }
-
 
         // to get project Manager ID
         $user = Auth::user();
-
-        $p = new Programmer();
-
-        $p->user_id = $programmerID;
-        $p->PMid = $user->id;
-        $p->Pid = $request['Pid'];
-        $p->pStr = $request['ps'];
-        $p->pJud = $request['pj'];
-        $p->pCu = $request['pc'];
-        $p->pTech = $request['pt'];
-
-        $userP->role = 3;
-        $userP->taken = 1;
-        $userP->save();
-        $p->save();
+        $userID = $user->id;
 
 
-//        dd($userP);
 
-        // don't forgot to do save for user
+        $programmer = Programmer::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'Pid' => $request['Pid'],
+            'pStr' => $request['ps'],
+            'pJud' => $request['pj'],
+            'PCu' => $request['pc'],
+            'pTech' => $request['pt'],
+            'Pid' => $Pid,
+            'PMid' => $userID,
+        ]);
 
+        $programmer->save();
 
-        return 'done';
+        return response()->json(['Programmer added Successfully '], 201);
+
 
 
     }
@@ -167,24 +143,61 @@ class ProgrammerController extends Controller
 
 
     public function findProgrammer(Request $request){
-        $inputId = $request['id'];
-        $inputString = $request['Username'];
 
 
-        //$programmerId = Programmer::where('user_id', $inputId)->first();
+        $input = $request['IDorName'];
+        $pm = Auth::user();
+        $pmID= $pm->id ;
 
-        $programmer = Programmer::where('Username', 'like', '%' . $inputString . '%')
-                   ->select('Username','user_id')
-                   ->get();
-        if (count($programmer) > 0 ){
+        $Programmers = Programmer::where('PMid', '=', $pmID)->get();
 
-            return response()->json($programmer); //dont do $projects=$projects->pluck... or the state will have nested object
+
+        if (is_numeric($input)) {
+            $programmer = $Programmers->where('id' , '=' , $input);
+            $programmer = $programmer->all();
+            if($programmer != null){
+                return response()->json($programmer);
+            }
+        } else {
+
+            $result1 = $Programmers;
+            $result2 = Programmer::where('name', 'like', '%' .$input. '%')->get();
+            $Programmers = $result2->merge($result1);
+
+
+            if(count($Programmers)>0){
+                return response()->json($Programmers);
+            }
 
         }
+
         return response()->json(['programmer_not_found'], 404);
 
 
 
+
+//        $user = new User();
+//        if(is_numeric($input)){
+//
+//            $user = $user->role = 'Programmer';
+//
+//            if($user != null){
+//                return response()->json($user);
+//            }
+//
+//        }
+//        $programmer = Programmer::where('Username', 'like', '%' . $inputString . '%')
+//                   ->select('Username','user_id')
+//                   ->get();
+//        if (count($programmer) > 0 ){
+//
+//            return response()->json($programmer); //dont do $projects=$projects->pluck... or the state will have nested object
+//
+//        }
+//        return response()->json(['programmer_not_found'], 404);
+//
+//
+//
 
 
 
