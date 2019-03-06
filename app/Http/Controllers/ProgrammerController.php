@@ -144,19 +144,19 @@ class ProgrammerController extends Controller
 
     public function findProgrammer(Request $request){
 
-
-        $input = $request['IDorName'];
-        $pm = auth()->user()->id;
-        $pmID= $pm['id'] ;
+        $flag = false ;
+        $input = $request['id'];
+        $pmID = auth()->user()['id'];
+//        $pmID= $pm['id'] ;
 
         $Programmers = Programmer::where('PMid', '=', $pmID)->get();
 
 
         if (is_numeric($input)) {
             $programmer = $Programmers->where('id' , '=' , $input);
-            $programmer = $programmer->all();
             if($programmer != null){
-                return response()->json($programmer);
+                $programmer = $programmer->all();
+                return response()->json($programmer, 200);
             }
         } else {
 
@@ -166,12 +166,13 @@ class ProgrammerController extends Controller
 
 
             if(count($Programmers)>0){
-                return response()->json($Programmers);
+                return response()->json($Programmers,200);
             }
 
         }
 
-        return response()->json(['programmer_not_found'], 404);
+            return response()->json(['programmer_not_found'], 404);
+
 
 
 
