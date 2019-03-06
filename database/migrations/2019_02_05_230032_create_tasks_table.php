@@ -14,7 +14,7 @@ class CreateTasksTable extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->increments('taskID');
+            $table->increments('id');
             $table->Integer('Pid')->references('id')->on('Project')->onDelete('cascade') ; // foreign key for the Project
             $table->Integer('PrID')->references('user_id')->on('Programmer')->defulit(null); // foreign key for the Project
             $table->string('title');
@@ -30,6 +30,8 @@ class CreateTasksTable extends Migration
             $table->integer('tJud');
             $table->integer('tCu');
             $table->integer('tTech');
+            $table->rememberToken();
+
 
         });
     }
