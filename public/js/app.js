@@ -64363,7 +64363,12 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "canvas-background"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "hr",
+        style: {
+          margin: '0'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-item"
@@ -65204,6 +65209,8 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Index)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      infobar: {},
+      //page:"", text:""
       searchFull: false,
       loggedIn: localStorage.getItem('usertoken') != null,
       projects: {}
@@ -65246,6 +65253,12 @@ function (_React$Component) {
       console.log(this.state.searchFull); //state still stays false???? */
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "setInfobar", function (info) {
+      _this.setState({
+        infobar: info
+      });
+    });
+
     return _this;
   }
 
@@ -65266,9 +65279,11 @@ function (_React$Component) {
         searchFull: this.state.searchFull
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SideBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
         loggedIn: this.state.loggedIn,
-        projects: this.state.projects
+        projects: this.state.projects,
+        setInfobar: this.setInfobar
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InfoBar__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        loggedIn: this.state.loggedIn
+        loggedIn: this.state.loggedIn,
+        infobar: this.state.infobar
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/",
@@ -65377,7 +65392,11 @@ function (_React$Component) {
           className: "info-bar"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "decorative-box"
-        }, "e"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "YOOOOO"), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        }, "e"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "info-bar-page"
+        }, this.props.infobar.page), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "info-bar-text"
+        }, this.props.infobar.text)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
           className: "hr",
           style: {
             margin: '0'
@@ -66010,7 +66029,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         key: key,
         onClick: function onClick() {
-          return _this.handleClick(key);
+          return _this.handleClick(key, event.target.innerText);
         },
         className: "nav-link",
         id: "v-pills-" + key + "-tab",
@@ -66033,10 +66052,17 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, project.task1), " ");
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function (key) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function (key, pName) {
       _this.animateSideBar();
 
       _this.changePath(key);
+
+      var info = {
+        page: "Project",
+        text: pName
+      };
+
+      _this.props.setInfobar(info);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "animateSideBar", function () {
@@ -66139,8 +66165,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

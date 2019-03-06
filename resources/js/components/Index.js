@@ -19,6 +19,7 @@ import CreateTask from './CreateTask';
 
 export default class Index extends React.Component {
     state = {
+        infobar: {}, //page:"", text:""
         searchFull: false,
         loggedIn: localStorage.getItem('usertoken') != null,
         projects: {},
@@ -52,14 +53,18 @@ export default class Index extends React.Component {
         this.setState({searchFull: bool}); //i set it to state
         console.log(this.state.searchFull); //state still stays false???? */
     }
+
+    setInfobar = (info) => {
+        this.setState({infobar: info});
+    }
     
     render() {
         return (
             <HashRouter>
                 <div history={this.props.history} style={{maxHeight:'100vh'}}> 
                     <Header loggedIn={this.state.loggedIn} editLoggedIn={this.editLoggedIn} isSearchFull={this.isSearchFull} searchFull={this.state.searchFull}/>
-                    <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects}/>
-                    <InfoBar loggedIn={this.state.loggedIn} />                              
+                    <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects} setInfobar={this.setInfobar} />
+                    <InfoBar loggedIn={this.state.loggedIn} infobar={this.state.infobar} />                              
                     <Switch>
                         <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn}/>} /> {/* we use render instead of component so we can add props */}
                         <Route path="/register" component={Register} />

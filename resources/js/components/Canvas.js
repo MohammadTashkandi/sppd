@@ -1,9 +1,12 @@
 import React from 'react';
 
 export default class Canvas extends React.Component {
+
+
     render() {
         return(
             <div className="canvas-background">
+                <hr className="hr" style={{margin:'0'}} />
                 <div className="grid-container">
                     <div className="grid-item">1</div>
                     <div className="grid-item">2</div>

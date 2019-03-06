@@ -32,9 +32,9 @@ use Illuminate\Support\Facades\Validator;
        }
             $email = $request->json()->get('email');
 
-         if (Programmer::where('email', '=', $email)->exists()) {
+         /* if (Programmer::where('email', '=', $email)->exists()) {
              return response()->json(['Email Exist  '], 404);
-         }
+         } */
 
 
        $user = User::create([
