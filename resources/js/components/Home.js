@@ -4,7 +4,19 @@ export default class Home extends React.Component {
 
     render() {
         return(
-            <div>Home Page</div>
+            <React.Fragment>
+                <div className="info-bar">
+                        <span className="decorative-box">i</span>
+                        <span className="info-bar-page">Home</span>
+                        <span className="info-bar-text"></span>
+                        <span>
+                            
+                        </span>
+                </div>
+                <hr className="hr" style={{margin:'0'}} />
+
+                
+            </React.Fragment>
         );
     }
 }

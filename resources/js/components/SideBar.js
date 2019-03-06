@@ -44,8 +44,7 @@ class SideBar extends React.Component {
     handleClick = (key,pName) => {
         this.animateSideBar();
         this.changePath(key);
-        const info = {page:"Project", text:pName};
-        this.props.setInfobar(info);
+        this.props.setInfobar(pName);
     }
 
     animateSideBar = () => {

@@ -74,6 +74,16 @@ export default class Search extends React.Component {
 
         return (
             <div className="canvas-background">
+                <div className="info-bar">
+                    <span className="decorative-box">i</span>
+                    <span className="info-bar-page">Search</span>
+                    <span className="info-bar-text"></span>
+                    <span>
+                            
+                    </span>
+                </div>
+                <hr className="hr" style={{margin:'0'}} />
+
                 <div className="pad-top">{/* just some padding top */}</div>
                 {programmers.map(this.renderProgrammer)}
                 {/* <div className="grid-search-container">

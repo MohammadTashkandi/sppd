@@ -10605,7 +10605,7 @@ font-family: 'Poppins', sans-serif;
 
 #header-middle {
   flex-direction: row;
-  margin-right: 18em;
+  margin-right: 8em;
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 17px;
   color: white;
@@ -10700,13 +10700,7 @@ a#logout-btn:hover {
   box-shadow: -2px 2px 10px lightgray;
 }
 
-.info-bar {
-  margin: 1rem 0;
-}
-
 .decorative-box {
-  width: 0.5rem;
-  height: 2rem;
   background-color: #30C2FF;
   color: #30C2FF;
 }
@@ -10966,12 +10960,32 @@ a#visit-page:hover {
   margin-bottom: 2rem;
 }
 
-.info-bar-page {
-  margin-left: 1rem;
+.info-bar {
+  display: grid;
+  grid-column-gap: 1rem;
+  grid-template-columns: 1.5rem 35rem 40rem 28rem;
+  margin: 1rem 0;
+  font-size: 2rem;
 }
 
 .info-bar-text {
-  margin-left: 1rem;
   font-family: "Poppins", sans-serif;
+}
+
+.info-bar-btn {
+  background-color: transparent;
+  border-color: #9d9d9d;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: #9d9d9d;
+  padding: 0 1rem;
+  border-radius: 25px;
+  font-size: 1.8rem;
+}
+
+.info-bar-btn:hover {
+  color: #0d3a58;
+  background-color: #ffc600;
+  border-color: #ffc600;
+  transition: 0.4s;
 }
 

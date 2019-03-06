@@ -20,7 +20,7 @@ import AddProgrammer from './AddProgrammer';
 
 export default class Index extends React.Component {
     state = {
-        infobar: {}, //page:"", text:""
+        infobar: "",
         searchFull: false,
         loggedIn: localStorage.getItem('usertoken') != null,
         projects: {},
@@ -55,8 +55,8 @@ export default class Index extends React.Component {
         console.log(this.state.searchFull); //state still stays false???? */
     }
 
-    setInfobar = (info) => {
-        this.setState({infobar: info});
+    setInfobar = (text) => {
+        this.setState({infobar: text});
     }
     
     render() {
@@ -65,16 +65,16 @@ export default class Index extends React.Component {
                 <div history={this.props.history} style={{maxHeight:'100vh'}}> 
                     <Header loggedIn={this.state.loggedIn} editLoggedIn={this.editLoggedIn} isSearchFull={this.isSearchFull} searchFull={this.state.searchFull}/>
                     <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects} getProjects={this.getProjects} setInfobar={this.setInfobar} />
-                    <InfoBar loggedIn={this.state.loggedIn} infobar={this.state.infobar} />                                                           
+                    {/* <InfoBar loggedIn={this.state.loggedIn} infobar={this.state.infobar} />   */}                                                         
                     <Switch>
                         <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn}/>} /> {/* we use render instead of component so we can add props */}
                         <Route path="/register" component={Register} />
-                        <Route exact path="/index" component={Home} />
-                        <Route path="/index/createProject" render={(props)=> <CreateProject {...props} getProjects={this.getProjects} />} />
-                        <Route path="/index/search/:userId" render={(props)=> <Search {...props} isSearchFull={this.isSearchFull} />} />
-                        <Route path="/index/project/:projectId" component={Canvas} />
-                        <Route path="/index/createTask/:projectId" component={CreateTask} />
-                        <Route path="/index/addProgrammer" component={AddProgrammer} />
+                        <Route exact path="/index" render={(props)=> <Home {...props} infobar={this.state.infobar} />} />
+                        <Route path="/index/createProject" render={(props)=> <CreateProject {...props} getProjects={this.getProjects} infobar={this.state.infobar} />} />
+                        <Route path="/index/search/:userId" render={(props)=> <Search {...props} isSearchFull={this.isSearchFull} infobar={this.state.infobar} />} />
+                        <Route path="/index/project/:projectId" render={(props)=> <Canvas {...props} infobar={this.state.infobar} />} />
+                        <Route path="/index/createTask/:projectId" render={(props)=> <CreateTask {...props} infobar={this.state.infobar} />} />
+                        <Route path="/index/addProgrammer" render={(props)=> <AddProgrammer {...props} infobar={this.state.infobar} />} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

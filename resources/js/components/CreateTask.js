@@ -46,6 +46,18 @@ export default class CreateTask extends React.Component {
 
     render() {
         return(
+            <React.Fragment>
+
+            <div className="info-bar">
+                <span className="decorative-box">i</span>
+                <span className="info-bar-page">Project</span>
+                <span className="info-bar-text"></span>
+                <span>
+                            
+                </span>
+            </div>
+            <hr className="hr" style={{margin:'0'}} />
+
             <form className="create-task-form" onSubmit={this.onSubmit}>
                 <h3 className="create-task-header">Task info</h3>
                     <div className="form-group">
@@ -116,6 +128,7 @@ export default class CreateTask extends React.Component {
                     </div>
                         <button className="login-btn" type="submit" style={{marginLeft:'42rem'}}>Add task</button>
                 </form>
+            </React.Fragment>
         );
     }
 }

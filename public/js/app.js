@@ -64363,7 +64363,20 @@ function (_React$Component) {
   _createClass(Search, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "info-bar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "decorative-box"
+      }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-page"
+      }, "Add Programmer"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-text"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "hr",
+        style: {
+          margin: '0'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-add-prog"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         style: {
@@ -64665,7 +64678,7 @@ function (_React$Component) {
         type: "submit"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "material-icons"
-      }, "person_add")))));
+      }, "person_add"))))));
     }
   }]);
 
@@ -64726,7 +64739,19 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "canvas-background"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "info-bar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "decorative-box"
+      }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-page"
+      }, "Project"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-text"
+      }, this.props.infobar), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        to: "/index/createTask/".concat(this.props.match.params.projectId)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "info-bar-btn"
+      }, "Create task")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "hr",
         style: {
           margin: '0'
@@ -64737,9 +64762,7 @@ function (_React$Component) {
         className: "grid-item"
       }, "1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-item"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-        to: "/index/createTask/".concat(this.props.match.params.projectId)
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Create task"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-item"
       }, "3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-item"
@@ -64982,7 +65005,20 @@ function (_React$Component) {
   _createClass(CreateTask, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "info-bar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "decorative-box"
+      }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-page"
+      }, "Project"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-text"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "hr",
+        style: {
+          margin: '0'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "create-task-form",
         onSubmit: this.onSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
@@ -65245,7 +65281,7 @@ function (_React$Component) {
         style: {
           marginLeft: '42rem'
         }
-      }, "Add task"));
+      }, "Add task")));
     }
   }]);
 
@@ -65406,7 +65442,8 @@ function (_React$Component) {
           name: "/index/addProgrammer",
           id: "link-head",
           style: {
-            color: '#2c87c4'
+            color: '#2c87c4',
+            paddingTop: '0.8rem'
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "material-icons"
@@ -65504,7 +65541,20 @@ function (_React$Component) {
   _createClass(Home, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Home Page");
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "info-bar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "decorative-box"
+      }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-page"
+      }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-text"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "hr",
+        style: {
+          margin: '0'
+        }
+      }));
     }
   }]);
 
@@ -65602,8 +65652,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Index)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      infobar: {},
-      //page:"", text:""
+      infobar: "",
       searchFull: false,
       loggedIn: localStorage.getItem('usertoken') != null,
       projects: {}
@@ -65643,9 +65692,9 @@ function (_React$Component) {
       console.log(this.state.searchFull); //state still stays false???? */
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "setInfobar", function (info) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "setInfobar", function (text) {
       _this.setState({
-        infobar: info
+        infobar: text
       });
     });
 
@@ -65672,9 +65721,6 @@ function (_React$Component) {
         projects: this.state.projects,
         getProjects: this.getProjects,
         setInfobar: this.setInfobar
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InfoBar__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        loggedIn: this.state.loggedIn,
-        infobar: this.state.infobar
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/",
@@ -65689,30 +65735,48 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/index",
-        component: _Home__WEBPACK_IMPORTED_MODULE_8__["default"]
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Home__WEBPACK_IMPORTED_MODULE_8__["default"], _extends({}, props, {
+            infobar: _this2.state.infobar
+          }));
+        }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/createProject",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CreateProject__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({}, props, {
-            getProjects: _this2.getProjects
+            getProjects: _this2.getProjects,
+            infobar: _this2.state.infobar
           }));
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/search/:userId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_9__["default"], _extends({}, props, {
-            isSearchFull: _this2.isSearchFull
+            isSearchFull: _this2.isSearchFull,
+            infobar: _this2.state.infobar
           }));
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/project/:projectId",
-        component: _Canvas__WEBPACK_IMPORTED_MODULE_6__["default"]
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Canvas__WEBPACK_IMPORTED_MODULE_6__["default"], _extends({}, props, {
+            infobar: _this2.state.infobar
+          }));
+        }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/createTask/:projectId",
-        component: _CreateTask__WEBPACK_IMPORTED_MODULE_13__["default"]
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CreateTask__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({}, props, {
+            infobar: _this2.state.infobar
+          }));
+        }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/addProgrammer",
-        component: _AddProgrammer__WEBPACK_IMPORTED_MODULE_14__["default"]
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddProgrammer__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({}, props, {
+            infobar: _this2.state.infobar
+          }));
+        }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         component: _NotFound__WEBPACK_IMPORTED_MODULE_3__["default"]
       }))));
@@ -65782,20 +65846,7 @@ function (_React$Component) {
         console.log('infobar ' + loggedIn);
         return null;
       } else {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "info-bar"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "decorative-box"
-        }, "e"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "info-bar-page"
-        }, this.props.infobar.page), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "info-bar-text"
-        }, this.props.infobar.text)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-          className: "hr",
-          style: {
-            margin: '0'
-          }
-        }));
+        return null;
       }
     }
   }]);
@@ -66344,6 +66395,19 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "canvas-background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "info-bar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "decorative-box"
+      }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-page"
+      }, "Search"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-text"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "hr",
+        style: {
+          margin: '0'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pad-top"
       }), programmers.map(this.renderProgrammer));
     }
@@ -66454,12 +66518,7 @@ function (_React$Component) {
 
       _this.changePath(key);
 
-      var info = {
-        page: "Project",
-        text: pName
-      };
-
-      _this.props.setInfobar(info);
+      _this.props.setInfobar(pName);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "animateSideBar", function () {
