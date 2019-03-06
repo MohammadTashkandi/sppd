@@ -121,14 +121,14 @@ class ProjectController extends Controller
         $p = new Project();
 
         $p->title = $title;
-        if(auth()->user()->rule = 'Project Manager'){
+
 
             $p->PMid=auth()->user()->id;
             $current = Carbon::now();
             $tomorrow = Carbon::tomorrow();
             $p->Start_Date=$current;
             $p->Closed_Date=$tomorrow;
-        }
+
         return 'Done';
 
 

@@ -146,8 +146,8 @@ class ProgrammerController extends Controller
 
 
         $input = $request['IDorName'];
-        $pm = Auth::user();
-        $pmID= $pm->id ;
+        $pm = auth()->user()->id;
+        $pmID= $pm['id'] ;
 
         $Programmers = Programmer::where('PMid', '=', $pmID)->get();
 
