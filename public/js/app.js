@@ -66379,7 +66379,8 @@ function (_React$Component) {
       programmers: {}
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentWillMount", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidMount", function () {
+      console.log(_this.props.match.params.userId);
       axios.get('api/findProgrammer', {
         params: {
           /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
@@ -66416,7 +66417,7 @@ function (_React$Component) {
         className: "search-name"
       }, name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-id"
-      }, _this.state.programmers[key].user_id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, _this.state.programmers[key].id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "btn btn-default btn-sm",

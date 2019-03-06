@@ -6,7 +6,8 @@ export default class Search extends React.Component {
         programmers: {}
     }
 
-    componentWillMount = () =>{
+    componentDidMount = () =>{
+        console.log(this.props.match.params.userId);
          axios.get('api/findProgrammer', {
             params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
                 id: this.props.match.params.userId,
@@ -40,12 +41,12 @@ export default class Search extends React.Component {
                     <div className="grid-search-item">
                         <div className="search-tag">{tag}</div> 
                         <div className="search-name">{name}</div>
-                        <div className="search-id">{this.state.programmers[key].user_id}</div>
+                        <div className="search-id">{this.state.programmers[key].id}</div>
                         <div className="search-button">
                             <a className="btn btn-default btn-sm" id="visit-page">
                                 <span className="glyphicon glyphicon-stats"></span> View Stats
                             </a>
-                    </div>
+                        </div>
                 </div>
             </div>
         )
