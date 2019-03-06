@@ -17,6 +17,15 @@ class Header extends React.Component {
         this.props.editLoggedIn(false);
         console.log('deleted token')
     }
+
+    onNavClick = (e) =>{ //there is another way to do this but I couldn't find an easy way in react
+        const nextURL = e.currentTarget.name;
+        const currentURL = this.props.history.location.pathname;
+        if(nextURL == currentURL){
+            window.location.reload();
+        }
+
+    }
     //remind me to explain this to you
     /* componentDidUpdate(){
         if(this.props.searchFull == true){
@@ -24,7 +33,7 @@ class Header extends React.Component {
             this.props.isSearchFull(false);
         }
     } */
-    
+
     render() {
 
         const loggedIn=this.props.loggedIn;
@@ -40,10 +49,13 @@ class Header extends React.Component {
                     </div>
                         <ul className="nav navbar-nav" id="header-middle">
                             <li className="home-link">
-                                <NavLink to={"/index"} id="link-head" style={{color:'#2c87c4'}}>Home</NavLink>
+                                <NavLink onClick={this.onNavClick} to={'/index'} name="/index" id="link-head" style={{color:'#2c87c4'}}>Home</NavLink>
                             </li>
                             <li className="home-link">
-                                <NavLink to={"/index/createProject"} id="link-head" style={{color:'#2c87c4'}}>Create a New Project</NavLink>
+                                <NavLink onClick={this.onNavClick} to={'/index/createProject'} name="/index/createProject" id="link-head" style={{color:'#2c87c4'}}>Create a New Project</NavLink>
+                            </li>
+                            <li className="home-link">
+                                <NavLink onClick={this.onNavClick} to={"/index/addProgrammer"} name="/index/addProgrammer" id="link-head" style={{color:'#2c87c4'}}><i className="material-icons">person_add</i> Add Programmer</NavLink>
                             </li>
                             <div className="navbar-form navbar-left" action="/action_page.php">
                                 <div className="input-group" id="search-bar">

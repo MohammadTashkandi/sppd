@@ -64315,18 +64315,19 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Canvas.js":
-/*!*******************************************!*\
-  !*** ./resources/js/components/Canvas.js ***!
-  \*******************************************/
+/***/ "./resources/js/components/AddProgrammer.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/AddProgrammer.js ***!
+  \**************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Canvas; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Search; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -64344,6 +64345,368 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var Search =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Search, _React$Component);
+
+  function Search() {
+    _classCallCheck(this, Search);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Search).apply(this, arguments));
+  }
+
+  _createClass(Search, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-add-prog"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        style: {
+          color: '#ffc600',
+          fontFamily: '"Poppins", sans-serif',
+          paddingTop: "1rem"
+        }
+      }, "Create Accounts for your Programmers!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.onSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "reg-form-label"
+      }, "First Name *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        id: "form-control",
+        type: "text",
+        name: "firstName",
+        placeholder: "Enter first name",
+        onChange: this.onChange,
+        required: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "reg-form-label"
+      }, "Last Name *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        id: "form-control",
+        type: "text",
+        name: "lastName",
+        placeholder: "Enter last name",
+        onChange: this.onChange,
+        required: true
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "reg-form-label"
+      }, "Email *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        id: "form-control",
+        type: "text",
+        name: "email",
+        placeholder: "Enter email",
+        onChange: this.onChange,
+        required: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "reg-form-label"
+      }, "Password *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        id: "form-control",
+        type: "password",
+        name: "password",
+        placeholder: "Enter password",
+        onChange: this.onChange,
+        required: true
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "reg-form-label"
+      }, "Phone number", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        id: "form-control",
+        type: "text",
+        name: "phonenumber",
+        placeholder: "Enter Phone number",
+        onChange: this.onChange
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "reg-form-label"
+      }, "Age", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        id: "form-control",
+        type: "text",
+        name: "age",
+        placeholder: "Enter age",
+        onChange: this.onChange
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group-add-prog"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "reg-form-label"
+      }, "Nationality", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        id: "form-control",
+        type: "text",
+        name: "nationality",
+        placeholder: "Enter nationality",
+        onChange: this.onChange
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "reg-form-label"
+      }, "Your ID *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        id: "form-control",
+        type: "text",
+        name: "nationality",
+        placeholder: "Enter nationality",
+        onChange: this.onChange,
+        required: true
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group-add-prog"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-form-div-add-prog"
+      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "task-span"
+      }, "Stress level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tStr",
+        value: "1"
+      }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tStr",
+        value: "2"
+      }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tStr",
+        value: "3"
+      }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tStr",
+        value: "4"
+      }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tStr",
+        value: "5"
+      }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group-add-prog"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-form-div-add-prog"
+      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "task-span"
+      }, "Judgement level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tJud",
+        value: "1"
+      }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tJud",
+        value: "2"
+      }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tJud",
+        value: "3"
+      }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tJud",
+        value: "4"
+      }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tJud",
+        value: "5"
+      }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group-add-prog"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-form-div-add-prog"
+      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "task-span"
+      }, "Communication level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tCu",
+        value: "1"
+      }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tCu",
+        value: "2"
+      }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tCu",
+        value: "3"
+      }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tCu",
+        value: "4"
+      }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tCu",
+        value: "5"
+      }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group-add-prog"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-form-div-add-prog"
+      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "task-span"
+      }, "Technical level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tTech",
+        value: "1"
+      }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tTech",
+        value: "2"
+      }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tTech",
+        value: "3"
+      }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tTech",
+        value: "4"
+      }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-radio"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        className: "radio-inline",
+        type: "radio",
+        name: "tTech",
+        value: "5"
+      }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        to: '/index'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "login-btn-add-prog",
+        type: "submit"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "material-icons"
+      }, "person_add")))));
+    }
+  }]);
+
+  return Search;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Canvas.js":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Canvas.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Canvas; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -64369,7 +64732,9 @@ function (_React$Component) {
         className: "grid-item"
       }, "1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-item"
-      }, "2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        to: "/index/createTask/".concat(this.props.match.params.projectId)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Create task"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-item"
       }, "3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "grid-item"
@@ -64961,6 +65326,16 @@ function (_React$Component) {
       console.log('deleted token');
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onNavClick", function (e) {
+      //there is another way to do this but I couldn't find an easy way in react
+      var nextURL = e.currentTarget.name;
+      var currentURL = _this.props.history.location.pathname;
+
+      if (nextURL == currentURL) {
+        window.location.reload();
+      }
+    });
+
     return _this;
   }
 
@@ -65001,7 +65376,9 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "home-link"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
-          to: "/index",
+          onClick: this.onNavClick,
+          to: '/index',
+          name: "/index",
           id: "link-head",
           style: {
             color: '#2c87c4'
@@ -65009,12 +65386,26 @@ function (_React$Component) {
         }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "home-link"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
-          to: "/index/createProject",
+          onClick: this.onNavClick,
+          to: '/index/createProject',
+          name: "/index/createProject",
           id: "link-head",
           style: {
             color: '#2c87c4'
           }
-        }, "Create a New Project")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "Create a New Project")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "home-link"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
+          onClick: this.onNavClick,
+          to: "/index/addProgrammer",
+          name: "/index/addProgrammer",
+          id: "link-head",
+          style: {
+            color: '#2c87c4'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "material-icons"
+        }, "person_add"), " Add Programmer")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "navbar-form navbar-left",
           action: "/action_page.php"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -65084,13 +65475,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -65100,12 +65493,47 @@ function (_React$Component) {
   _inherits(Home, _React$Component);
 
   function Home() {
+    var _getPrototypeOf2;
+
+    var _this;
+
     _classCallCheck(this, Home);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Home).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Home)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      isFlushed: false
+    });
+
+    return _this;
   }
 
   _createClass(Home, [{
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      var _this2 = this;
+
+      // check current props and nextPros of dealLoaded flag. If dealLoaded was false, and is true, which means the data is fetched, then we should reset isFlushed
+      if (!this.props.dealLoaded && nextProps.dealLoaded) {
+        this.setState({
+          isFlushed: false
+        });
+      } // since we assigned the location.state in <Link>, if we see this prop, and the data is not flushed yet, then flush data, in this case we call loadDeals(), which is a redux action
+
+
+      if (!this.state.isFlushed && nextProps.location.state === 'flushDeal') {
+        this.setState({
+          isFlushed: true
+        }, function () {
+          return _this2.props.loadDeals();
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Home Page");
@@ -65145,6 +65573,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Register__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Register */ "./resources/js/components/Register.js");
 /* harmony import */ var _CreateProject__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CreateProject */ "./resources/js/components/CreateProject.js");
 /* harmony import */ var _CreateTask__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./CreateTask */ "./resources/js/components/CreateTask.js");
+/* harmony import */ var _AddProgrammer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./AddProgrammer */ "./resources/js/components/AddProgrammer.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -65170,6 +65599,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 {
   /* /Applications/Development/projects/laravelProjects/sppd/sppd (sppd directory) beta malk d5l */
 }
+
 
 
 
@@ -65212,10 +65642,7 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "editLoggedIn", function (loggedIn) {
       _this.setState({
         loggedIn: loggedIn
-      });
-
-      _this.getProjects();
-      /* I dont think this is best practice, maybe we should use a lifecycle method */
+      }); //this.getProjects(); /* I dont think this is best practice, maybe we should use a lifecycle method */
 
 
       console.log('editloggedin ' + _this.state.loggedIn);
@@ -65266,7 +65693,8 @@ function (_React$Component) {
         searchFull: this.state.searchFull
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SideBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
         loggedIn: this.state.loggedIn,
-        projects: this.state.projects
+        projects: this.state.projects,
+        getProjects: this.getProjects
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InfoBar__WEBPACK_IMPORTED_MODULE_7__["default"], {
         loggedIn: this.state.loggedIn
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
@@ -65283,7 +65711,8 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/index",
-        component: _Home__WEBPACK_IMPORTED_MODULE_8__["default"]
+        component: _Home__WEBPACK_IMPORTED_MODULE_8__["default"],
+        key: Math.random() * 100
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/createProject",
         render: function render(props) {
@@ -65304,6 +65733,9 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/createTask/:projectId",
         component: _CreateTask__WEBPACK_IMPORTED_MODULE_13__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/index/addProgrammer",
+        component: _AddProgrammer__WEBPACK_IMPORTED_MODULE_14__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         component: _NotFound__WEBPACK_IMPORTED_MODULE_3__["default"]
       }))));
@@ -65865,6 +66297,8 @@ function (_React$Component) {
         }
       }).then(function (res) {
         if (res.status == 200) {
+          console.log(res.data);
+
           _this.setState({
             programmers: res.data
           });
@@ -65876,10 +66310,9 @@ function (_React$Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentWillMount", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidUpdate", function () {
       axios.get('api/findProgrammer', {
         params: {
-          /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
           id: _this.props.match.params.userId
         }
       }).then(function (res) {
@@ -65929,7 +66362,9 @@ function (_React$Component) {
       var programmers = Object.keys(this.state.programmers);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "canvas-background"
-      }, programmers.map(this.renderProgrammer));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pad-top"
+      }), programmers.map(this.renderProgrammer));
     }
   }]);
 
@@ -66067,6 +66502,15 @@ function (_React$Component) {
   }
 
   _createClass(SideBar, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.props.getProjects();
+    }
+    /* componentDidUpdate() {
+        this.props.getProjects();
+    } */
+
+  }, {
     key: "render",
     value: function render() {
       var projectIds = Object.keys(this.props.projects);

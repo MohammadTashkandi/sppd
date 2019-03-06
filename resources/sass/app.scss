@@ -214,8 +214,8 @@ a#logout-btn:hover {
 }
 
 .grid-search-container {
-  padding-top: 3%;
-  padding-bottom: 3%;
+  padding-top: 0;
+  padding-bottom: 0;
   display: grid;
   grid-template-columns: 75%;
   grid-gap: 0%;
@@ -223,16 +223,16 @@ a#logout-btn:hover {
 }
 
 .grid-search-item {
-  border-radius: 10px;
+  border-radius: 1rem;
   background-color: rgba(255, 255, 255, 0.753);
   box-shadow: -1px 1px 5px #ffc600;
   text-align: justify;
   justify-content: center;
   align-content: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   background-color: #0d3a58;
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
 }
 
 .search-tag {
@@ -457,4 +457,46 @@ a#visit-page:hover{
 
 .create-task-header {
   margin-bottom:2rem;
+}
+.pad-top{
+  padding-top: 1%;
+}
+
+.form-group-add-prog{
+  margin-bottom: 0;
+  margin-top: 1rem;
+}
+
+.form-add-prog {
+  margin-top: -1rem;
+  margin-left: 40rem;
+  margin-right: 9rem;
+  text-align:center;
+  background-color: #0d3a58;
+  border-radius: 20px;
+  font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+.login-btn-add-prog {
+  background-color: transparent;
+  margin-top: 2rem;
+  border-color: #9d9d9d;
+  font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  color: #9d9d9d;
+  padding: 0.8rem 8rem;
+  margin-bottom: 1rem;
+  border-radius: 50px;
+  font-size: 2rem;
+}
+
+.login-btn-add-prog:hover {
+  color: #0d3a58;
+  background-color: #ffc600;
+  border-color: #ffc600;
+  transition: 0.4s;
+}
+
+.task-form-div-add-prog {
+  color: #ffc600;
+  padding: 0.5rem;
 }

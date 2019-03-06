@@ -172,8 +172,11 @@ class ProgrammerController extends Controller
 
 
         //$programmerId = Programmer::where('user_id', $inputId)->first();
+        //        return response()->json($projects->pluck('Username','user_id')); //dont do $projects=$projects->pluck... or the state will have nested object
+
 
         $programmer = Programmer::where('Username', 'like', '%' . $inputString . '%')
+        ->orWhere('user_id',$inputId)
                    ->select('Username','user_id')
                    ->get();
         if (count($programmer) > 0 ){
