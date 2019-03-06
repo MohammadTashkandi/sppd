@@ -14,14 +14,24 @@ class CreateProgrammersTable extends Migration
     public function up()
     {
         Schema::create('programmers', function (Blueprint $table) {
-            $table->unsignedInteger('user_id')->references('id')->on('users')->onDelete('cascade') ; // foreign key for user table
-            $table->Integer('PMid')->references('user_id')->on('ProjectManager')->onDelete('cascade') ; // foreign key for the Project Manager
+            $table->increments('id');
+            $table->string('name');
+            $table->string('phone_number')->nullable();
+            $table->string('nationality')->nullable();
+            $table->string('email')->unique();
+            $table->boolean('taken')->default(0);
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('location')->nullable();
+            $table->string('age')->nullable();
+            $table->Integer('PMid')->references('id')->on('User')->onDelete('cascade') ; // foreign key for the Project Manager
             $table->Integer('Pid')->references('id')->on('Project')->onDelete('cascade') ; // foreign key for the Project
             $table->integer('pStr');
             $table->integer('pJud');
             $table->integer('PCu');
             $table->integer('pTech');
-            $table->String('Username');
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 

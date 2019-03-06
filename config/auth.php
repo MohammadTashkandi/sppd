@@ -45,6 +45,14 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'programmer' => [
+            'driver' => 'session',
+            'provider' => 'programmers',
+        ],
+        'programmer-api' => [
+            'driver' => 'token',
+            'provider' => 'programmers',
+        ],
     ],
 
     /*
@@ -68,6 +76,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        'programmers' => [
+            'driver' => 'eloquent',
+            'model' => App\Programmer::class,
         ],
 
         // 'users' => [
@@ -94,6 +106,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'programmers' => [
+            'provider' => 'programmers',
             'table' => 'password_resets',
             'expire' => 60,
         ],

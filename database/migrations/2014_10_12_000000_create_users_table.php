@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('phone_number')->nullable();
             $table->string('nationality')->nullable();
             $table->string('email')->unique();
-            $table->enum('role' , [ 'Project Manager' , 'Programmer' , 'admin' ]);
             $table->boolean('taken')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

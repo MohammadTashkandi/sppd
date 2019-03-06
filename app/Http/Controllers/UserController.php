@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ProjectManager;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -29,12 +30,24 @@ use Illuminate\Support\Facades\Validator;
          return response()->json($validator->errors()->toJson(),400);
 
        }
+            $email = $request->json()->get('email');
+
+         if (Programmer::where('email', '=', $email)->exists()) {
+             return response()->json(['Email Exist  '], 404);
+         }
+
+
        $user = User::create([
         'name' => $request->json()->get('name'),
         'email' => $request->json()->get('email'),
         'password' => Hash::make($request->json()->get('password')),
+        'nationality' => $request->json()->get('nationality'),
+        'age' => $request->json()->get('age'),
+        'phone_number' => $request->json()->get('phone_number'),
 
-      ]);
+
+       ]);
+
       $token = JWTAuth::fromUser($user);
       return response()->json(compact('user', 'token'),201);
      }
