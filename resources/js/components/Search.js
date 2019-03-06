@@ -9,11 +9,11 @@ export default class Search extends React.Component {
     componentWillMount = () =>{
          axios.get('api/findProgrammer', {
             params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
-                id: this.props.match.params.userId
+                id: this.props.match.params.userId,
+                PMid: localStorage.getItem('PMid'),
             }
         })
         .then((res) => {
-
             if(res.status==200){
                 console.log(res.data)
                 this.setState({programmers : res.data})
@@ -26,30 +26,12 @@ export default class Search extends React.Component {
             console.log(err);
         })
     }
-    componentDidUpdate = () =>{
-        axios.get('api/findProgrammer', {
-           params: { 
-               id: this.props.match.params.userId
-           }
-       })
-       .then((res) => {
-
-           if(res.status==200){
-               this.setState({programmers : res.data})
-           }
-           else{
-               console.log("no programmers with this id");
-           }
-       })
-       .catch((err) => {
-           console.log(err);
-       })
-   }
+    
     /* componentWillUnmount(){
             this.props.isSearchFull(true);
     } */
     renderProgrammer = (key) => {
-        const name = this.state.programmers[key].Username; 
+        const name = this.state.programmers[key].name; 
         var index = name.indexOf(' ');
         var tag = (name.charAt(0) + ' ' +  name.charAt(index + 1)).toUpperCase();
 

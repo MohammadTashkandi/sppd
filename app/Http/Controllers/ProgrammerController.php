@@ -70,22 +70,22 @@ class ProgrammerController extends Controller
         }
 
         // to get project Manager ID
-        $user = Auth::user();
-        $userID = $user->id;
+        /* $user = Auth::user();
+        $userID = $user->id;  */
 
 
-
+        //add nationality and phone number
         $programmer = Programmer::create([
-            'name' => $request['name'],
+            'name' => $request['firstName'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'Pid' => $request['Pid'],
-            'pStr' => $request['ps'],
-            'pJud' => $request['pj'],
-            'PCu' => $request['pc'],
-            'pTech' => $request['pt'],
+            'pStr' => $request['pStr'],
+            'pJud' => $request['pJud'],
+            'PCu' => $request['pCu'],
+            'pTech' => $request['pTech'],
             'Pid' => $Pid,
-            'PMid' => $userID,
+            'PMid' => $request['PMid'],
         ]);
 
         $programmer->save();
@@ -146,10 +146,9 @@ class ProgrammerController extends Controller
 
 
         $input = $request['IDorName'];
-        $pm = auth()->user()->id;
-        $pmID= $pm['id'] ;
+        $PMid = $request['PMid'];
 
-        $Programmers = Programmer::where('PMid', '=', $pmID)->get();
+        $Programmers = Programmer::where('PMid', '=', $PMid)->get();
 
 
         if (is_numeric($input)) {

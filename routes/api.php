@@ -19,6 +19,7 @@ Route::post('storeProject','ProjectController@store');
 Route::get('findProject','ProjectController@findProject');
 Route::get('findProgrammer','ProgrammerController@findProgrammer');
 Route::post('addTask','TaskController@store');
+Route::post('addProgrammer','ProgrammerController@store');
 //Route::post('register','UserController@getAuthenticatedUser');
 
 

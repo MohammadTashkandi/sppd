@@ -36,7 +36,8 @@ export default class Login extends React.Component {
             headers: {'Content-Type': 'application/json'}
         })
         .catch((err) => {
-            console.log(err);
+            alert(err);
+            console.log(err.status);
         })
 
     }
