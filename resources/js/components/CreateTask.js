@@ -50,8 +50,8 @@ export default class CreateTask extends React.Component {
 
             <div className="info-bar">
                 <span className="decorative-box">i</span>
-                <span className="info-bar-page">Project</span>
-                <span className="info-bar-text"></span>
+                <span className="info-bar-page">Create Task</span>
+                <span className="info-bar-text">{this.props.infobar}</span>
                 <span>
                             
                 </span>

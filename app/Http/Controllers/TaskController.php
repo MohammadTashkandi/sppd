@@ -45,11 +45,12 @@ class TaskController extends Controller
 //        dd(Input::get('Stress'));
 
 
-        $PrId = $request['PrID'] ;
-        $Pid =$request['Pid'];
+        $PrId = $request['PrId'] ;
+        $Pid = $request['Pid'];
 
-        $p = new Programmer();
-        $p = $p->find($PrId);
+        //not working
+        /* $p = new Programmer();
+        $p = $p->find($PrId); */
 
         $project = new Project();
         $project = $project->find($Pid);
@@ -58,14 +59,14 @@ class TaskController extends Controller
             return response()->json(['No project with this ID '], 404);
         }
 
-        if ($p  == null) {
+        /* if ($p  == null) {
             return response()->json(['No Programmer with this ID '], 404);
-        }
+        } */
 
 
         $task = Task::create([
             'title' => $request['title'],
-            'PrID' => $request['PrID'],
+            'PrID' => $request['PrId'],
             'Pid' => $request['Pid'],
             'severity' => $request['severity'],
             'tStr' => $request['tStr'],

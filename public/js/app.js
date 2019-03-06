@@ -65068,9 +65068,9 @@ function (_React$Component) {
         className: "decorative-box"
       }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-bar-page"
-      }, "Project"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, "Create Task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-bar-text"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+      }, this.props.infobar), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "hr",
         style: {
           margin: '0'
