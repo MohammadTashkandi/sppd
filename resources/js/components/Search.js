@@ -15,6 +15,7 @@ export default class Search extends React.Component {
         .then((res) => {
 
             if(res.status==200){
+                console.log(res.data)
                 this.setState({programmers : res.data})
             }
             else{
@@ -25,9 +26,9 @@ export default class Search extends React.Component {
             console.log(err);
         })
     }
-    componentWillMount = () =>{
+    componentDidUpdate = () =>{
         axios.get('api/findProgrammer', {
-           params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+           params: { 
                id: this.props.match.params.userId
            }
        })
@@ -73,6 +74,7 @@ export default class Search extends React.Component {
 
         return (
             <div className="canvas-background">
+                <div className="pad-top">{/* just some padding top */}</div>
                 {programmers.map(this.renderProgrammer)}
                 {/* <div className="grid-search-container">
                     <div className="grid-search-item">

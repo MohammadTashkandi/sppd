@@ -14,6 +14,7 @@ import Login from './Login';
 import Register from './Register';
 import CreateProject from './CreateProject';
 import CreateTask from './CreateTask';
+import AddProgrammer from './AddProgrammer';
 
 
 
@@ -28,7 +29,7 @@ export default class Index extends React.Component {
 
     editLoggedIn = (loggedIn) => {
         this.setState({loggedIn: loggedIn});
-        this.getProjects(); /* I dont think this is best practice, maybe we should use a lifecycle method */
+        //this.getProjects(); /* I dont think this is best practice, maybe we should use a lifecycle method */
         console.log('editloggedin '+ this.state.loggedIn);
     }
 
@@ -63,8 +64,8 @@ export default class Index extends React.Component {
             <HashRouter>
                 <div history={this.props.history} style={{maxHeight:'100vh'}}> 
                     <Header loggedIn={this.state.loggedIn} editLoggedIn={this.editLoggedIn} isSearchFull={this.isSearchFull} searchFull={this.state.searchFull}/>
-                    <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects} setInfobar={this.setInfobar} />
-                    <InfoBar loggedIn={this.state.loggedIn} infobar={this.state.infobar} />                              
+                    <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects} getProjects={this.getProjects} setInfobar={this.setInfobar} />
+                    <InfoBar loggedIn={this.state.loggedIn} infobar={this.state.infobar} />                                                           
                     <Switch>
                         <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn}/>} /> {/* we use render instead of component so we can add props */}
                         <Route path="/register" component={Register} />
@@ -73,6 +74,7 @@ export default class Index extends React.Component {
                         <Route path="/index/search/:userId" render={(props)=> <Search {...props} isSearchFull={this.isSearchFull} />} />
                         <Route path="/index/project/:projectId" component={Canvas} />
                         <Route path="/index/createTask/:projectId" component={CreateTask} />
+                        <Route path="/index/addProgrammer" component={AddProgrammer} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>
