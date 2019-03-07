@@ -13,21 +13,4 @@ class Project extends Model
 
     public $timestamps = false;
 
-    public function programmers(){
-
-        return $this->hasMany(Programmer::class , 'Pid' , 'user_id');
-
-    }
-
-    public function tasks(){
-
-        return $this->hasMany(Task::class , 'Pid');
-
-    }
-
-    public function projectManager(){
-        return $this->belongsTo(ProjectManager::class);
-    }
-
-
 }

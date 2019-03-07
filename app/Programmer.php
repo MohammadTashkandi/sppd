@@ -53,7 +53,6 @@ class Programmer extends Authenticatable implements JWTSubject
     ];
 
 
-protected $primaryKey = 'user_id';
     public $timestamps = false;
 
 

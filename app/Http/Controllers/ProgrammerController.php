@@ -145,7 +145,7 @@ class ProgrammerController extends Controller
     public function findProgrammer(Request $request){
 
 
-        $input = $request['IDorName'];
+        $input = $request['id'];
         $PMid = $request['PMid'];
 
         $Programmers = Programmer::where('PMid', '=', $PMid)->get();
