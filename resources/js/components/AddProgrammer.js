@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import Axios from 'axios';
+import {Spring} from 'react-spring/renderprops';
 
 export default class AddProgrammer extends React.Component {
     state={
@@ -68,7 +69,13 @@ export default class AddProgrammer extends React.Component {
                 </div>
                 <hr className="hr" style={{margin:'0'}} />
 
-                <div className="form-add-prog">
+                <Spring from={{opacity:0 , marginTop: -500}} // you must wrap the part of the component you want animated in this spring syntax
+                    to={{opacity:1, marginTop:0}}
+                    config={{duration:750}}
+            >
+                {props => (
+                    <div style={props}>
+                        <div className="form-add-prog">
                 <h3 style={{color:'#ffc600', fontFamily:'"Poppins", sans-serif', paddingTop:"1rem"}}>Create Accounts for your Programmers!</h3>
                     <form onSubmit={this.onSubmit}>
                     <div className="form-group">
@@ -148,9 +155,11 @@ export default class AddProgrammer extends React.Component {
                                     <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pTech" value="5" /> 5</div>
                                 </div> {/* just to move stuff apart */}
                         </div>
-                        <button type="submit"> Add programmer</button>
-                    </form>
+                        <button className="login-btn-add-prog" type="submit"><i className="material-icons">person_add</i></button>                    </form>
                 </div>
+                    </div>
+                )}
+            </Spring>
             </React.Fragment>
         );
     }
