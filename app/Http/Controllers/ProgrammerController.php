@@ -159,10 +159,8 @@ class ProgrammerController extends Controller
             }
         } else {
 
-            $result1 = $Programmers;
-            $result2 = Programmer::where('name', 'like', '%' .$input. '%')->get();
-            $Programmers = $result2->merge($result1);
 
+            $Programmers = Programmer::where('PMid', '=', $PMid)->where('name' , 'like' , '%' .$input. '%')->get();
 
             if(count($Programmers)>0){
                 return response()->json($Programmers,200);
