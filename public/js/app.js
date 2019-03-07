@@ -66379,7 +66379,7 @@ function (_React$Component) {
       programmers: {}
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidMount", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentWillMount", function () {
       console.log(_this.props.match.params.userId);
       axios.get('api/findProgrammer', {
         params: {
@@ -66672,8 +66672,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

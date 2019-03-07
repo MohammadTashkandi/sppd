@@ -6,7 +6,7 @@ export default class Search extends React.Component {
         programmers: {}
     }
 
-    componentDidMount = () =>{
+    componentWillMount = () =>{
         console.log(this.props.match.params.userId);
          axios.get('api/findProgrammer', {
             params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
