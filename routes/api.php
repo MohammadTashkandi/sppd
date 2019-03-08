@@ -20,6 +20,7 @@ Route::get('findProject','ProjectController@findProject');
 Route::get('findProgrammer','ProgrammerController@findProgrammer');
 Route::post('addTask','TaskController@store');
 Route::post('addProgrammer','ProgrammerController@store');
+Route::post('getTasks','TaskControllerController@getTasks');
 //Route::post('register','UserController@getAuthenticatedUser');
 
 
