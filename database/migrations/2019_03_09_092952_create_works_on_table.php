@@ -14,8 +14,10 @@ class CreateWorksOnTable extends Migration
     public function up()
     {
         Schema::create('works_on', function (Blueprint $table) {
-            $table->foreign('programmer_id')->references('id')->on('programmers');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->integer('Programmer_id')->unsigned();
+            $table->foreign('Programmer_id')->references('id')->on('programmers');
+            $table->integer('Project_id')->unsigned();
+            $table->foreign('Project_id')->references('id')->on('projects');
             $table->timestamps();
         });
     }
