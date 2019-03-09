@@ -1,4 +1,5 @@
 import React from 'react';
+import {Spring} from 'react-spring/renderprops';
 
 export default class Search extends React.Component {
 
@@ -6,7 +7,7 @@ export default class Search extends React.Component {
         programmers: {}
     }
 
-    componentWillMount = () =>{
+    componentDidMount = () =>{
         console.log(this.props.match.params.userId);
          axios.get('api/findProgrammer', {
             params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
@@ -37,18 +38,27 @@ export default class Search extends React.Component {
         var tag = (name.charAt(0) + ' ' +  name.charAt(index + 1)).toUpperCase();
 
         return(
-            <div className="grid-search-container" key={key}>
-                    <div className="grid-search-item">
-                        <div className="search-tag">{tag}</div> 
-                        <div className="search-name">{name}</div>
-                        <div className="search-id">{this.state.programmers[key].id}</div>
-                        <div className="search-button">
-                            <a className="btn btn-default btn-sm" id="visit-page">
-                                <span className="glyphicon glyphicon-stats"></span> View Stats
-                            </a>
+            <Spring from={{opacity:0 , marginTop: -500}} // you must wrap the part of the component you want animated in this spring syntax
+                    to={{opacity:1, marginTop:0}}
+                    config={{duration:500 }}
+                >
+                    {props => (
+                        <div style={props}>
+                            <div className="grid-search-container" key={key}>
+                                    <div className="grid-search-item">
+                                        <div className="search-tag">{tag}</div> 
+                                        <div className="search-name">{name}</div>
+                                        <div className="search-id">{this.state.programmers[key].id}</div>
+                                        <div className="search-button">
+                                            <a className="btn btn-default btn-sm" id="visit-page">
+                                                <span className="glyphicon glyphicon-stats"></span> View Stats
+                                            </a>
+                                        </div>
+                                </div>
+                            </div>
                         </div>
-                </div>
-            </div>
+                )}
+                </Spring>
         )
     }
 

@@ -60,7 +60,7 @@ export default class Canvas extends React.Component {
                                             maintainAspectRatio: true,
                                             title:{ 
                                                 display:true,
-                                                text:'Task Transition Time', //this should also be dynamic
+                                                text:'Status Duration', //this should also be dynamic
                                                 fontSize:25
                                             },
                                             legend:{ //this should also be dynamic
