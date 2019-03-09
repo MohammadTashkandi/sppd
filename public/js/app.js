@@ -106779,28 +106779,27 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProgrammer", function (key) {
-      var name = _this.state.programmers[key].name;
+      var name = _this.state.programmers[key].first_name + ' ' + _this.state.programmers[key].last_name;
+      alert(name);
       var index = name.indexOf(' ');
       var tag = (name.charAt(0) + ' ' + name.charAt(index + 1)).toUpperCase();
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__["Spring"], {
+        key: key,
         from: {
-          opacity: 0,
-          marginTop: -500
+          opacity: 0
         } // you must wrap the part of the component you want animated in this spring syntax
         ,
         to: {
-          opacity: 1,
-          marginTop: 0
+          opacity: 1
         },
         config: {
-          duration: 500
+          duration: 750
         }
       }, function (props) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: props
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-search-container",
-          key: key
+          className: "grid-search-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-search-item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

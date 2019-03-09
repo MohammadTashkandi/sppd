@@ -33,18 +33,20 @@ export default class Search extends React.Component {
             this.props.isSearchFull(true);
     } */
     renderProgrammer = (key) => {
-        const name = this.state.programmers[key].name; 
+        const name = this.state.programmers[key].first_name + ' ' + this.state.programmers[key].last_name;
+        alert(name);
         var index = name.indexOf(' ');
         var tag = (name.charAt(0) + ' ' +  name.charAt(index + 1)).toUpperCase();
 
         return(
-            <Spring from={{opacity:0 , marginTop: -500}} // you must wrap the part of the component you want animated in this spring syntax
-                    to={{opacity:1, marginTop:0}}
-                    config={{duration:500 }}
+            <Spring key={key} 
+                    from={{opacity:0}} // you must wrap the part of the component you want animated in this spring syntax
+                    to={{opacity:1}}
+                    config={{duration:750}}
                 >
                     {props => (
                         <div style={props}>
-                            <div className="grid-search-container" key={key}>
+                            <div className="grid-search-container" >
                                     <div className="grid-search-item">
                                         <div className="search-tag">{tag}</div> 
                                         <div className="search-name">{name}</div>
