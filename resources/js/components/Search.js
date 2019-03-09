@@ -34,7 +34,6 @@ export default class Search extends React.Component {
     } */
     renderProgrammer = (key) => {
         const name = this.state.programmers[key].first_name + ' ' + this.state.programmers[key].last_name;
-        alert(name);
         var index = name.indexOf(' ');
         var tag = (name.charAt(0) + ' ' +  name.charAt(index + 1)).toUpperCase();
 

@@ -106780,7 +106780,6 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProgrammer", function (key) {
       var name = _this.state.programmers[key].first_name + ' ' + _this.state.programmers[key].last_name;
-      alert(name);
       var index = name.indexOf(' ');
       var tag = (name.charAt(0) + ' ' + name.charAt(index + 1)).toUpperCase();
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__["Spring"], {
