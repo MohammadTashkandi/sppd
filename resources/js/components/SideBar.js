@@ -16,7 +16,7 @@ class SideBar extends React.Component {
     vPillsTab = React.createRef();
     vPillsTabContent = React.createRef();
     
-      componentDidMount() {
+      /* componentDidMount() {
           this.props.getProjects();
       }
 
@@ -25,7 +25,7 @@ class SideBar extends React.Component {
               console.log('didUpdate in');
               this.props.getProjects();
           }
-      }
+      }  */
 
     renderProject = (key) => {
         const project = this.props.projects[key];
@@ -48,6 +48,7 @@ class SideBar extends React.Component {
         this.animateSideBar();
         this.changePath(key);
         this.props.setInfobar(pName);
+        this.props.getTasks(key);
     }
 
     animateSideBar = () => {

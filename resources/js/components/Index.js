@@ -24,7 +24,7 @@ export default class Index extends React.Component {
         searchFull: false,
         loggedIn: localStorage.getItem('usertoken') != null,
         projects: {},
-
+        tasks: {},
     }
 
     editLoggedIn = (loggedIn) => {
@@ -49,6 +49,24 @@ export default class Index extends React.Component {
             console.log('not logged in yet');
         }
     }
+
+    getTasks = (Pid) => {
+        if(this.state.loggedIn){
+            axios.get('api/getTasks', {
+                params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+                    Pid: Pid,
+                }
+            })
+            .then((res) => {
+                if(res.status==200) {
+                    this.setState({tasks: res.data})
+                }
+            })
+        }else{
+            console.log('not logged in yet');
+        }
+    }
+
     isSearchFull = (bool) =>{
         /* console.log(bool) //here it says true
         this.setState({searchFull: bool}); //i set it to state
@@ -64,7 +82,7 @@ export default class Index extends React.Component {
             <HashRouter>
                 <div history={this.props.history} style={{maxHeight:'100vh'}}> 
                     <Header loggedIn={this.state.loggedIn} editLoggedIn={this.editLoggedIn} isSearchFull={this.isSearchFull} searchFull={this.state.searchFull}/>
-                    <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects} getProjects={this.getProjects} setInfobar={this.setInfobar} />
+                    <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects} tasks={this.state.tasks} getProjects={this.getProjects} getTasks={this.getTasks} setInfobar={this.setInfobar} />
                     {/* <InfoBar loggedIn={this.state.loggedIn} infobar={this.state.infobar} />   */}                                                         
                     <Switch>
                         <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn}/>} /> {/* we use render instead of component so we can add props */}

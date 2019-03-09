@@ -106153,7 +106153,8 @@ function (_React$Component) {
       infobar: "",
       searchFull: false,
       loggedIn: localStorage.getItem('usertoken') != null,
-      projects: {}
+      projects: {},
+      tasks: {}
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "editLoggedIn", function (loggedIn) {
@@ -106179,6 +106180,25 @@ function (_React$Component) {
           if (res.status == 200) {
             _this.setState({
               projects: res.data
+            });
+          }
+        });
+      } else {
+        console.log('not logged in yet');
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getTasks", function (Pid) {
+      if (_this.state.loggedIn) {
+        axios.get('api/getTasks', {
+          params: {
+            /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+            Pid: Pid
+          }
+        }).then(function (res) {
+          if (res.status == 200) {
+            _this.setState({
+              tasks: res.data
             });
           }
         });
@@ -106220,7 +106240,9 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SideBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
         loggedIn: this.state.loggedIn,
         projects: this.state.projects,
+        tasks: this.state.tasks,
         getProjects: this.getProjects,
+        getTasks: this.getTasks,
         setInfobar: this.setInfobar
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
@@ -107005,6 +107027,8 @@ function (_React$Component) {
       _this.changePath(key);
 
       _this.props.setInfobar(pName);
+
+      _this.props.getTasks(key);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "animateSideBar", function () {
@@ -107035,19 +107059,6 @@ function (_React$Component) {
   }
 
   _createClass(SideBar, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.getProjects();
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      if (this.props.projects[0] !== prevProps.projects[0]) {
-        console.log('didUpdate in');
-        this.props.getProjects();
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
       var projectIds = Object.keys(this.props.projects);
