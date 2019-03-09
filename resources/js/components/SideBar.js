@@ -15,8 +15,9 @@ class SideBar extends React.Component {
     backButtonRef = React.createRef();
     vPillsTab = React.createRef();
     vPillsTabContent = React.createRef();
+    taskRef = React.createRef();
     
-      /* componentDidMount() {
+    componentDidMount() {
           this.props.getProjects();
       }
 
@@ -25,7 +26,7 @@ class SideBar extends React.Component {
               console.log('didUpdate in');
               this.props.getProjects();
           }
-      }  */
+      }
 
     renderProject = (key) => {
         const project = this.props.projects[key];
@@ -36,19 +37,19 @@ class SideBar extends React.Component {
     }
 
     renderTask = (key) => {
-        const project = this.props.projects[key];
+        const task = this.props.tasks[key];
         return(
-            <div key={key} className="tab-pane fade" id={"v-pills-"+key}role="tabpanel" aria-labelledby={"v-pills-"+key+"-tab"}>
-                <a>{project.task1}</a> {/* How do I loop over every task in a project dynamically */}
+            <div key={task.Pid} ref={this.taskRef} className="tab-pane fade" id={"v-pills-"+task.Pid} role="tabpanel" aria-labelledby={"v-pills-"+task.Pid+"-tab"}>
+                <a>{task.title}</a> {/* How do I loop over every task in a project dynamically */}
             </div>
         );
     }
 
     handleClick = (key,pName) => {
-        this.animateSideBar();
+        this.props.getTasks(key);
         this.changePath(key);
         this.props.setInfobar(pName);
-        this.props.getTasks(key);
+        this.animateSideBar();
     }
 
     animateSideBar = () => {
@@ -59,7 +60,6 @@ class SideBar extends React.Component {
             this.vPillsTabContent.current.style.display='block';
             this.vPillsTab.current.style.display='none';
             this.backButtonRef.current.style.display='block';
-
             
         }else if(this.projectPillsRef.current.className=='inactive') {
             this.projectPillsRef.current.className='active';
@@ -77,6 +77,7 @@ class SideBar extends React.Component {
 
     render() {
         const projectIds = Object.keys(this.props.projects);
+        const taskIds = Object.keys(this.props.tasks);
 
         const loggedIn=this.props.loggedIn;
         if(!loggedIn) {
@@ -94,7 +95,7 @@ class SideBar extends React.Component {
                     </div>
                     <div id="task-pills" ref={this.taskPillsRef}>
                         <div className="tab-content" id="v-pills-tabContent" ref={this.vPillsTabContent} style={{display:'none', margin:'1em'}}>
-                            {projectIds.map(this.renderTask)}
+                            {taskIds.map(this.renderTask)}
                         </div>
                     </div>
                 </div>  

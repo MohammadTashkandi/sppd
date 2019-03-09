@@ -136,7 +136,7 @@ class TaskController extends Controller
         if (count($tasks) > 0) {
             return response()->json($tasks, 200);
         } else {
-            return response()->json(['There is No Task  '], 404);
+            return response()->json('There is No Task', 404);
         }
     }
 

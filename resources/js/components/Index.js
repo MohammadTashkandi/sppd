@@ -58,8 +58,11 @@ export default class Index extends React.Component {
                 }
             })
             .then((res) => {
-                if(res.status==200) {
+                if(res.status == 200) {
                     this.setState({tasks: res.data})
+                    console.log(this.state.tasks);
+                }else if(res.status == 404){
+                    console.log(res.data);
                 }
             })
         }else{

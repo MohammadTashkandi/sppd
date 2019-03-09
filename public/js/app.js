@@ -106200,6 +106200,10 @@ function (_React$Component) {
             _this.setState({
               tasks: res.data
             });
+
+            console.log(_this.state.tasks);
+          } else if (res.status == 404) {
+            console.log(res.data);
           }
         });
       } else {
@@ -106992,6 +106996,8 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "vPillsTabContent", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "taskRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProject", function (key) {
       var project = _this.props.projects[key];
       console.log(project);
@@ -107011,24 +107017,25 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderTask", function (key) {
-      var project = _this.props.projects[key];
+      var task = _this.props.tasks[key];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        key: key,
+        key: task.Pid,
+        ref: _this.taskRef,
         className: "tab-pane fade",
-        id: "v-pills-" + key,
+        id: "v-pills-" + task.Pid,
         role: "tabpanel",
-        "aria-labelledby": "v-pills-" + key + "-tab"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, project.task1), " ");
+        "aria-labelledby": "v-pills-" + task.Pid + "-tab"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, task.title), " ");
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function (key, pName) {
-      _this.animateSideBar();
+      _this.props.getTasks(key);
 
       _this.changePath(key);
 
       _this.props.setInfobar(pName);
 
-      _this.props.getTasks(key);
+      _this.animateSideBar();
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "animateSideBar", function () {
@@ -107059,9 +107066,23 @@ function (_React$Component) {
   }
 
   _createClass(SideBar, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.getProjects();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.projects[0] !== prevProps.projects[0]) {
+        console.log('didUpdate in');
+        this.props.getProjects();
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var projectIds = Object.keys(this.props.projects);
+      var taskIds = Object.keys(this.props.tasks);
       var loggedIn = this.props.loggedIn;
 
       if (!loggedIn) {
@@ -107098,7 +107119,7 @@ function (_React$Component) {
             display: 'none',
             margin: '1em'
           }
-        }, projectIds.map(this.renderTask))));
+        }, taskIds.map(this.renderTask))));
       }
     }
   }]);
