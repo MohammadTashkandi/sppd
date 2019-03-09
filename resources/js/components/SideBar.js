@@ -16,13 +16,16 @@ class SideBar extends React.Component {
     vPillsTab = React.createRef();
     vPillsTabContent = React.createRef();
     
-      componentWillMount() {
+      componentDidMount() {
           this.props.getProjects();
       }
 
-      /* componentDidUpdate() {
-          this.props.getProjects();
-      } */
+      componentDidUpdate(prevProps) {
+        if(this.props.projects[0] !== prevProps.projects[0]) {
+              console.log('didUpdate in');
+              this.props.getProjects();
+          }
+      }
 
     renderProject = (key) => {
         const project = this.props.projects[key];
