@@ -61,13 +61,13 @@ class ProgrammerController extends Controller
 
         // check if the project is exist
         //-----------------------------------------------------------------------
-        $Pid = $request['Pid'];
-        $project = new Project();
-        $project = $project->find($Pid);
-
-        if ($project = null) {
-            return response()->json(['there is no project with this ID '], 404);
-        }
+//        $Pid = $request['Pid'];
+//        $project = new Project();
+//        $project = $project->find($Pid);
+//
+//        if ($project = null) {
+//            return response()->json(['there is no project with this ID '], 404);
+//        }
 
         // to get project Manager ID
         /* $user = Auth::user();
@@ -76,15 +76,14 @@ class ProgrammerController extends Controller
 
         //add nationality and phone number
         $programmer = Programmer::create([
-            'name' => $request['firstName'],
+            'first_name' => $request['firstName'],
+            'last_name' => $request['lastName'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
-            'Pid' => $request['Pid'],
             'pStr' => $request['pStr'],
             'pJud' => $request['pJud'],
             'PCu' => $request['pCu'],
             'pTech' => $request['pTech'],
-            'Pid' => $Pid,
             'PMid' => $request['PMid'],
         ]);
 
@@ -160,7 +159,7 @@ class ProgrammerController extends Controller
         } else {
 
 
-            $Programmers = Programmer::where('PMid', '=', $PMid)->where('name' , 'like' , '%' .$input. '%')->get();
+            $Programmers = Programmer::where('PMid', '=', $PMid)->where('first_name' , 'like' , '%' .$input. '%')->orWhere('last_name' , 'like' , '%' .$input. '%')->get();
 
             if(count($Programmers)>0){
                 return response()->json($Programmers,200);

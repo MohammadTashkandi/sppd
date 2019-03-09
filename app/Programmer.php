@@ -23,7 +23,7 @@ class Programmer extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'nationality', 'age', 'pStr', 'pJud', 'PCu', 'pTech','PMid','Pid'
+        'first_name', 'last_name' , 'email', 'password', 'nationality', 'age', 'pStr', 'pJud', 'PCu', 'pTech','PMid','Pid'
     ];
 
     /**

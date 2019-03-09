@@ -15,7 +15,8 @@ class CreateProgrammersTable extends Migration
     {
         Schema::create('programmers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('nationality')->nullable();
             $table->string('email')->unique();
@@ -25,7 +26,6 @@ class CreateProgrammersTable extends Migration
             $table->string('location')->nullable();
             $table->string('age')->nullable();
             $table->Integer('PMid')->references('id')->on('User')->onDelete('cascade') ; // foreign key for the Project Manager
-            $table->Integer('Pid')->references('id')->on('Project')->onDelete('cascade') ; // foreign key for the Project
             $table->integer('pStr');
             $table->integer('pJud');
             $table->integer('PCu');
