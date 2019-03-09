@@ -1,14 +1,13 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import "react-web-tabs/dist/react-web-tabs.css";
 /* import PropTypes from 'prop-types';*/
 
 class SideBar extends React.Component {
-    /* To get props */
-    /* static propTypes = { 
-        match: PropTypes.object.isRequired,
-        location: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired
-      } */
+    
+    state = {
+        currentlyUpdating: "",
+    }
 
     projectPillsRef = React.createRef();
     taskPillsRef = React.createRef();
@@ -21,32 +20,40 @@ class SideBar extends React.Component {
           this.props.getProjects();
       }
 
-      componentDidUpdate(prevProps) {
+      /* componentDidUpdate(prevProps) {
         if(this.props.projects[0] !== prevProps.projects[0]) {
               console.log('didUpdate in');
               this.props.getProjects();
           }
-      }
-
+      } */
+    
     renderProject = (key) => {
         const project = this.props.projects[key];
-        console.log(project);
         return(
-                <a key={key} onClick={()=> this.handleClick(key, event.target.innerText)} className="nav-link" id={"v-pills-"+key+"-tab"} data-toggle="pill" href={"#v-pills-"+key} role="tab" aria-controls={"#v-pills-"+key} aria-selected="false">{project}</a>
+            <a key={key} onClick={()=> this.handleClick(key, event.target.innerText)} className="nav-link" id={"v-pills-"+key+"-tab"} data-toggle="pill" href={"#v-pills-"+key} role="tab" aria-controls={"#v-pills-"+key} aria-selected="false">{project}</a>
         );
     }
 
     renderTask = (key) => {
-        const task = this.props.tasks[key];
-        return(
-            <div key={task.Pid} ref={this.taskRef} className="tab-pane fade" id={"v-pills-"+task.Pid} role="tabpanel" aria-labelledby={"v-pills-"+task.Pid+"-tab"}>
-                <a>{task.title}</a> {/* How do I loop over every task in a project dynamically */}
-            </div>
-        );
-    }
+        const taskIds = Object.keys(this.props.tasks);
 
+            return(             
+            <div key={key} ref={this.taskRef} className="tab-pane fade" id={"v-pills-"+key} role="tabpanel" aria-labelledby={"v-pills-"+key+"-tab"}>
+                {taskIds.map((id) => {
+                    const task = this.props.tasks[id];
+                    if(task.Pid == this.state.currentlyUpdating) {
+                        return (
+                            <a>{task.title}</a>
+                            );
+                        }
+                })}
+            </div>
+            );
+    }
+    
     handleClick = (key,pName) => {
         this.props.getTasks(key);
+        this.setState({currentlyUpdating:key});
         this.changePath(key);
         this.props.setInfobar(pName);
         this.animateSideBar();
@@ -77,17 +84,15 @@ class SideBar extends React.Component {
 
     render() {
         const projectIds = Object.keys(this.props.projects);
-        const taskIds = Object.keys(this.props.tasks);
-
+        
         const loggedIn=this.props.loggedIn;
         if(!loggedIn) {
             console.log('sidebar '+loggedIn);
             return(null);
         }else {
-
             return (
                 <div style={{width:'20%'}}>
-                    <div id="project-pills" className="active" ref={this.projectPillsRef}>{/* this should be added from state */}
+                    <div id="project-pills" className="active" ref={this.projectPillsRef}>
                         <button className="btn btn-outline-primary" id="back-button" onClick={this.animateSideBar} ref={this.backButtonRef}>&#8678;</button>
                         <div className="nav flex-column nav-pills" id="v-pills-tab" ref={this.vPillsTab} role="tablist" aria-orientation="vertical">
                             {projectIds.map(this.renderProject)}
@@ -95,10 +100,10 @@ class SideBar extends React.Component {
                     </div>
                     <div id="task-pills" ref={this.taskPillsRef}>
                         <div className="tab-content" id="v-pills-tabContent" ref={this.vPillsTabContent} style={{display:'none', margin:'1em'}}>
-                            {taskIds.map(this.renderTask)}
+                                {projectIds.map(this.renderTask)}
                         </div>
                     </div>
-                </div>  
+                </div> 
             );
         }
     }

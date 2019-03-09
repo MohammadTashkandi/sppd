@@ -35,53 +35,53 @@ export default class Canvas extends React.Component {
     }
 
     render() {
-        return(
-            <div className="canvas-background">
-                <div className="info-bar">
-                    <span className="decorative-box">i</span>
-                    <span className="info-bar-page">Project</span>
-                    <span className="info-bar-text">{this.props.infobar}</span>
-                    <span>
-                        <NavLink to={`/index/createTask/${this.props.match.params.projectId}`}><button className="info-bar-btn">Create task</button></NavLink>
-                    </span>
-                </div>
-                <hr className="hr" style={{margin:'0'}} />
-                <Spring from={{opacity:0}} // you must wrap the part of the component you want animated in this spring syntax
-                        to={{opacity:1}}
-                        config={{duration:750}}
-                >
-                    {props => (
-                        <div style={props}>
-                            <div className="grid-container">
-                                <div className="grid-item">
-                                    <Bar //everything here can be dynamic depending on results 
-                                        data={this.state.chartDate} //this should alawys be dynamic
-                                        options={{
-                                            maintainAspectRatio: true,
-                                            title:{ 
-                                                display:true,
-                                                text:'Task Transition Time', //this should also be dynamic
-                                                fontSize:25
-                                            },
-                                            legend:{ //this should also be dynamic
-                                                display:true,
-                                                position:'right',
-                                                labels:{
-                                                    fontColor:'#ffc600'
-                                                }
-                                            },
+        return(            
+                <div className="canvas-background">
+                    <div className="info-bar">
+                        <span className="decorative-box">i</span>
+                        <span className="info-bar-page">Project</span>
+                        <span className="info-bar-text">{this.props.infobar}</span>
+                        <span>
+                            <NavLink to={`/index/createTask/${this.props.match.params.projectId}`}><button className="info-bar-btn">Create task</button></NavLink>
+                        </span>
+                    </div>
+                    <hr className="hr" style={{margin:'0'}} />
+                    <Spring from={{opacity:0}} // you must wrap the part of the component you want animated in this spring syntax
+                            to={{opacity:1}}
+                            config={{duration:750}}
+                    >
+                        {props => (
+                            <div style={props}>
+                                <div className="grid-container">
+                                    <div className="grid-item">
+                                        <Bar //everything here can be dynamic depending on results 
+                                            data={this.state.chartDate} //this should alawys be dynamic
+                                            options={{
+                                                maintainAspectRatio: true,
+                                                title:{ 
+                                                    display:true,
+                                                    text:'Task Transition Time', //this should also be dynamic
+                                                    fontSize:25
+                                                },
+                                                legend:{ //this should also be dynamic
+                                                    display:true,
+                                                    position:'right',
+                                                    labels:{
+                                                        fontColor:'#ffc600'
+                                                    }
+                                                },
 
-                                        }}
-                                    />
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="grid-item">2</div>
+                                    <div className="grid-item">3</div>  
+                                    <div className="grid-item">4</div>
                                 </div>
-                                <div className="grid-item">2</div>
-                                <div className="grid-item">3</div>  
-                                <div className="grid-item">4</div>
                             </div>
-                        </div>
-                )}
-                </Spring>
-            </div>
+                    )}
+                    </Spring>
+                </div>
         );
     }
 }
