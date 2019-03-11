@@ -53,11 +53,11 @@ class TaskController extends Controller
         $project = $project->find($Pid);
 
         if ($project == null) {
-            return response()->json(['No project with this ID '], 404);
+            return response()->json(['No project with this ID '], 400);
         }
 //
         if ($p == null) {
-            return response()->json(['No Programmer with this ID '], 404);
+            return response()->json(['No Programmer with this ID '], 400);
         }
 
 

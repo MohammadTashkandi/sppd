@@ -21103,6 +21103,112 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/react-notifications-component/dist/theme.css":
+/*!***************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/react-notifications-component/dist/theme.css ***!
+  \***************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".notification-container-top-center{left:50%;position:fixed;top:20px;-webkit-transform:translateX(-50%);transform:translateX(-50%);z-index:8000}.notification-container-bottom-center{bottom:20px;left:50%;margin-bottom:-20px;position:fixed;-webkit-transform:translateX(-50%);transform:translateX(-50%);z-index:8000}.notification-container-top-left{left:20px;position:fixed;top:20px;z-index:8000}.notification-container-top-right{position:fixed;right:20px;top:20px;z-index:8000}.notification-container-bottom-left{bottom:20px;left:20px;margin-bottom:-20px;position:fixed;z-index:8000}.notification-container-bottom-right{bottom:20px;margin-bottom:-20px;position:fixed;right:20px;z-index:8000}.notification-container-mobile-top{left:20px;position:fixed;right:20px;top:20px;z-index:8000}.notification-container-mobile-bottom{bottom:5px;left:20px;position:fixed;right:20px;z-index:8000}.notification-default{background-color:#007bff;border-left:8px solid #0056b3}.notification-success{background-color:#28a745;border-left:8px solid #19692c}.notification-danger{background-color:#dc3545;border-left:8px solid #a71d2a}.notification-info{background-color:#17a2b8;border-left:8px solid #0f6674}.notification-warning{background-color:#eab000;border-left:8px solid #9e7600}.notification-awesome{background-color:#685dc3;border-left:8px solid #44399a}.notification-close span,.notification-message,.notification-title{color:#fff}.notification-item,.notification-item-root,.notification-message,.notification-title{font-family:Arial,Helvetica,sans-serif}.notification-close{font-size:18px;position:absolute;right:10px;top:0}.nc-center{left:50%;pointer-events:all;position:fixed;top:50%;z-index:8000}.nc-box{left:-50%;position:relative;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.notification-container-mobile-bottom .notification-item,.notification-container-mobile-bottom .notification-item-root,.notification-container-mobile-top .notification-item,.notification-container-mobile-top .notification-item-root{max-width:100%;width:100%}.notification-item{border-radius:4px;box-shadow:1px 3px 4px rgba(0,0,0,.2);cursor:pointer;display:flex;position:relative}.notification-container-bottom-right .notification-item-root,.notification-container-top-right .notification-item-root{margin-left:auto}.notification-container-bottom-left .notification-item-root,.notification-container-top-left .notification-item-root{margin-right:auto}.notification-container-mobile-bottom .notification-item-root,.notification-container-mobile-top .notification-item-root{margin-left:auto;margin-right:auto}.notification-item-root{margin-bottom:15px;width:275px}.notification-title{font-size:14px;font-weight:700;margin-bottom:5px;margin-top:5px}.notification-message{font-size:14px;line-height:150%;margin-bottom:0;margin-top:0;max-width:calc(100% - 15px);word-wrap:break-word}.notification-invisible{max-width:375px;visibility:hidden}.notification-visible{visibility:visible}.notification-content{display:inline-block;padding:8px 15px;width:100%}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/css-base.js":
+/*!*************************************************!*\
+  !*** ./node_modules/css-loader/lib/css-base.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/history/es/DOMUtils.js":
 /*!*********************************************!*\
   !*** ./node_modules/history/es/DOMUtils.js ***!
@@ -96961,6 +97067,48 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/react-notifications-component/dist/react-notifications-component.js":
+/*!******************************************************************************************!*\
+  !*** ./node_modules/react-notifications-component/dist/react-notifications-component.js ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports=function(i){var e={};function o(t){if(e[t])return e[t].exports;var n=e[t]={i:t,l:!1,exports:{}};return i[t].call(n.exports,n,n.exports,o),n.l=!0,n.exports}return o.m=i,o.c=e,o.d=function(t,n,i){o.o(t,n)||Object.defineProperty(t,n,{enumerable:!0,get:i})},o.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},o.t=function(n,t){if(1&t&&(n=o(n)),8&t)return n;if(4&t&&"object"==typeof n&&n&&n.__esModule)return n;var i=Object.create(null);if(o.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:n}),2&t&&"string"!=typeof n)for(var e in n)o.d(i,e,function(t){return n[t]}.bind(null,e));return i},o.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return o.d(n,"a",n),n},o.o=function(t,n){return Object.prototype.hasOwnProperty.call(t,n)},o.p="",o(o.s=6)}([function(t,n){t.exports=__webpack_require__(/*! react */ "./node_modules/react/index.js")},function(t,n,i){t.exports=i(2)()},function(t,n,i){"use strict";var c=i(3);function e(){}t.exports=function(){function t(t,n,i,e,o,r){if(r!==c){var a=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types");throw a.name="Invariant Violation",a}}function n(){return t}var i={array:t.isRequired=t,bool:t,func:t,number:t,object:t,string:t,symbol:t,any:t,arrayOf:n,element:t,instanceOf:n,node:t,objectOf:n,oneOf:n,oneOfType:n,shape:n,exact:n};return i.checkPropTypes=e,i.PropTypes=i}},function(t,n,i){"use strict";t.exports="SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED"},function(t,n,i){},,function(t,n,i){"use strict";i.r(n);var e=i(0),N=i.n(e),o="notification-item",g={BOTTOM_LEFT:"bottom-left",BOTTOM_RIGHT:"bottom-right",BOTTOM_CENTER:"bottom-center",TOP_LEFT:"top-left",TOP_RIGHT:"top-right",TOP_CENTER:"top-center"},a={TOP:"top",BOTTOM:"bottom"},E={SUCCESS:"success",DANGER:"danger",INFO:"info",DEFAULT:"default",WARNING:"warning"},S="SLIDING_ANIMATION_EXIT",T="TOUCH_SLIDING_ANIMATION_EXIT",h="REMOVAL",r={TIMEOUT:1,CLICK:2,TOUCH:3,MANUAL:4},y={DISMISS_ICON_CLASS:"className property of dismissIcon option is required",DISMISS_ICON_CONTENT:"content property of dismissIcon option is required",DISMISS_ICON_STRING:"className property of dismissIcon option must be a String",DISMISS_ICON_INVALID:"content property of dismissIcon option must be a valid React element",ANIMATION_IN:"animationIn option must be an array",ANIMATION_OUT:"animationOut option must be an array",DISMISS_REQUIRED:"duration property of dismiss option is required",DISMISS_NUMBER:"duration property of dismiss option must be a Number",DISMISS_POSITIVE:"duration property of dismiss option must be a positive Number",TITLE_STRING:"title option must be a String.",MESSAGE_REQUIRED:"message option is required",MESSAGE_STRING:"message option must be a String",TYPE_REQUIRED:"type option is required",TYPE_STRING:"type option must be a String",TYPE_NOT_EXISTENT:"type option not found",CONTAINER_REQUIRED:"container option is required",CONTAINER_STRING:"container option must be a String",DISMISSABLE_CLICK_BOOL:"click property of dismissable option must be a Boolean",DISMISSABLE_TOUCH_BOOL:"touch property of dismissable option must be a Boolean",WIDTH_NUMBER:"width option must be a Number",INSERT_STRING:"insert option must be a String",TRANSITION_DURATION_NUMBER:"duration property of transition option must be a Number",TRANSITION_CUBICBEZIER_NUMBER:"cubicBezier property of transition option must be a String",TRANSITION_DELAY_NUMBER:"delay property of transition option must be a Number",TYPE_NOT_FOUND:"custom type not found"};function I(t){return t?"".concat(t,"px"):void 0}function b(t){return null==t}function v(t){return"string"==typeof t}function O(t){return"number"==typeof t}function _(t){return"boolean"==typeof t}function R(t){return!b(t)&&t.constructor===Array}function w(t,n){var i=n.duration,e=n.cubicBezier,o=n.delay,r=t||{};if(b(r.duration)&&(r.duration=i),b(r.cubicBezier)&&(r.cubicBezier=e),b(r.delay)&&(r.delay=o),!O(r.duration))throw new Error(y.TRANSITION_DURATION_NUMBER);if(!v(r.cubicBezier))throw new Error(y.TRANSITION_CUBICBEZIER_NUMBER);if(!O(r.delay))throw new Error(y.TRANSITION_DELAY_NUMBER);return r}function C(t){return t===g.BOTTOM_LEFT||t===g.BOTTOM_RIGHT||t===g.BOTTOM_CENTER}function M(t){return t===g.TOP_LEFT||t===g.TOP_RIGHT||t===g.TOP_CENTER}function A(t){var n=t.type,i=t.userDefinedTypes;if(t.content)return[o];if(!i)return function(t){switch(t.toLowerCase()){case E.DEFAULT:return[o,"notification-default"];case E.SUCCESS:return[o,"notification-success"];case E.DANGER:return[o,"notification-danger"];case E.WARNING:return[o,"notification-warning"];case E.INFO:return[o,"notification-info"];default:return[o]}}(n);var e=i.find(function(t){return t.name===n});if(!e)throw new Error(y.TYPE_NOT_FOUND);return[o].concat(e.htmlClasses)}function s(){var t=0<arguments.length&&void 0!==arguments[0]?arguments[0]:500,n=1<arguments.length&&void 0!==arguments[1]?arguments[1]:"linear",i=2<arguments.length&&void 0!==arguments[2]?arguments[2]:0,e=3<arguments.length&&void 0!==arguments[3]?arguments[3]:"height";return"".concat(t,"ms ").concat(e," ").concat(n," ").concat(i,"ms")}function D(t){return s(t.slidingExit.duration,t.slidingExit.cubicBezier,t.slidingExit.delay,"all")}function c(t){var n,i=t.notification,e=t.isFirstNotification,o=((n=i).insert===a.TOP&&M(n.container)||n.insert===a.BOTTOM&&C(n.container))&&!e,r={};return r.animatedElementClasses=A(i),r.rootElementStyle={height:"0",marginBottom:0,overflow:"hidden",width:I(i.width)},o?r.animatedElementClasses.push("notification-invisible"):i.animationIn&&0<i.animationIn.length&&i.animationIn.forEach(function(t){return r.animatedElementClasses.push(t)}),r.hasSliding=o,r}function B(t,n,i){var e,o,r=2*window.innerWidth,a=s((e=t.touchSlidingExit.swipe).duration,e.cubicBezier,e.delay,"left"),c=s((o=t.touchSlidingExit.fade).duration,o.cubicBezier,o.delay,"opacity");return{opacity:0,position:"relative",transition:"".concat(a,", ").concat(c),left:"".concat(0<=i-n?r:-r,"px")}}function p(t,n){var i,e,o,r,a,c,s,u,l,f=T,d=S,m=n.animatedElementClasses,h=n.rootElementStyle,p=n.currentX,E=n.startX;return t.stage===f?(r=p,a=E,c=A(o=t),{childElementStyle:B(o,a,r),animatedElementClasses:c,rootElementStyle:{height:0,marginBottom:0,transition:D(o),width:I(o.width)}}):t.stage===d?(u=(s=t).animationOut,l=A(s),u&&u.forEach(function(t){return l.push(t)}),{rootElementStyle:{height:0,marginBottom:0,transition:D(s),width:I(s.width)},animatedElementClasses:l}):(i=t.resized?(e=h,A(t)):(e=h,m),{rootElementStyle:e,animatedElementClasses:i})}function k(t,n){return{height:"".concat(n,"px"),width:I(t.width),transition:s(t.slidingExit.duration,t.slidingExit.cubicBezier,t.slidingExit.delay)}}function u(t,n){var i=t,e=i.insert,o=i.container,r=i.dismissIcon,a=i.animationIn,c=i.animationOut,s=i.slidingEnter,u=i.slidingExit,l=i.touchSlidingBack,f=i.touchSlidingExit,d=i.dismissable,m=i.dismiss,h=i.width,p=i.id;i.id=p||Math.random().toString(36).substr(2,9),function(t){var n=t.content,i=t.title;if(!n&&!b(i)&&!v(i))throw new Error(y.TITLE_STRING)}(i),function(t){var n=t.content,i=t.message;if(!n){if(!i)throw new Error(y.MESSAGE_REQUIRED);if(!v(i))throw new Error(y.MESSAGE_STRING)}}(i),i.type=function(t,n){var i=t.content,e=t.type;if(!i){if(!e)throw new Error(y.TYPE_REQUIRED);if(!v(e))throw new Error(y.TYPE_STRING);if(!n&&e!==E.SUCCESS&&e!==E.DANGER&&e!==E.INFO&&e!==E.DEFAULT&&e!==E.WARNING)throw new Error(y.TYPE_NOT_EXISTENT);return e.toLowerCase()}}(i,n),n&&!i.content&&(i.userDefinedTypes=function(t,n){var i=t.type;if(!t.content&&i!==E.SUCCESS&&i!==E.DANGER&&i!==E.INFO&&i!==E.DEFAULT&&i!==E.WARNING&&n){if(!n.find(function(t){return t.name===i}))throw new Error(y.TYPE_NOT_FOUND);return n}}(i,n)),i.container=function(t){if(!t)throw new Error(y.CONTAINER_REQUIRED);if(!v(t))throw new Error(y.CONTAINER_STRING);return t.toLowerCase()}(o),i.insert=function(t){if(!t)return"top";if(!v(t))throw new Error(y.INSERT_STRING);return t.toLowerCase()}(e),i.dismissable=function(t){var n=t;if(!n)return{click:!0,touch:!0};if(b(n.click)&&(n.click=!0),b(n.touch)&&(n.touch=!0),!_(n.click))throw new Error(y.DISMISSABLE_CLICK_BOOL);if(!_(n.touch))throw new Error(y.DISMISSABLE_TOUCH_BOOL);return n}(d),function(t){if(!b(t)){var n=t.className,i=t.content;if(!n)throw new Error(y.DISMISS_ICON_CLASS);if(!v(n))throw new Error(y.DISMISS_ICON_STRING);if(!i)throw new Error(y.DISMISS_ICON_CONTENT);if(!N.a.isValidElement(i))throw new Error(y.DISMISS_ICON_INVALID)}}(r),i.animationIn=function(t){if(b(t))return[];if(!R(t))throw new Error(y.ANIMATION_IN);return t}(a),i.animationOut=function(t){if(b(t))return[];if(!R(t))throw new Error(y.ANIMATION_OUT);return t}(c),b(h)||(i.width=function(t){if(b(t))return 0;if(!O(t))throw new Error(y.WIDTH_NUMBER);return t}(h));return i.slidingEnter=w(s,{duration:600,cubicBezier:"linear",delay:0}),i.slidingExit=w(u,{duration:600,cubicBezier:"linear",delay:0}),i.touchSlidingBack=w(l,{duration:600,cubicBezier:"ease-in",delay:0}),i.touchSlidingExit=f||{},i.touchSlidingExit.swipe=w(i.touchSlidingExit.swipe||{},{duration:600,cubicBezier:"ease-in",delay:0}),i.touchSlidingExit.fade=w(i.touchSlidingExit.fade||{},{duration:300,cubicBezier:"ease-in",delay:0}),function(t){if(t){if(b(t.duration))throw new Error(y.DISMISS_REQUIRED);if(!O(t.duration))throw new Error(y.DISMISS_NUMBER);if(t.duration<0)throw new Error(y.DISMISS_POSITIVE)}}(m),i}function l(t){return(l="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function f(t,n){for(var i=0;i<n.length;i++){var e=n[i];e.enumerable=e.enumerable||!1,e.configurable=!0,"value"in e&&(e.writable=!0),Object.defineProperty(t,e.key,e)}}function d(t){return(d=Object.setPrototypeOf?Object.getPrototypeOf:function(t){return t.__proto__||Object.getPrototypeOf(t)})(t)}function m(t,n){return(m=Object.setPrototypeOf||function(t,n){return t.__proto__=n,t})(t,n)}function P(t){if(void 0===t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return t}var L=function(t){function o(t){var n,i,e;return function(t,n){if(!(t instanceof n))throw new TypeError("Cannot call a class as a function")}(this,o),i=this,(n=!(e=d(o).call(this,t))||"object"!==l(e)&&"function"!=typeof e?P(i):e).endOfSmartSliding=!1,n.onTransitionEnd=n.onTransitionEnd.bind(P(P(n))),n.onNotificationClick=n.onNotificationClick.bind(P(P(n))),n.setDismissTimeout=n.setDismissTimeout.bind(P(P(n))),n.onSmartSlidingEnd=n.onSmartSlidingEnd.bind(P(P(n))),n.onTouchSmartSlidingEnd=n.onTouchSmartSlidingEnd.bind(P(P(n))),n.onTouchStart=n.onTouchStart.bind(P(P(n))),n.onTouchMove=n.onTouchMove.bind(P(P(n))),n.onTouchEnd=n.onTouchEnd.bind(P(P(n))),n.rootDOM=N.a.createRef(),n.state=c(t),n}var n,i,e;return function(t,n){if("function"!=typeof n&&null!==n)throw new TypeError("Super expression must either be null or a function");t.prototype=Object.create(n&&n.prototype,{constructor:{value:t,writable:!0,configurable:!0}}),n&&m(t,n)}(o,N.a.Component),n=o,(i=[{key:"componentDidMount",value:function(){this.smartSliding(),this.setRemovalTimeout(this.props.notification.dismiss)}},{key:"componentWillUnmount",value:function(){this.timeoutId&&(this.timeoutId=clearTimeout(this.timeoutId))}},{key:"setDismissTimeout",value:function(t){var e=this;this.timeoutId=setTimeout(function(){var t=e.props,n=t.notification,i=t.toggleTimeoutRemoval;n.stage!==h&&n.stage!==T&&e.setState({rootElementStyle:k(n,e.rootDOM.current.scrollHeight)},function(){return requestAnimationFrame(function(){return i(n)})})},t)}},{key:"setRemovalTimeout",value:function(t){t&&0<t.duration&&this.setDismissTimeout(t.duration)}},{key:"onTransitionEnd",value:function(){var t=this.props.notification,n=t.animationIn,i=A(t);i.push("notification-visible"),i=i.concat(n||[]),this.setState({animatedElementClasses:i,rootElementStyle:{height:"auto",width:I(t.width)}})}},{key:"onTouchSmartSlidingEnd",value:function(t){t.stopPropagation(),t.target.isSameNode(this.rootDOM.current)&&(this.endOfSmartSliding&&this.props.toggleRemoval(this.props.notification),this.endOfSmartSliding=!0)}},{key:"onSmartSlidingEnd",value:function(){var t=this.props.notification;t.animationOut&&t.animationOut.length&&!this.endOfSmartSliding||this.props.toggleRemoval(t),this.endOfSmartSliding=!0}},{key:"smartSliding",value:function(){var t=this.props.notification,n=t.slidingEnter,i=A(t),e={transition:t.resized?void 0:s(n.duration,n.cubicBezier,n.delay),width:I(t.width),height:"".concat(this.rootDOM.current.scrollHeight,"px")};!t.resized&&t.animationIn&&0<t.animationIn.length&&t.animationIn.forEach(function(t){return i.push(t)}),this.setState({rootElementStyle:e,animatedElementClasses:i})}},{key:"onNotificationClick",value:function(){var t=this,n=this.props.notification,i=k(n,this.rootDOM.current.scrollHeight);this.setState({rootElementStyle:i},function(){return requestAnimationFrame(function(){t.props.onClickHandler(n)})})}},{key:"onTouchStart",value:function(t){this.setState({startX:t.touches[0].pageX,currentX:t.touches[0].pageX})}},{key:"onTouchMove",value:function(t){var n,i,e=this.props,o=e.notification,r=e.toggleTouchEnd,a=t.touches[0].pageX-this.state.startX;(n=a,i=Math.abs(n),.4*window.innerWidth<=i)?this.setState({animatedElementClasses:A(o),rootElementStyle:k(o,this.rootDOM.current.scrollHeight)},function(){requestAnimationFrame(function(){return r(o)})}):this.setState({currentX:t.touches[0].pageX,childElementStyle:{position:"relative",left:"".concat(0+a,"px")}})}},{key:"onTouchEnd",value:function(){var t=this.props.notification.touchSlidingBack;this.setState({childElementStyle:{left:"0",position:"relative",transition:s(t.duration,t.cubicBezier,t.delay,"left")}})}},{key:"render",value:function(){var t=this.props.notification,n=this.state.childElementStyle,i=this.onAnimationEnd,e=null,o=!1,r=this.state.hasSliding?this.onTransitionEnd:null,a=p(t,this.state),c=(a.animatedElementClasses||[]).join(" "),s=a.rootElementStyle;if(t.dismissable.click&&(e=this.onNotificationClick),t.stage===h?(i=null,s=k(t,this.rootDOM.current.scrollHeight)):t.stage===S?(i=this.onSmartSlidingEnd,r=this.onSmartSlidingEnd):t.stage===T&&(i=this.onTouchSmartSlidingEnd,r=this.onTouchSmartSlidingEnd,e=null,n=a.childElementStyle,o=!0),t.content)return N.a.createElement("div",{onTouchStart:o?null:this.onTouchStart,onTouchMove:o?null:this.onTouchMove,onTouchEnd:o?null:this.onTouchEnd,onTouchCancel:o?null:this.onTouchEnd,onClick:e,className:"notification-item-root",onAnimationEnd:i,onTransitionEnd:r,ref:this.rootDOM,style:s},N.a.createElement("div",{className:"".concat(c," notification-item-child"),style:n},t.content));var u,l,f,d=N.a.createElement("div",{className:"notification-close",onClick:this.onNotificationClick},N.a.createElement("span",null,"×")),m=t.dismissIcon?(u=t,l=this.onNotificationClick,u.dismissIcon?N.a.createElement("div",{className:u.dismissIcon.className,onClick:l},u.dismissIcon.content):N.a.createElement("div",{className:"notification-close",onClick:l},N.a.createElement("span",null,"×"))):d;return t.title&&(f=N.a.createElement("h4",{className:"notification-title"},t.title)),N.a.createElement("div",{onTouchStart:o?null:this.onTouchStart,onTouchMove:o?null:this.onTouchMove,onTouchEnd:o?null:this.onTouchEnd,onTouchCancel:o?null:this.onTouchEnd,onClick:e,className:"notification-item-root",onAnimationEnd:i,onTransitionEnd:r,ref:this.rootDOM,style:s},N.a.createElement("div",{className:"".concat(c," notification-item-child"),style:n},N.a.createElement("div",{className:"notification-content"},m,f,N.a.createElement("p",{className:"notification-message"},this.props.notification.message))))}}])&&f(n.prototype,i),e&&f(n,e),o}(),U=i(1),x=i.n(U);i(4);function G(t){return(G="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function j(t){return function(t){if(Array.isArray(t)){for(var n=0,i=new Array(t.length);n<t.length;n++)i[n]=t[n];return i}}(t)||function(t){if(Symbol.iterator in Object(t)||"[object Arguments]"===Object.prototype.toString.call(t))return Array.from(t)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}()}function z(t,n){for(var i=0;i<n.length;i++){var e=n[i];e.enumerable=e.enumerable||!1,e.configurable=!0,"value"in e&&(e.writable=!0),Object.defineProperty(t,e.key,e)}}function F(t){return(F=Object.setPrototypeOf?Object.getPrototypeOf:function(t){return t.__proto__||Object.getPrototypeOf(t)})(t)}function H(t,n){return(H=Object.setPrototypeOf||function(t,n){return t.__proto__=n,t})(t,n)}function X(t){if(void 0===t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return t}var q=function(t){function o(t){var n,i,e;return function(t,n){if(!(t instanceof n))throw new TypeError("Cannot call a class as a function")}(this,o),i=this,(n=!(e=F(o).call(this,t))||"object"!==G(e)&&"function"!=typeof e?X(i):e).state={isMobile:t.isMobile,breakpoint:t.breakpoint,notifications:[]},R(t.types)&&(n.state.userDefinedTypes=t.types),n.addNotification=n.addNotification.bind(X(X(n))),n.onNotificationClick=n.onNotificationClick.bind(X(X(n))),n.toggleRemoval=n.toggleRemoval.bind(X(X(n))),n.toggleTimeoutRemoval=n.toggleTimeoutRemoval.bind(X(X(n))),n.handleResize=n.handleResize.bind(X(X(n))),n.renderReactNotifications=n.renderReactNotifications.bind(X(X(n))),n.toggleTouchEnd=n.toggleTouchEnd.bind(X(X(n))),n}var n,i,e;return function(t,n){if("function"!=typeof n&&null!==n)throw new TypeError("Super expression must either be null or a function");t.prototype=Object.create(n&&n.prototype,{constructor:{value:t,writable:!0,configurable:!0}}),n&&H(t,n)}(o,N.a.Component),n=o,(i=[{key:"componentDidMount",value:function(){var t=this;this.setState({width:window.innerWidth},function(){window.addEventListener("resize",t.handleResize)})}},{key:"componentWillUnmount",value:function(){this.mounted=!1}},{key:"handleResize",value:function(){this.setState({width:window.innerWidth,notifications:this.state.notifications.map(function(t){return t.resized=!0,t})})}},{key:"toggleTimeoutRemoval",value:function(n){var i=S,e=r.TIMEOUT;this.setState({notifications:this.state.notifications.map(function(t){return t.id===n.id&&(t.stage=i,t.removedBy=e),t})})}},{key:"addNotification",value:function(t){var n=this.state.notifications,i=u(t,this.state.userDefinedTypes);return this.setState({notifications:i.insert===a.TOP?[i].concat(j(n)):j(n).concat([i])}),i.id}},{key:"removeNotification",value:function(n){var t=this;this.setState({notifications:this.state.notifications.map(function(t){return t.id===n&&(t.stage=h,t.removedBy=r.API),t})},function(){requestAnimationFrame(function(){t.setState({notifications:t.state.notifications.map(function(t){return t.id===n&&(t.stage=S,t.removedBy=r.API),t})})})})}},{key:"onNotificationClick",value:function(n){var t=this,i=n.dismissable,e=n.dismissIcon;(i&&i.click||e)&&requestAnimationFrame(function(){t.setState({notifications:t.state.notifications.map(function(t){return t.id===n.id&&(t.stage=S,t.removedBy=r.CLICK),t})})})}},{key:"toggleTouchEnd",value:function(n){var i=T;this.setState({notifications:this.state.notifications.map(function(t){return t.id===n.id&&(t.stage=i,t.removedBy=r.TOUCH),t})})}},{key:"toggleRemoval",value:function(n){var t=this;this.setState({notifications:this.state.notifications.filter(function(t){return t.id!==n.id})},function(){t.props.onNotificationRemoval&&t.props.onNotificationRemoval(n.id,n.removedBy)})}},{key:"renderReactNotifications",value:function(n){var i=this;return n.map(function(t){return N.a.createElement(L,{key:t.id,notification:t,isFirstNotification:1===n.length,onClickHandler:i.onNotificationClick,toggleRemoval:i.toggleRemoval,toggleTimeoutRemoval:i.toggleTimeoutRemoval,toggleTouchEnd:i.toggleTouchEnd})})}},{key:"render",value:function(){var t,i,e,n=this.state;if(this.props.isMobile&&n.width<=n.breakpoint){var o=(t=n.notifications,i=[],e=[],t.forEach(function(t){var n=t.container.toLowerCase();if(M(n))e.push(t);else{if(!C(n))throw new Error("Container ".concat(t.container," is not valid"));i.push(t)}}),{top:e,bottom:i}),r=this.renderReactNotifications(o.top),a=this.renderReactNotifications(o.bottom);return N.a.createElement("div",{className:"react-notification-root"},N.a.createElement("div",{className:"notification-container-mobile-top"},r),N.a.createElement("div",{className:"notification-container-mobile-bottom"},a))}var c,s,u,l,f,d,m,h=(c=n.notifications,s=[],u=[],l=[],f=[],d=[],m=[],c.forEach(function(t){var n=t.container.toLowerCase();if(n===g.TOP_LEFT)s.push(t);else if(n===g.TOP_RIGHT)u.push(t);else if(n===g.TOP_CENTER)l.push(t);else if(n===g.BOTTOM_LEFT)f.push(t);else if(n===g.BOTTOM_RIGHT)d.push(t);else{if(n!==g.BOTTOM_CENTER)throw new Error("Container ".concat(t.container," is not valid"));m.push(t)}}),{topLeft:s,topRight:u,topCenter:l,bottomLeft:f,bottomRight:d,bottomCenter:m}),p=this.renderReactNotifications(h.topLeft),E=this.renderReactNotifications(h.topRight),S=this.renderReactNotifications(h.topCenter),T=this.renderReactNotifications(h.bottomLeft),y=this.renderReactNotifications(h.bottomRight),I=this.renderReactNotifications(h.bottomCenter);return N.a.createElement("div",{className:"react-notification-root"},N.a.createElement("div",{className:"notification-container-top-left"},p),N.a.createElement("div",{className:"notification-container-top-right"},E),N.a.createElement("div",{className:"notification-container-bottom-left"},T),N.a.createElement("div",{className:"notification-container-bottom-right"},y),N.a.createElement("div",{className:"notification-container-top-center"},S),N.a.createElement("div",{className:"notification-container-bottom-center"},I))}}])&&z(n.prototype,i),e&&z(n,e),o}();q.propTypes={isMobile:x.a.bool,breakpoint:x.a.number,types:x.a.array,onNotificationRemoval:x.a.func},q.defaultProps={isMobile:!0,breakpoint:768};n.default=q}]);
+//# sourceMappingURL=react-notifications-component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-notifications-component/dist/theme.css":
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-notifications-component/dist/theme.css ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./theme.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/react-notifications-component/dist/theme.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/react-router-dom/es/BrowserRouter.js":
 /*!***********************************************************!*\
   !*** ./node_modules/react-router-dom/es/BrowserRouter.js ***!
@@ -104342,6 +104490,515 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/value-equal/index.js":
 /*!*******************************************!*\
   !*** ./node_modules/value-equal/index.js ***!
@@ -105488,10 +106145,12 @@ function (_React$Component) {
         console.log(res);
 
         if (res.status == 200) {
+          _this.props.addNotification('Success', res.data[0], 'success');
+
           _this.props.history.push("/index/Task/".concat(res.data[1]));
         }
       }).catch(function (err) {
-        console.log(err);
+        _this.props.addNotification('Error', err.response.data[0], 'danger');
       });
     });
 
@@ -106088,6 +106747,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CreateTask__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CreateTask */ "./resources/js/components/CreateTask.js");
 /* harmony import */ var _AddProgrammer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./AddProgrammer */ "./resources/js/components/AddProgrammer.js");
 /* harmony import */ var _TaskPage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./TaskPage */ "./resources/js/components/TaskPage.js");
+/* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-notifications-component */ "./node_modules/react-notifications-component/dist/react-notifications-component.js");
+/* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-notifications-component/dist/theme.css */ "./node_modules/react-notifications-component/dist/theme.css");
+/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_16__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -106129,6 +106792,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
 var Index =
 /*#__PURE__*/
 function (_React$Component) {
@@ -106153,6 +106818,26 @@ function (_React$Component) {
       loggedIn: localStorage.getItem('usertoken') != null,
       projects: {},
       tasks: {}
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "notificationRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "addNotification", function (title, message, type) {
+      _this.notificationRef.current.addNotification({
+        title: title,
+        message: message,
+        type: type,
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 1500
+        },
+        dismissable: {
+          click: true
+        }
+      });
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "editLoggedIn", function (loggedIn) {
@@ -106230,11 +106915,12 @@ function (_React$Component) {
       var _this2 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        history: this.props.history,
         style: {
           maxHeight: '100vh'
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_notifications_component__WEBPACK_IMPORTED_MODULE_15___default.a, {
+        ref: this.notificationRef
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {
         loggedIn: this.state.loggedIn,
         editLoggedIn: this.editLoggedIn,
         isSearchFull: this.isSearchFull,
@@ -106262,7 +106948,8 @@ function (_React$Component) {
         path: "/index",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Home__WEBPACK_IMPORTED_MODULE_7__["default"], _extends({}, props, {
-            infobar: _this2.state.infobar
+            infobar: _this2.state.infobar,
+            addNotification: _this2.addNotification
           }));
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
@@ -106270,7 +106957,8 @@ function (_React$Component) {
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CreateProject__WEBPACK_IMPORTED_MODULE_11__["default"], _extends({}, props, {
             getProjects: _this2.getProjects,
-            infobar: _this2.state.infobar
+            infobar: _this2.state.infobar,
+            addNotification: _this2.addNotification
           }));
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
@@ -106278,35 +106966,40 @@ function (_React$Component) {
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_8__["default"], _extends({}, props, {
             isSearchFull: _this2.isSearchFull,
-            infobar: _this2.state.infobar
+            infobar: _this2.state.infobar,
+            addNotification: _this2.addNotification
           }));
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/project/:projectId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Canvas__WEBPACK_IMPORTED_MODULE_6__["default"], _extends({}, props, {
-            infobar: _this2.state.infobar
+            infobar: _this2.state.infobar,
+            addNotification: _this2.addNotification
           }));
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/createTask/:projectId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CreateTask__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({}, props, {
-            infobar: _this2.state.infobar
+            infobar: _this2.state.infobar,
+            addNotification: _this2.addNotification
           }));
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/addProgrammer",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddProgrammer__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({}, props, {
-            infobar: _this2.state.infobar
+            infobar: _this2.state.infobar,
+            addNotification: _this2.addNotification
           }));
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/Task/:taskId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TaskPage__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({}, props, {
-            infobar: _this2.state.infobar
+            infobar: _this2.state.infobar,
+            addNotification: _this2.addNotification
           }));
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {

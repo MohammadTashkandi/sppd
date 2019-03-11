@@ -35,6 +35,7 @@
         "@babel/polyfill": "^7.2.5",
         "chart.js": "^2.7.3",
         "react-chartjs-2": "^2.7.4",
+        "react-notifications-component": "^1.0.1",
         "react-router-dom": "^4.3.1",
         "react-spring": "^8.0.14",
         "react-web-tabs": "^1.0.1"

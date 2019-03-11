@@ -36,18 +36,18 @@ export default class CreateTask extends React.Component {
         .then((res) => {
             console.log(res);
             if(res.status==200) {
+                this.props.addNotification('Success', res.data[0], 'success');
                 this.props.history.push(`/index/Task/${res.data[1]}`);
             }
         })
         .catch((err) => {
-            console.log(err);
+            this.props.addNotification('Error', err.response.data[0], 'danger');
         })
     }
 
     render() {
         return(
             <React.Fragment>
-
             <div className="info-bar">
                 <span className="decorative-box">i</span>
                 <span className="info-bar-page">Create Task</span>
