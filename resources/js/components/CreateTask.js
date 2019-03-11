@@ -36,7 +36,7 @@ export default class CreateTask extends React.Component {
         .then((res) => {
             console.log(res);
             if(res.status==200) {
-                this.props.history.push(`/index`);
+                this.props.history.push(`/index/Task/${res.data[1]}`);
             }
         })
         .catch((err) => {

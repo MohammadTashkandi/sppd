@@ -74,8 +74,9 @@ class TaskController extends Controller
         ]);
 
         $task->save();
+        $id = $task['id'];
 
-        return response()->json(['Task Added Successfully '], 200);
+        return response()->json(['Task Added Successfully', $id], 200);
 
     }
 

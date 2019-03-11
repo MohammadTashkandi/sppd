@@ -67,7 +67,9 @@ class ProjectController extends Controller
         $pro->Start_Date = $current;
         $pro->save();
 
-        return response()->json(201);
+        $id = $pro['id'];
+
+        return response()->json(['Project created successfully!', $id]);
     }
 
     /**

@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-import "react-web-tabs/dist/react-web-tabs.css";
+import {NavLink} from "react-router-dom";
 /* import PropTypes from 'prop-types';*/
 
 class SideBar extends React.Component {
@@ -43,7 +43,7 @@ class SideBar extends React.Component {
                     const task = this.props.tasks[id];
                     if(task.Pid == this.state.currentlyUpdating) {
                         return (
-                            <a>{task.title}</a>
+                            <NavLink key={id} className="sidebar-task" to={`/index/Task/${task.id}`} onClick={() => this.props.setInfobar(event.target.innerText)}>{task.title}</NavLink>
                             );
                         }
                 })}

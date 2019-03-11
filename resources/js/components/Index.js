@@ -15,6 +15,7 @@ import Register from './Register';
 import CreateProject from './CreateProject';
 import CreateTask from './CreateTask';
 import AddProgrammer from './AddProgrammer';
+import TaskPage from './TaskPage';
 
 
 
@@ -96,6 +97,7 @@ export default class Index extends React.Component {
                         <Route path="/index/project/:projectId" render={(props)=> <Canvas {...props} infobar={this.state.infobar} />} />
                         <Route path="/index/createTask/:projectId" render={(props)=> <CreateTask {...props} infobar={this.state.infobar} />} />
                         <Route path="/index/addProgrammer" render={(props)=> <AddProgrammer {...props} infobar={this.state.infobar} />} />
+                        <Route path="/index/Task/:taskId" render={(props)=> <TaskPage {...props} infobar={this.state.infobar} />} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

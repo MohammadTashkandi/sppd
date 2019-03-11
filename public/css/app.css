@@ -11031,3 +11031,23 @@ a#visit-page:hover {
   padding: 0.5rem;
 }
 
+.sidebar-task {
+  font-size: 2rem;
+  display: block;
+  color: #ffc600;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+
+.sidebar-task:hover {
+  color: black;
+  background-color: #ffc600;
+  transition: 0.4s;
+  text-decoration: none;
+}
+
+.sidebar-task:active {
+  color: #a38000;
+  text-decoration: none;
+}
+
