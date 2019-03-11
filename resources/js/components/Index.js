@@ -7,7 +7,6 @@ import NotFound from './NotFound';
 import Header from './Header';
 import SideBar from './SideBar';
 import Canvas from './Canvas';
-import InfoBar from './InfoBar';
 import Home from './Home';
 import Search from './Search';
 import Login from './Login';
