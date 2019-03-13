@@ -74,8 +74,9 @@ class TaskController extends Controller
         ]);
 
         $task->save();
+        $id = $task['id'];
 
-        return response()->json(['Task Added Successfully '], 200);
+        return response()->json(['Task Added Successfully', $id], 200);
 
     }
 
@@ -136,7 +137,7 @@ class TaskController extends Controller
         if (count($tasks) > 0) {
             return response()->json($tasks, 200);
         } else {
-            return response()->json(['There is No Task  '], 404);
+            return response()->json('There is No Task', 404);
         }
     }
 

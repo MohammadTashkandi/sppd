@@ -16,20 +16,21 @@ import CreateProject from './CreateProject';
 import CreateTask from './CreateTask';
 import AddProgrammer from './AddProgrammer';
 import AssignEmployee from './AssignEmployee';
+import TaskPage from './TaskPage';
 
 
 
 export default class Index extends React.Component {
     state = {
         infobar: "",
-                loggedIn: localStorage.getItem('usertoken') != null,
+        loggedIn: localStorage.getItem('usertoken') != null,
         projects: {},
-
+        tasks: {},
     }
 
     editLoggedIn = (loggedIn) => {
         this.setState({loggedIn: loggedIn});
-        //this.getProjects(); /* I dont think this is best practice, maybe we should use a lifecycle method */
+        this.getProjects(); /* I dont think this is best practice, maybe we should use a lifecycle method */
         console.log('editloggedin '+ this.state.loggedIn);
     }
 
@@ -50,6 +51,26 @@ export default class Index extends React.Component {
         }
     }
 
+    getTasks = (Pid) => {
+        if(this.state.loggedIn){
+            axios.get('api/getTasks', {
+                params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+                    Pid: Pid,
+                }
+            })
+            .then((res) => {
+                if(res.status == 200) {
+                    this.setState({tasks: res.data})
+                    console.log(this.state.tasks);
+                }else if(res.status == 404){
+                    console.log(res.data);
+                }
+            })
+        }else{
+            console.log('not logged in yet');
+        }
+    }
+
     setInfobar = (text) => {
         this.setState({infobar: text});
     }
@@ -60,7 +81,7 @@ export default class Index extends React.Component {
             <HashRouter>
                 <div history={this.props.history} style={{maxHeight:'100vh'}}> 
                     <Header loggedIn={this.state.loggedIn} editLoggedIn={this.editLoggedIn}/>
-                    <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects} getProjects={this.getProjects} setInfobar={this.setInfobar} />
+                    <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects} tasks={this.state.tasks} getProjects={this.getProjects} getTasks={this.getTasks} setInfobar={this.setInfobar} />
                     {/* <InfoBar loggedIn={this.state.loggedIn} infobar={this.state.infobar} />   */}                                                         
                     <Switch>
                         <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn}/>} /> {/* we use render instead of component so we can add props */}
@@ -72,6 +93,7 @@ export default class Index extends React.Component {
                         <Route path="/index/assignEmployee/:projectId" render={(props)=> <AssignEmployee {...props} infobar={this.state.infobar} />} />
                         <Route path="/index/createTask/:projectId" render={(props)=> <CreateTask {...props} infobar={this.state.infobar} />} />
                         <Route path="/index/addProgrammer" render={(props)=> <AddProgrammer {...props} infobar={this.state.infobar} />} />
+                        <Route path="/index/Task/:taskId" render={(props)=> <TaskPage {...props} infobar={this.state.infobar} />} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

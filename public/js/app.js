@@ -76322,7 +76322,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -105541,7 +105541,7 @@ function (_React$Component) {
         if (res.status == 200) {
           _this.props.getProjects();
 
-          _this.props.history.push("/index/project/".concat(_this.state.title));
+          _this.props.history.push("/index/project/".concat(res.data[1]));
         }
       });
     });
@@ -105702,7 +105702,7 @@ function (_React$Component) {
         console.log(res);
 
         if (res.status == 200) {
-          _this.props.history.push("/index");
+          _this.props.history.push("/index/Task/".concat(res.data[1]));
         }
       }).catch(function (err) {
         console.log(err);
@@ -106302,7 +106302,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CreateProject__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./CreateProject */ "./resources/js/components/CreateProject.js");
 /* harmony import */ var _CreateTask__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CreateTask */ "./resources/js/components/CreateTask.js");
 /* harmony import */ var _AddProgrammer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./AddProgrammer */ "./resources/js/components/AddProgrammer.js");
+<<<<<<< HEAD
 /* harmony import */ var _AssignEmployee__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./AssignEmployee */ "./resources/js/components/AssignEmployee.js");
+=======
+/* harmony import */ var _TaskPage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./TaskPage */ "./resources/js/components/TaskPage.js");
+>>>>>>> 555327ddc443f21fb3c0f0a898004a3de2e3ff82
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -106368,13 +106372,17 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       infobar: "",
       loggedIn: localStorage.getItem('usertoken') != null,
-      projects: {}
+      projects: {},
+      tasks: {}
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "editLoggedIn", function (loggedIn) {
       _this.setState({
         loggedIn: loggedIn
-      }); //this.getProjects(); /* I dont think this is best practice, maybe we should use a lifecycle method */
+      });
+
+      _this.getProjects();
+      /* I dont think this is best practice, maybe we should use a lifecycle method */
 
 
       console.log('editloggedin ' + _this.state.loggedIn);
@@ -106399,6 +106407,38 @@ function (_React$Component) {
       }
     });
 
+<<<<<<< HEAD
+=======
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getTasks", function (Pid) {
+      if (_this.state.loggedIn) {
+        axios.get('api/getTasks', {
+          params: {
+            /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+            Pid: Pid
+          }
+        }).then(function (res) {
+          if (res.status == 200) {
+            _this.setState({
+              tasks: res.data
+            });
+
+            console.log(_this.state.tasks);
+          } else if (res.status == 404) {
+            console.log(res.data);
+          }
+        });
+      } else {
+        console.log('not logged in yet');
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "isSearchFull", function (bool) {
+      /* console.log(bool) //here it says true
+      this.setState({searchFull: bool}); //i set it to state
+      console.log(this.state.searchFull); //state still stays false???? */
+    });
+
+>>>>>>> 555327ddc443f21fb3c0f0a898004a3de2e3ff82
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "setInfobar", function (text) {
       _this.setState({
         infobar: text
@@ -106425,7 +106465,9 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SideBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
         loggedIn: this.state.loggedIn,
         projects: this.state.projects,
+        tasks: this.state.tasks,
         getProjects: this.getProjects,
+        getTasks: this.getTasks,
         setInfobar: this.setInfobar
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
@@ -106486,6 +106528,13 @@ function (_React$Component) {
         path: "/index/addProgrammer",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddProgrammer__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({}, props, {
+            infobar: _this2.state.infobar
+          }));
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/index/Task/:taskId",
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TaskPage__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({}, props, {
             infobar: _this2.state.infobar
           }));
         }
@@ -107101,6 +107150,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -107120,6 +107170,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -107143,6 +107194,10 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(SideBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      currentlyUpdating: ""
+    });
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "projectPillsRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "taskPillsRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
@@ -107153,9 +107208,10 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "vPillsTabContent", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "taskRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProject", function (key) {
       var project = _this.props.projects[key];
-      console.log(project);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         key: key,
         onClick: function onClick() {
@@ -107172,22 +107228,42 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderTask", function (key) {
-      var project = _this.props.projects[key];
+      var taskIds = Object.keys(_this.props.tasks);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: key,
+        ref: _this.taskRef,
         className: "tab-pane fade",
         id: "v-pills-" + key,
         role: "tabpanel",
         "aria-labelledby": "v-pills-" + key + "-tab"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, project.task1), " ");
+      }, taskIds.map(function (id) {
+        var task = _this.props.tasks[id];
+
+        if (task.Pid == _this.state.currentlyUpdating) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["NavLink"], {
+            key: id,
+            className: "sidebar-task",
+            to: "/index/Task/".concat(task.id),
+            onClick: function onClick() {
+              return _this.props.setInfobar(event.target.innerText);
+            }
+          }, task.title);
+        }
+      }));
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function (key, pName) {
-      _this.animateSideBar();
+      _this.props.getTasks(key);
+
+      _this.setState({
+        currentlyUpdating: key
+      });
 
       _this.changePath(key);
 
       _this.props.setInfobar(pName);
+
+      _this.animateSideBar();
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "animateSideBar", function () {
@@ -107222,8 +107298,11 @@ function (_React$Component) {
     value: function componentDidMount() {
       this.props.getProjects();
     }
-    /* componentDidUpdate() {
-        this.props.getProjects();
+    /* componentDidUpdate(prevProps) {
+      if(this.props.projects[0] !== prevProps.projects[0]) {
+            console.log('didUpdate in');
+            this.props.getProjects();
+        }
     } */
 
   }, {
@@ -107281,6 +107360,76 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/TaskPage.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/TaskPage.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TaskPage; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var TaskPage =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(TaskPage, _React$Component);
+
+  function TaskPage() {
+    _classCallCheck(this, TaskPage);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(TaskPage).apply(this, arguments));
+  }
+
+  _createClass(TaskPage, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "info-bar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "decorative-box"
+      }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-page"
+      }, "Task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-text"
+      }, this.props.infobar), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "hr",
+        style: {
+          margin: '0'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Task Page"));
+    }
+  }]);
+
+  return TaskPage;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -107299,8 +107448,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

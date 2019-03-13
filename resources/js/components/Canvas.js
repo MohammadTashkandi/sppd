@@ -116,9 +116,14 @@ export default class Canvas extends React.Component {
                                             }
                                             
 
-                                        }}
-                                    />
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="grid-item">2</div>
+                                    <div className="grid-item">3</div>  
+                                    <div className="grid-item">4</div>
                                 </div>
+<<<<<<< HEAD
                                 <div className="grid-item">
                                     <Pie height='140' width='330'//everything here can be dynamic depending on results 
                                         data={this.state.pieData} //this should alawys be dynamic
@@ -174,11 +179,12 @@ export default class Canvas extends React.Component {
                                         }}
                                     />
                                 </div>  
+=======
+>>>>>>> 555327ddc443f21fb3c0f0a898004a3de2e3ff82
                             </div>
-                        </div>
-                )}
-                </Spring>
-            </div>
+                    )}
+                    </Spring>
+                </div>
         );
     }
 }
