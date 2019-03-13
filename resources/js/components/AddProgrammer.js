@@ -11,7 +11,6 @@ export default class AddProgrammer extends React.Component {
         phonenumber: "",
         age: "",
         nationality: "",
-        Pid: "",
         pStr: "",
         pJud: "",
         pCu: "",
@@ -35,8 +34,6 @@ export default class AddProgrammer extends React.Component {
             phonenumber: this.state.phonenumber,
             age: this.state.age,
             nationality: this.state.nationality,
-            Pid: this.state.Pid,
-            Pid: this.state.Pid,
             pStr: this.state.pStr,
             pJud: this.state.pJud,
             pCu: this.state.pCu,
@@ -75,7 +72,7 @@ export default class AddProgrammer extends React.Component {
                 {props => (
                     <div style={props}>
                         <div className="form-add-prog">
-                <h3 style={{color:'#ffc600', fontFamily:'"Poppins", sans-serif', paddingTop:"1rem"}}>Create Accounts for your Programmers!</h3>
+                <h3 style={{color:'#ffc600', fontFamily:'"Poppins", sans-serif', paddingTop:"1rem"}}>Create Accounts for your Employees!</h3>
                     <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                             <label className="reg-form-label">First Name *
@@ -112,10 +109,6 @@ export default class AddProgrammer extends React.Component {
                             <label className="reg-form-label">Nationality
                                 <div className="reg-form-div"></div> {/* just to move stuff apart */}
                                 <input className="form-control" id="form-control" type="text" name="nationality" placeholder="Enter nationality" onChange={this.onChange} />
-                            </label>
-                            <label className="reg-form-label">Project ID
-                                <div className="reg-form-div"></div> {/* just to move stuff apart */}
-                                <input className="form-control" id="form-control" type="text" name="Pid" placeholder="Enter project ID this program will be assigned to" onChange={this.onChange} />
                             </label>
                         </div>
                         <div className="form-group-add-prog">    

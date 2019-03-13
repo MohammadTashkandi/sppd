@@ -7,6 +7,7 @@ export default class Register extends React.Component {
         name: "",
         email: "",
         password: "",
+        password2: "",
         phonenumber: "",
         nationality: "",
         age: "",
@@ -18,26 +19,29 @@ export default class Register extends React.Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-
-        const newUser = {
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password
+        if(this.state.password != this.state.password2){
+            alert('Your Passwords Do Not Match!')
+        }else{
+                const newUser = {
+                    name: this.state.name,
+                    email: this.state.email,
+                    password: this.state.password
+                }
+                
+                axios.post('api/register', newUser,{
+                    headers: {'Content-Type': 'application/json'}
+            })
+            .then((res) => {
+                console.log(res);
+                if(res.status==201){
+                    this.props.history.push(`/`);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            })
         }
         
-        axios.post('api/register', newUser,{
-            headers: {'Content-Type': 'application/json'}
-        })
-        .then((res) => {
-            console.log(res);
-            if(res.status==201){
-                this.props.history.push(`/`);
-            }
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-
     }
     render() {
         return(
@@ -61,18 +65,24 @@ export default class Register extends React.Component {
                             <div className="reg-form-div"></div> {/* just to move stuff apart */}
                             <input className="form-control" id="form-control" type="password" name="password" placeholder="Enter password" onChange={this.onChange} required />
                         </label>
-                                           
+
+                        <label className="reg-form-label">Confirm Password *
+                            <div className="reg-form-div"></div> {/* just to move stuff apart */}
+                            <input className="form-control" id="form-control" type="password" name="password2" placeholder="Confirm Password" onChange={this.onChange} required />
+                        </label>
+                    </div>
+                    <div className="form-group">            
                         <label className="reg-form-label">Phone number
                         <div className="reg-form-div"></div> {/* just to move stuff apart */}
                             <input className="form-control" id="form-control" type="text" name="phonenumber" placeholder="Enter Phone number" onChange={this.onChange} />
-                        </label>
-                    </div>
-                    <div className="form-group">    
+                        </label>  
+
                         <label className="reg-form-label">Age
                             <div className="reg-form-div"></div> {/* just to move stuff apart */}
                             <input className="form-control" id="form-control" type="text" name="age" placeholder="Enter age" onChange={this.onChange} />
                         </label>
-                        
+                    </div>
+                    <div className="form-group">            
                         <label className="reg-form-label">Nationality
                             <div className="reg-form-div"></div> {/* just to move stuff apart */}
                             <input className="form-control" id="form-control" type="text" name="nationality" placeholder="Enter nationality" onChange={this.onChange} />

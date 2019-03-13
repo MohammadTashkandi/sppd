@@ -104689,7 +104689,6 @@ function (_React$Component) {
       phonenumber: "",
       age: "",
       nationality: "",
-      Pid: "",
       pStr: "",
       pJud: "",
       pCu: "",
@@ -104703,10 +104702,8 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSubmit", function (event) {
-      var _newProgrammer;
-
       event.preventDefault();
-      var newProgrammer = (_newProgrammer = {
+      var newProgrammer = {
         firstName: _this.state.firstName,
         lastName: _this.state.lastName,
         email: _this.state.email,
@@ -104715,8 +104712,11 @@ function (_React$Component) {
         phonenumber: _this.state.phonenumber,
         age: _this.state.age,
         nationality: _this.state.nationality,
-        Pid: _this.state.Pid
-      }, _defineProperty(_newProgrammer, "Pid", _this.state.Pid), _defineProperty(_newProgrammer, "pStr", _this.state.pStr), _defineProperty(_newProgrammer, "pJud", _this.state.pJud), _defineProperty(_newProgrammer, "pCu", _this.state.pCu), _defineProperty(_newProgrammer, "pTech", _this.state.pTech), _newProgrammer);
+        pStr: _this.state.pStr,
+        pJud: _this.state.pJud,
+        pCu: _this.state.pCu,
+        pTech: _this.state.pTech
+      };
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/addProgrammer', newProgrammer).then(function (res) {
         if (res.status == 201) {
           _this.props.history.push("/index");
@@ -104774,7 +104774,7 @@ function (_React$Component) {
             fontFamily: '"Poppins", sans-serif',
             paddingTop: "1rem"
           }
-        }, "Create Accounts for your Programmers!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        }, "Create Accounts for your Employees!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           onSubmit: _this2.onSubmit
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group"
@@ -104864,17 +104864,6 @@ function (_React$Component) {
           type: "text",
           name: "nationality",
           placeholder: "Enter nationality",
-          onChange: _this2.onChange
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          className: "reg-form-label"
-        }, "Project ID", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "reg-form-div"
-        }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "form-control",
-          id: "form-control",
-          type: "text",
-          name: "Pid",
-          placeholder: "Enter project ID this program will be assigned to",
           onChange: _this2.onChange
         }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group-add-prog"
@@ -105077,6 +105066,122 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/AssignEmployee.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/AssignEmployee.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AssignEmployee; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var AssignEmployee =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(AssignEmployee, _React$Component);
+
+  function AssignEmployee() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, AssignEmployee);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AssignEmployee)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "gridRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      programmers: {}
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "assignEmp", function () {
+      //this is not best practice to remove element, but did not know how to do it using refs
+      document.getElementById("grid").parentElement.removeChild(document.getElementById("grid"));
+    });
+
+    return _this;
+  }
+
+  _createClass(AssignEmployee, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "canvas-background"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "info-bar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "decorative-box"
+      }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-page"
+      }, "Assign Employee"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-text"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "hr",
+        style: {
+          margin: '0'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pad-top"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "grid-search-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "grid-assign-item",
+        id: "grid",
+        ref: this.gridRef
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "assign-tag"
+      }, "M T"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "assign-name"
+      }, "Mohammad Tashkandi"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "assign-id"
+      }, "435160085"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "assign-button"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        onClick: this.assignEmp,
+        className: "btn btn-default btn-sm",
+        id: "assign-emp"
+      }, "+")))));
+    }
+  }]);
+
+  return AssignEmployee;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Canvas.js":
 /*!*******************************************!*\
   !*** ./resources/js/components/Canvas.js ***!
@@ -105137,7 +105242,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Canvas)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      chartDate: {
+      barData: {
         //the data here should also be dynamic depending on what the PM wants to see
         labels: ['Unassigned->Assigned', 'Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed'],
         //Bar names
@@ -105164,6 +105269,34 @@ function (_React$Component) {
           hoverBorderWidth: 2,
           hoverBorderColor: '#122738'
         }]
+      },
+      lineData: {
+        //the data here should also be dynamic depending on what the PM wants to see
+        labels: ['Major', 'Minor', 'Tweak', 'Crash'],
+        //Bar names
+        datasets: [//here you mostly fill the data of the grap
+        {
+          // this is an object that you fill in each point in the graph
+          label: 'Number of Tasks',
+          data: [3, 12, 6, 1],
+          backgroundColor: 'purple',
+          hoverBorderWidth: 2,
+          hoverBorderColor: '#122738'
+        }]
+      },
+      pieData: {
+        //the data here should also be dynamic depending on what the PM wants to see
+        labels: ['Major', 'Minor', 'Tweak', 'Crash'],
+        //Bar names
+        datasets: [//here you mostly fill the data of the grap
+        {
+          // this is an object that you fill in each point in the graph
+          label: 'Number of Tasks',
+          data: [3, 12, 6, 1],
+          backgroundColor: ['blue', 'red', 'green', 'pink'],
+          hoverBorderWidth: 2,
+          hoverBorderColor: '#122738'
+        }]
       }
     });
 
@@ -105186,6 +105319,13 @@ function (_React$Component) {
       }, "Project"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-bar-text"
       }, this.props.infobar), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        to: "/index/assignEmployee/".concat(this.props.match.params.projectId)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        style: {
+          marginRight: '1rem'
+        },
+        className: "info-bar-btn"
+      }, "Assign Employee")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         to: "/index/createTask/".concat(this.props.match.params.projectId)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "info-bar-btn"
@@ -105212,15 +105352,17 @@ function (_React$Component) {
           className: "grid-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Bar"] //everything here can be dynamic depending on results 
-        , {
-          data: _this2.state.chartDate //this should alawys be dynamic
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Bar"], {
+          height: "270",
+          width: "665" //everything here can be dynamic depending on results 
+          ,
+          data: _this2.state.barData //this should alawys be dynamic
           ,
           options: {
-            maintainAspectRatio: true,
+            maintainAspectRatio: false,
             title: {
               display: true,
-              text: 'Status Duration',
+              text: 'Task Transition Time',
               //this should also be dynamic
               fontSize: 25
             },
@@ -105229,17 +105371,89 @@ function (_React$Component) {
               display: true,
               position: 'right',
               labels: {
-                fontColor: '#ffc600'
+                fontColor: '#333'
+              }
+            },
+            scales: {
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Time in Days'
+                }
+              }],
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Transition Time'
+                }
+              }]
+            }
+          }
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Pie"], {
+          height: "140",
+          width: "330" //everything here can be dynamic depending on results 
+          ,
+          data: _this2.state.pieData //this should alawys be dynamic
+          ,
+          options: {
+            maintainAspectRatio: false,
+            title: {
+              display: true,
+              text: 'Task Severity',
+              //this should also be dynamic
+              fontSize: 25
+            },
+            legend: {
+              //this should also be dynamic
+              display: true,
+              position: 'right',
+              labels: {
+                fontColor: '#333'
               }
             }
           }
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item"
-        }, "2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-item"
-        }, "3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-item"
-        }, "4")));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Line"], {
+          height: "270",
+          width: "665" //everything here can be dynamic depending on results 
+          ,
+          data: _this2.state.lineData //this should alawys be dynamic
+          ,
+          options: {
+            maintainAspectRatio: false,
+            title: {
+              display: true,
+              text: 'Task Severity',
+              //this should also be dynamic
+              fontSize: 25
+            },
+            legend: {
+              //this should also be dynamic
+              display: true,
+              position: 'right',
+              labels: {
+                fontColor: '#333'
+              }
+            },
+            scales: {
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Percentage %'
+                }
+              }],
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Task Severity'
+                }
+              }]
+            }
+          }
+        }))));
       }));
     }
   }]);
@@ -105850,8 +106064,17 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "search", function (event) {
       event.preventDefault();
+      /* const searched = this.searchRef.current.value;
+      const currentURL = this.props.history.location.pathname;
+      const nextURL = event.currentTarget.name + '' + searched;
+      if(nextURL != currentURL){
+          window.location.reload();
+      } */
 
-      _this.props.history.push("/index/search/".concat(_this.searchRef.current.value));
+      var searched = _this.searchRef.current.value;
+      _this.searchRef.current.value = '';
+
+      _this.props.history.push("/index/search/".concat(searched));
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "logout", function () {
@@ -105878,14 +106101,6 @@ function (_React$Component) {
 
   _createClass(Header, [{
     key: "render",
-    //remind me to explain this to you
-
-    /* componentDidUpdate(){
-        if(this.props.searchFull == true){
-            this.searchRef.current.value = "";
-            this.props.isSearchFull(false);
-        }
-    } */
     value: function render() {
       var loggedIn = this.props.loggedIn;
 
@@ -105943,7 +106158,7 @@ function (_React$Component) {
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "material-icons"
-        }, "person_add"), " Add Programmer")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "person_add"), " Register Employee")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "navbar-form navbar-left",
           action: "/action_page.php"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -106087,6 +106302,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CreateProject__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./CreateProject */ "./resources/js/components/CreateProject.js");
 /* harmony import */ var _CreateTask__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CreateTask */ "./resources/js/components/CreateTask.js");
 /* harmony import */ var _AddProgrammer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./AddProgrammer */ "./resources/js/components/AddProgrammer.js");
+/* harmony import */ var _AssignEmployee__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./AssignEmployee */ "./resources/js/components/AssignEmployee.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -106110,8 +106326,12 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 {
-  /* /Applications/Development/projects/laravelProjects/sppd/sppd (sppd directory) beta malk d5l */
+  /* /Applications/`Development/projects/laravelProjects/sppd/sppd (sppd directory) beta malk d5l */
 }
+{
+  /*dmrtk zeta */
+}
+
 
 
 
@@ -106147,7 +106367,6 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       infobar: "",
-      searchFull: false,
       loggedIn: localStorage.getItem('usertoken') != null,
       projects: {}
     });
@@ -106180,12 +106399,6 @@ function (_React$Component) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "isSearchFull", function (bool) {
-      /* console.log(bool) //here it says true
-      this.setState({searchFull: bool}); //i set it to state
-      console.log(this.state.searchFull); //state still stays false???? */
-    });
-
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "setInfobar", function (text) {
       _this.setState({
         infobar: text
@@ -106200,6 +106413,7 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      var key = Math.random() * 1000;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         history: this.props.history,
         style: {
@@ -106207,9 +106421,7 @@ function (_React$Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {
         loggedIn: this.state.loggedIn,
-        editLoggedIn: this.editLoggedIn,
-        isSearchFull: this.isSearchFull,
-        searchFull: this.state.searchFull
+        editLoggedIn: this.editLoggedIn
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SideBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
         loggedIn: this.state.loggedIn,
         projects: this.state.projects,
@@ -106246,7 +106458,6 @@ function (_React$Component) {
         path: "/index/search/:userId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_8__["default"], _extends({}, props, {
-            isSearchFull: _this2.isSearchFull,
             infobar: _this2.state.infobar
           }));
         }
@@ -106254,6 +106465,13 @@ function (_React$Component) {
         path: "/index/project/:projectId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Canvas__WEBPACK_IMPORTED_MODULE_6__["default"], _extends({}, props, {
+            infobar: _this2.state.infobar
+          }));
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/index/assignEmployee/:projectId",
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AssignEmployee__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({}, props, {
             infobar: _this2.state.infobar
           }));
         }
@@ -106401,10 +106619,11 @@ function (_React$Component) {
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         style: {
-          color: '#ffc600',
-          fontFamily: '"Poppins", sans-serif'
+          color: '#2c87c4',
+          fontFamily: '"Poppins", sans-serif',
+          fontStyle: 'italic'
         }
-      }, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, "Software Project Performance Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.onSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
@@ -106547,6 +106766,7 @@ function (_React$Component) {
       name: "",
       email: "",
       password: "",
+      password2: "",
       phonenumber: "",
       nationality: "",
       age: ""
@@ -106558,24 +106778,29 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSubmit", function (event) {
       event.preventDefault();
-      var newUser = {
-        name: _this.state.name,
-        email: _this.state.email,
-        password: _this.state.password
-      };
-      axios.post('api/register', newUser, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then(function (res) {
-        console.log(res);
 
-        if (res.status == 201) {
-          _this.props.history.push("/");
-        }
-      }).catch(function (err) {
-        console.log(err);
-      });
+      if (_this.state.password != _this.state.password2) {
+        alert('Your Passwords Do Not Match!');
+      } else {
+        var newUser = {
+          name: _this.state.name,
+          email: _this.state.email,
+          password: _this.state.password
+        };
+        axios.post('api/register', newUser, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(function (res) {
+          console.log(res);
+
+          if (res.status == 201) {
+            _this.props.history.push("/");
+          }
+        }).catch(function (err) {
+          console.log(err);
+        });
+      }
     });
 
     return _this;
@@ -106642,6 +106867,20 @@ function (_React$Component) {
         required: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "reg-form-label"
+      }, "Confirm Password *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reg-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-control",
+        id: "form-control",
+        type: "password",
+        name: "password2",
+        placeholder: "Confirm Password",
+        onChange: this.onChange,
+        required: true
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "reg-form-label"
       }, "Phone number", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "reg-form-div"
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106651,9 +106890,7 @@ function (_React$Component) {
         name: "phonenumber",
         placeholder: "Enter Phone number",
         onChange: this.onChange
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "reg-form-label"
       }, "Age", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "reg-form-div"
@@ -106664,7 +106901,9 @@ function (_React$Component) {
         name: "age",
         placeholder: "Enter age",
         onChange: this.onChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "reg-form-label"
       }, "Nationality", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "reg-form-div"
@@ -106756,7 +106995,6 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidMount", function () {
-      console.log(_this.props.match.params.userId);
       axios.get('api/findProgrammer', {
         params: {
           /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
@@ -106765,8 +107003,6 @@ function (_React$Component) {
         }
       }).then(function (res) {
         if (res.status == 200) {
-          console.log(res.data);
-
           _this.setState({
             programmers: res.data
           });

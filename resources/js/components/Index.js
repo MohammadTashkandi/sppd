@@ -1,4 +1,5 @@
-{/* /Applications/Development/projects/laravelProjects/sppd/sppd (sppd directory) beta malk d5l */}
+{/* /Applications/`Development/projects/laravelProjects/sppd/sppd (sppd directory) beta malk d5l */}
+{/*dmrtk zeta */}
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Switch, Route, HashRouter } from 'react-router-dom';
@@ -14,14 +15,14 @@ import Register from './Register';
 import CreateProject from './CreateProject';
 import CreateTask from './CreateTask';
 import AddProgrammer from './AddProgrammer';
+import AssignEmployee from './AssignEmployee';
 
 
 
 export default class Index extends React.Component {
     state = {
         infobar: "",
-        searchFull: false,
-        loggedIn: localStorage.getItem('usertoken') != null,
+                loggedIn: localStorage.getItem('usertoken') != null,
         projects: {},
 
     }
@@ -48,21 +49,17 @@ export default class Index extends React.Component {
             console.log('not logged in yet');
         }
     }
-    isSearchFull = (bool) =>{
-        /* console.log(bool) //here it says true
-        this.setState({searchFull: bool}); //i set it to state
-        console.log(this.state.searchFull); //state still stays false???? */
-    }
 
     setInfobar = (text) => {
         this.setState({infobar: text});
     }
     
     render() {
+        const key = Math.random() * 1000;
         return (
             <HashRouter>
                 <div history={this.props.history} style={{maxHeight:'100vh'}}> 
-                    <Header loggedIn={this.state.loggedIn} editLoggedIn={this.editLoggedIn} isSearchFull={this.isSearchFull} searchFull={this.state.searchFull}/>
+                    <Header loggedIn={this.state.loggedIn} editLoggedIn={this.editLoggedIn}/>
                     <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects} getProjects={this.getProjects} setInfobar={this.setInfobar} />
                     {/* <InfoBar loggedIn={this.state.loggedIn} infobar={this.state.infobar} />   */}                                                         
                     <Switch>
@@ -70,8 +67,9 @@ export default class Index extends React.Component {
                         <Route path="/register" component={Register} />
                         <Route exact path="/index" render={(props)=> <Home {...props} infobar={this.state.infobar} />} />
                         <Route path="/index/createProject" render={(props)=> <CreateProject {...props} getProjects={this.getProjects} infobar={this.state.infobar} />} />
-                        <Route path="/index/search/:userId" render={(props)=> <Search {...props} isSearchFull={this.isSearchFull} infobar={this.state.infobar} />} />
+                        <Route path="/index/search/:userId" render={(props)=> <Search {...props} infobar={this.state.infobar} />} />
                         <Route path="/index/project/:projectId" render={(props)=> <Canvas {...props} infobar={this.state.infobar} />} />
+                        <Route path="/index/assignEmployee/:projectId" render={(props)=> <AssignEmployee {...props} infobar={this.state.infobar} />} />
                         <Route path="/index/createTask/:projectId" render={(props)=> <CreateTask {...props} infobar={this.state.infobar} />} />
                         <Route path="/index/addProgrammer" render={(props)=> <AddProgrammer {...props} infobar={this.state.infobar} />} />
                         <Route component={NotFound} />
