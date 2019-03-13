@@ -22,6 +22,7 @@ export default class CreateProject extends React.Component {
             console.log(res);
             if(res.status==200){
                 this.props.getProjects();
+                this.props.addNotification('Project added', 'Check the sidebar', 'success');
                 this.props.history.push(`/index/project/${res.data[1]}`);
             }
         })

@@ -46,12 +46,13 @@ export default class AddProgrammer extends React.Component {
         Axios.post('api/addProgrammer', newProgrammer)
         .then((res)=> {
             if(res.status==201) {
+                this.props.addNotification('Success', 'Employee registered successfully!', 'success');
                 this.props.history.push(`/index`);
-                console.log('Programmer added successfully');
             }
         })
         .catch((err) => { //General error: 1364 Field 'PMid' doesn't have a default value. Go to programmer.php add PMid in fillable
-            console.log(err);
+            console.log(err.response);
+            this.props.addNotification();
         })
     }
     
@@ -120,38 +121,38 @@ export default class AddProgrammer extends React.Component {
                         </div>
                         <div className="form-group-add-prog">    
                                 <div className="task-form-div-add-prog"> <span className="task-span">Stress level *</span>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pStr" value="1" /> 1</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pStr" value="2" /> 2</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pStr" value="3" /> 3</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pStr" value="4" /> 4</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pStr" value="5" /> 5</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pStr" value="1" required /> 1</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pStr" value="2" required /> 2</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pStr" value="3" required /> 3</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pStr" value="4" required /> 4</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pStr" value="5" required /> 5</div>
                                 </div> {/* just to move stuff apart */}
                         </div>
                         <div className="form-group-add-prog">    
                                 <div className="task-form-div-add-prog"> <span className="task-span">Judgement level *</span>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pJud" value="1" /> 1</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pJud" value="2" /> 2</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pJud" value="3" /> 3</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pJud" value="4" /> 4</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pJud" value="5" /> 5</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pJud" value="1" required /> 1</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pJud" value="2" required /> 2</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pJud" value="3" required /> 3</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pJud" value="4" required /> 4</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pJud" value="5" required /> 5</div>
                                 </div> {/* just to move stuff apart */}
                         </div>
                         <div className="form-group-add-prog">    
                                 <div className="task-form-div-add-prog"> <span className="task-span">Communication level *</span>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pCu" value="1" /> 1</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pCu" value="2" /> 2</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pCu" value="3" /> 3</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pCu" value="4" /> 4</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pCu" value="5" /> 5</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pCu" value="1" required /> 1</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pCu" value="2" required /> 2</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pCu" value="3" required /> 3</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pCu" value="4" required /> 4</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pCu" value="5" required /> 5</div>
                                 </div> {/* just to move stuff apart */}
                         </div>
                         <div className="form-group-add-prog">    
                                 <div className="task-form-div-add-prog"> <span className="task-span">Technical level *</span>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pTech" value="1" /> 1</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pTech" value="2" /> 2</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pTech" value="3" /> 3</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pTech" value="4" /> 4</div>
-                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pTech" value="5" /> 5</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pTech" value="1" required /> 1</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pTech" value="2" required /> 2</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pTech" value="3" required /> 3</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pTech" value="4" required /> 4</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="pTech" value="5" required /> 5</div>
                                 </div> {/* just to move stuff apart */}
                         </div>
                         <button className="login-btn-add-prog" type="submit"><i className="material-icons">person_add</i></button>                    </form>

@@ -92,38 +92,38 @@ export default class CreateTask extends React.Component {
                     <h3 className="create-task-header">Performance requirements</h3>
                     <div className="form-group">    
                             <div className="task-form-div"> <span className="task-span">Stress level *</span>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="1" /> 1</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="2" /> 2</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="3" /> 3</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="4" /> 4</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="5" /> 5</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="1" required /> 1</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="2" required /> 2</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="3" required /> 3</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="4" required /> 4</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="5" required /> 5</div>
                             </div> {/* just to move stuff apart */}
                     </div>
                     <div className="form-group">    
                             <div className="task-form-div"> <span className="task-span">Judgement level *</span>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="1" /> 1</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="2" /> 2</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="3" /> 3</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="4" /> 4</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="5" /> 5</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="1" required /> 1</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="2" required /> 2</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="3" required /> 3</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="4" required /> 4</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="5" required /> 5</div>
                             </div> {/* just to move stuff apart */}
                     </div>
                     <div className="form-group">    
                             <div className="task-form-div"> <span className="task-span">Communication level *</span>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="1" /> 1</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="2" /> 2</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="3" /> 3</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="4" /> 4</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="5" /> 5</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="1" required /> 1</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="2" required /> 2</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="3" required /> 3</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="4" required /> 4</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="5" required /> 5</div>
                             </div> {/* just to move stuff apart */}
                     </div>
                     <div className="form-group">    
                             <div className="task-form-div"> <span className="task-span">Technical level *</span>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="1" /> 1</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="2" /> 2</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="3" /> 3</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="4" /> 4</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="5" /> 5</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="1" required /> 1</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="2" required /> 2</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="3" required /> 3</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="4" required /> 4</div>
+                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="5" required /> 5</div>
                             </div> {/* just to move stuff apart */}
                     </div>
                         <button className="login-btn" type="submit" style={{marginLeft:'42rem'}}>Add task</button>

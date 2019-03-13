@@ -36,8 +36,8 @@ export default class Login extends React.Component {
             headers: {'Content-Type': 'application/json'}
         })
         .catch((err) => {
-            alert(err);
-            console.log(err.status);
+            console.log(err.response);
+            this.props.addNotification('Error', err.response.data.error, 'danger');
         })
 
     }

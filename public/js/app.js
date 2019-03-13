@@ -105376,13 +105376,15 @@ function (_React$Component) {
       }, _defineProperty(_newProgrammer, "Pid", _this.state.Pid), _defineProperty(_newProgrammer, "pStr", _this.state.pStr), _defineProperty(_newProgrammer, "pJud", _this.state.pJud), _defineProperty(_newProgrammer, "pCu", _this.state.pCu), _defineProperty(_newProgrammer, "pTech", _this.state.pTech), _newProgrammer);
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/addProgrammer', newProgrammer).then(function (res) {
         if (res.status == 201) {
-          _this.props.history.push("/index");
+          _this.props.addNotification('Success', 'Employee registered successfully!', 'success');
 
-          console.log('Programmer added successfully');
+          _this.props.history.push("/index");
         }
       }).catch(function (err) {
         //General error: 1364 Field 'PMid' doesn't have a default value. Go to programmer.php add PMid in fillable
-        console.log(err);
+        console.log(err.response);
+
+        _this.props.addNotification();
       });
     });
 
@@ -105546,7 +105548,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pStr",
-          value: "1"
+          value: "1",
+          required: true
         }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105554,7 +105557,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pStr",
-          value: "2"
+          value: "2",
+          required: true
         }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105562,7 +105566,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pStr",
-          value: "3"
+          value: "3",
+          required: true
         }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105570,7 +105575,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pStr",
-          value: "4"
+          value: "4",
+          required: true
         }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105578,7 +105584,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pStr",
-          value: "5"
+          value: "5",
+          required: true
         }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group-add-prog"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -105592,7 +105599,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pJud",
-          value: "1"
+          value: "1",
+          required: true
         }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105600,7 +105608,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pJud",
-          value: "2"
+          value: "2",
+          required: true
         }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105608,7 +105617,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pJud",
-          value: "3"
+          value: "3",
+          required: true
         }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105616,7 +105626,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pJud",
-          value: "4"
+          value: "4",
+          required: true
         }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105624,7 +105635,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pJud",
-          value: "5"
+          value: "5",
+          required: true
         }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group-add-prog"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -105638,7 +105650,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pCu",
-          value: "1"
+          value: "1",
+          required: true
         }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105646,7 +105659,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pCu",
-          value: "2"
+          value: "2",
+          required: true
         }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105654,7 +105668,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pCu",
-          value: "3"
+          value: "3",
+          required: true
         }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105662,7 +105677,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pCu",
-          value: "4"
+          value: "4",
+          required: true
         }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105670,7 +105686,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pCu",
-          value: "5"
+          value: "5",
+          required: true
         }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group-add-prog"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -105684,7 +105701,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pTech",
-          value: "1"
+          value: "1",
+          required: true
         }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105692,7 +105710,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pTech",
-          value: "2"
+          value: "2",
+          required: true
         }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105700,7 +105719,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pTech",
-          value: "3"
+          value: "3",
+          required: true
         }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105708,7 +105728,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pTech",
-          value: "4"
+          value: "4",
+          required: true
         }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -105716,7 +105737,8 @@ function (_React$Component) {
           className: "radio-inline",
           type: "radio",
           name: "pTech",
-          value: "5"
+          value: "5",
+          required: true
         }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "login-btn-add-prog",
           type: "submit"
@@ -105983,6 +106005,8 @@ function (_React$Component) {
 
         if (res.status == 200) {
           _this.props.getProjects();
+
+          _this.props.addNotification('Project added', 'Check the sidebar', 'success');
 
           _this.props.history.push("/index/project/".concat(res.data[1]));
         }
@@ -106259,7 +106283,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tStr",
-        value: "1"
+        value: "1",
+        required: true
       }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106267,7 +106292,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tStr",
-        value: "2"
+        value: "2",
+        required: true
       }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106275,7 +106301,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tStr",
-        value: "3"
+        value: "3",
+        required: true
       }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106283,7 +106310,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tStr",
-        value: "4"
+        value: "4",
+        required: true
       }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106291,7 +106319,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tStr",
-        value: "5"
+        value: "5",
+        required: true
       }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -106305,7 +106334,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tJud",
-        value: "1"
+        value: "1",
+        required: true
       }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106313,7 +106343,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tJud",
-        value: "2"
+        value: "2",
+        required: true
       }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106321,7 +106352,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tJud",
-        value: "3"
+        value: "3",
+        required: true
       }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106329,7 +106361,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tJud",
-        value: "4"
+        value: "4",
+        required: true
       }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106337,7 +106370,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tJud",
-        value: "5"
+        value: "5",
+        required: true
       }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -106351,7 +106385,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tCu",
-        value: "1"
+        value: "1",
+        required: true
       }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106359,7 +106394,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tCu",
-        value: "2"
+        value: "2",
+        required: true
       }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106367,7 +106403,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tCu",
-        value: "3"
+        value: "3",
+        required: true
       }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106375,7 +106412,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tCu",
-        value: "4"
+        value: "4",
+        required: true
       }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106383,7 +106421,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tCu",
-        value: "5"
+        value: "5",
+        required: true
       }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -106397,7 +106436,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tTech",
-        value: "1"
+        value: "1",
+        required: true
       }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106405,7 +106445,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tTech",
-        value: "2"
+        value: "2",
+        required: true
       }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106413,7 +106454,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tTech",
-        value: "3"
+        value: "3",
+        required: true
       }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106421,7 +106463,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tTech",
-        value: "4"
+        value: "4",
+        required: true
       }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-radio"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -106429,7 +106472,8 @@ function (_React$Component) {
         className: "radio-inline",
         type: "radio",
         name: "tTech",
-        value: "5"
+        value: "5",
+        required: true
       }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "login-btn",
         type: "submit",
@@ -106937,12 +106981,17 @@ function (_React$Component) {
         path: "/",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Login__WEBPACK_IMPORTED_MODULE_9__["default"], _extends({}, props, {
-            editLoggedIn: _this2.editLoggedIn
+            editLoggedIn: _this2.editLoggedIn,
+            addNotification: _this2.addNotification
           }));
         }
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/register",
-        component: _Register__WEBPACK_IMPORTED_MODULE_10__["default"]
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Register__WEBPACK_IMPORTED_MODULE_10__["default"], _extends({}, props, {
+            addNotification: _this2.addNotification
+          }));
+        }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/index",
@@ -107110,8 +107159,9 @@ function (_React$Component) {
           'Content-Type': 'application/json'
         }
       }).catch(function (err) {
-        alert(err);
-        console.log(err.status);
+        console.log(err.response);
+
+        _this.props.addNotification('Error', err.response.data.error, 'danger');
       });
     });
 
@@ -107302,10 +107352,14 @@ function (_React$Component) {
         console.log(res);
 
         if (res.status == 201) {
+          _this.props.addNotification('Success', 'Account created Successfully!', 'success');
+
           _this.props.history.push("/");
         }
       }).catch(function (err) {
-        console.log(err);
+        console.log(err.response);
+
+        _this.props.addNotification('Error', err.response.data[0], 'danger');
       });
     });
 

@@ -18,25 +18,22 @@ use Illuminate\Support\Facades\Validator;
 
    class UserController extends Controller {
 
-     public function register(Request $request){
+     public function register(Request $request){      
+      $email = $request['email'];
+      
+      if(!(filter_var($email, FILTER_VALIDATE_EMAIL))) {
+        return response()->json(['Incorrect email format entered!'], 400);
+      }
 
-       $validator = Validator::make($request->json()->all() , [
+      if (User::where('email', '=', $email)->exists()) {
+             return response()->json(['Email already used'], 400);
+      }
 
-         'name' => 'required|string|max:255',
-         'email' => 'required|string|email|max:255|unique:users',
-         'password' => 'required|string|min:6',
+      $pass = $request['password'];
 
-       ]);
-       if($validator->fails()){
-         return response()->json($validator->errors()->toJson(),400);
-
-       }
-            $email = $request->json()->get('email');
-
-          if (Programmer::where('email', '=', $email)->exists()) {
-             return response()->json(['Email Exist  '], 404);
-         }
-
+      if(strlen($pass) < 6) {
+        return response()->json(['Password must be at least 6 characters'], 400);
+      }
 
        $user = User::create([
         'name' => $request->json()->get('name'),

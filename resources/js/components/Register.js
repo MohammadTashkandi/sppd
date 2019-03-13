@@ -31,11 +31,13 @@ export default class Register extends React.Component {
         .then((res) => {
             console.log(res);
             if(res.status==201){
+                this.props.addNotification('Success', 'Account created Successfully!', 'success');
                 this.props.history.push(`/`);
             }
         })
         .catch((err) => {
-            console.log(err);
+            console.log(err.response);
+            this.props.addNotification('Error', err.response.data[0], 'danger');
         })
 
     }
