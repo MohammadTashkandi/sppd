@@ -20,10 +20,14 @@ Route::post('storeProject','ProjectController@store');
 Route::get('findProject','ProjectController@findProject');
 
 Route::get('findProgrammer','ProgrammerController@findProgrammer');
+Route::get('findEmployee','ProgrammerController@findEmployee');
 Route::post('addProgrammer','ProgrammerController@store');
 
 Route::post('addTask','TaskController@store');
 Route::get('getTasks','TaskController@getTasks');
+
+//Route::post('assignEmployee','Works_OnController@store'); im not sure where the controller for works on is so please fix this
+
 
 //Route::post('register','UserController@getAuthenticatedUser');
 

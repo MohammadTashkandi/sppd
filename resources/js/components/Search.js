@@ -8,7 +8,6 @@ export default class Search extends React.Component {
     }
 
     componentDidMount = () =>{
-        console.log(this.props.match.params.userId);
          axios.get('api/findProgrammer', {
             params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
                 id: this.props.match.params.userId,
@@ -17,7 +16,6 @@ export default class Search extends React.Component {
         })
         .then((res) => {
             if(res.status==200){
-                console.log(res.data)
                 this.setState({programmers : res.data})
             }
             else{
@@ -28,15 +26,20 @@ export default class Search extends React.Component {
             console.log(err);
         })
     }
-    
-    /* componentWillUnmount(){
-            this.props.isSearchFull(true);
+    /* componentDidUpdate(prevProp,prevState){
+        if(prevState.length != this.state.programmers.length){
+            console.log(prevState.length)
+            console.log(this.state.programmers.length)
+        }
+        
     } */
+    
+    
     renderProgrammer = (key) => {
         const name = this.state.programmers[key].first_name + ' ' + this.state.programmers[key].last_name;
         var index = name.indexOf(' ');
         var tag = (name.charAt(0) + ' ' +  name.charAt(index + 1)).toUpperCase();
-
+    
         return(
             <Spring key={key} 
                     from={{opacity:0}} // you must wrap the part of the component you want animated in this spring syntax

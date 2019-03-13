@@ -8,7 +8,15 @@ class Header extends React.Component {
 
     search = (event) => {
         event.preventDefault();
-        this.props.history.push(`/index/search/${this.searchRef.current.value}`);
+        /* const searched = this.searchRef.current.value;
+        const currentURL = this.props.history.location.pathname;
+        const nextURL = event.currentTarget.name + '' + searched;
+        if(nextURL != currentURL){
+            window.location.reload();
+        } */
+        const searched = this.searchRef.current.value;
+        this.searchRef.current.value = '';
+        this.props.history.push(`/index/search/${searched}`);
     }
 
     logout = () =>{
@@ -26,13 +34,6 @@ class Header extends React.Component {
         }
 
     }
-    //remind me to explain this to you
-    /* componentDidUpdate(){
-        if(this.props.searchFull == true){
-            this.searchRef.current.value = "";
-            this.props.isSearchFull(false);
-        }
-    } */
 
     render() {
 
@@ -55,7 +56,7 @@ class Header extends React.Component {
                                 <NavLink onClick={this.onNavClick} to={'/index/createProject'} name="/index/createProject" id="link-head" style={{color:'#2c87c4'}}>Create a New Project</NavLink>
                             </li>
                             <li className="home-link">
-                                <NavLink onClick={this.onNavClick} to={"/index/addProgrammer"} name="/index/addProgrammer" id="link-head" style={{color:'#2c87c4', paddingTop:'0.8rem'}}><i className="material-icons">person_add</i> Add Programmer</NavLink>
+                                <NavLink onClick={this.onNavClick} to={"/index/addProgrammer"} name="/index/addProgrammer" id="link-head" style={{color:'#2c87c4', paddingTop:'0.8rem'}}><i className="material-icons">person_add</i> Register Employee</NavLink>
                             </li>
                             <div className="navbar-form navbar-left" action="/action_page.php">
                                 <div className="input-group" id="search-bar">

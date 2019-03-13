@@ -11,11 +11,36 @@ export default class CreateTask extends React.Component {
         tJud: "",
         tCu: "",
         tTech: "",
+        severityDesc: "This is a feature change task"
     }
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
-        console.log(this.state);
+        const option = e.target.value;
+        if(option == "Trivial"){
+            this.setState({severityDesc : "This is considered a trivial Task"})
+        }
+        else if(option == "Text"){
+            this.setState({severityDesc : "This is a Task involving text filling"})
+        }
+        else if(option == "Tweak"){
+            this.setState({severityDesc : "This task is a small quick fix to the system"})
+        }
+        else if(option == "Minor"){
+            this.setState({severityDesc : "Fairly easy task to implement, good for new employees"})
+        }
+        else if(option == "Major"){
+            this.setState({severityDesc : "Complex task that probably requires senior employees"})
+        }
+        else if(option == "Crash"){
+            this.setState({severityDesc : "Emergency task to fix a crash"})
+        }
+        else if(option == "Block"){
+            this.setState({severityDesc : "Block fix task"})
+        }
+        else if(option == "Feature"){
+            this.setState({severityDesc : "This is a feature change task"})
+        }
     }
 
     onSubmit = (event) => {
@@ -31,7 +56,6 @@ export default class CreateTask extends React.Component {
             tTech: this.state.tTech,
             Pid: this.props.match.params.projectId,
         }
-
         axios.post('api/addTask', newTask)
         .then((res) => {
             console.log(res);
@@ -86,7 +110,15 @@ export default class CreateTask extends React.Component {
                                 <option value="Block">Block</option>
                             </select>
                         </label>
+
+                        <label className="task-form-label">Description
+                            <div className="task-form-div"></div> {/* just to move stuff apart */}
+                            <div style={{color:"red" , fontWeight:"normal" , fontStyle:"italic"}}>
+                                {this.state.severityDesc}
+                            </div>
+                        </label>
                     </div>
+
 
                     <hr className="task-detail-seperator" />
                     <h3 className="create-task-header">Performance requirements</h3>

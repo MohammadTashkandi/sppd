@@ -45,7 +45,7 @@ export default class Login extends React.Component {
         return(
             <div className="form">
                 <img src={logo} style={{width:'170px', height:'110px', marginTop:'3rem'}} />
-                <h3 style={{color:'#ffc600', fontFamily:'"Poppins", sans-serif'}}>Login</h3>
+                <h3 style={{color:'#2c87c4', fontFamily:'"Poppins", sans-serif', fontStyle:'italic'}}>Software Project Performance Dashboard</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label style={{color:'#ffc600' , textAlign:'left'}}>Username

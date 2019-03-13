@@ -16,6 +16,7 @@ import Register from './Register';
 import CreateProject from './CreateProject';
 import CreateTask from './CreateTask';
 import AddProgrammer from './AddProgrammer';
+import AssignEmployee from './AssignEmployee';
 import TaskPage from './TaskPage';
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
@@ -25,7 +26,6 @@ import "react-notifications-component/dist/theme.css";
 export default class Index extends React.Component {
     state = {
         infobar: "",
-        searchFull: false,
         loggedIn: localStorage.getItem('usertoken') != null,
         projects: {},
         tasks: {},
@@ -90,17 +90,12 @@ export default class Index extends React.Component {
         }
     }
 
-    isSearchFull = (bool) =>{
-        /* console.log(bool) //here it says true
-        this.setState({searchFull: bool}); //i set it to state
-        console.log(this.state.searchFull); //state still stays false???? */
-    }
-
     setInfobar = (text) => {
         this.setState({infobar: text});
     }
 
     render() {
+        const key = Math.random() * 1000;
         return (
             <HashRouter>
                 <div style={{maxHeight:'100vh'}}>
