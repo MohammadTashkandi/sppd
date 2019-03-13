@@ -105740,13 +105740,48 @@ function (_React$Component) {
       tStr: "",
       tJud: "",
       tCu: "",
-      tTech: ""
+      tTech: "",
+      severityDesc: "This is a feature change task"
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
       _this.setState(_defineProperty({}, e.target.name, e.target.value));
 
-      console.log(_this.state);
+      var option = e.target.value;
+
+      if (option == "Trivial") {
+        _this.setState({
+          severityDesc: "This is considered a trivial Task"
+        });
+      } else if (option == "Text") {
+        _this.setState({
+          severityDesc: "This is a Task involving text filling"
+        });
+      } else if (option == "Tweak") {
+        _this.setState({
+          severityDesc: "This task is a small quick fix to the system"
+        });
+      } else if (option == "Minor") {
+        _this.setState({
+          severityDesc: "Fairly easy task to implement, good for new employees"
+        });
+      } else if (option == "Major") {
+        _this.setState({
+          severityDesc: "Complex task that probably requires senior employees"
+        });
+      } else if (option == "Crash") {
+        _this.setState({
+          severityDesc: "Emergency task to fix a crash"
+        });
+      } else if (option == "Block") {
+        _this.setState({
+          severityDesc: "Block fix task"
+        });
+      } else if (option == "Feature") {
+        _this.setState({
+          severityDesc: "This is a feature change task"
+        });
+      }
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSubmit", function (event) {
@@ -105860,7 +105895,17 @@ function (_React$Component) {
         value: "Crash"
       }, "Crash"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "Block"
-      }, "Block")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+      }, "Block"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "task-form-label"
+      }, "Description", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-form-div"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          color: "red",
+          fontWeight: "normal",
+          fontStyle: "italic"
+        }
+      }, this.state.severityDesc))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "task-detail-seperator"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "create-task-header"
