@@ -7,8 +7,19 @@ export default class Search extends React.Component {
         programmers: {}
     }
 
-    componentDidMount = () =>{
-         axios.get('api/findProgrammer', {
+    componentDidMount = () => {
+        this.findProgrammer();
+    }
+    
+    componentDidUpdate = (prevProps) => {
+        if(prevProps.match.params.userId != this.props.match.params.userId) {
+            this.setState({programmers: {}});
+            this.findProgrammer();
+        }
+    }
+
+    findProgrammer = () => {
+        axios.get('api/findProgrammer', {
             params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
                 id: this.props.match.params.userId,
                 PMid: localStorage.getItem('PMid'),
@@ -23,18 +34,11 @@ export default class Search extends React.Component {
             }
         })
         .catch((err) => {
-            console.log(err);
+            this.props.addNotification('Error', err.response.data[0], 'danger');
         })
     }
-    /* componentDidUpdate(prevProp,prevState){
-        if(prevState.length != this.state.programmers.length){
-            console.log(prevState.length)
-            console.log(this.state.programmers.length)
-        }
-        
-    } */
     
-    
+
     renderProgrammer = (key) => {
         const name = this.state.programmers[key].first_name + ' ' + this.state.programmers[key].last_name;
         var index = name.indexOf(' ');

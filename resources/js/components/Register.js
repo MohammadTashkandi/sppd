@@ -20,7 +20,7 @@ export default class Register extends React.Component {
     onSubmit = (event) => {
         event.preventDefault();
         if(this.state.password != this.state.password2){
-            alert('Your Passwords Do Not Match!')
+            this.props.addNotification('Error', 'Your Passwords Do Not Match!', 'danger');
         }else{
                 const newUser = {
                     name: this.state.name,
@@ -43,7 +43,7 @@ export default class Register extends React.Component {
             })
         }
     }
-    
+
     render() {
         return(
             <div className="form">

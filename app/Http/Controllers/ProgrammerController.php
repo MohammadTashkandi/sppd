@@ -49,15 +49,23 @@ class ProgrammerController extends Controller
 
         $programmerEmail = $request['email'];
 
+        if(!(filter_var($programmerEmail, FILTER_VALIDATE_EMAIL))) {
+            return response()->json(['Incorrect email format entered!'], 400);
+        }
 
         if (User::where('email', '=', $programmerEmail)->exists()) {
-            return response()->json(['User exist '], 404);
+            return response()->json(['This email is already in use'], 400);
         }
 
         if (Programmer::where('email', '=', $programmerEmail)->exists()) {
-            return response()->json(['User exist '], 404);
+            return response()->json(['This email is already in use'], 400);
         }
 
+        $pass = $request['password'];
+
+        if(strlen($pass) < 6) {
+            return response()->json(['Password must be at least 6 characters'], 400);
+        }
 
         // check if the project is exist
         //-----------------------------------------------------------------------
@@ -167,7 +175,7 @@ class ProgrammerController extends Controller
 
         }
 
-            return response()->json(['programmer_not_found'], 404);
+            return response()->json(['Programmer not found'], 404);
 
 
 

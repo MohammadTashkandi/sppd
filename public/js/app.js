@@ -105384,7 +105384,7 @@ function (_React$Component) {
         //General error: 1364 Field 'PMid' doesn't have a default value. Go to programmer.php add PMid in fillable
         console.log(err.response);
 
-        _this.props.addNotification();
+        _this.props.addNotification('Error', err.response.data[0], 'danger');
       });
     });
 
@@ -106422,7 +106422,7 @@ function (_React$Component) {
       tJud: "",
       tCu: "",
       tTech: "",
-      severityDesc: "This is a feature change task"
+      severityDesc: "Request for a new feature."
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
@@ -106432,35 +106432,35 @@ function (_React$Component) {
 
       if (option == "Trivial") {
         _this.setState({
-          severityDesc: "This is considered a trivial Task"
+          severityDesc: "Nitpicky; disagreement with wording, colors textures etc."
         });
       } else if (option == "Text") {
         _this.setState({
-          severityDesc: "This is a Task involving text filling"
+          severityDesc: "Error in the text; spelling, punctuation, capitalization."
         });
       } else if (option == "Tweak") {
         _this.setState({
-          severityDesc: "This task is a small quick fix to the system"
+          severityDesc: "Needs tweaking or adjustment; positioning of a graphical object."
         });
       } else if (option == "Minor") {
         _this.setState({
-          severityDesc: "Fairly easy task to implement, good for new employees"
+          severityDesc: "A minor issue/bug. Good for new employees."
         });
       } else if (option == "Major") {
         _this.setState({
-          severityDesc: "Complex task that probably requires senior employees"
+          severityDesc: "A major issue/bug; affects the overall application without crashing it."
         });
       } else if (option == "Crash") {
         _this.setState({
-          severityDesc: "Emergency task to fix a crash"
+          severityDesc: "Crashes the application or the OS."
         });
       } else if (option == "Block") {
         _this.setState({
-          severityDesc: "Block fix task"
+          severityDesc: "Prevents further work/progress from being made."
         });
       } else if (option == "Feature") {
         _this.setState({
-          severityDesc: "This is a feature change task"
+          severityDesc: "Request for a new feature."
         });
       }
     });
@@ -106481,6 +106481,8 @@ function (_React$Component) {
         console.log(res);
 
         if (res.status == 200) {
+          _this.props.getTasks(_this.props.match.params.projectId);
+
           _this.props.addNotification('Success', res.data[0], 'success');
 
           _this.props.history.push("/index/Task/".concat(res.data[1]));
@@ -106580,7 +106582,7 @@ function (_React$Component) {
         value: "Block"
       }, "Block"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "task-form-label"
-      }, "Description", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Severity Description", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-form-div"
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
@@ -107353,7 +107355,8 @@ function (_React$Component) {
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CreateTask__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({}, props, {
             infobar: _this2.state.infobar,
-            addNotification: _this2.addNotification
+            addNotification: _this2.addNotification,
+            getTasks: _this2.getTasks
           }));
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
@@ -107664,7 +107667,7 @@ function (_React$Component) {
       event.preventDefault();
 
       if (_this.state.password != _this.state.password2) {
-        alert('Your Passwords Do Not Match!');
+        _this.props.addNotification('Error', 'Your Passwords Do Not Match!', 'danger');
       } else {
         var newUser = {
           name: _this.state.name,
@@ -107881,6 +107884,20 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidMount", function () {
+      _this.findProgrammer();
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidUpdate", function (prevProps) {
+      if (prevProps.match.params.userId != _this.props.match.params.userId) {
+        _this.setState({
+          programmers: {}
+        });
+
+        _this.findProgrammer();
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "findProgrammer", function () {
       axios.get('api/findProgrammer', {
         params: {
           /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
@@ -107896,7 +107913,7 @@ function (_React$Component) {
           console.log("no programmers with this id");
         }
       }).catch(function (err) {
-        console.log(err);
+        _this.props.addNotification('Error', err.response.data[0], 'danger');
       });
     });
 

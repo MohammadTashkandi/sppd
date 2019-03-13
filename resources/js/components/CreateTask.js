@@ -11,35 +11,35 @@ export default class CreateTask extends React.Component {
         tJud: "",
         tCu: "",
         tTech: "",
-        severityDesc: "This is a feature change task"
+        severityDesc: "Request for a new feature."
     }
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
         const option = e.target.value;
         if(option == "Trivial"){
-            this.setState({severityDesc : "This is considered a trivial Task"})
+            this.setState({severityDesc : "Nitpicky; disagreement with wording, colors textures etc."})
         }
         else if(option == "Text"){
-            this.setState({severityDesc : "This is a Task involving text filling"})
+            this.setState({severityDesc : "Error in the text; spelling, punctuation, capitalization."})
         }
         else if(option == "Tweak"){
-            this.setState({severityDesc : "This task is a small quick fix to the system"})
+            this.setState({severityDesc : "Needs tweaking or adjustment; positioning of a graphical object."})
         }
         else if(option == "Minor"){
-            this.setState({severityDesc : "Fairly easy task to implement, good for new employees"})
+            this.setState({severityDesc : "A minor issue/bug. Good for new employees."})
         }
         else if(option == "Major"){
-            this.setState({severityDesc : "Complex task that probably requires senior employees"})
+            this.setState({severityDesc : "A major issue/bug; affects the overall application without crashing it."})
         }
         else if(option == "Crash"){
-            this.setState({severityDesc : "Emergency task to fix a crash"})
+            this.setState({severityDesc : "Crashes the application or the OS."})
         }
         else if(option == "Block"){
-            this.setState({severityDesc : "Block fix task"})
+            this.setState({severityDesc : "Prevents further work/progress from being made."})
         }
         else if(option == "Feature"){
-            this.setState({severityDesc : "This is a feature change task"})
+            this.setState({severityDesc : "Request for a new feature."})
         }
     }
 
@@ -60,6 +60,7 @@ export default class CreateTask extends React.Component {
         .then((res) => {
             console.log(res);
             if(res.status==200) {
+                this.props.getTasks(this.props.match.params.projectId);
                 this.props.addNotification('Success', res.data[0], 'success');
                 this.props.history.push(`/index/Task/${res.data[1]}`);
             }
@@ -111,7 +112,7 @@ export default class CreateTask extends React.Component {
                             </select>
                         </label>
 
-                        <label className="task-form-label">Description
+                        <label className="task-form-label">Severity Description
                             <div className="task-form-div"></div> {/* just to move stuff apart */}
                             <div style={{color:"red" , fontWeight:"normal" , fontStyle:"italic"}}>
                                 {this.state.severityDesc}

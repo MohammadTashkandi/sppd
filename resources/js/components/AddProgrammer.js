@@ -49,7 +49,7 @@ export default class AddProgrammer extends React.Component {
         })
         .catch((err) => { //General error: 1364 Field 'PMid' doesn't have a default value. Go to programmer.php add PMid in fillable
             console.log(err.response);
-            this.props.addNotification();
+            this.props.addNotification('Error', err.response.data[0], 'danger');
         })
     }
     
