@@ -1,4 +1,6 @@
-{/* /Applications/Development/projects/laravelProjects/sppd/sppd (sppd directory) beta malk d5l */}
+{/*
+ /Applications/Development/projects/laravelProjects/sppd/sppd
+ */}
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Switch, Route, HashRouter } from 'react-router-dom';
