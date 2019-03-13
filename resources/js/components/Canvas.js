@@ -83,14 +83,14 @@ export default class Canvas extends React.Component {
                     {props => (
                         <div style={props}>
                             <div className="grid-container">
-                                <div className="grid-item">
-                                    <Bar height='270' width='665'  //everything here can be dynamic depending on results 
-                                        data={this.state.barData} //this should alawys be dynamic
+                            <div className="grid-item">
+                                    <Bar height = '270' width = '665'  //everything here can be dynamic depending on results 
+                                        data={this.state.barData} //this should alawys be dynamic   
                                         options={{
                                             maintainAspectRatio: false,
                                             title:{ 
                                                 display:true,
-                                                text:'Task Transition Time', //this should also be dynamic
+                                                text:'Task Duration', //this should also be dynamic
                                                 fontSize:25
                                             },
                                             legend:{ //this should also be dynamic
@@ -119,11 +119,6 @@ export default class Canvas extends React.Component {
                                             }}
                                         />
                                     </div>
-                                    <div className="grid-item">2</div>
-                                    <div className="grid-item">3</div>  
-                                    <div className="grid-item">4</div>
-                                </div>
-<<<<<<< HEAD
                                 <div className="grid-item">
                                     <Pie height='140' width='330'//everything here can be dynamic depending on results 
                                         data={this.state.pieData} //this should alawys be dynamic
@@ -141,12 +136,12 @@ export default class Canvas extends React.Component {
                                                     fontColor:'#333'
                                                 }
                                             },
-
+                                            
                                         }}
-                                    />
+                                        />
                                 </div> 
                                 <div className="grid-item">
-                                    <Line height='270' width='665'//everything here can be dynamic depending on results 
+                                    <Line height = '270' width = '665' //everything here can be dynamic depending on results 
                                         data={this.state.lineData} //this should alawys be dynamic
                                         options={{
                                             maintainAspectRatio: false,
@@ -177,11 +172,10 @@ export default class Canvas extends React.Component {
                                                 }]
                                             }
                                         }}
-                                    />
+                                        />
                                 </div>  
-=======
->>>>>>> 555327ddc443f21fb3c0f0a898004a3de2e3ff82
                             </div>
+                    </div>
                     )}
                     </Spring>
                 </div>

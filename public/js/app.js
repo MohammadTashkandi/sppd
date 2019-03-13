@@ -76322,7 +76322,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -105124,8 +105124,89 @@ function (_React$Component) {
       programmers: {}
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "assignEmp", function () {
-      //this is not best practice to remove element, but did not know how to do it using refs
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidMount", function () {
+      axios.get('api/findEmployee', {
+        params: {
+          /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+          Pid: _this.props.match.params.projectId,
+          PMid: localStorage.getItem('PMid')
+        }
+      }).then(function (res) {
+        if (res.status == 200) {
+          _this.setState({
+            programmers: res.data
+          });
+        } else {
+          console.log("no programmers with this id");
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProgrammer", function (key) {
+      var name = _this.state.programmers[key].first_name + ' ' + _this.state.programmers[key].last_name;
+      var index = name.indexOf(' ');
+      var tag = (name.charAt(0) + ' ' + name.charAt(index + 1)).toUpperCase();
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Spring, {
+        key: key,
+        from: {
+          opacity: 0
+        } // you must wrap the part of the component you want animated in this spring syntax
+        ,
+        to: {
+          opacity: 1
+        },
+        config: {
+          duration: 750
+        }
+      }, function (props) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: props
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-search-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-assign-item",
+          id: "grid"
+        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "assign-tag"
+        }, tag), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "assign-name"
+        }, name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "assign-id"
+        }, _this.state.programmers[key].id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "assign-button"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "submit",
+          onClick: _this.assignEmp,
+          name: "0",
+          className: "btn btn-default btn-sm",
+          id: "assign-emp"
+        }, "+")))));
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "assignEmp", function (e) {
+      var key = e.currentTarget.name;
+      console.log(key);
+      axios.post('api/assignEmployee', {
+        id: key,
+        Pid: _this.props.match.params.projectId
+      }).then(function (res) {
+        console.log(res);
+
+        if (res.status == 201) {
+          alert('Added Successfully');
+        }
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(function (err) {
+        alert(err);
+      }); //this is not best practice to remove element, but did not know how to do it using refs
+      //here it should be "grid + key" to be dynamic
+
       document.getElementById("grid").parentElement.removeChild(document.getElementById("grid"));
     });
 
@@ -105135,6 +105216,7 @@ function (_React$Component) {
   _createClass(AssignEmployee, [{
     key: "render",
     value: function render() {
+      var programmers = Object.keys(this.state.programmers);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "canvas-background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -105152,26 +105234,7 @@ function (_React$Component) {
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pad-top"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "grid-search-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "grid-assign-item",
-        id: "grid",
-        ref: this.gridRef
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "assign-tag"
-      }, "M T"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "assign-name"
-      }, "Mohammad Tashkandi"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "assign-id"
-      }, "435160085"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "assign-button"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
-        onClick: this.assignEmp,
-        className: "btn btn-default btn-sm",
-        id: "assign-emp"
-      }, "+")))));
+      }), programmers.map(this.renderProgrammer));
     }
   }]);
 
@@ -105356,13 +105419,13 @@ function (_React$Component) {
           height: "270",
           width: "665" //everything here can be dynamic depending on results 
           ,
-          data: _this2.state.barData //this should alawys be dynamic
+          data: _this2.state.barData //this should alawys be dynamic   
           ,
           options: {
             maintainAspectRatio: false,
             title: {
               display: true,
-              text: 'Task Transition Time',
+              text: 'Task Duration',
               //this should also be dynamic
               fontSize: 25
             },
@@ -106302,11 +106365,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CreateProject__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./CreateProject */ "./resources/js/components/CreateProject.js");
 /* harmony import */ var _CreateTask__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CreateTask */ "./resources/js/components/CreateTask.js");
 /* harmony import */ var _AddProgrammer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./AddProgrammer */ "./resources/js/components/AddProgrammer.js");
-<<<<<<< HEAD
 /* harmony import */ var _AssignEmployee__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./AssignEmployee */ "./resources/js/components/AssignEmployee.js");
-=======
-/* harmony import */ var _TaskPage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./TaskPage */ "./resources/js/components/TaskPage.js");
->>>>>>> 555327ddc443f21fb3c0f0a898004a3de2e3ff82
+/* harmony import */ var _TaskPage__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./TaskPage */ "./resources/js/components/TaskPage.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -106335,6 +106395,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 {
   /*dmrtk zeta */
 }
+
 
 
 
@@ -106407,8 +106468,6 @@ function (_React$Component) {
       }
     });
 
-<<<<<<< HEAD
-=======
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getTasks", function (Pid) {
       if (_this.state.loggedIn) {
         axios.get('api/getTasks', {
@@ -106432,13 +106491,6 @@ function (_React$Component) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "isSearchFull", function (bool) {
-      /* console.log(bool) //here it says true
-      this.setState({searchFull: bool}); //i set it to state
-      console.log(this.state.searchFull); //state still stays false???? */
-    });
-
->>>>>>> 555327ddc443f21fb3c0f0a898004a3de2e3ff82
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "setInfobar", function (text) {
       _this.setState({
         infobar: text
@@ -106534,7 +106586,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/index/Task/:taskId",
         render: function render(props) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TaskPage__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({}, props, {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TaskPage__WEBPACK_IMPORTED_MODULE_15__["default"], _extends({}, props, {
             infobar: _this2.state.infobar
           }));
         }
@@ -107448,8 +107500,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

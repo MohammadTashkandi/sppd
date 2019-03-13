@@ -10962,11 +10962,7 @@ a#visit-page:hover {
 .info-bar {
   display: grid;
   grid-column-gap: 1rem;
-<<<<<<< HEAD
-  grid-template-columns: 1.5rem 35rem 40rem 30rem;
-=======
   grid-template-columns: 1.5rem 35rem 40rem 35.5rem;
->>>>>>> 555327ddc443f21fb3c0f0a898004a3de2e3ff82
   margin: 1rem 0;
   font-size: 2rem;
 }
@@ -11035,7 +11031,6 @@ a#visit-page:hover {
   padding: 0.5rem;
 }
 
-<<<<<<< HEAD
 #assign-emp {
   background-color: white;
   font-weight: 900;
@@ -11120,7 +11115,8 @@ a#visit-page:hover {
   align-content: center;
   text-align: justify;
   justify-content: center;
-=======
+}
+
 .sidebar-task {
   font-size: 2rem;
   display: block;
@@ -11139,6 +11135,13 @@ a#visit-page:hover {
 .sidebar-task:active {
   color: #a38000;
   text-decoration: none;
->>>>>>> 555327ddc443f21fb3c0f0a898004a3de2e3ff82
 }
+
+/* .grid-item-bar {
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.753);
+  box-shadow: -2px 2px 10px lightgray;
+  width: 66.5rem !important;
+  height: 27rem !important;
+} */
 

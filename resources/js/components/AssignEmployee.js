@@ -7,12 +7,84 @@ export default class AssignEmployee extends React.Component {
         programmers: {}
     }
 
-    assignEmp = () =>{
+    componentDidMount = () =>{
+        axios.get('api/findEmployee', {
+           params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+               Pid: this.props.match.params.projectId,
+               PMid: localStorage.getItem('PMid'),
+           }
+       })
+       .then((res) => {
+           if(res.status==200){
+               this.setState({programmers : res.data})
+           }
+           else{
+               console.log("no programmers with this id");
+           }
+       })
+       .catch((err) => {
+           console.log(err);
+       })
+   }
+
+   renderProgrammer = (key) => {
+        const name = this.state.programmers[key].first_name + ' ' + this.state.programmers[key].last_name;
+        var index = name.indexOf(' ');
+        var tag = (name.charAt(0) + ' ' +  name.charAt(index + 1)).toUpperCase();
+
+        return(
+            <Spring key={key} 
+                    from={{opacity:0}} // you must wrap the part of the component you want animated in this spring syntax
+                    to={{opacity:1}}
+                    config={{duration:750}}
+                >
+                    {props => (
+                        <div style={props}>
+                            <div className="grid-search-container">
+                                <div className="grid-assign-item" id="grid"> {/* add + key to id to make it dynamic */}
+                                    <div className="assign-tag">{tag}</div>
+                                    <div className="assign-name">{name}</div>
+                                    <div className="assign-id">{this.state.programmers[key].id}</div>
+                                    <div className="assign-button">
+                                        {/* name={key} */}
+                                        <button type="submit" onClick={this.assignEmp} name="0" className="btn btn-default btn-sm" id="assign-emp">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                )}
+                </Spring>
+        )
+    }
+
+    assignEmp = (e) =>{
+        const key = e.currentTarget.name;
+        console.log(key)
+
+        axios.post('api/assignEmployee', {
+            id: key,
+            Pid: this.props.match.params.projectId,
+        })
+        .then((res) => {
+            console.log(res);
+            if(res.status==201) {
+                alert('Added Successfully')
+            }
+        },{
+            headers: {'Content-Type': 'application/json'}
+        })
+        .catch((err) => {
+            alert(err);
+        })
         //this is not best practice to remove element, but did not know how to do it using refs
+        //here it should be "grid + key" to be dynamic
         document.getElementById("grid").parentElement.removeChild(document.getElementById("grid"));
     }
 
     render() {
+        const programmers = Object.keys(this.state.programmers);
 
         return (
             <div className="canvas-background">
@@ -26,19 +98,8 @@ export default class AssignEmployee extends React.Component {
                 </div>
                 <hr className="hr" style={{margin:'0'}} />
                 <div className="pad-top">{/* just some padding top */}</div>
+                {programmers.map(this.renderProgrammer)}
 
-                <div className="grid-search-container">
-                    <div className="grid-assign-item" id="grid" ref={this.gridRef}>
-                        <div className="assign-tag">M T</div>
-                        <div className="assign-name">Mohammad Tashkandi</div>
-                        <div className="assign-id">435160085</div>
-                        <div className="assign-button">
-                            <button type="submit" onClick={this.assignEmp}className="btn btn-default btn-sm" id="assign-emp">
-                                +
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
         );
     }
