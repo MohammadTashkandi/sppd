@@ -111,6 +111,7 @@ export default class Index extends React.Component {
                         <Route path="/index/search/:userId" render={(props)=> <Search {...props} isSearchFull={this.isSearchFull} infobar={this.state.infobar} addNotification={this.addNotification} />} />
                         <Route path="/index/project/:projectId" render={(props)=> <Canvas {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
                         <Route path="/index/createTask/:projectId" render={(props)=> <CreateTask {...props} infobar={this.state.infobar} addNotification={this.addNotification} getTasks={this.getTasks} />} />
+                        <Route path="/index/assignEmployee/:projectId" render={(props)=> <AssignEmployee {...props} infobar={this.state.infobar} addNotification={this.addNotification} getTasks={this.getTasks} />} />
                         <Route path="/index/addProgrammer" render={(props)=> <AddProgrammer {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
                         <Route path="/index/Task/:taskId" render={(props)=> <TaskPage {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
                         <Route component={NotFound} />

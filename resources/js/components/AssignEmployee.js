@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Spring} from 'react-spring/renderprops';
 export default class AssignEmployee extends React.Component {
     gridRef = React.createRef();
 
@@ -8,30 +8,33 @@ export default class AssignEmployee extends React.Component {
     }
 
     componentDidMount = () =>{
-        axios.get('api/findEmployee', {
-           params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
-               Pid: this.props.match.params.projectId,
-               PMid: localStorage.getItem('PMid'),
-           }
-       })
-       .then((res) => {
-           if(res.status==200){
-               this.setState({programmers : res.data})
-           }
-           else{
-               console.log("no programmers with this id");
-           }
-       })
-       .catch((err) => {
-           console.log(err);
-       })
+        this.getProgrammers();
+   }
+
+   getProgrammers = () =>{
+    axios.get('api/findEmployee', {
+        params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+            Pid: this.props.match.params.projectId,
+            PMid: localStorage.getItem('PMid'),
+        }
+    })
+    .then((res) => {
+        if(res.status==200){
+            this.setState({programmers : res.data})
+        }
+        else{
+            console.log("no programmers with this id");
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+    })
    }
 
    renderProgrammer = (key) => {
         const name = this.state.programmers[key].first_name + ' ' + this.state.programmers[key].last_name;
         var index = name.indexOf(' ');
         var tag = (name.charAt(0) + ' ' +  name.charAt(index + 1)).toUpperCase();
-
         return(
             <Spring key={key} 
                     from={{opacity:0}} // you must wrap the part of the component you want animated in this spring syntax
@@ -47,8 +50,8 @@ export default class AssignEmployee extends React.Component {
                                     <div className="assign-id">{this.state.programmers[key].id}</div>
                                     <div className="assign-button">
                                         {/* name={key} */}
-                                        <button type="submit" onClick={this.assignEmp} name="0" className="btn btn-default btn-sm" id="assign-emp">
-                                            +
+                                        <button type="submit" onClick={this.assignEmp} name={key} className="btn btn-default btn-sm" id="assign-emp">
+                                             +
                                         </button>
                                     </div>
                                 </div>
@@ -70,17 +73,16 @@ export default class AssignEmployee extends React.Component {
         .then((res) => {
             console.log(res);
             if(res.status==201) {
-                alert('Added Successfully')
+                this.props.addNotification('Success', 'Added Employee to the Project!', 'success')
+                this.getProgrammers();
             }
         },{
             headers: {'Content-Type': 'application/json'}
         })
         .catch((err) => {
-            alert(err);
+            this.props.addNotification('Error', err.response.data[0], 'danger');
         })
-        //this is not best practice to remove element, but did not know how to do it using refs
-        //here it should be "grid + key" to be dynamic
-        document.getElementById("grid").parentElement.removeChild(document.getElementById("grid"));
+
     }
 
     render() {
