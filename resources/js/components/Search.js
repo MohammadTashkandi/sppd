@@ -1,5 +1,6 @@
 import React from 'react';
 import {Spring} from 'react-spring/renderprops';
+import {NavLink} from 'react-router-dom';
 
 export default class Search extends React.Component {
 
@@ -58,9 +59,9 @@ export default class Search extends React.Component {
                                         <div className="search-name">{name}</div>
                                         <div className="search-id">{this.state.programmers[key].id}</div>
                                         <div className="search-button">
-                                            <a className="btn btn-default btn-sm" id="visit-page">
+                                            <NavLink to={`/index/employeePage/${this.state.programmers[key].id}`} className="btn btn-default btn-sm" id="visit-page">
                                                 <span className="glyphicon glyphicon-stats"></span> View Stats
-                                            </a>
+                                            </NavLink>
                                         </div>
                                 </div>
                             </div>

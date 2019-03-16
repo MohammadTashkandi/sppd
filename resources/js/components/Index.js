@@ -18,6 +18,7 @@ import CreateTask from './CreateTask';
 import AddProgrammer from './AddProgrammer';
 import AssignEmployee from './AssignEmployee';
 import TaskPage from './TaskPage';
+import EmployeePage from './EmployeePage';
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 
@@ -110,6 +111,7 @@ export default class Index extends React.Component {
                         <Route path="/index/createProject" render={(props)=> <CreateProject {...props} getProjects={this.getProjects} infobar={this.state.infobar} addNotification={this.addNotification} />} />
                         <Route path="/index/search/:userId" render={(props)=> <Search {...props} isSearchFull={this.isSearchFull} infobar={this.state.infobar} addNotification={this.addNotification} />} />
                         <Route path="/index/project/:projectId" render={(props)=> <Canvas {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route path="/index/employeePage/:id" render={(props)=> <EmployeePage {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
                         <Route path="/index/createTask/:projectId" render={(props)=> <CreateTask {...props} infobar={this.state.infobar} addNotification={this.addNotification} getTasks={this.getTasks} />} />
                         <Route path="/index/assignEmployee/:projectId" render={(props)=> <AssignEmployee {...props} infobar={this.state.infobar} addNotification={this.addNotification} getTasks={this.getTasks} />} />
                         <Route path="/index/addProgrammer" render={(props)=> <AddProgrammer {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />

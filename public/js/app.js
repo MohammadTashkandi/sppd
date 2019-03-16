@@ -106112,7 +106112,8 @@ function (_React$Component) {
               display: true,
               text: 'Task Duration',
               //this should also be dynamic
-              fontSize: 25
+              fontSize: 25,
+              fontFamily: '"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
             },
             legend: {
               //this should also be dynamic
@@ -106821,6 +106822,165 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/EmployeePage.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/EmployeePage.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EmployeePage; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+var EmployeePage =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(EmployeePage, _React$Component);
+
+  function EmployeePage() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, EmployeePage);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(EmployeePage)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      barData: {
+        //the data here should also be dynamic depending on what the PM wants to see
+        labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
+        datasets: [//here you mostly fill the data of the graph
+        {
+          // this is an object that you fill in each point in the graph
+          label: '',
+          data: [1, 3, 5, 4],
+          backgroundColor: 'rgb(247, 199, 111, 0.4)',
+          borderColor: 'orange'
+        }]
+      }
+    });
+
+    return _this;
+  }
+
+  _createClass(EmployeePage, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "canvas-background"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "info-bar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "decorative-box"
+      }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-page"
+      }, "Employee's Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-text"
+      }, this.props.infobar)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "hr",
+        style: {
+          margin: '0'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__["Spring"], {
+        from: {
+          opacity: 0
+        } // you must wrap the part of the component you want animated in this spring syntax
+        ,
+        to: {
+          opacity: 1
+        },
+        config: {
+          duration: 750
+        }
+      }, function (props) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: props
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Radar"], {
+          height: "270",
+          width: "665" //everything here can be dynamic depending on results 
+          ,
+          data: _this2.state.barData //this should alawys be dynamic   
+          ,
+          options: {
+            legend: {
+              display: false
+            },
+            title: {
+              display: true,
+              text: 'Personal Performance Measures',
+              //this should also be dynamic
+              fontSize: 25
+            },
+            scale: {
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          }
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item-profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Personal Information:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info"
+        }, "name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info"
+        }, "id"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info"
+        }, "email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info"
+        }, "number"))));
+      }));
+    }
+  }]);
+
+  return EmployeePage;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Header.js":
 /*!*******************************************!*\
   !*** ./resources/js/components/Header.js ***!
@@ -107123,10 +107283,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddProgrammer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./AddProgrammer */ "./resources/js/components/AddProgrammer.js");
 /* harmony import */ var _AssignEmployee__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./AssignEmployee */ "./resources/js/components/AssignEmployee.js");
 /* harmony import */ var _TaskPage__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./TaskPage */ "./resources/js/components/TaskPage.js");
-/* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-notifications-component */ "./node_modules/react-notifications-component/dist/react-notifications-component.js");
-/* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-notifications-component/dist/theme.css */ "./node_modules/react-notifications-component/dist/theme.css");
-/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _EmployeePage__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./EmployeePage */ "./resources/js/components/EmployeePage.js");
+/* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-notifications-component */ "./node_modules/react-notifications-component/dist/react-notifications-component.js");
+/* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-notifications-component/dist/theme.css */ "./node_modules/react-notifications-component/dist/theme.css");
+/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_18__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -107154,6 +107315,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   /Applications/Development/projects/laravelProjects/sppd/sppd
   */
 }
+
 
 
 
@@ -107291,7 +107453,7 @@ function (_React$Component) {
         style: {
           maxHeight: '100vh'
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_notifications_component__WEBPACK_IMPORTED_MODULE_16___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_notifications_component__WEBPACK_IMPORTED_MODULE_17___default.a, {
         ref: this.notificationRef
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {
         loggedIn: this.state.loggedIn,
@@ -107352,6 +107514,14 @@ function (_React$Component) {
         path: "/index/project/:projectId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Canvas__WEBPACK_IMPORTED_MODULE_6__["default"], _extends({}, props, {
+            infobar: _this2.state.infobar,
+            addNotification: _this2.addNotification
+          }));
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/index/employeePage/:id",
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EmployeePage__WEBPACK_IMPORTED_MODULE_16__["default"], _extends({}, props, {
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
           }));
@@ -107853,6 +108023,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
 /* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -107872,6 +108043,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -107963,7 +108135,8 @@ function (_React$Component) {
           className: "search-id"
         }, _this.state.programmers[key].id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "search-button"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["NavLink"], {
+          to: "/index/employeePage/".concat(_this.state.programmers[key].id),
           className: "btn btn-default btn-sm",
           id: "visit-page"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {

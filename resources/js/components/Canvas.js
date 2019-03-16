@@ -91,7 +91,8 @@ export default class Canvas extends React.Component {
                                             title:{ 
                                                 display:true,
                                                 text:'Task Duration', //this should also be dynamic
-                                                fontSize:25
+                                                fontSize:25,
+                                                fontFamily: '"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
                                             },
                                             legend:{ //this should also be dynamic
                                                 display:true,
