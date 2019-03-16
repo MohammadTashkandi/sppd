@@ -76428,7 +76428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -107448,7 +107448,6 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var key = Math.random() * 1000;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           maxHeight: '100vh'
@@ -107473,7 +107472,8 @@ function (_React$Component) {
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Login__WEBPACK_IMPORTED_MODULE_9__["default"], _extends({}, props, {
             editLoggedIn: _this2.editLoggedIn,
-            addNotification: _this2.addNotification
+            addNotification: _this2.addNotification,
+            loggedIn: _this2.state.loggedIn
           }));
         }
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
@@ -107680,6 +107680,10 @@ function (_React$Component) {
   _createClass(Login, [{
     key: "render",
     value: function render() {
+      if (this.props.loggedIn) {
+        this.props.history.push("/index");
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -107844,6 +107848,10 @@ function (_React$Component) {
       age: ""
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "usernameRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "passRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
       _this.setState(_defineProperty({}, e.target.name, e.target.value));
     });
@@ -107872,6 +107880,12 @@ function (_React$Component) {
             _this.props.history.push("/");
           }
         }).catch(function (err) {
+          if (err.response.status == 401) {
+            _this.usernameRef.current.style.borderColor = 'red';
+          } else if (err.response.status == 400) {
+            _this.passRef.current.style.borderColor = 'red';
+          }
+
           _this.props.addNotification('Error', err.response.data[0], 'danger');
         });
       }
@@ -107919,6 +107933,7 @@ function (_React$Component) {
         className: "reg-form-div"
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
+        ref: this.usernameRef,
         id: "form-control",
         type: "text",
         name: "email",
@@ -107933,6 +107948,7 @@ function (_React$Component) {
         className: "reg-form-div"
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
+        ref: this.passRef,
         id: "form-control",
         type: "password",
         name: "password",
@@ -108490,8 +108506,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

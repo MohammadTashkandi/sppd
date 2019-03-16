@@ -13,6 +13,9 @@ export default class Register extends React.Component {
         age: "",
     }
 
+    usernameRef = React.createRef();
+    passRef = React.createRef();
+
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     }
@@ -39,6 +42,11 @@ export default class Register extends React.Component {
                 }
             })
             .catch((err) => {
+                if(err.response.status == 401) {
+                    this.usernameRef.current.style.borderColor = 'red';
+                } else if(err.response.status == 400) {
+                    this.passRef.current.style.borderColor = 'red';
+                }
                 this.props.addNotification('Error', err.response.data[0], 'danger');
             })
         }
@@ -58,13 +66,13 @@ export default class Register extends React.Component {
 
                         <label className="reg-form-label">Email *
                         <div className="reg-form-div"></div> {/* just to move stuff apart */}
-                            <input className="form-control" id="form-control" type="text" name="email" placeholder="Enter email" onChange={this.onChange} required />
+                            <input className="form-control" ref={this.usernameRef} id="form-control" type="text" name="email" placeholder="Enter email" onChange={this.onChange} required />
                         </label>
                     </div>
                     <div className="form-group">
                         <label className="reg-form-label">Password *
                             <div className="reg-form-div"></div> {/* just to move stuff apart */}
-                            <input className="form-control" id="form-control" type="password" name="password" placeholder="Enter password" onChange={this.onChange} required />
+                            <input className="form-control" ref={this.passRef} id="form-control" type="password" name="password" placeholder="Enter password" onChange={this.onChange} required />
                         </label>
 
                         <label className="reg-form-label">Confirm Password *

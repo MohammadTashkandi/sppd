@@ -96,7 +96,6 @@ export default class Index extends React.Component {
     }
 
     render() {
-        const key = Math.random() * 1000;
         return (
             <HashRouter>
                 <div style={{maxHeight:'100vh'}}>
@@ -105,7 +104,7 @@ export default class Index extends React.Component {
                     <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects} tasks={this.state.tasks} getProjects={this.getProjects} getTasks={this.getTasks} setInfobar={this.setInfobar} />
                     {/* <InfoBar loggedIn={this.state.loggedIn} infobar={this.state.infobar} />   */}                                                         
                     <Switch>
-                        <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn} addNotification={this.addNotification} />} /> {/* we use render instead of component so we can add props */}
+                        <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn} addNotification={this.addNotification} loggedIn={this.state.loggedIn} />} /> {/* we use render instead of component so we can add props */}
                         <Route path="/register" render={(props) => <Register {...props} addNotification={this.addNotification} />} />
                         <Route exact path="/index" render={(props)=> <Home {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
                         <Route path="/index/createProject" render={(props)=> <CreateProject {...props} getProjects={this.getProjects} infobar={this.state.infobar} addNotification={this.addNotification} />} />
