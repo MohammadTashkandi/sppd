@@ -14,10 +14,10 @@ class CreateWorksOnTable extends Migration
     public function up()
     {
         Schema::create('works_on', function (Blueprint $table) {
-            $table->integer('Programmer_id')->unsigned();
-            $table->foreign('Programmer_id')->references('id')->on('programmers');
-            $table->integer('Project_id')->unsigned();
-            $table->foreign('Project_id')->references('id')->on('projects');
+            $table->unsignedInteger('Programmer_id');
+            $table->unsignedInteger('Project_id');
+            $table->foreign('Programmer_id')->references('id')->on('programmers')->onDelete('cascade');
+            $table->foreign('Project_id')->references('id')->on('projects')->onDelete('cascade');
             $table->timestamps();
         });
     }

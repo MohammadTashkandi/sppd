@@ -23,7 +23,9 @@ class Programmer extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name' , 'email', 'password', 'nationality', 'age', 'pStr', 'pJud', 'PCu', 'pTech','PMid','Pid'
+        'first_name', 'last_name' , 'email', 'password', 'nationality', 'age', 'pStr', 'pJud', 'PCu', 'pTech','PMid','Pid',
+        'numOfTasks','pStrSum','pJudSum','pCuSum','pTechSum',
+
     ];
 
     /**
@@ -56,7 +58,10 @@ class Programmer extends Authenticatable implements JWTSubject
     public $timestamps = false;
 
 
-
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class , 'works_ons' , 'programmer_id','project_id');
+    }
 
 
 

@@ -30,6 +30,12 @@ class CreateProgrammersTable extends Migration
             $table->integer('pJud');
             $table->integer('PCu');
             $table->integer('pTech');
+            $table->integer('numOfTasks')->default(0);
+            $table->integer('pStrSum')->default(0);
+            $table->integer('pJudSum')->default(0);
+            $table->integer('pCuSum')->default(0);
+            $table->integer('pTechSum')->default(0);
+            $table->rememberToken();
             $table->rememberToken();
             $table->timestamps();
         });
