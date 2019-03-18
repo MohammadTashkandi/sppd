@@ -107674,10 +107674,17 @@ function (_React$Component) {
           localStorage.setItem('usertoken', res.data.token);
           localStorage.setItem('PMid', res.data.PMid);
 
-          _this.props.editLoggedIn(true);
+          _this.props.editLoggedIn(true); //this.props.isManager(true);
+
 
           _this.props.history.push("/index");
         }
+        /* else if(res.status==200){
+           localStorage.setItem('usertoken', res.data.token);
+           localStorage.setItem('Pid', res.data.Pid);
+           this.props.editLoggedIn(true);
+        } */
+
       }, {
         headers: {
           'Content-Type': 'application/json'

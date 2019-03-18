@@ -30,8 +30,15 @@ export default class Login extends React.Component {
                 localStorage.setItem('usertoken', res.data.token);
                 localStorage.setItem('PMid', res.data.PMid);
                 this.props.editLoggedIn(true);
+                //this.props.isManager(true);
                 this.props.history.push(`/index`);
-            }
+            }/* else if(res.status==200){
+                localStorage.setItem('usertoken', res.data.token);
+                localStorage.setItem('Pid', res.data.Pid);
+                this.props.editLoggedIn(true);
+                this.props.history.push(`/prIndex`);
+            } */
+            
         },{
             headers: {'Content-Type': 'application/json'}
         })
@@ -42,9 +49,11 @@ export default class Login extends React.Component {
 
     }
     render() {
-        if(this.props.loggedIn) {
+        if(this.props.loggedIn) { //&& this,props.isManager why two history.push here and in onSubmit??
             this.props.history.push(`/index`);
-        }
+        }/* else if(this.props.editLoggedIn && !this.props.isManager){
+            this.props.history.push(`/prIndex`);
+        } */
         return(
             <div className="form">
                 <img src={logo} style={{width:'170px', height:'110px', marginTop:'3rem'}} />
