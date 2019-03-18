@@ -60,7 +60,7 @@ class Programmer extends Authenticatable implements JWTSubject
 
     public function projects()
     {
-        return $this->belongsToMany(Project::class , 'works_ons' , 'programmer_id','project_id');
+        return $this->belongsToMany(Project::class , 'works_on' , 'programmer_id','project_id');
     }
 
 

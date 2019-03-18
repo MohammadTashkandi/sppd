@@ -237,7 +237,7 @@ class ProgrammerController extends Controller
 
     public function assignEmployee(Request $request){
 
-        $ProgId = $request['ProgId'];
+        $ProgId = $request['id'];
         $PId = $request['Pid'];
 
 
