@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import {Spring} from 'react-spring/renderprops';
 
 export default class CreateTask extends React.Component {
 
@@ -45,7 +46,6 @@ export default class CreateTask extends React.Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-
         const newTask = {
             title: this.state.title,
             PrId: this.state.PrId,
@@ -83,84 +83,90 @@ export default class CreateTask extends React.Component {
             </div>
             <hr className="hr" style={{margin:'0'}} />
 
-            <form className="create-task-form" onSubmit={this.onSubmit}>
-                <h3 className="create-task-header">Task info</h3>
-                    <div className="form-group">
-                        <label className="task-form-label">Task name *
-                            <div className="task-form-div"></div> {/* just to move stuff apart */}
-                            <input style={{width:'40rem'}} className="form-control" id="form-control" type="text" name="title" placeholder="Enter task name" onChange={this.onChange} required />
-                        </label>
+            <Spring from={{opacity:0 , marginTop: -500}} // you must wrap the part of the component you want animated in this spring syntax
+                    to={{opacity:1, marginTop:0}}
+                    config={{duration:750}}
+            >
+                {props => (
+                    <div style={props}>
+                        <div className="form-task-prog">
+                <h3 style={{color:'#ffc600', fontFamily:'"Poppins", sans-serif', paddingTop:"4rem", paddingBottom:"2rem"}}>Fill in Task Information</h3>
+                    <form onSubmit={this.onSubmit}>
+                    <div className="form-group" id="task-form-group">
+                            <label className="reg-form-label">Task name *
+                                    <div className="reg-form-div"></div> {/* just to move stuff apart */}
+                                    <input className="form-control" id="form-control" type="text" name="title" placeholder="Enter task name" onChange={this.onChange} required />
+                            </label>
 
-                        <label className="task-form-label">Programmer ID *
-                        <div className="task-form-div"></div> {/* just to move stuff apart */}
-                            <input style={{width:'40rem'}} className="form-control" id="form-control" type="text" name="PrId" placeholder="Enter ID of programmer you wish to assign this task to" onChange={this.onChange} required />
-                        </label>
+                            <label className="reg-form-label">Programmer ID *
+                                <div className="reg-form-div"></div> {/* just to move stuff apart */}
+                                <input className="form-control" id="form-control" type="text" name="PrId" placeholder="Enter ID of programmer you wish to assign this task to" onChange={this.onChange} required />
+                            </label>
+                        </div>
+                        <div className="form-group" id="task-form-group">
+                            <label className="reg-form-label">Severity *
+                                <div className="reg-form-div"></div> {/* just to move stuff apart */}
+                                <select  className="form-control" id="form-control" name="severity" placeholder="Enter severity level" onChange={this.onChange} required>
+                                    <option value="Feature">Feature</option>
+                                    <option value="Trivial">Trivial</option>
+                                    <option value="Text">Text</option>
+                                    <option value="Tweak">Tweak</option>
+                                    <option value="Minor">Minor</option>
+                                    <option value="Major">Major</option>
+                                    <option value="Crash">Crash</option>
+                                    <option value="Block">Block</option>
+                                </select>
+                            </label>
+                            <label className="reg-form-label">Severity Description
+                                <div className="reg-form-div"></div> {/* just to move stuff apart */}
+                                <div style={{color:"red" , fontWeight:"normal" , fontStyle:"italic"}}>
+                                    {this.state.severityDesc}
+                                </div>
+                            </label>
+                        </div>
+                                     
+                        <div className="form-group-add-prog">    
+                                <div className="task-form-div-add-prog"> <span className="task-span">Stress level *</span>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="1" required /> 1</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="2" required /> 2</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="3" required /> 3</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="4" required /> 4</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="5" required /> 5</div>
+                                </div> {/* just to move stuff apart */}
+                        </div>
+                        <div className="form-group-add-prog">    
+                                <div className="task-form-div-add-prog"> <span className="task-span">Judgement level *</span>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="1" required /> 1</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="2" required /> 2</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="3" required /> 3</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="4" required /> 4</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="5" required /> 5</div>
+                                </div> {/* just to move stuff apart */}
+                        </div>
+                        <div className="form-group-add-prog">    
+                                <div className="task-form-div-add-prog"> <span className="task-span">Communication level *</span>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="1" required /> 1</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="2" required /> 2</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="3" required /> 3</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="4" required /> 4</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="5" required /> 5</div>
+                                </div> {/* just to move stuff apart */}
+                        </div>
+                        <div className="form-group-add-prog">    
+                                <div className="task-form-div-add-prog"> <span className="task-span">Technical level *</span>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="1" required /> 1</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="2" required /> 2</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="3" required /> 3</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="4" required /> 4</div>
+                                    <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="5" required /> 5</div>
+                                </div> {/* just to move stuff apart */}
+                        </div>
+                        <button className="login-btn" type="submit" id="add-task">Add task</button>
+                    </form>
+                </div>
                     </div>
-
-                    <div className="form-group">
-                        <label className="task-form-label">Severity *
-                            <div className="task-form-div"></div> {/* just to move stuff apart */}
-                            <select style={{width:'40rem'}} className="form-control" id="form-control" name="severity" placeholder="Enter severity level" onChange={this.onChange} required>
-                                <option value="Feature">Feature</option>
-                                <option value="Trivial">Trivial</option>
-                                <option value="Text">Text</option>
-                                <option value="Tweak">Tweak</option>
-                                <option value="Minor">Minor</option>
-                                <option value="Major">Major</option>
-                                <option value="Crash">Crash</option>
-                                <option value="Block">Block</option>
-                            </select>
-                        </label>
-
-                        <label className="task-form-label">Severity Description
-                            <div className="task-form-div"></div> {/* just to move stuff apart */}
-                            <div style={{color:"red" , fontWeight:"normal" , fontStyle:"italic"}}>
-                                {this.state.severityDesc}
-                            </div>
-                        </label>
-                    </div>
-
-
-                    <hr className="task-detail-seperator" />
-                    <h3 className="create-task-header">Performance requirements</h3>
-                    <div className="form-group">    
-                            <div className="task-form-div"> <span className="task-span">Stress level *</span>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="1" required /> 1</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="2" required /> 2</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="3" required /> 3</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="4" required /> 4</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tStr" value="5" required /> 5</div>
-                            </div> {/* just to move stuff apart */}
-                    </div>
-                    <div className="form-group">    
-                            <div className="task-form-div"> <span className="task-span">Judgement level *</span>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="1" required /> 1</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="2" required /> 2</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="3" required /> 3</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="4" required /> 4</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tJud" value="5" required /> 5</div>
-                            </div> {/* just to move stuff apart */}
-                    </div>
-                    <div className="form-group">    
-                            <div className="task-form-div"> <span className="task-span">Communication level *</span>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="1" required /> 1</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="2" required /> 2</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="3" required /> 3</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="4" required /> 4</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tCu" value="5" required /> 5</div>
-                            </div> {/* just to move stuff apart */}
-                    </div>
-                    <div className="form-group">    
-                            <div className="task-form-div"> <span className="task-span">Technical level *</span>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="1" required /> 1</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="2" required /> 2</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="3" required /> 3</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="4" required /> 4</div>
-                                <div className="task-radio"><input onChange={this.onChange} className="radio-inline" type="radio" name="tTech" value="5" required /> 5</div>
-                            </div> {/* just to move stuff apart */}
-                    </div>
-                        <button className="login-btn" type="submit" style={{marginLeft:'42rem'}}>Add task</button>
-                </form>
+                )}
+            </Spring>
             </React.Fragment>
         );
     }

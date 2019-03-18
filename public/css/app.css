@@ -11154,3 +11154,22 @@ a#visit-page:hover {
   margin-bottom: 3rem;
 }
 
+.form-task-prog {
+  margin-top: 3rem;
+  margin-left: 48rem;
+  margin-right: 18rem;
+  text-align: center;
+  background-color: #0d3a58;
+  border-radius: 20px;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+#add-task {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+#task-form-group {
+  margin-bottom: 3rem;
+}
+
