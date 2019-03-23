@@ -19,16 +19,10 @@ Route::post('login','UserController@login');
 Route::post('storeProject','ProjectController@store');
 Route::get('findProject','ProjectController@findProject');
 
-<<<<<<< HEAD
-Route::get('findProgrammer','ProgrammerController@findProgrammer');
-Route::get('findEmployee','ProgrammerController@findEmployee');
-Route::post('addProgrammer','UserController@addProgrammer');
-=======
 Route::get('findProgrammer','ProgrammerController@findProgrammer'); //for searching
 Route::get('autocompleteSearch','ProgrammerController@autocompleteSearch'); //for searching for programmer in create task
 Route::get('findEmployee','ProgrammerController@findEmployee'); //for assign task function
 Route::post('addProgrammer','ProgrammerController@store');
->>>>>>> 3c6df9dfed1b8e27ceca92896a76e9c8a1a1b60f
 
 Route::post('addTask','TaskController@store');
 Route::get('getTasks','TaskController@getTasks');
