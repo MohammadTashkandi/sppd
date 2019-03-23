@@ -18,14 +18,15 @@ use Illuminate\Support\Facades\Validator;
 
    class UserController extends Controller {
 
-     public function register(Request $request){      
+     public function register(Request $request){   
+    
       $email = $request['email'];
       
       if(!(filter_var($email, FILTER_VALIDATE_EMAIL))) {
         return response()->json(['Incorrect email format entered!'], 401);
       }
 
-      if (User::where('email', '=', $email)->exists()) {
+      if (Programmer::where('email', '=', $email)->exists() || User::where('email', '=', $email)->exists()) {
              return response()->json(['Email already used'], 401);
       }
 
@@ -47,22 +48,131 @@ use Illuminate\Support\Facades\Validator;
        ]);
 
       $token = JWTAuth::fromUser($user);
+
       return response()->json(compact('user', 'token'),201);
      }
 
+
+
+
+
+     public function addProgrammer(Request $request){   
+    
+      $email = $request['email'];
+      
+      if(!(filter_var($email, FILTER_VALIDATE_EMAIL))) {
+        return response()->json(['Incorrect email format entered!'], 401);
+      }
+
+      if (Programmer::where('email', '=', $email)->exists()  || User::where('email', '=', $email)->exists() ) {
+             return response()->json(['Email already used'], 401);
+      }
+
+      $pass = $request['password'];
+
+      if(strlen($pass) < 6) {
+        return response()->json(['Password must be at least 6 characters'], 400);
+      }
+
+       $programmer = Programmer::create([
+        'first_name' => $request->json()->get('first_name'),
+        'last_name' => $request->json()->get('last_name'),
+        'email' => $request->json()->get('email'),
+        'password' => Hash::make($request->json()->get('password')),
+        'nationality' => $request->json()->get('nationality'),
+        'age' => $request->json()->get('age'),
+        'pStr' => $request->json()->get('pStr'),
+        'pJud' => $request->json()->get('pJud'),
+        'pCu' => $request->json()->get('pCu'),
+        'pTech' => $request->json()->get('pTech'),
+        'PMid' => $request->json()->get('PMid'),
+       ]);
+
+      $token = JWTAuth::fromUser($programmer);
+
+      return response()->json(compact('programmer', 'token'),201);
+     }
+
+
+
+
+
+
+
      public function login(Request $request){
-       $credentials = $request->json()->all();
+          $email = $request['email'];
+      if(Programmer::where('email', '=' ,$email )->first()!= null ){
 
-       try{
+        // $credentials = $request->json()->all();
 
-         if(! $token = JWTAuth::attempt($credentials)){
-           return response()->json(['error' => 'invalid credentials'], 400);
-         }
-       }catch(JWTException $e){
-         return response()->json(['error' => 'could_not_create_token'], 500);
-       }
-       $PMid = User::where('email',$request['email']) -> first() ->id;
-       return response()->json(compact('token','PMid'),201);
+        // try{
+          
+        //   if(! $token = JWTAuth::attempt($credentials)){
+        //     return response()->json(['error' => 'invalid credentials'], 400);
+        //   }
+        // }catch(JWTException $e){
+        //   return response()->json(['error' => 'could_not_create_token'], 500);
+        // }
+        
+ 
+        // $PM = User::where('email',$request['email'])->first();
+        // $Programmer = Programmer::where('email',$request['email'])->first();
+ 
+ 
+        
+        // if( $PM  != null){
+        //   $id = $PM->id;
+        //  return response()->json(compact('token','id'),201);
+        // }
+        
+        // else if( $prpgrammer != null){
+        //  $id = $programmer->id;
+        //  return response()->json(compact('token','id'),200);
+ 
+        // }
+
+
+
+      }elseif(User::where('email', '=' ,$email )->first()!= null){
+        
+        $credentials = $request->json()->all();
+
+        try{
+          
+          if(! $token = JWTAuth::attempt($credentials)){
+            return response()->json(['error' => 'invalid credentials'], 400);
+          }
+        }catch(JWTException $e){
+          return response()->json(['error' => 'could_not_create_token'], 500);
+        }
+        
+ 
+        $PM = User::where('email',$request['email'])->first();
+        $Programmer = Programmer::where('email',$request['email'])->first();
+ 
+ 
+        
+        if( $PM  != null){
+          $id = $PM->id;
+         return response()->json(compact('token','id'),201);
+        }
+        
+        else if( $prpgrammer != null){
+         $id = $programmer->id;
+         return response()->json(compact('token','id'),200);
+ 
+        }
+
+      }
+      return response()->json(['error' => 'Wrong user '], 500);
+
+
+
+
+
+       
+
+       
 
 
      }

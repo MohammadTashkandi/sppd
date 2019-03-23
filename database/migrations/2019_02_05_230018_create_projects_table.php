@@ -15,7 +15,7 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('PMid')->references('user_id')->on('project_managers');  // foreign key for the Project Manager
+            $table->unsignedInteger('PMid')->references('user_id')->on('project_managers')->onDelete('cascade');  // foreign key for the Project Manager
             $table->string('title');
             $table->dateTime('Start_Date');
             $table->dateTime('Closed_Date')->nullable();

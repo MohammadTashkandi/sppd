@@ -26,10 +26,10 @@ class CreateProgrammersTable extends Migration
             $table->string('location')->nullable();
             $table->string('age')->nullable();
             $table->Integer('PMid')->references('id')->on('User')->onDelete('cascade') ; // foreign key for the Project Manager
-            $table->integer('pStr');
-            $table->integer('pJud');
-            $table->integer('PCu');
-            $table->integer('pTech');
+            $table->integer('pStr')->nullable();
+            $table->integer('pJud')->nullable();
+            $table->integer('pCu')->nullable();
+            $table->integer('pTech')->nullable();
             $table->integer('numOfTasks')->default(0);
             $table->integer('pStrSum')->default(0);
             $table->integer('pJudSum')->default(0);

@@ -96,7 +96,7 @@ class ProgrammerController extends Controller
         ]);
 
         $programmer->save();
-
+        
         return response()->json(['Programmer added Successfully '], 201);
 
 

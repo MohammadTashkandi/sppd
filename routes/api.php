@@ -21,7 +21,7 @@ Route::get('findProject','ProjectController@findProject');
 
 Route::get('findProgrammer','ProgrammerController@findProgrammer');
 Route::get('findEmployee','ProgrammerController@findEmployee');
-Route::post('addProgrammer','ProgrammerController@store');
+Route::post('addProgrammer','UserController@addProgrammer');
 
 Route::post('addTask','TaskController@store');
 Route::get('getTasks','TaskController@getTasks');

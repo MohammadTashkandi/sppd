@@ -20,6 +20,8 @@ import AssignEmployee from './AssignEmployee';
 import TaskPage from './TaskPage';
 import EmployeePage from './EmployeePage';
 import ReactNotification from "react-notifications-component";
+import EmployeeIndex from './EmployeeIndex';
+import EmployeeCanvas from './EmployeeCanvas';
 import "react-notifications-component/dist/theme.css";
 
 
@@ -28,6 +30,7 @@ export default class Index extends React.Component {
     state = {
         infobar: "",
         loggedIn: localStorage.getItem('usertoken') != null,
+        isManager: true,
         projects: {},
         tasks: {},
     }
@@ -54,11 +57,33 @@ export default class Index extends React.Component {
         console.log('editloggedin '+ this.state.loggedIn);
     }
 
+    editManager = (isManager) => {
+        this.setState({isManager: isManager});
+        console.log('editisManager '+ this.state.isManager);
+    }
+
     getProjects = () => {
         if(this.state.loggedIn){
             axios.get('api/findProject', {
                 params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
                     PMid: localStorage.getItem('PMid')
+                }
+            })
+            .then((res) => {
+                if(res.status==200) {
+                    this.setState({projects: res.data})
+                }
+            })
+        }else{
+            console.log('not logged in yet');
+        }
+    }
+
+    getProgrammerProjects = () => {
+        if(this.state.loggedIn){
+            axios.get('api/findProgrammerProject', {
+                params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+                    Pid: localStorage.getItem('Pid')
                 }
             })
             .then((res) => {
@@ -100,11 +125,11 @@ export default class Index extends React.Component {
             <HashRouter>
                 <div style={{maxHeight:'100vh'}}>
                     <ReactNotification ref={this.notificationRef} /> 
-                    <Header loggedIn={this.state.loggedIn} editLoggedIn={this.editLoggedIn} isSearchFull={this.isSearchFull} searchFull={this.state.searchFull}/>
-                    <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects} tasks={this.state.tasks} getProjects={this.getProjects} getTasks={this.getTasks} setInfobar={this.setInfobar} />
+                    <Header loggedIn={this.state.loggedIn} editLoggedIn={this.editLoggedIn} isManager={this.state.isManager}/>
+                    <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects} tasks={this.state.tasks} getProjects={this.getProjects} getProgrammerProjects={this.getProgrammerProjects} getTasks={this.getTasks} setInfobar={this.setInfobar} isManager={this.state.isManager}/>
                     {/* <InfoBar loggedIn={this.state.loggedIn} infobar={this.state.infobar} />   */}                                                         
                     <Switch>
-                        <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn} addNotification={this.addNotification} loggedIn={this.state.loggedIn} />} /> {/* we use render instead of component so we can add props */}
+                        <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn} editManager={this.editManager} isManager={this.state.isManager} addNotification={this.addNotification} loggedIn={this.state.loggedIn} />} /> {/* we use render instead of component so we can add props */}
                         <Route path="/register" render={(props) => <Register {...props} addNotification={this.addNotification} />} />
                         <Route exact path="/index" render={(props)=> <Home {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
                         <Route path="/index/createProject" render={(props)=> <CreateProject {...props} getProjects={this.getProjects} infobar={this.state.infobar} addNotification={this.addNotification} />} />
@@ -115,6 +140,10 @@ export default class Index extends React.Component {
                         <Route path="/index/assignEmployee/:projectId" render={(props)=> <AssignEmployee {...props} infobar={this.state.infobar} addNotification={this.addNotification} getTasks={this.getTasks} />} />
                         <Route path="/index/addProgrammer" render={(props)=> <AddProgrammer {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
                         <Route path="/index/Task/:taskId" render={(props)=> <TaskPage {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+
+
+                        <Route exact path="/employeeIndex" render={(props)=> <EmployeeIndex {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route path="/employeIndex/project/:projectId" render={(props)=> <EmployeeCanvas {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

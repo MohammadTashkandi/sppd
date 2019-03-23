@@ -17,7 +17,12 @@ class SideBar extends React.Component {
     taskRef = React.createRef();
     
     componentDidMount() {
-          this.props.getProjects();
+        if(this.props.isManager){
+            this.props.getProjects();
+        }
+        else if(!this.props.isManager){
+            this.props.getProgrammerProjects();
+        }
       }
 
       /* componentDidUpdate(prevProps) {
@@ -78,8 +83,13 @@ class SideBar extends React.Component {
         }
     }
 
-    changePath = (key) => {     
+    changePath = (key) => { 
+        if(this.props.isManager){
             this.props.history.push(`/index/project/${key}`);  /* put / before project to make it work correctly */
+        } 
+        else if(!this.props.isManager){
+            this.props.history.push(`/employeeIndex/project/${key}`);  /* put / before project to make it work correctly */
+        }   
     }
 
     render() {

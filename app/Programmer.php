@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
@@ -62,6 +63,7 @@ class Programmer extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany(Project::class , 'works_on' , 'programmer_id','project_id');
     }
+
 
 
 

@@ -90,7 +90,7 @@ export default class CreateTask extends React.Component {
                 {props => (
                     <div style={props}>
                         <div className="form-task-prog">
-                <h3 style={{color:'#ffc600', fontFamily:'"Poppins", sans-serif', paddingTop:"4rem", paddingBottom:"2rem"}}>Fill in Task Information</h3>
+                <h3 style={{color:'#ffc600', fontFamily:'"Poppins", sans-serif', paddingTop:"3rem", paddingBottom:"2rem"}}>Fill in Task Information</h3>
                     <form onSubmit={this.onSubmit}>
                     <div className="form-group" id="task-form-group">
                             <label className="reg-form-label">Task name *
@@ -117,9 +117,11 @@ export default class CreateTask extends React.Component {
                                     <option value="Block">Block</option>
                                 </select>
                             </label>
-                            <label className="reg-form-label">Severity Description
+                        </div>
+                        <div className="form-group" id="task-form-group">
+                            <label className="reg-form-label">
                                 <div className="reg-form-div"></div> {/* just to move stuff apart */}
-                                <div style={{color:"red" , fontWeight:"normal" , fontStyle:"italic"}}>
+                                <div style={{color:"red" , fontWeight:"normal" , fontStyle:"italic" , marginBottom: "2.5rem"}}>
                                     {this.state.severityDesc}
                                 </div>
                             </label>

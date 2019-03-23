@@ -8,12 +8,6 @@ class Header extends React.Component {
 
     search = (event) => {
         event.preventDefault();
-        /* const searched = this.searchRef.current.value;
-        const currentURL = this.props.history.location.pathname;
-        const nextURL = event.currentTarget.name + '' + searched;
-        if(nextURL != currentURL){
-            window.location.reload();
-        } */
         const searched = this.searchRef.current.value;
         this.searchRef.current.value = '';
         this.props.history.push(`/index/search/${searched}`);
@@ -41,7 +35,7 @@ class Header extends React.Component {
         if(!loggedIn) {
             console.log('header'+loggedIn);
             return(null);
-        }else {
+        }else if(this.props.isManager) {
         return (
             <nav className="navbar navbar-inverse" id="header-nav">
                 <div className="container-fluid">
@@ -79,6 +73,25 @@ class Header extends React.Component {
                 </div>
             </nav>
         );
+    }
+    else if(!this.props.isManager){
+        <nav className="navbar navbar-inverse" id="header-nav">
+                <div className="container-fluid">
+                    <div className="navbar-header" id="header-first">
+                        <NavLink onClick={this.onClick} to={"/employeeIndex"}><img src={logo} id="logo"/></NavLink>
+                    </div>
+                        <ul className="nav navbar-nav" id="header-middle">
+                            <li className="home-link">
+                                <NavLink onClick={this.onNavClick} to={'/employeeIndex'} name="/employeeIndex" id="link-head" style={{color:'#2c87c4'}}>Home</NavLink>
+                            </li>
+                        </ul>
+                        <ul className="nav navbar-nav navbar-right" id="header-last"> 
+                           <NavLink onClick={this.logout} to={`/`} className="btn btn-info btn-lg" id="logout-btn"> 
+                                <span className="glyphicon glyphicon-log-out"></span> Logout
+                           </NavLink>
+                        </ul>
+                </div>
+            </nav>
     }
 }
 }

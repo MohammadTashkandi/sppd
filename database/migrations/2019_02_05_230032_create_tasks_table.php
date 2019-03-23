@@ -16,7 +16,7 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->Integer('Pid')->references('id')->on('Project')->onDelete('cascade') ; // foreign key for the Project
-            $table->Integer('PrID')->references('user_id')->on('Programmer')->defulit(null); // foreign key for the Project
+            $table->Integer('PrID')->references('user_id')->on('Programmer')->defulit(null)->onDelete('cascade'); // foreign key for the Project
             $table->string('title');
             $table->enum('status' , [ 'New-unassigned','New-assigned' , 'Progress' , 'Resolved' , 'Closed' , 'Reopened' , 'Deferred']);
             $table->enum('severity' , [ 'Feature','Trivial' , 'Text' , 'Tweak' , 'Minor' , 'Major' , 'Crash','Block)']);

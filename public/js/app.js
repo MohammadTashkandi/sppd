@@ -105354,8 +105354,6 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
       _this.setState(_defineProperty({}, e.target.name, e.target.value));
-
-      console.log(_this.state);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSubmit", function (event) {
@@ -106545,7 +106543,7 @@ function (_React$Component) {
           style: {
             color: '#ffc600',
             fontFamily: '"Poppins", sans-serif',
-            paddingTop: "4rem",
+            paddingTop: "3rem",
             paddingBottom: "2rem"
           }
         }, "Fill in Task Information"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -106607,15 +106605,19 @@ function (_React$Component) {
           value: "Crash"
         }, "Crash"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
           value: "Block"
-        }, "Block"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        }, "Block")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group",
+          id: "task-form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           className: "reg-form-label"
-        }, "Severity Description", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "reg-form-div"
         }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
             color: "red",
             fontWeight: "normal",
-            fontStyle: "italic"
+            fontStyle: "italic",
+            marginBottom: "2.5rem"
           }
         }, _this2.state.severityDesc))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group-add-prog"
@@ -106831,6 +106833,148 @@ function (_React$Component) {
   }]);
 
   return CreateTask;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/EmployeeCanvas.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/EmployeeCanvas.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EmployeeCanvas; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var EmployeeCanvas =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(EmployeeCanvas, _React$Component);
+
+  function EmployeeCanvas() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, EmployeeCanvas);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(EmployeeCanvas)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {});
+
+    return _this;
+  }
+
+  _createClass(EmployeeCanvas, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My canvas");
+    }
+  }]);
+
+  return EmployeeCanvas;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/EmployeeIndex.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/EmployeeIndex.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EmployeeIndex; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var EmployeeIndex =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(EmployeeIndex, _React$Component);
+
+  function EmployeeIndex() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, EmployeeIndex);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(EmployeeIndex)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {});
+
+    return _this;
+  }
+
+  _createClass(EmployeeIndex, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "hiiiiiii this is the page");
+    }
+  }]);
+
+  return EmployeeIndex;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 
@@ -107058,13 +107202,6 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "search", function (event) {
       event.preventDefault();
-      /* const searched = this.searchRef.current.value;
-      const currentURL = this.props.history.location.pathname;
-      const nextURL = event.currentTarget.name + '' + searched;
-      if(nextURL != currentURL){
-          window.location.reload();
-      } */
-
       var searched = _this.searchRef.current.value;
       _this.searchRef.current.value = '';
 
@@ -107101,7 +107238,7 @@ function (_React$Component) {
       if (!loggedIn) {
         console.log('header' + loggedIn);
         return null;
-      } else {
+      } else if (this.props.isManager) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
           className: "navbar navbar-inverse",
           id: "header-nav"
@@ -107179,6 +107316,45 @@ function (_React$Component) {
           className: "glyphicon glyphicon-search",
           id: "search-bar-icon"
         }))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "nav navbar-nav navbar-right",
+          id: "header-last"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
+          onClick: this.logout,
+          to: "/",
+          className: "btn btn-info btn-lg",
+          id: "logout-btn"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "glyphicon glyphicon-log-out"
+        }), " Logout"))));
+      } else if (!this.props.isManager) {
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+          className: "navbar navbar-inverse",
+          id: "header-nav"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "container-fluid"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "navbar-header",
+          id: "header-first"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
+          onClick: this.onClick,
+          to: "/employeeIndex"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: _LOGO2_png__WEBPACK_IMPORTED_MODULE_1___default.a,
+          id: "logo"
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "nav navbar-nav",
+          id: "header-middle"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "home-link"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
+          onClick: this.onNavClick,
+          to: '/employeeIndex',
+          name: "/employeeIndex",
+          id: "link-head",
+          style: {
+            color: '#2c87c4'
+          }
+        }, "Home"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "nav navbar-nav navbar-right",
           id: "header-last"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
@@ -107301,8 +107477,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _EmployeePage__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./EmployeePage */ "./resources/js/components/EmployeePage.js");
 /* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-notifications-component */ "./node_modules/react-notifications-component/dist/react-notifications-component.js");
 /* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-notifications-component/dist/theme.css */ "./node_modules/react-notifications-component/dist/theme.css");
-/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _EmployeeIndex__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./EmployeeIndex */ "./resources/js/components/EmployeeIndex.js");
+/* harmony import */ var _EmployeeCanvas__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./EmployeeCanvas */ "./resources/js/components/EmployeeCanvas.js");
+/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-notifications-component/dist/theme.css */ "./node_modules/react-notifications-component/dist/theme.css");
+/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_20__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -107350,6 +107528,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
 var Index =
 /*#__PURE__*/
 function (_React$Component) {
@@ -107371,6 +107551,7 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       infobar: "",
       loggedIn: localStorage.getItem('usertoken') != null,
+      isManager: true,
       projects: {},
       tasks: {}
     });
@@ -107407,12 +107588,39 @@ function (_React$Component) {
       console.log('editloggedin ' + _this.state.loggedIn);
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "editManager", function (isManager) {
+      _this.setState({
+        isManager: isManager
+      });
+
+      console.log('editisManager ' + _this.state.isManager);
+    });
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getProjects", function () {
       if (_this.state.loggedIn) {
         axios.get('api/findProject', {
           params: {
             /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
             PMid: localStorage.getItem('PMid')
+          }
+        }).then(function (res) {
+          if (res.status == 200) {
+            _this.setState({
+              projects: res.data
+            });
+          }
+        });
+      } else {
+        console.log('not logged in yet');
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getProgrammerProjects", function () {
+      if (_this.state.loggedIn) {
+        axios.get('api/findProgrammerProject', {
+          params: {
+            /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+            Pid: localStorage.getItem('Pid')
           }
         }).then(function (res) {
           if (res.status == 200) {
@@ -107472,21 +107680,24 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {
         loggedIn: this.state.loggedIn,
         editLoggedIn: this.editLoggedIn,
-        isSearchFull: this.isSearchFull,
-        searchFull: this.state.searchFull
+        isManager: this.state.isManager
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SideBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
         loggedIn: this.state.loggedIn,
         projects: this.state.projects,
         tasks: this.state.tasks,
         getProjects: this.getProjects,
+        getProgrammerProjects: this.getProgrammerProjects,
         getTasks: this.getTasks,
-        setInfobar: this.setInfobar
+        setInfobar: this.setInfobar,
+        isManager: this.state.isManager
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Login__WEBPACK_IMPORTED_MODULE_9__["default"], _extends({}, props, {
             editLoggedIn: _this2.editLoggedIn,
+            editManager: _this2.editManager,
+            isManager: _this2.state.isManager,
             addNotification: _this2.addNotification,
             loggedIn: _this2.state.loggedIn
           }));
@@ -107571,6 +107782,23 @@ function (_React$Component) {
         path: "/index/Task/:taskId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TaskPage__WEBPACK_IMPORTED_MODULE_15__["default"], _extends({}, props, {
+            infobar: _this2.state.infobar,
+            addNotification: _this2.addNotification
+          }));
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        exact: true,
+        path: "/employeeIndex",
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EmployeeIndex__WEBPACK_IMPORTED_MODULE_18__["default"], _extends({}, props, {
+            infobar: _this2.state.infobar,
+            addNotification: _this2.addNotification
+          }));
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/employeIndex/project/:projectId",
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EmployeeCanvas__WEBPACK_IMPORTED_MODULE_19__["default"], _extends({}, props, {
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
           }));
@@ -107672,19 +107900,21 @@ function (_React$Component) {
 
         if (res.status == 201) {
           localStorage.setItem('usertoken', res.data.token);
-          localStorage.setItem('PMid', res.data.PMid);
+          localStorage.setItem('PMid', res.data.id);
 
-          _this.props.editLoggedIn(true); //this.props.isManager(true);
-
+          _this.props.editLoggedIn(true);
 
           _this.props.history.push("/index");
-        }
-        /* else if(res.status==200){
-           localStorage.setItem('usertoken', res.data.token);
-           localStorage.setItem('Pid', res.data.Pid);
-           this.props.editLoggedIn(true);
-        } */
+        } else if (res.status == 200) {
+          localStorage.setItem('usertoken', res.data.token);
+          localStorage.setItem('Pid', res.data.Pid);
 
+          _this.props.editLoggedIn(true);
+
+          _this.props.editManager(false);
+
+          _this.props.history.push("/employeeIndex");
+        }
       }, {
         headers: {
           'Content-Type': 'application/json'
@@ -107704,9 +107934,21 @@ function (_React$Component) {
     value: function render() {
       if (this.props.loggedIn) {
         this.props.history.push("/index");
+      } else if (this.props.editLoggedIn && !this.props.isManager) {
+        this.props.history.push("/employeeIndex");
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        style: {
+          color: '#2c87c4',
+          fontFamily: '"Poppins", sans-serif',
+          fontStyle: 'italic',
+          marginLeft: '35rem',
+          fontSize: '4rem',
+          fontWeight: 'bolder',
+          marginTop: '5rem'
+        }
+      }, "Software Project Performance Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: _LOGO2_png__WEBPACK_IMPORTED_MODULE_2___default.a,
@@ -107715,13 +107957,7 @@ function (_React$Component) {
           height: '110px',
           marginTop: '3rem'
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        style: {
-          color: '#2c87c4',
-          fontFamily: '"Poppins", sans-serif',
-          fontStyle: 'italic'
-        }
-      }, "Software Project Performance Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.onSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
@@ -107771,7 +108007,7 @@ function (_React$Component) {
         style: {
           marginBottom: '2rem'
         }
-      }, "Make a new Account!")));
+      }, "Make a new Account!"))));
     }
   }]);
 
@@ -108365,9 +108601,15 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "changePath", function (key) {
-      _this.props.history.push("/index/project/".concat(key));
-      /* put / before project to make it work correctly */
+      if (_this.props.isManager) {
+        _this.props.history.push("/index/project/".concat(key));
+        /* put / before project to make it work correctly */
 
+      } else if (!_this.props.isManager) {
+        _this.props.history.push("/employeeIndex/project/".concat(key));
+        /* put / before project to make it work correctly */
+
+      }
     });
 
     return _this;
@@ -108376,7 +108618,11 @@ function (_React$Component) {
   _createClass(SideBar, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.getProjects();
+      if (this.props.isManager) {
+        this.props.getProjects();
+      } else if (!this.props.isManager) {
+        this.props.getProgrammerProjects();
+      }
     }
     /* componentDidUpdate(prevProps) {
       if(this.props.projects[0] !== prevProps.projects[0]) {
