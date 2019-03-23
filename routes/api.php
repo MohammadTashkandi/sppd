@@ -19,8 +19,9 @@ Route::post('login','UserController@login');
 Route::post('storeProject','ProjectController@store');
 Route::get('findProject','ProjectController@findProject');
 
-Route::get('findProgrammer','ProgrammerController@findProgrammer');
-Route::get('findEmployee','ProgrammerController@findEmployee');
+Route::get('findProgrammer','ProgrammerController@findProgrammer'); //for searching
+Route::get('autocompleteSearch','ProgrammerController@autocompleteSearch'); //for searching for programmer in create task
+Route::get('findEmployee','ProgrammerController@findEmployee'); //for assign task function
 Route::post('addProgrammer','ProgrammerController@store');
 
 Route::post('addTask','TaskController@store');

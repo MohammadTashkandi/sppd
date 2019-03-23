@@ -256,10 +256,7 @@ class ProgrammerController extends Controller
 
         return response()->json('Programmer added Successfully',200);
 
-
-
     }
-
 
     public function getProgrammerProjects(Request $request){
         $progId = $request['progID'];
@@ -267,12 +264,22 @@ class ProgrammerController extends Controller
         $programmer = Programmer::where('id' ,'=', '1')->get()->first()->projects;
 
         return response()->json($programmer,200);
-
-
     }
 
+    public function autocompleteSearch(Request $request){
 
+        $name = $request['name'];
+        $Pid = $request['Pid'];
 
+        $project = new Project();
+        $programmers = $project->find($Pid)->programmers();
+        $programmers = $programmers->where('first_name', 'like', '%' .$name. '%')->orWhere('last_name', 'like', '%' .$name. '%')->get();
 
+        if(count($programmers)>0){
+            return response()->json($programmers,200);
+        }
+
+        return response()->json(['Programmer not found'], 404);
+    }
 
 }

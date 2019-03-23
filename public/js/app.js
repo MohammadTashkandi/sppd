@@ -106424,6 +106424,10 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CreateTask)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "autocompleteRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "PrIdRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       title: "",
       PrId: "",
@@ -106432,11 +106436,63 @@ function (_React$Component) {
       tJud: "",
       tCu: "",
       tTech: "",
-      severityDesc: "Request for a new feature."
+      severityDesc: "Request for a new feature.",
+      query: "",
+      result: {}
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "autocompleteSearch", function () {
+      axios.get('api/autocompleteSearch', {
+        params: {
+          name: _this.state.query,
+          PMid: localStorage.getItem('PMid'),
+          Pid: _this.props.match.params.projectId
+        }
+      }).then(function (res) {
+        _this.setState({
+          result: res.data
+        });
+
+        console.log(_this.state.result);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSearchClick", function (employee) {
+      _this.setState({
+        PrId: employee.id
+      });
+
+      _this.PrIdRef.current.value = employee.first_name + ' ' + employee.last_name;
+      _this.autocompleteRef.current.style.display = "none";
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "displaySearchResult", function (key) {
+      var employee = _this.state.result[key];
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        key: key,
+        className: "autocomplete-entries",
+        onClick: function onClick() {
+          return _this.handleSearchClick(employee);
+        }
+      }, employee.first_name + ' ' + employee.last_name);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
       _this.setState(_defineProperty({}, e.target.name, e.target.value));
+
+      if ([e.target.name] == "PrId") {
+        _this.setState({
+          query: e.target.value
+        });
+
+        if (_this.state.query.length > 1) {
+          _this.autocompleteRef.current.style.display = "block";
+
+          _this.autocompleteSearch();
+        } else if (_this.PrIdRef.current.value == "") {
+          _this.autocompleteRef.current.style.display = "none";
+        }
+      }
 
       var option = e.target.value;
 
@@ -106510,6 +106566,7 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      var searchResult = Object.keys(this.state.result);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-bar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -106567,17 +106624,22 @@ function (_React$Component) {
           required: true
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           className: "reg-form-label"
-        }, "Programmer ID *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "Programmer *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "reg-form-div"
         }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           className: "form-control",
+          ref: _this2.PrIdRef,
           id: "form-control",
           type: "text",
           name: "PrId",
           placeholder: "Enter ID of programmer you wish to assign this task to",
           onChange: _this2.onChange,
-          required: true
-        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          required: true,
+          autocomplete: "off"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "autocomplete-result-box",
+          ref: _this2.autocompleteRef
+        }, searchResult.map(_this2.displaySearchResult)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group",
           id: "task-form-group"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
