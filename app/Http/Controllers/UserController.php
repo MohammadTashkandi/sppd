@@ -6,6 +6,7 @@ use App\Programmer;
 use App\ProjectManager;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -18,10 +19,10 @@ use Illuminate\Support\Facades\Validator;
 
    class UserController extends Controller {
 
-     public function register(Request $request){   
-    
+     public function register(Request $request){
+
       $email = $request['email'];
-      
+
       if(!(filter_var($email, FILTER_VALIDATE_EMAIL))) {
         return response()->json(['Incorrect email format entered!'], 401);
       }
@@ -56,10 +57,10 @@ use Illuminate\Support\Facades\Validator;
 
 
 
-     public function addProgrammer(Request $request){   
-    
+     public function addProgrammer(Request $request){
+
       $email = $request['email'];
-      
+
       if(!(filter_var($email, FILTER_VALIDATE_EMAIL))) {
         return response()->json(['Incorrect email format entered!'], 401);
       }
@@ -101,66 +102,68 @@ use Illuminate\Support\Facades\Validator;
 
      public function login(Request $request){
           $email = $request['email'];
+
       if(Programmer::where('email', '=' ,$email )->first()!= null ){
 
-        // $credentials = $request->json()->all();
+         $credentials = $request->json()->all();
+          $programmers = Programmer::all();
 
-        // try{
-          
-        //   if(! $token = JWTAuth::attempt($credentials)){
-        //     return response()->json(['error' => 'invalid credentials'], 400);
-        //   }
-        // }catch(JWTException $e){
-        //   return response()->json(['error' => 'could_not_create_token'], 500);
-        // }
-        
- 
-        // $PM = User::where('email',$request['email'])->first();
-        // $Programmer = Programmer::where('email',$request['email'])->first();
- 
- 
-        
-        // if( $PM  != null){
-        //   $id = $PM->id;
-        //  return response()->json(compact('token','id'),201);
-        // }
-        
-        // else if( $prpgrammer != null){
-        //  $id = $programmer->id;
-        //  return response()->json(compact('token','id'),200);
- 
-        // }
+         try{
+
+           if(! $token = Auth::guard('programmer')->attempt($credentials)){
+             return response()->json(['error' => 'invalid credentials'], 400);
+           }
+         }catch(JWTException $e){
+           return response()->json(['error' => 'could_not_create_token'], 500);
+         }
+
+
+         $PM = User::where('email',$request['email'])->first();
+         $Programmer = Programmer::where('email',$request['email'])->first();
+
+
+
+         if( $PM  != null){
+           $id = $PM->id;
+          return response()->json(compact('token','id'),201);
+         }
+
+         else if( $Programmer != null){
+          $id = $Programmer->id;
+          return response()->json(compact('token','id'),200);
+
+         }
 
 
 
       }elseif(User::where('email', '=' ,$email )->first()!= null){
-        
+
         $credentials = $request->json()->all();
 
         try{
-          
+
           if(! $token = JWTAuth::attempt($credentials)){
             return response()->json(['error' => 'invalid credentials'], 400);
           }
         }catch(JWTException $e){
           return response()->json(['error' => 'could_not_create_token'], 500);
         }
-        
- 
+
+
         $PM = User::where('email',$request['email'])->first();
         $Programmer = Programmer::where('email',$request['email'])->first();
- 
- 
-        
+
+
+
         if( $PM  != null){
           $id = $PM->id;
          return response()->json(compact('token','id'),201);
         }
-        
-        else if( $prpgrammer != null){
-         $id = $programmer->id;
+
+        else if( $Programmer != null){
+         $id = $Programmer->id;
          return response()->json(compact('token','id'),200);
- 
+
         }
 
       }
@@ -170,9 +173,9 @@ use Illuminate\Support\Facades\Validator;
 
 
 
-       
 
-       
+
+
 
 
      }
