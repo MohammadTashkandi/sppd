@@ -3,6 +3,10 @@ import {NavLink} from 'react-router-dom';
 import logo from '../../LOGO2.png';
 
 export default class Login extends React.Component {
+
+    usernameRef = React.createRef()
+    passRef = React.createRef()
+
     state = {
         username: "",
         password: ""
@@ -38,6 +42,8 @@ export default class Login extends React.Component {
         .catch((err) => {
             console.log(err.response);
             this.props.addNotification('Error', err.response.data.error, 'danger');
+            this.usernameRef.current.style.borderColor = 'red';
+            this.passRef.current.style.borderColor = 'red';
         })
 
     }
@@ -53,13 +59,13 @@ export default class Login extends React.Component {
                     <div className="form-group">
                         <label style={{color:'#ffc600' , textAlign:'left'}}>Username
                             <div style={{padding: '0.5rem'}}></div> {/* just to move stuff apart */}
-                            <input className="form-control" id="form-control" type="text" name="username" placeholder="Enter username" onChange={this.onChange} required />
+                            <input className="form-control" ref={this.usernameRef} id="form-control" type="text" name="username" placeholder="Enter username" onChange={this.onChange} required />
                         </label>
                     </div>
                     <div className="form-group">    
                         <label style={{color:'#ffc600' , textAlign:'left'}}>Password
                             <div style={{padding: '0.5rem'}}></div> {/* just to move stuff apart */}
-                            <input className="form-control" id="form-control" type="password" name="password" placeholder="Enter password" onChange={this.onChange} required />
+                            <input className="form-control" ref={this.passRef} id="form-control" type="password" name="password" placeholder="Enter password" onChange={this.onChange} required />
                         </label>
                     </div>
                         <button className="login-btn" type="submit">Login</button>
