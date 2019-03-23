@@ -108599,13 +108599,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! /Users/abdulwahedalhomaidhi/Desktop/sppdmain/sppd/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/abdulwahedalhomaidhi/Desktop/sppdmain/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
-=======
 __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
->>>>>>> 0b415bc17b7db2e52a971026ac9f2a8ff39d22c8
 
 
 /***/ })
