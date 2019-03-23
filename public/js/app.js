@@ -76428,7 +76428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -106422,6 +106422,10 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CreateTask)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "autocompleteRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "PrIdRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       title: "",
       PrId: "",
@@ -106430,11 +106434,61 @@ function (_React$Component) {
       tJud: "",
       tCu: "",
       tTech: "",
-      severityDesc: "Request for a new feature."
+      severityDesc: "Request for a new feature.",
+      query: "",
+      result: {}
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "autocompleteSearch", function () {
+      axios.get('api/autocompleteSearch', {
+        params: {
+          name: _this.state.query,
+          PMid: localStorage.getItem('PMid'),
+          Pid: _this.props.match.params.projectId
+        }
+      }).then(function (res) {
+        _this.setState({
+          result: res.data
+        });
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSearchClick", function (employee) {
+      _this.setState({
+        PrId: employee.id
+      });
+
+      _this.PrIdRef.current.value = employee.first_name + ' ' + employee.last_name;
+      _this.autocompleteRef.current.style.display = "none";
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "displaySearchResult", function (key) {
+      var employee = _this.state.result[key];
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        key: key,
+        className: "autocomplete-entries",
+        onClick: function onClick() {
+          return _this.handleSearchClick(employee);
+        }
+      }, employee.first_name + ' ' + employee.last_name);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
       _this.setState(_defineProperty({}, e.target.name, e.target.value));
+
+      if ([e.target.name] == "PrId") {
+        _this.setState({
+          query: e.target.value
+        });
+
+        if (_this.state.query.length > 1) {
+          _this.autocompleteRef.current.style.display = "block";
+
+          _this.autocompleteSearch();
+        } else if (_this.PrIdRef.current.value == "") {
+          _this.autocompleteRef.current.style.display = "none";
+        }
+      }
 
       var option = e.target.value;
 
@@ -106496,7 +106550,7 @@ function (_React$Component) {
           _this.props.history.push("/index/Task/".concat(res.data[1]));
         }
       }).catch(function (err) {
-        _this.props.addNotification('Error', err.response.data[0], 'danger');
+        _this.props.addNotification('Error', 'Please click on a name', 'warning');
       });
     });
 
@@ -106508,6 +106562,7 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      var searchResult = Object.keys(this.state.result);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-bar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -106565,17 +106620,22 @@ function (_React$Component) {
           required: true
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           className: "reg-form-label"
-        }, "Programmer ID *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "Programmer *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "reg-form-div"
         }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           className: "form-control",
+          ref: _this2.PrIdRef,
           id: "form-control",
           type: "text",
           name: "PrId",
           placeholder: "Enter ID of programmer you wish to assign this task to",
           onChange: _this2.onChange,
-          required: true
-        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          required: true,
+          autocomplete: "off"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "autocomplete-result-box",
+          ref: _this2.autocompleteRef
+        }, searchResult.map(_this2.displaySearchResult)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group",
           id: "task-form-group"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -107877,6 +107937,10 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Login)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "usernameRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "passRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       username: "",
       password: ""
@@ -107923,6 +107987,9 @@ function (_React$Component) {
         console.log(err.response);
 
         _this.props.addNotification('Error', err.response.data.error, 'danger');
+
+        _this.usernameRef.current.style.borderColor = 'red';
+        _this.passRef.current.style.borderColor = 'red';
       });
     });
 
@@ -107972,6 +108039,7 @@ function (_React$Component) {
         }
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
+        ref: this.usernameRef,
         id: "form-control",
         type: "text",
         name: "username",
@@ -107991,6 +108059,7 @@ function (_React$Component) {
         }
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
+        ref: this.passRef,
         id: "form-control",
         type: "password",
         name: "password",
@@ -108110,6 +108179,8 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "passRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "pass2Ref", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
       _this.setState(_defineProperty({}, e.target.name, e.target.value));
     });
@@ -108119,6 +108190,9 @@ function (_React$Component) {
 
       if (_this.state.password != _this.state.password2) {
         _this.props.addNotification('Error', 'Your Passwords Do Not Match!', 'danger');
+
+        _this.passRef.current.style.borderColor = 'red';
+        _this.pass2Ref.current.style.borderColor = 'red';
       } else {
         var newUser = {
           name: _this.state.name,
@@ -108142,6 +108216,7 @@ function (_React$Component) {
             _this.usernameRef.current.style.borderColor = 'red';
           } else if (err.response.status == 400) {
             _this.passRef.current.style.borderColor = 'red';
+            _this.pass2Ref.current.style.borderColor = 'red';
           }
 
           _this.props.addNotification('Error', err.response.data[0], 'danger');
@@ -108219,6 +108294,7 @@ function (_React$Component) {
         className: "reg-form-div"
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
+        ref: this.pass2Ref,
         id: "form-control",
         type: "password",
         name: "password2",
@@ -108774,8 +108850,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -166,11 +166,35 @@ use Illuminate\Support\Facades\Validator;
       }
       return response()->json(['error' => 'Wrong user '], 500);
 
+<<<<<<< HEAD
 
 
 
 
        
+=======
+         if(! $token = JWTAuth::attempt($credentials)){
+           return response()->json(['error' => 'invalid credentials'], 400);
+         }
+       }catch(JWTException $e){
+         return response()->json(['error' => 'could_not_create_token'], 500);
+       }
+       
+
+       $PMid = User::where('email',$request['email']) -> first() ->id;
+       $Pid = Programmer::where('email',$request['email']) -> first() ->id;
+
+
+
+       if( $PMid  != null){
+        return response()->json(compact('token','PMid'),201);
+       }
+       
+       else if( $Pid != null){
+        return response()->json(compact('token','Pid'),200);
+
+       }
+>>>>>>> 3c6df9dfed1b8e27ceca92896a76e9c8a1a1b60f
 
        
 

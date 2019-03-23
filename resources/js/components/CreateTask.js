@@ -4,6 +4,9 @@ import {Spring} from 'react-spring/renderprops';
 
 export default class CreateTask extends React.Component {
 
+    autocompleteRef = React.createRef();
+    PrIdRef = React.createRef();
+
     state={
         title: "",
         PrId: "",
@@ -12,11 +15,51 @@ export default class CreateTask extends React.Component {
         tJud: "",
         tCu: "",
         tTech: "",
-        severityDesc: "Request for a new feature."
+        severityDesc: "Request for a new feature.",
+
+        query: "",
+        result: {},
+    }
+
+    autocompleteSearch = () => {
+        axios.get('api/autocompleteSearch', {
+            params: {
+                name: this.state.query,
+                PMid: localStorage.getItem('PMid'),
+                Pid: this.props.match.params.projectId,
+            }
+        })
+        .then((res) => {
+            this.setState({result: res.data});
+        })
+    }
+
+    handleSearchClick = (employee) => {
+        this.setState({PrId: employee.id});
+        this.PrIdRef.current.value = employee.first_name +' '+ employee.last_name;
+        this.autocompleteRef.current.style.display = "none";
+    }
+
+    displaySearchResult = (key) => {
+        const employee = this.state.result[key];
+        return(
+            <span key={key} className="autocomplete-entries" onClick={()=> this.handleSearchClick(employee)}>{employee.first_name +' '+ employee.last_name}</span>
+        );
     }
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
+
+        if([e.target.name] == "PrId") {
+            this.setState({query: e.target.value})
+            if(this.state.query.length>1) {
+                this.autocompleteRef.current.style.display = "block";
+                this.autocompleteSearch()
+            } else if(this.PrIdRef.current.value == "") {   
+                this.autocompleteRef.current.style.display = "none";
+            }
+        }
+
         const option = e.target.value;
         if(option == "Trivial"){
             this.setState({severityDesc : "Nitpicky; disagreement with wording, colors textures etc."})
@@ -66,11 +109,12 @@ export default class CreateTask extends React.Component {
             }
         })
         .catch((err) => {
-            this.props.addNotification('Error', err.response.data[0], 'danger');
+            this.props.addNotification('Error', 'Please click on a name', 'warning');
         })
     }
 
     render() {
+        const searchResult = Object.keys(this.state.result);
         return(
             <React.Fragment>
             <div className="info-bar">
@@ -98,9 +142,10 @@ export default class CreateTask extends React.Component {
                                     <input className="form-control" id="form-control" type="text" name="title" placeholder="Enter task name" onChange={this.onChange} required />
                             </label>
 
-                            <label className="reg-form-label">Programmer ID *
+                            <label className="reg-form-label">Programmer *
                                 <div className="reg-form-div"></div> {/* just to move stuff apart */}
-                                <input className="form-control" id="form-control" type="text" name="PrId" placeholder="Enter ID of programmer you wish to assign this task to" onChange={this.onChange} required />
+                                <input className="form-control" ref={this.PrIdRef} id="form-control" type="text" name="PrId" placeholder="Enter ID of programmer you wish to assign this task to" onChange={this.onChange} required autocomplete="off" />
+                                <div className="autocomplete-result-box" ref={this.autocompleteRef}>{searchResult.map(this.displaySearchResult)}</div>
                             </label>
                         </div>
                         <div className="form-group" id="task-form-group">

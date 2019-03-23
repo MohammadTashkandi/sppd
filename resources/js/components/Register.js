@@ -15,6 +15,7 @@ export default class Register extends React.Component {
 
     usernameRef = React.createRef();
     passRef = React.createRef();
+    pass2Ref = React.createRef();
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -24,6 +25,8 @@ export default class Register extends React.Component {
         event.preventDefault();
         if(this.state.password != this.state.password2){
             this.props.addNotification('Error', 'Your Passwords Do Not Match!', 'danger');
+            this.passRef.current.style.borderColor = 'red';
+            this.pass2Ref.current.style.borderColor = 'red';
         }else{
                 const newUser = {
                     name: this.state.name,
@@ -46,6 +49,7 @@ export default class Register extends React.Component {
                     this.usernameRef.current.style.borderColor = 'red';
                 } else if(err.response.status == 400) {
                     this.passRef.current.style.borderColor = 'red';
+                    this.pass2Ref.current.style.borderColor = 'red';
                 }
                 this.props.addNotification('Error', err.response.data[0], 'danger');
             })
@@ -77,7 +81,7 @@ export default class Register extends React.Component {
 
                         <label className="reg-form-label">Confirm Password *
                             <div className="reg-form-div"></div> {/* just to move stuff apart */}
-                            <input className="form-control" id="form-control" type="password" name="password2" placeholder="Confirm Password" onChange={this.onChange} required />
+                            <input className="form-control" ref={this.pass2Ref} id="form-control" type="password" name="password2" placeholder="Confirm Password" onChange={this.onChange} required />
                         </label>
                     </div>
                     <div className="form-group">            

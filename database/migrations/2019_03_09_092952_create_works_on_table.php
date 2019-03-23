@@ -13,7 +13,7 @@ class CreateWorksOnTable extends Migration
      */
     public function up()
     {
-        Schema::create('works_ons', function (Blueprint $table) {
+        Schema::create('works_on', function (Blueprint $table) {
             $table->unsignedInteger('Programmer_id');
             $table->unsignedInteger('Project_id');
             $table->foreign('Programmer_id')->references('id')->on('programmers')->onDelete('cascade');
@@ -29,6 +29,6 @@ class CreateWorksOnTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('works_ons');
+        Schema::dropIfExists('works_on');
     }
 }
