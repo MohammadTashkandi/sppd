@@ -31,7 +31,6 @@ export default class CreateTask extends React.Component {
         })
         .then((res) => {
             this.setState({result: res.data});
-            console.log(this.state.result);
         })
     }
 
@@ -110,7 +109,7 @@ export default class CreateTask extends React.Component {
             }
         })
         .catch((err) => {
-            this.props.addNotification('Error', err.response.data[0], 'danger');
+            this.props.addNotification('Error', 'Please click on a name', 'warning');
         })
     }
 

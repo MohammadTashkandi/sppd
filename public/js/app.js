@@ -106452,8 +106452,6 @@ function (_React$Component) {
         _this.setState({
           result: res.data
         });
-
-        console.log(_this.state.result);
       });
     });
 
@@ -106554,7 +106552,7 @@ function (_React$Component) {
           _this.props.history.push("/index/Task/".concat(res.data[1]));
         }
       }).catch(function (err) {
-        _this.props.addNotification('Error', err.response.data[0], 'danger');
+        _this.props.addNotification('Error', 'Please click on a name', 'warning');
       });
     });
 
