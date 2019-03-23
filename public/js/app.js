@@ -107649,6 +107649,10 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Login)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "usernameRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "passRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       username: "",
       password: ""
@@ -107686,6 +107690,9 @@ function (_React$Component) {
         console.log(err.response);
 
         _this.props.addNotification('Error', err.response.data.error, 'danger');
+
+        _this.usernameRef.current.style.borderColor = 'red';
+        _this.passRef.current.style.borderColor = 'red';
       });
     });
 
@@ -107729,6 +107736,7 @@ function (_React$Component) {
         }
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
+        ref: this.usernameRef,
         id: "form-control",
         type: "text",
         name: "username",
@@ -107748,6 +107756,7 @@ function (_React$Component) {
         }
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
+        ref: this.passRef,
         id: "form-control",
         type: "password",
         name: "password",
@@ -107867,6 +107876,8 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "passRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "pass2Ref", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
       _this.setState(_defineProperty({}, e.target.name, e.target.value));
     });
@@ -107876,6 +107887,9 @@ function (_React$Component) {
 
       if (_this.state.password != _this.state.password2) {
         _this.props.addNotification('Error', 'Your Passwords Do Not Match!', 'danger');
+
+        _this.passRef.current.style.borderColor = 'red';
+        _this.pass2Ref.current.style.borderColor = 'red';
       } else {
         var newUser = {
           name: _this.state.name,
@@ -107899,6 +107913,7 @@ function (_React$Component) {
             _this.usernameRef.current.style.borderColor = 'red';
           } else if (err.response.status == 400) {
             _this.passRef.current.style.borderColor = 'red';
+            _this.pass2Ref.current.style.borderColor = 'red';
           }
 
           _this.props.addNotification('Error', err.response.data[0], 'danger');
@@ -107976,6 +107991,7 @@ function (_React$Component) {
         className: "reg-form-div"
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
+        ref: this.pass2Ref,
         id: "form-control",
         type: "password",
         name: "password2",
@@ -108521,8 +108537,13 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! /Users/abdulwahedalhomaidhi/Desktop/sppdmain/sppd/resources/js/app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! /Users/abdulwahedalhomaidhi/Desktop/sppdmain/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
+>>>>>>> 0b415bc17b7db2e52a971026ac9f2a8ff39d22c8
 
 
 /***/ })
