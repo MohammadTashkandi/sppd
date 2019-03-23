@@ -13,4 +13,12 @@ class Project extends Model
 
     public $timestamps = false;
 
+
+
+
+    public function programmers()
+    {
+        return $this->belongsToMany(Programmer::class , 'works_on' , 'project_id','programmer_id');
+    }
+
 }

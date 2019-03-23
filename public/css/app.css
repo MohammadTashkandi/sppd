@@ -11137,3 +11137,39 @@ a#visit-page:hover {
   text-decoration: none;
 }
 
+.grid-item-profile {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 600;
+  text-align: center;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.753);
+  box-shadow: -2px 2px 10px lightgray;
+}
+
+.profile-info {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.6rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.form-task-prog {
+  margin-top: 3rem;
+  margin-left: 48rem;
+  margin-right: 18rem;
+  text-align: center;
+  background-color: #0d3a58;
+  border-radius: 20px;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+#add-task {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+#task-form-group {
+  margin-bottom: 3rem;
+}
+

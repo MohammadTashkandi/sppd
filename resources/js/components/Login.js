@@ -42,6 +42,9 @@ export default class Login extends React.Component {
 
     }
     render() {
+        if(this.props.loggedIn) {
+            this.props.history.push(`/index`);
+        }
         return(
             <div className="form">
                 <img src={logo} style={{width:'170px', height:'110px', marginTop:'3rem'}} />

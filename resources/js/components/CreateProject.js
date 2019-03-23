@@ -28,7 +28,7 @@ export default class CreateProject extends React.Component {
         })
         
     }
-
+    
     render() {
         return(
             <Spring from={{opacity:0 , marginTop: -500}} // you must wrap the part of the component you want animated in this spring syntax

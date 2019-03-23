@@ -44,13 +44,13 @@ export default class AssignEmployee extends React.Component {
                     {props => (
                         <div style={props}>
                             <div className="grid-search-container">
-                                <div className="grid-assign-item" id="grid"> {/* add + key to id to make it dynamic */}
+                                <div className="grid-assign-item" id="grid">
                                     <div className="assign-tag">{tag}</div>
                                     <div className="assign-name">{name}</div>
                                     <div className="assign-id">{this.state.programmers[key].id}</div>
                                     <div className="assign-button">
-                                        {/* name={key} */}
-                                        <button type="submit" onClick={this.assignEmp} name={key} className="btn btn-default btn-sm" id="assign-emp">
+                                        {/* name={id of programmer} */}
+                                        <button type="submit" onClick={this.assignEmp} name={this.state.programmers[key].id} className="btn btn-default btn-sm" id="assign-emp">
                                              +
                                         </button>
                                     </div>
@@ -72,7 +72,7 @@ export default class AssignEmployee extends React.Component {
         })
         .then((res) => {
             console.log(res);
-            if(res.status==201) {
+            if(res.status==200) {
                 this.props.addNotification('Success', 'Added Employee to the Project!', 'success')
                 this.getProgrammers();
             }

@@ -22,11 +22,11 @@ use Illuminate\Support\Facades\Validator;
       $email = $request['email'];
       
       if(!(filter_var($email, FILTER_VALIDATE_EMAIL))) {
-        return response()->json(['Incorrect email format entered!'], 400);
+        return response()->json(['Incorrect email format entered!'], 401);
       }
 
       if (User::where('email', '=', $email)->exists()) {
-             return response()->json(['Email already used'], 400);
+             return response()->json(['Email already used'], 401);
       }
 
       $pass = $request['password'];

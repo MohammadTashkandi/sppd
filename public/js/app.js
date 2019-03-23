@@ -105854,7 +105854,7 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-assign-item",
           id: "grid"
-        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "assign-tag"
         }, tag), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "assign-name"
@@ -105865,7 +105865,7 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "submit",
           onClick: _this.assignEmp,
-          name: key,
+          name: _this.state.programmers[key].id,
           className: "btn btn-default btn-sm",
           id: "assign-emp"
         }, "+")))));
@@ -105881,7 +105881,7 @@ function (_React$Component) {
       }).then(function (res) {
         console.log(res);
 
-        if (res.status == 201) {
+        if (res.status == 200) {
           _this.props.addNotification('Success', 'Added Employee to the Project!', 'success');
 
           _this.getProgrammers();
@@ -106112,7 +106112,8 @@ function (_React$Component) {
               display: true,
               text: 'Task Duration',
               //this should also be dynamic
-              fontSize: 25
+              fontSize: 25,
+              fontFamily: '"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
             },
             legend: {
               //this should also be dynamic
@@ -106379,6 +106380,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -106398,6 +106401,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -106504,6 +106508,8 @@ function (_React$Component) {
   _createClass(CreateTask, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-bar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -106517,304 +106523,473 @@ function (_React$Component) {
         style: {
           margin: '0'
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: "create-task-form",
-        onSubmit: this.onSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        className: "create-task-header"
-      }, "Task info"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "task-form-label"
-      }, "Task name *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-form-div"
-      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        style: {
-          width: '40rem'
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__["Spring"], {
+        from: {
+          opacity: 0,
+          marginTop: -500
+        } // you must wrap the part of the component you want animated in this spring syntax
+        ,
+        to: {
+          opacity: 1,
+          marginTop: 0
         },
-        className: "form-control",
-        id: "form-control",
-        type: "text",
-        name: "title",
-        placeholder: "Enter task name",
-        onChange: this.onChange,
-        required: true
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "task-form-label"
-      }, "Programmer ID *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-form-div"
-      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        style: {
-          width: '40rem'
-        },
-        className: "form-control",
-        id: "form-control",
-        type: "text",
-        name: "PrId",
-        placeholder: "Enter ID of programmer you wish to assign this task to",
-        onChange: this.onChange,
-        required: true
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "task-form-label"
-      }, "Severity *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-form-div"
-      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-        style: {
-          width: '40rem'
-        },
-        className: "form-control",
-        id: "form-control",
-        name: "severity",
-        placeholder: "Enter severity level",
-        onChange: this.onChange,
-        required: true
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "Feature"
-      }, "Feature"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "Trivial"
-      }, "Trivial"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "Text"
-      }, "Text"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "Tweak"
-      }, "Tweak"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "Minor"
-      }, "Minor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "Major"
-      }, "Major"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "Crash"
-      }, "Crash"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "Block"
-      }, "Block"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "task-form-label"
-      }, "Severity Description", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-form-div"
-      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          color: "red",
-          fontWeight: "normal",
-          fontStyle: "italic"
+        config: {
+          duration: 750
         }
-      }, this.state.severityDesc))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-        className: "task-detail-seperator"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        className: "create-task-header"
-      }, "Performance requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-form-div"
-      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "task-span"
-      }, "Stress level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tStr",
-        value: "1",
-        required: true
-      }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tStr",
-        value: "2",
-        required: true
-      }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tStr",
-        value: "3",
-        required: true
-      }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tStr",
-        value: "4",
-        required: true
-      }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tStr",
-        value: "5",
-        required: true
-      }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-form-div"
-      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "task-span"
-      }, "Judgement level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tJud",
-        value: "1",
-        required: true
-      }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tJud",
-        value: "2",
-        required: true
-      }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tJud",
-        value: "3",
-        required: true
-      }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tJud",
-        value: "4",
-        required: true
-      }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tJud",
-        value: "5",
-        required: true
-      }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-form-div"
-      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "task-span"
-      }, "Communication level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tCu",
-        value: "1",
-        required: true
-      }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tCu",
-        value: "2",
-        required: true
-      }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tCu",
-        value: "3",
-        required: true
-      }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tCu",
-        value: "4",
-        required: true
-      }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tCu",
-        value: "5",
-        required: true
-      }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-form-div"
-      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "task-span"
-      }, "Technical level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tTech",
-        value: "1",
-        required: true
-      }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tTech",
-        value: "2",
-        required: true
-      }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tTech",
-        value: "3",
-        required: true
-      }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tTech",
-        value: "4",
-        required: true
-      }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "task-radio"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.onChange,
-        className: "radio-inline",
-        type: "radio",
-        name: "tTech",
-        value: "5",
-        required: true
-      }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "login-btn",
-        type: "submit",
-        style: {
-          marginLeft: '42rem'
-        }
-      }, "Add task")));
+      }, function (props) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: props
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-task-prog"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+          style: {
+            color: '#ffc600',
+            fontFamily: '"Poppins", sans-serif',
+            paddingTop: "4rem",
+            paddingBottom: "2rem"
+          }
+        }, "Fill in Task Information"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          onSubmit: _this2.onSubmit
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group",
+          id: "task-form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "reg-form-label"
+        }, "Task name *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "reg-form-div"
+        }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-control",
+          id: "form-control",
+          type: "text",
+          name: "title",
+          placeholder: "Enter task name",
+          onChange: _this2.onChange,
+          required: true
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "reg-form-label"
+        }, "Programmer ID *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "reg-form-div"
+        }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-control",
+          id: "form-control",
+          type: "text",
+          name: "PrId",
+          placeholder: "Enter ID of programmer you wish to assign this task to",
+          onChange: _this2.onChange,
+          required: true
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group",
+          id: "task-form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "reg-form-label"
+        }, "Severity *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "reg-form-div"
+        }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+          className: "form-control",
+          id: "form-control",
+          name: "severity",
+          placeholder: "Enter severity level",
+          onChange: _this2.onChange,
+          required: true
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "Feature"
+        }, "Feature"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "Trivial"
+        }, "Trivial"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "Text"
+        }, "Text"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "Tweak"
+        }, "Tweak"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "Minor"
+        }, "Minor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "Major"
+        }, "Major"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "Crash"
+        }, "Crash"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: "Block"
+        }, "Block"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "reg-form-label"
+        }, "Severity Description", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "reg-form-div"
+        }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            color: "red",
+            fontWeight: "normal",
+            fontStyle: "italic"
+          }
+        }, _this2.state.severityDesc))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group-add-prog"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-form-div-add-prog"
+        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "task-span"
+        }, "Stress level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tStr",
+          value: "1",
+          required: true
+        }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tStr",
+          value: "2",
+          required: true
+        }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tStr",
+          value: "3",
+          required: true
+        }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tStr",
+          value: "4",
+          required: true
+        }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tStr",
+          value: "5",
+          required: true
+        }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group-add-prog"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-form-div-add-prog"
+        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "task-span"
+        }, "Judgement level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tJud",
+          value: "1",
+          required: true
+        }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tJud",
+          value: "2",
+          required: true
+        }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tJud",
+          value: "3",
+          required: true
+        }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tJud",
+          value: "4",
+          required: true
+        }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tJud",
+          value: "5",
+          required: true
+        }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group-add-prog"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-form-div-add-prog"
+        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "task-span"
+        }, "Communication level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tCu",
+          value: "1",
+          required: true
+        }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tCu",
+          value: "2",
+          required: true
+        }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tCu",
+          value: "3",
+          required: true
+        }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tCu",
+          value: "4",
+          required: true
+        }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tCu",
+          value: "5",
+          required: true
+        }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group-add-prog"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-form-div-add-prog"
+        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "task-span"
+        }, "Technical level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tTech",
+          value: "1",
+          required: true
+        }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tTech",
+          value: "2",
+          required: true
+        }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tTech",
+          value: "3",
+          required: true
+        }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tTech",
+          value: "4",
+          required: true
+        }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "tTech",
+          value: "5",
+          required: true
+        }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "login-btn",
+          type: "submit",
+          id: "add-task"
+        }, "Add task"))));
+      }));
     }
   }]);
 
   return CreateTask;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/EmployeePage.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/EmployeePage.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EmployeePage; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+var EmployeePage =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(EmployeePage, _React$Component);
+
+  function EmployeePage() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, EmployeePage);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(EmployeePage)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      barData: {
+        //the data here should also be dynamic depending on what the PM wants to see
+        labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
+        datasets: [//here you mostly fill the data of the graph
+        {
+          // this is an object that you fill in each point in the graph
+          label: '',
+          data: [1, 3, 5, 4],
+          backgroundColor: 'rgb(247, 199, 111, 0.4)',
+          borderColor: 'orange'
+        }]
+      }
+    });
+
+    return _this;
+  }
+
+  _createClass(EmployeePage, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "canvas-background"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "info-bar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "decorative-box"
+      }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-page"
+      }, "Employee's Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-text"
+      }, this.props.infobar)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "hr",
+        style: {
+          margin: '0'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__["Spring"], {
+        from: {
+          opacity: 0
+        } // you must wrap the part of the component you want animated in this spring syntax
+        ,
+        to: {
+          opacity: 1
+        },
+        config: {
+          duration: 750
+        }
+      }, function (props) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: props
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Radar"], {
+          height: "270",
+          width: "665" //everything here can be dynamic depending on results 
+          ,
+          data: _this2.state.barData //this should alawys be dynamic   
+          ,
+          options: {
+            legend: {
+              display: false
+            },
+            title: {
+              display: true,
+              text: 'Personal Performance Measures',
+              //this should also be dynamic
+              fontSize: 25
+            },
+            scale: {
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          }
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item-profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Personal Information:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info"
+        }, "name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info"
+        }, "id"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info"
+        }, "email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info"
+        }, "number"))));
+      }));
+    }
+  }]);
+
+  return EmployeePage;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 
@@ -107123,10 +107298,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddProgrammer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./AddProgrammer */ "./resources/js/components/AddProgrammer.js");
 /* harmony import */ var _AssignEmployee__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./AssignEmployee */ "./resources/js/components/AssignEmployee.js");
 /* harmony import */ var _TaskPage__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./TaskPage */ "./resources/js/components/TaskPage.js");
-/* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-notifications-component */ "./node_modules/react-notifications-component/dist/react-notifications-component.js");
-/* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-notifications-component/dist/theme.css */ "./node_modules/react-notifications-component/dist/theme.css");
-/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _EmployeePage__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./EmployeePage */ "./resources/js/components/EmployeePage.js");
+/* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-notifications-component */ "./node_modules/react-notifications-component/dist/react-notifications-component.js");
+/* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-notifications-component/dist/theme.css */ "./node_modules/react-notifications-component/dist/theme.css");
+/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_18__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -107154,6 +107330,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   /Applications/Development/projects/laravelProjects/sppd/sppd
   */
 }
+
 
 
 
@@ -107286,12 +107463,11 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var key = Math.random() * 1000;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           maxHeight: '100vh'
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_notifications_component__WEBPACK_IMPORTED_MODULE_16___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_notifications_component__WEBPACK_IMPORTED_MODULE_17___default.a, {
         ref: this.notificationRef
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {
         loggedIn: this.state.loggedIn,
@@ -107311,7 +107487,8 @@ function (_React$Component) {
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Login__WEBPACK_IMPORTED_MODULE_9__["default"], _extends({}, props, {
             editLoggedIn: _this2.editLoggedIn,
-            addNotification: _this2.addNotification
+            addNotification: _this2.addNotification,
+            loggedIn: _this2.state.loggedIn
           }));
         }
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
@@ -107352,6 +107529,14 @@ function (_React$Component) {
         path: "/index/project/:projectId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Canvas__WEBPACK_IMPORTED_MODULE_6__["default"], _extends({}, props, {
+            infobar: _this2.state.infobar,
+            addNotification: _this2.addNotification
+          }));
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/index/employeePage/:id",
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EmployeePage__WEBPACK_IMPORTED_MODULE_16__["default"], _extends({}, props, {
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
           }));
@@ -107510,6 +107695,10 @@ function (_React$Component) {
   _createClass(Login, [{
     key: "render",
     value: function render() {
+      if (this.props.loggedIn) {
+        this.props.history.push("/index");
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -107674,6 +107863,10 @@ function (_React$Component) {
       age: ""
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "usernameRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "passRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
       _this.setState(_defineProperty({}, e.target.name, e.target.value));
     });
@@ -107702,6 +107895,12 @@ function (_React$Component) {
             _this.props.history.push("/");
           }
         }).catch(function (err) {
+          if (err.response.status == 401) {
+            _this.usernameRef.current.style.borderColor = 'red';
+          } else if (err.response.status == 400) {
+            _this.passRef.current.style.borderColor = 'red';
+          }
+
           _this.props.addNotification('Error', err.response.data[0], 'danger');
         });
       }
@@ -107749,6 +107948,7 @@ function (_React$Component) {
         className: "reg-form-div"
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
+        ref: this.usernameRef,
         id: "form-control",
         type: "text",
         name: "email",
@@ -107763,6 +107963,7 @@ function (_React$Component) {
         className: "reg-form-div"
       }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "form-control",
+        ref: this.passRef,
         id: "form-control",
         type: "password",
         name: "password",
@@ -107853,6 +108054,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
 /* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -107872,6 +108074,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -107963,7 +108166,8 @@ function (_React$Component) {
           className: "search-id"
         }, _this.state.programmers[key].id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "search-button"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["NavLink"], {
+          to: "/index/employeePage/".concat(_this.state.programmers[key].id),
           className: "btn btn-default btn-sm",
           id: "visit-page"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {

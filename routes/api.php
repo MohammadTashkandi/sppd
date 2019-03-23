@@ -26,7 +26,7 @@ Route::post('addProgrammer','ProgrammerController@store');
 Route::post('addTask','TaskController@store');
 Route::get('getTasks','TaskController@getTasks');
 
-//Route::post('assignEmployee','Works_OnController@store'); im not sure where the controller for works on is so please fix this
+Route::post('assignEmployee','ProgrammerController@assignEmployee');
 
 
 //Route::post('register','UserController@getAuthenticatedUser');

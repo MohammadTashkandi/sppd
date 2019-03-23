@@ -217,4 +217,62 @@ class ProgrammerController extends Controller
 
 
     }
+
+
+    public function findEmployee(Request $request){
+        $PMid = $request['PMid'];
+        $Pid = $request['Pid'];
+
+
+        $programmers = Programmer::where('PMid' , '=' , $PMid)->get(); // all programmers for this project manager
+        $project = new Project();
+        $projectProgrammers = $project->find($Pid)->programmers;// all programmers in this project
+
+        $result = $programmers->diff($projectProgrammers); // all programmer - programmers in this project
+
+        return response()->json($result,200);
+
+    }
+
+
+    public function assignEmployee(Request $request){
+
+        $ProgId = $request['id'];
+        $PId = $request['Pid'];
+
+
+        $project = new Project();
+
+        $programmerOnProject = $project->find($PId)->programmers()->find($ProgId);
+
+        if ($programmerOnProject != null)  {
+
+            return response()->json(['Programmer already in the project'], 404);
+        }
+
+
+
+        $project = $project->find($PId)->programmers()->attach($ProgId);
+
+        return response()->json('Programmer added Successfully',200);
+
+
+
+    }
+
+
+    public function getProgrammerProjects(Request $request){
+        $progId = $request['progID'];
+
+        $programmer = Programmer::where('id' ,'=', '1')->get()->first()->projects;
+
+        return response()->json($programmer,200);
+
+
+    }
+
+
+
+
+
 }
