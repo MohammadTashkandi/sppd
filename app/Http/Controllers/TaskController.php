@@ -142,4 +142,34 @@ class TaskController extends Controller
     }
 
 
+    public function getDurationTasks(Request $request){
+
+        // $Pid= $request['Pid'];
+        //$getTask = Task::where('id',$Pid)->pluck('Open_state','Assigned_state');
+        
+       // $openSt = $task['Open_state'];
+       // $assingedSt = $task['Assigned_state'];
+       // $theDiff =  $openSt->diff($assingedSt)->format('%H:%I:%S');
+
+      // $theDiff = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $theDiff);
+      // sscanf($theDiff, "%d:%d:%d", $hours, $minutes, $seconds);
+      // $theDiff_sec = $hours * 3600 + $minutes * 60 + $seconds;
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+    }
+
 }
