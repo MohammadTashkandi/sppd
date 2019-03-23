@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Validator;
 
    class UserController extends Controller {
 
-     public function register(Request $request){      
+     public function register(Request $request){   
+    
       $email = $request['email'];
       
       if(!(filter_var($email, FILTER_VALIDATE_EMAIL))) {
@@ -47,6 +48,7 @@ use Illuminate\Support\Facades\Validator;
        ]);
 
       $token = JWTAuth::fromUser($user);
+
       return response()->json(compact('user', 'token'),201);
      }
 
@@ -61,8 +63,23 @@ use Illuminate\Support\Facades\Validator;
        }catch(JWTException $e){
          return response()->json(['error' => 'could_not_create_token'], 500);
        }
+       
+
        $PMid = User::where('email',$request['email']) -> first() ->id;
-       return response()->json(compact('token','PMid'),201);
+       $Pid = Programmer::where('email',$request['email']) -> first() ->id;
+
+
+
+       if( $PMid  != null){
+        return response()->json(compact('token','PMid'),201);
+       }
+       
+       else if( $Pid != null){
+        return response()->json(compact('token','Pid'),200);
+
+       }
+
+       
 
 
      }
