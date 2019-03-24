@@ -19,6 +19,7 @@ class CreateProjectsTable extends Migration
             $table->string('title');
             $table->dateTime('Start_Date');
             $table->dateTime('Closed_Date')->nullable();
+            $table->dateTime('Planned_Closed_Date')->nullable();
         });
     }
 

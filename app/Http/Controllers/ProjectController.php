@@ -55,7 +55,6 @@ class ProjectController extends Controller
     {
         //
         $user = Auth::user();
-        $current = Carbon::now();
         $pro = new Project();
         $title = $request['title'];
         $PMid = $request['PMid'];
@@ -64,7 +63,8 @@ class ProjectController extends Controller
         }
         $pro->title = $title;
         $pro->PMid = $PMid;
-        $pro->Start_Date = $current;
+        $pro->Start_Date = $request['start'];
+        $pro->Planned_Closed_Date = $request['end'];
         $pro->save();
 
         $id = $pro['id'];
