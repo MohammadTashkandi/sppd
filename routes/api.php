@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 */
 Route::post('register','UserController@register');
 Route::post('login','UserController@login');
+Route::post('addProgrammer','UserController@addProgrammer');
 
 Route::post('storeProject','ProjectController@store');
 Route::get('findProject','ProjectController@findProject');
@@ -22,7 +23,6 @@ Route::get('findProject','ProjectController@findProject');
 Route::get('findProgrammer','ProgrammerController@findProgrammer'); //for searching
 Route::get('autocompleteSearch','ProgrammerController@autocompleteSearch'); //for searching for programmer in create task
 Route::get('findEmployee','ProgrammerController@findEmployee'); //for assign task function
-Route::post('addProgrammer','ProgrammerController@store');
 
 Route::post('addTask','TaskController@store');
 Route::get('getTasks','TaskController@getTasks');

@@ -76,8 +76,8 @@ use Illuminate\Support\Facades\Validator;
       }
 
        $programmer = Programmer::create([
-        'first_name' => $request->json()->get('first_name'),
-        'last_name' => $request->json()->get('last_name'),
+        'first_name' => $request->json()->get('firstName'),
+        'last_name' => $request->json()->get('lastName'),
         'email' => $request->json()->get('email'),
         'password' => Hash::make($request->json()->get('password')),
         'nationality' => $request->json()->get('nationality'),
@@ -87,6 +87,7 @@ use Illuminate\Support\Facades\Validator;
         'pCu' => $request->json()->get('pCu'),
         'pTech' => $request->json()->get('pTech'),
         'PMid' => $request->json()->get('PMid'),
+        'phone_number' => $request->json()->get('phonenumber'),
        ]);
 
       $token = JWTAuth::fromUser($programmer);
