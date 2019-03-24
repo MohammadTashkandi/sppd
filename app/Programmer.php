@@ -14,7 +14,7 @@ class Programmer extends Authenticatable implements JWTSubject
 {
     //
 
-    use Notifiable;
+//    use Notifiable;
 
     protected $guard = 'programmer';
 
@@ -24,8 +24,8 @@ class Programmer extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name' , 'email', 'password', 'nationality', 'age', 'pStr', 'pJud', 'PCu', 'pTech','PMid','Pid',
-        'numOfTasks','pStrSum','pJudSum','pCuSum','pTechSum',
+        'first_name', 'last_name' , 'email', 'password', 'nationality', 'age', 'pStr', 'pJud', 'PCu', 'pTech','PMid',
+        'numOfTasks','pStrSum','pJudSum','pCuSum','pTechSum','phone_number','numOfTasks','pStrSum','pJudSum','pCuSum','pTechSum',
 
     ];
 
@@ -37,6 +37,8 @@ class Programmer extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
     public function getJWTIdentifier(){
 
         return $this->getKey();
