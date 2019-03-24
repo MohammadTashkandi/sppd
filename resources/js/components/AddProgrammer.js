@@ -1,5 +1,5 @@
 import React from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import {Spring} from 'react-spring/renderprops';
 
 export default class AddProgrammer extends React.Component {
@@ -38,8 +38,8 @@ export default class AddProgrammer extends React.Component {
             pCu: this.state.pCu,
             pTech: this.state.pTech,
         };
-
-        Axios.post('api/addProgrammer', newProgrammer)
+        console.log(newProgrammer)
+        axios.post('api/addProgrammer', newProgrammer)
         .then((res)=> {
             if(res.status==201) {
                 this.props.addNotification('Success', 'Employee registered successfully!', 'success');

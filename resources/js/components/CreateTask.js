@@ -1,5 +1,5 @@
 import React from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import {Spring} from 'react-spring/renderprops';
 
 export default class CreateTask extends React.Component {
@@ -142,7 +142,7 @@ export default class CreateTask extends React.Component {
                                     <input className="form-control" id="form-control" type="text" name="title" placeholder="Enter task name" onChange={this.onChange} required />
                             </label>
 
-                            <label className="reg-form-label">Programmer *
+                            <label className="reg-form-label">Employee *
                                 <div className="reg-form-div"></div> {/* just to move stuff apart */}
                                 <input className="form-control" ref={this.PrIdRef} id="form-control" type="text" name="PrId" placeholder="Enter ID of programmer you wish to assign this task to" onChange={this.onChange} required autocomplete="off" />
                                 <div className="autocomplete-result-box" ref={this.autocompleteRef}>{searchResult.map(this.displaySearchResult)}</div>

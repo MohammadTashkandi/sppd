@@ -30,7 +30,7 @@ export default class Index extends React.Component {
     state = {
         infobar: "",
         loggedIn: localStorage.getItem('usertoken') != null,
-        isManager: true,
+        isManager: localStorage.getItem('PMid') != null,
         projects: {},
         tasks: {},
     }
@@ -54,12 +54,10 @@ export default class Index extends React.Component {
     editLoggedIn = (loggedIn) => {
         this.setState({loggedIn: loggedIn});
         this.getProjects(); /* I dont think this is best practice, maybe we should use a lifecycle method */
-        console.log('editloggedin '+ this.state.loggedIn);
     }
 
     editManager = (isManager) => {
         this.setState({isManager: isManager});
-        console.log('editisManager '+ this.state.isManager);
     }
 
     getProjects = () => {

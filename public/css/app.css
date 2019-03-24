@@ -10598,8 +10598,7 @@ font-family: 'Poppins', sans-serif;
 }
 
 #header-first {
-  margin-left: -2em;
-  margin-right: 4em;
+  margin-right: 4rem;
 }
 
 #header-middle {
@@ -10843,9 +10842,9 @@ a#visit-page:hover {
 #plus-sign {
   border-radius: 6px;
   font-size: 2rem;
-  margin-bottom: 0rem;
-  margin-left: 1rem;
   color: #333;
+  width: 7rem;
+  height: 6rem;
 }
 
 #project-control {
@@ -10869,11 +10868,11 @@ a#visit-page:hover {
 }
 
 #project-form {
-  margin-top: 18rem;
-  margin-left: 70rem;
+  margin-top: 15rem;
+  margin-left: 67rem;
   margin-right: 35rem;
   padding-top: 4rem;
-  height: 25rem;
+  height: 40rem;
   background-color: #ffc600;
   color: #333;
   border-color: #333;
@@ -11192,5 +11191,18 @@ a#visit-page:hover {
 .autocomplete-entries:hover {
   background-color: #15232d;
   color: #e1edf5;
+}
+
+#emp-nav {
+  justify-content: flex-start;
+}
+
+#header-last-emp {
+  flex-direction: row;
+  margin-left: 97rem;
+}
+
+#header-first-emp {
+  margin-right: 2rem;
 }
 

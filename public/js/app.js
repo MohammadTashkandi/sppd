@@ -105372,6 +105372,7 @@ function (_React$Component) {
         pCu: _this.state.pCu,
         pTech: _this.state.pTech
       };
+      console.log(newProgrammer);
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/addProgrammer', newProgrammer).then(function (res) {
         if (res.status == 201) {
           _this.props.addNotification('Success', 'Employee registered successfully!', 'success');
@@ -106270,7 +106271,9 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CreateProject)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      title: ""
+      title: "",
+      start: "",
+      end: ""
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
@@ -106279,20 +106282,42 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSubmit", function (event) {
       event.preventDefault();
-      axios.post('api/storeProject', {
-        title: _this.state.title,
-        PMid: localStorage.getItem('PMid')
-      }).then(function (res) {
-        console.log(res);
+      var startDate = _this.state.start;
+      startDate = startDate.split("-");
+      var newStart = startDate[1] + "/" + startDate[2] + "/" + startDate[0]; //month day year
 
-        if (res.status == 200) {
-          _this.props.getProjects();
+      var endDate = _this.state.end;
+      endDate = endDate.split("-");
+      var newEnd = endDate[1] + "/" + endDate[2] + "/" + endDate[0]; //month day year
 
-          _this.props.addNotification('Project added', 'Check the sidebar', 'success');
+      startDate = new Date(newStart).getTime();
+      endDate = new Date(newEnd).getTime();
+      var today = new Date().getTime();
 
-          _this.props.history.push("/index/project/".concat(res.data[1]));
-        }
-      });
+      if (_this.state.start >= _this.state.end) {
+        _this.props.addNotification('Invalid Dates', 'Check start date and end date', 'danger');
+      } else if (startDate < today) {
+        _this.props.addNotification('Invalid Date', 'Cannot start projects with dates earlier or on the same date of today', 'danger');
+      } else if (endDate < today) {
+        _this.props.addNotification('Invalid Date', 'Your end date is earlier than current date', 'danger');
+      } else {
+        axios.post('api/storeProject', {
+          title: _this.state.title,
+          start: _this.state.start,
+          end: _this.state.end,
+          PMid: localStorage.getItem('PMid')
+        }).then(function (res) {
+          console.log(res);
+
+          if (res.status == 200) {
+            _this.props.getProjects();
+
+            _this.props.addNotification('Project added', 'Check the sidebar', 'success');
+
+            _this.props.history.push("/index/project/".concat(res.data[1]));
+          }
+        });
+      }
     });
 
     return _this;
@@ -106334,7 +106359,7 @@ function (_React$Component) {
           className: "form-group"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           id: "create-project-label"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        }, " Project Name: *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           className: "form-control",
           id: "project-control",
           type: "text",
@@ -106342,7 +106367,37 @@ function (_React$Component) {
           placeholder: "Enter project name",
           onChange: _this2.onChange,
           required: true
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "1rem"
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          id: "create-project-label"
+        }, "Planned Start Date: *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-control",
+          id: "project-control",
+          type: "date",
+          name: "start",
+          onChange: _this2.onChange,
+          style: {
+            width: "20rem",
+            marginRight: "0.5rem"
+          },
+          required: true
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          id: "create-project-label"
+        }, "Planned Finish Date: *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "form-control",
+          id: "project-control",
+          type: "date",
+          name: "end",
+          onChange: _this2.onChange,
+          style: {
+            width: "20rem",
+            marginLeft: "0.5rem"
+          },
+          required: true
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "create-project-btn",
           type: "submit",
           id: "plus-sign"
@@ -106440,7 +106495,7 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "autocompleteSearch", function () {
-      axios.get('api/autocompleteSearch', {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('api/autocompleteSearch', {
         params: {
           name: _this.state.query,
           PMid: localStorage.getItem('PMid'),
@@ -106539,7 +106594,7 @@ function (_React$Component) {
         tTech: _this.state.tTech,
         Pid: _this.props.match.params.projectId
       };
-      axios.post('api/addTask', newTask).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/addTask', newTask).then(function (res) {
         console.log(res);
 
         if (res.status == 200) {
@@ -106620,7 +106675,7 @@ function (_React$Component) {
           required: true
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           className: "reg-form-label"
-        }, "Programmer *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "Employee *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "reg-form-div"
         }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           className: "form-control",
@@ -107030,7 +107085,7 @@ function (_React$Component) {
   _createClass(EmployeeIndex, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "hiiiiiii this is the page");
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
     }
   }]);
 
@@ -107271,10 +107326,9 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "logout", function () {
       localStorage.removeItem('usertoken');
       localStorage.removeItem('PMid');
+      localStorage.removeItem('Pid');
 
       _this.props.editLoggedIn(false);
-
-      console.log('deleted token');
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onNavClick", function (e) {
@@ -107298,7 +107352,7 @@ function (_React$Component) {
       if (!loggedIn) {
         console.log('header' + loggedIn);
         return null;
-      } else if (this.props.isManager) {
+      } else if (loggedIn && this.props.isManager) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
           className: "navbar navbar-inverse",
           id: "header-nav"
@@ -107386,15 +107440,16 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "glyphicon glyphicon-log-out"
         }), " Logout"))));
-      } else if (!this.props.isManager) {
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+      } else if (loggedIn && !this.props.isManager) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
           className: "navbar navbar-inverse",
           id: "header-nav"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "container-fluid"
+          className: "container-fluid",
+          id: "emp-nav"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "navbar-header",
-          id: "header-first"
+          id: "header-first-emp"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
           onClick: this.onClick,
           to: "/employeeIndex"
@@ -107416,7 +107471,7 @@ function (_React$Component) {
           }
         }, "Home"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "nav navbar-nav navbar-right",
-          id: "header-last"
+          id: "header-last-emp"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
           onClick: this.logout,
           to: "/",
@@ -107611,7 +107666,7 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       infobar: "",
       loggedIn: localStorage.getItem('usertoken') != null,
-      isManager: true,
+      isManager: localStorage.getItem('PMid') != null,
       projects: {},
       tasks: {}
     });
@@ -107644,16 +107699,12 @@ function (_React$Component) {
       _this.getProjects();
       /* I dont think this is best practice, maybe we should use a lifecycle method */
 
-
-      console.log('editloggedin ' + _this.state.loggedIn);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "editManager", function (isManager) {
       _this.setState({
         isManager: isManager
       });
-
-      console.log('editisManager ' + _this.state.isManager);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getProjects", function () {
@@ -107968,6 +108019,8 @@ function (_React$Component) {
 
           _this.props.editLoggedIn(true);
 
+          _this.props.editManager(true);
+
           _this.props.history.push("/index");
         } else if (res.status == 200) {
           localStorage.setItem('usertoken', res.data.token);
@@ -108001,7 +108054,7 @@ function (_React$Component) {
     value: function render() {
       if (this.props.loggedIn) {
         this.props.history.push("/index");
-      } else if (this.props.editLoggedIn && !this.props.isManager) {
+      } else if (this.props.loggedIn && !this.props.isManager) {
         this.props.history.push("/employeeIndex");
       }
 

@@ -6,7 +6,8 @@ export default class EmployeeIndex extends React.Component {
 
     render() {
         return(
-            <h1>hiiiiiii this is the page</h1>
-        );
+            <div>
+            </div>
+            );
     }
 }

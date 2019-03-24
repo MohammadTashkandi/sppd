@@ -16,8 +16,8 @@ class Header extends React.Component {
     logout = () =>{
         localStorage.removeItem('usertoken');
         localStorage.removeItem('PMid');
+        localStorage.removeItem('Pid')
         this.props.editLoggedIn(false);
-        console.log('deleted token')
     }
 
     onNavClick = (e) =>{ //there is another way to do this but I couldn't find an easy way in react
@@ -35,7 +35,7 @@ class Header extends React.Component {
         if(!loggedIn) {
             console.log('header'+loggedIn);
             return(null);
-        }else if(this.props.isManager) {
+        }else if(loggedIn && this.props.isManager) {
         return (
             <nav className="navbar navbar-inverse" id="header-nav">
                 <div className="container-fluid">
@@ -74,10 +74,11 @@ class Header extends React.Component {
             </nav>
         );
     }
-    else if(!this.props.isManager){
-        <nav className="navbar navbar-inverse" id="header-nav">
-                <div className="container-fluid">
-                    <div className="navbar-header" id="header-first">
+    else if(loggedIn && !this.props.isManager){
+        return(
+            <nav className="navbar navbar-inverse" id="header-nav">
+                <div className="container-fluid" id="emp-nav">
+                    <div className="navbar-header" id="header-first-emp">
                         <NavLink onClick={this.onClick} to={"/employeeIndex"}><img src={logo} id="logo"/></NavLink>
                     </div>
                         <ul className="nav navbar-nav" id="header-middle">
@@ -85,13 +86,14 @@ class Header extends React.Component {
                                 <NavLink onClick={this.onNavClick} to={'/employeeIndex'} name="/employeeIndex" id="link-head" style={{color:'#2c87c4'}}>Home</NavLink>
                             </li>
                         </ul>
-                        <ul className="nav navbar-nav navbar-right" id="header-last"> 
+                        <ul className="nav navbar-nav navbar-right" id="header-last-emp"> 
                            <NavLink onClick={this.logout} to={`/`} className="btn btn-info btn-lg" id="logout-btn"> 
                                 <span className="glyphicon glyphicon-log-out"></span> Logout
                            </NavLink>
                         </ul>
                 </div>
             </nav>
+        )
     }
 }
 }

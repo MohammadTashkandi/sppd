@@ -34,6 +34,7 @@ export default class Login extends React.Component {
                 localStorage.setItem('usertoken', res.data.token);
                 localStorage.setItem('PMid', res.data.id);
                 this.props.editLoggedIn(true);
+                this.props.editManager(true);
                 this.props.history.push(`/index`);
             }else if(res.status==200){
                 localStorage.setItem('usertoken', res.data.token);
@@ -57,7 +58,7 @@ export default class Login extends React.Component {
     render() {
         if(this.props.loggedIn) {
             this.props.history.push(`/index`);
-        }else if(this.props.editLoggedIn && !this.props.isManager){
+        }else if(this.props.loggedIn && !this.props.isManager){
             this.props.history.push(`/employeeIndex`);
         }
         return(
