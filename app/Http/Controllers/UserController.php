@@ -115,7 +115,7 @@ use Illuminate\Support\Facades\Validator;
              return response()->json(['error' => 'invalid credentials'], 400);
            }
          }catch(JWTException $e){
-           return response()->json(['error' => 'could_not_create_token'], 500);
+           return response()->json(['error' => 'could not create token'], 500);
          }
 
 
@@ -168,7 +168,7 @@ use Illuminate\Support\Facades\Validator;
         }
 
       }
-      return response()->json(['error' => 'Wrong user '], 500);
+      return response()->json(['error' => 'You haven\'t created a user yet'], 500);
 
 
 

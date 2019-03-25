@@ -42,8 +42,7 @@ export default class AssignEmployee extends React.Component {
                     config={{duration:750}}
                 >
                     {props => (
-                        <div style={props}>
-                            <div className="grid-search-container">
+                        <div className="assign-container" style={props}>
                                 <div className="grid-assign-item" id="grid">
                                     <div className="assign-tag">{tag}</div>
                                     <div className="assign-name">{name}</div>
@@ -55,7 +54,6 @@ export default class AssignEmployee extends React.Component {
                                         </button>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                 )}
                 </Spring>
@@ -93,7 +91,7 @@ export default class AssignEmployee extends React.Component {
                 <div className="info-bar">
                     <span className="decorative-box">i</span>
                     <span className="info-bar-page">Assign Employee</span>
-                    <span className="info-bar-text"></span>
+                    <span className="info-bar-text">{this.props.infobar}</span>
                     <span>
                             
                     </span>

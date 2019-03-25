@@ -15,6 +15,8 @@ class SideBar extends React.Component {
     vPillsTab = React.createRef();
     vPillsTabContent = React.createRef();
     taskRef = React.createRef();
+    projectsHeaderRef = React.createRef();
+    tasksHeaderRef = React.createRef();
     
     componentDidMount() {
         if(this.props.isManager){
@@ -35,7 +37,10 @@ class SideBar extends React.Component {
     renderProject = (key) => {
         const project = this.props.projects[key];
         return(
-            <a key={key} onClick={()=> this.handleClick(key, event.target.innerText)} className="nav-link" id={"v-pills-"+key+"-tab"} data-toggle="pill" href={"#v-pills-"+key} role="tab" aria-controls={"#v-pills-"+key} aria-selected="false">{project}</a>
+            <React.Fragment>
+                <div className="sidebar-seperator"></div>
+                <a key={key} onClick={()=> this.handleClick(key, event.target.innerText)} className="nav-link" id={"v-pills-"+key+"-tab"} data-toggle="pill" href={"#v-pills-"+key} role="tab" aria-controls={"#v-pills-"+key} aria-selected="false">{project}</a>
+            </React.Fragment>
         );
     }
 
@@ -43,16 +48,19 @@ class SideBar extends React.Component {
         const taskIds = Object.keys(this.props.tasks);
 
             return(             
-            <div key={key} ref={this.taskRef} className="tab-pane fade" id={"v-pills-"+key} role="tabpanel" aria-labelledby={"v-pills-"+key+"-tab"}>
-                {taskIds.map((id) => {
-                    const task = this.props.tasks[id];
-                    if(task.Pid == this.state.currentlyUpdating) {
-                        return (
-                            <NavLink key={id} className="sidebar-task" to={`/index/Task/${task.id}`} onClick={() => this.props.setInfobar(event.target.innerText)}>{task.title}</NavLink>
-                            );
-                        }
-                })}
-            </div>
+                <div key={key} ref={this.taskRef} className="tab-pane fade" id={"v-pills-"+key} role="tabpanel" aria-labelledby={"v-pills-"+key+"-tab"}>
+                    {taskIds.map((id) => {
+                        const task = this.props.tasks[id];
+                        if(task.Pid == this.state.currentlyUpdating) {
+                            return (
+                                <React.Fragment>
+                                    <div className="sidebar-task-seperator"></div>
+                                    <NavLink key={id} className="sidebar-task" to={`/index/Task/${task.id}`} onClick={() => this.props.setInfobar(event.target.innerText)}>{task.title}</NavLink>
+                                </React.Fragment>
+                                );
+                            }
+                    })}
+                </div>
             );
     }
     
@@ -72,6 +80,8 @@ class SideBar extends React.Component {
             this.vPillsTabContent.current.style.display='block';
             this.vPillsTab.current.style.display='none';
             this.backButtonRef.current.style.display='block';
+            this.projectsHeaderRef.current.style.display="none";
+            this.tasksHeaderRef.current.style.display="block";
             
         }else if(this.projectPillsRef.current.className=='inactive') {
             this.projectPillsRef.current.className='active';
@@ -80,6 +90,8 @@ class SideBar extends React.Component {
             this.vPillsTabContent.current.style.display='none';
             this.vPillsTab.current.style.display='block';
             this.backButtonRef.current.style.display='none';
+            this.projectsHeaderRef.current.style.display="block";
+            this.tasksHeaderRef.current.style.display="none";
         }
     }
 
@@ -103,12 +115,14 @@ class SideBar extends React.Component {
             return (
                 <div style={{width:'20%'}}>
                     <div id="project-pills" className="active" ref={this.projectPillsRef}>
+                        <h2 ref={this.projectsHeaderRef} className="sidebar-header-projects">Projects</h2>
                         <button className="btn btn-outline-primary" id="back-button" onClick={this.animateSideBar} ref={this.backButtonRef}>&#8678;</button>
                         <div className="nav flex-column nav-pills" id="v-pills-tab" ref={this.vPillsTab} role="tablist" aria-orientation="vertical">
                             {projectIds.map(this.renderProject)}
                         </div>
                     </div>
                     <div id="task-pills" ref={this.taskPillsRef}>
+                    <h2 ref={this.tasksHeaderRef} className="sidebar-header-tasks">Tasks</h2>
                         <div className="tab-content" id="v-pills-tabContent" ref={this.vPillsTabContent} style={{display:'none', margin:'1em'}}>
                                 {projectIds.map(this.renderTask)}
                         </div>

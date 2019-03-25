@@ -32,6 +32,9 @@ export default class CreateTask extends React.Component {
         .then((res) => {
             this.setState({result: res.data});
         })
+        .catch((err) => {
+            this.setState({result: ['No employees found']})
+        })
     }
 
     handleSearchClick = (employee) => {
@@ -42,6 +45,9 @@ export default class CreateTask extends React.Component {
 
     displaySearchResult = (key) => {
         const employee = this.state.result[key];
+        if(employee == 'No employees found'){
+            return(<span key={key} className="autocomplete-entries">No employees found</span>);
+        }
         return(
             <span key={key} className="autocomplete-entries" onClick={()=> this.handleSearchClick(employee)}>{employee.first_name +' '+ employee.last_name}</span>
         );
@@ -142,9 +148,9 @@ export default class CreateTask extends React.Component {
                                     <input className="form-control" id="form-control" type="text" name="title" placeholder="Enter task name" onChange={this.onChange} required />
                             </label>
 
-                            <label className="reg-form-label">Employee *
+                            <label className="reg-form-label">Employee name/ID *
                                 <div className="reg-form-div"></div> {/* just to move stuff apart */}
-                                <input className="form-control" ref={this.PrIdRef} id="form-control" type="text" name="PrId" placeholder="Enter ID of programmer you wish to assign this task to" onChange={this.onChange} required autocomplete="off" />
+                                <input className="form-control" ref={this.PrIdRef} id="form-control" type="text" name="PrId" placeholder="Enter ID or name (click on employee)" onChange={this.onChange} required autocomplete="off" />
                                 <div className="autocomplete-result-box" ref={this.autocompleteRef}>{searchResult.map(this.displaySearchResult)}</div>
                             </label>
                         </div>

@@ -81,7 +81,7 @@ export default class CreateProject extends React.Component {
                                     <button className="create-project-btn" type="submit" id="plus-sign">+</button>
                                 </div>
                             </form>
-                            <NavLink className="create-project-btn" id="go-home" to={`/index`}><button className="create-project-btn">Go To Home</button></NavLink>
+                            {/* <NavLink className="create-project-btn" id="go-home" to={`/index`}><button className="create-project-btn">Go To Home</button></NavLink> */}
                         </div>
                     </div>
                 )}

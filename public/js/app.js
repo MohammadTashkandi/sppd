@@ -76428,7 +76428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -105847,9 +105847,8 @@ function (_React$Component) {
         }
       }, function (props) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "assign-container",
           style: props
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-search-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-assign-item",
           id: "grid"
@@ -105867,7 +105866,7 @@ function (_React$Component) {
           name: _this.state.programmers[key].id,
           className: "btn btn-default btn-sm",
           id: "assign-emp"
-        }, "+")))));
+        }, "+"))));
       });
     });
 
@@ -105911,7 +105910,7 @@ function (_React$Component) {
         className: "info-bar-page"
       }, "Assign Employee"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-bar-text"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+      }, this.props.infobar), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "hr",
         style: {
           margin: '0'
@@ -106401,13 +106400,7 @@ function (_React$Component) {
           className: "create-project-btn",
           type: "submit",
           id: "plus-sign"
-        }, "+"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-          className: "create-project-btn",
-          id: "go-home",
-          to: "/index"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "create-project-btn"
-        }, "Go To Home"))));
+        }, "+")))));
       });
     }
   }]);
@@ -106505,6 +106498,10 @@ function (_React$Component) {
         _this.setState({
           result: res.data
         });
+      }).catch(function (err) {
+        _this.setState({
+          result: ['No employees found']
+        });
       });
     });
 
@@ -106519,6 +106516,14 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "displaySearchResult", function (key) {
       var employee = _this.state.result[key];
+
+      if (employee == 'No employees found') {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          key: key,
+          className: "autocomplete-entries"
+        }, "No employees found");
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         key: key,
         className: "autocomplete-entries",
@@ -106675,7 +106680,7 @@ function (_React$Component) {
           required: true
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           className: "reg-form-label"
-        }, "Employee *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "Employee name/ID *", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "reg-form-div"
         }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           className: "form-control",
@@ -106683,7 +106688,7 @@ function (_React$Component) {
           id: "form-control",
           type: "text",
           name: "PrId",
-          placeholder: "Enter ID of programmer you wish to assign this task to",
+          placeholder: "Enter ID or name (click on employee)",
           onChange: _this2.onChange,
           required: true,
           autocomplete: "off"
@@ -108653,9 +108658,15 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "taskRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "projectsHeaderRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "tasksHeaderRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProject", function (key) {
       var project = _this.props.projects[key];
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "sidebar-seperator"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         key: key,
         onClick: function onClick() {
           return _this.handleClick(key, event.target.innerText);
@@ -108667,7 +108678,7 @@ function (_React$Component) {
         role: "tab",
         "aria-controls": "#v-pills-" + key,
         "aria-selected": "false"
-      }, project);
+      }, project));
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderTask", function (key) {
@@ -108683,14 +108694,16 @@ function (_React$Component) {
         var task = _this.props.tasks[id];
 
         if (task.Pid == _this.state.currentlyUpdating) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["NavLink"], {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "sidebar-task-seperator"
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["NavLink"], {
             key: id,
             className: "sidebar-task",
             to: "/index/Task/".concat(task.id),
             onClick: function onClick() {
               return _this.props.setInfobar(event.target.innerText);
             }
-          }, task.title);
+          }, task.title));
         }
       }));
     });
@@ -108717,6 +108730,8 @@ function (_React$Component) {
         _this.vPillsTabContent.current.style.display = 'block';
         _this.vPillsTab.current.style.display = 'none';
         _this.backButtonRef.current.style.display = 'block';
+        _this.projectsHeaderRef.current.style.display = "none";
+        _this.tasksHeaderRef.current.style.display = "block";
       } else if (_this.projectPillsRef.current.className == 'inactive') {
         _this.projectPillsRef.current.className = 'active';
         _this.projectPillsRef.current.style.width = "90%";
@@ -108724,6 +108739,8 @@ function (_React$Component) {
         _this.vPillsTabContent.current.style.display = 'none';
         _this.vPillsTab.current.style.display = 'block';
         _this.backButtonRef.current.style.display = 'none';
+        _this.projectsHeaderRef.current.style.display = "block";
+        _this.tasksHeaderRef.current.style.display = "none";
       }
     });
 
@@ -108776,7 +108793,10 @@ function (_React$Component) {
           id: "project-pills",
           className: "active",
           ref: this.projectPillsRef
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          ref: this.projectsHeaderRef,
+          className: "sidebar-header-projects"
+        }, "Projects"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "btn btn-outline-primary",
           id: "back-button",
           onClick: this.animateSideBar,
@@ -108790,7 +108810,10 @@ function (_React$Component) {
         }, projectIds.map(this.renderProject))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "task-pills",
           ref: this.taskPillsRef
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          ref: this.tasksHeaderRef,
+          className: "sidebar-header-tasks"
+        }, "Tasks"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "tab-content",
           id: "v-pills-tabContent",
           ref: this.vPillsTabContent,
@@ -108901,8 +108924,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

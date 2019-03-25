@@ -349,7 +349,7 @@ a#visit-page:hover{
 }
 #project-control {
   padding-top: 1.4rem;
-  width: 100%;
+  width: 40.8rem;
   height: 4.7rem;
   color: #333;
 }
@@ -361,19 +361,19 @@ a#visit-page:hover{
   color: #333;
 }
 #create-project-label{
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   color: #333;
 }
 #project-form {
-  margin-top: 15rem;
-  margin-left: 67rem;
-  margin-right: 35rem;
-  padding-top: 4rem;
-  height: 40rem;
-  background-color: #ffc600;
-  color: #333;
-  border-color: #333;
+  margin-left: 60rem;
+    margin-right: 30rem;
+    padding-top: 4rem;
+    height: 38rem;
+    background-color: #ffc600;
+    color: #333;
+    border-color: #333;
 }
+
 .create-project-btn{
   background-color: transparent;
   border-color:#333;
@@ -556,60 +556,45 @@ a#visit-page:hover{
 .assign-tag {
   font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   font-weight: 700;
-  display: inline;
-  margin-left: 5rem;
-  margin-right: 7rem;
-  align-content: center;
-  text-align: justify;
-  justify-content: center;
   color:#0d3a58;
   font-size: 1.4em;
+  padding-top: 0.8rem;
+}
+
+.assign-container {
+  margin: 0 17rem 0 45rem;
 }
 
 .grid-assign-item {
+  display: grid;
+  grid-template-columns: 15rem 35rem 16rem 10rem;
   border-radius: 1rem;
   background-color: rgba(255, 255, 255, 0.753);
   box-shadow: -1px 1px 5px #0d3a58;
   text-align: justify;
-  justify-content: center;
   align-content: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #ffc600;
+  padding-left: 5rem;
   margin-bottom: 2rem;
+  background-color: #ffc600;
 }
 
-.assign-button{
-  display: inline;
-  margin-left: 7rem;
-  margin-right: 7rem;
-  align-content: center;
-  text-align: justify;
-  justify-content: center;
-}
+/* .assign-button{
+} */
 
 .assign-name{
   color:#0d3a58;
   font-weight: 500;
   font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  display: inline;
-  margin-left: 7rem;
-  margin-right: 7rem;
-  align-content: center;
-  text-align: justify;
-  justify-content: center;
+  padding-top: 1rem;
 }
 
 .assign-id{
   color:#0d3a58;
   font-weight: 500;
   font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  display: inline;
-  margin-left: 5rem;
-  margin-right: 9rem;
-  align-content: center;
-  text-align: justify;
-  justify-content: center;
+  padding-top: 0.8rem;
 }
 .sidebar-task {
   font-size: 2rem;
@@ -699,4 +684,25 @@ a#visit-page:hover{
 
 #header-first-emp {
   margin-right: 2rem;
+}
+
+.sidebar-header-projects {
+  margin: 1rem 0 1rem 0.5rem;
+  color: darkcyan;
+}
+
+.sidebar-header-tasks {
+  display: none;
+  margin: 1rem 0 1rem 0.5rem;
+  color: darkcyan;
+}
+
+.sidebar-seperator {
+  border-top: 1px solid #4d3c00;
+  margin: 0.2rem 7rem 0.2rem 3rem;
+}
+
+.sidebar-task-seperator {
+  border-top: 1px solid #997800;
+  margin: 0.2rem 2rem 0.2rem 0rem;
 }
