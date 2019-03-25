@@ -49,7 +49,7 @@ class ProgrammerController extends Controller
 
         $programmerEmail = $request['email'];
 
-        if(!(filter_var($programmerEmail, FILTER_VALIDATE_EMAIL))) {
+        if (!(filter_var($programmerEmail, FILTER_VALIDATE_EMAIL))) {
             return response()->json(['Incorrect email format entered!'], 400);
         }
 
@@ -63,7 +63,7 @@ class ProgrammerController extends Controller
 
         $pass = $request['password'];
 
-        if(strlen($pass) < 6) {
+        if (strlen($pass) < 6) {
             return response()->json(['Password must be at least 6 characters'], 400);
         }
 
@@ -96,9 +96,8 @@ class ProgrammerController extends Controller
         ]);
 
         $programmer->save();
-        
-        return response()->json(['Programmer added Successfully '], 201);
 
+        return response()->json(['Programmer added Successfully '], 201);
 
 
     }
@@ -149,7 +148,8 @@ class ProgrammerController extends Controller
     }
 
 
-    public function findProgrammer(Request $request){
+    public function findProgrammer(Request $request)
+    {
 
 
         $input = $request['id'];
@@ -159,26 +159,23 @@ class ProgrammerController extends Controller
 
 
         if (is_numeric($input)) {
-            $programmer = $Programmers->where('id' , '=' , $input);
-            if($programmer != null){
+            $programmer = $Programmers->where('id', '=', $input);
+            if ($programmer != null) {
                 $programmer = $programmer->all();
                 return response()->json($programmer, 200);
             }
         } else {
 
 
-            $Programmers = Programmer::where('PMid', '=', $PMid)->where('first_name' , 'like' , '%' .$input. '%')->orWhere('last_name' , 'like' , '%' .$input. '%')->get();
+            $Programmers = Programmer::where('PMid', '=', $PMid)->where('first_name', 'like', '%' . $input . '%')->orWhere('last_name', 'like', '%' . $input . '%')->get();
 
-            if(count($Programmers)>0){
-                return response()->json($Programmers,200);
+            if (count($Programmers) > 0) {
+                return response()->json($Programmers, 200);
             }
 
         }
 
-            return response()->json(['Programmer not found'], 404);
-
-
-
+        return response()->json(['Programmer not found'], 404);
 
 
 //        $user = new User();
@@ -205,7 +202,6 @@ class ProgrammerController extends Controller
 //
 
 
-
 //        if (is_int($input)) {
 //            $user = $user->find($input);
 //            return
@@ -219,23 +215,25 @@ class ProgrammerController extends Controller
     }
 
 
-    public function findEmployee(Request $request){
+    public function findEmployee(Request $request)
+    {
         $PMid = $request['PMid'];
         $Pid = $request['Pid'];
 
 
-        $programmers = Programmer::where('PMid' , '=' , $PMid)->get(); // all programmers for this project manager
+        $programmers = Programmer::where('PMid', '=', $PMid)->get(); // all programmers for this project manager
         $project = new Project();
         $projectProgrammers = $project->find($Pid)->programmers;// all programmers in this project
 
         $result = $programmers->diff($projectProgrammers); // all programmer - programmers in this project
 
-        return response()->json($result,200);
+        return response()->json($result, 200);
 
     }
 
 
-    public function assignEmployee(Request $request){
+    public function assignEmployee(Request $request)
+    {
 
         $ProgId = $request['id'];
         $PId = $request['Pid'];
@@ -245,41 +243,56 @@ class ProgrammerController extends Controller
 
         $programmerOnProject = $project->find($PId)->programmers()->find($ProgId);
 
-        if ($programmerOnProject != null)  {
+        if ($programmerOnProject != null) {
 
             return response()->json(['Programmer already in the project'], 404);
         }
 
 
-
         $project = $project->find($PId)->programmers()->attach($ProgId);
 
-        return response()->json('Programmer added Successfully',200);
+        return response()->json('Programmer added Successfully', 200);
 
     }
 
-    public function getProgrammerProjects(Request $request){
+    public function getProgrammerProjects(Request $request)
+    {
         $progId = $request['progID'];
 
-        $programmer = Programmer::where('id' ,'=', '1')->get()->first()->projects;
+        $programmer = Programmer::where('id', '=', '1')->get()->first()->projects;
 
-        return response()->json($programmer,200);
+        return response()->json($programmer, 200);
     }
 
-    public function autocompleteSearch(Request $request){
+    public function autocompleteSearch(Request $request)
+    {
 
         $name = $request['name'];
         $Pid = $request['Pid'];
 
         $project = new Project();
         $programmers = $project->find($Pid)->programmers();
-        $programmers = $programmers->where('first_name', 'like', '%' .$name. '%')->orWhere('last_name', 'like', '%' .$name. '%')->get();
+        $programmers = $programmers->where('first_name', 'like', '%' . $name . '%')->orWhere('last_name', 'like', '%' . $name . '%')->get();
 
-        if(count($programmers)>0){
-            return response()->json($programmers,200);
+        if (count($programmers) > 0) {
+            return response()->json($programmers, 200);
         }
 
         return response()->json(['Programmer not found'], 404);
+    }
+
+
+    public function getProgrammerInfo(Request $request)
+    {
+        $p = Programmer::where('id', '=', $request['Pid']);
+
+        if ($p == null) {
+            return response()->json(['Programmer not exist'], 404);
+        }
+
+        return response()->json(['p'], 201);
+
+
     }
 
 }

@@ -32,6 +32,9 @@ Route::post('assignEmployee','ProgrammerController@assignEmployee');
 
 //Route::post('register','UserController@getAuthenticatedUser');
 
+Route::get('getProgrammerProjects','ProgrammerController@getProgrammerProjects');
+Route::get('getProgrammerInfo','ProgrammerController@getProgrammerInfo');
+
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
