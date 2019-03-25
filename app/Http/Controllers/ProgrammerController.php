@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Programmer;
 use App\Project;
+use App\Task;
 use App\User;
 use function GuzzleHttp\Promise\all;
 use http\Message;
@@ -290,7 +291,22 @@ class ProgrammerController extends Controller
             return response()->json(['Programmer not exist'], 404);
         }
 
-        return response()->json(['p'], 201);
+        return response()->json($p , 200);
+
+
+    }
+
+
+    public function getProgrammerTasks(Request $request){
+
+        $ProgrammerId = $request['ProgId'];
+        $Pid = $request['Pid'];
+
+
+        $tasks = Task::where('Pid', '=', $Pid)->where('PrId', '=', $ProgrammerId);
+
+        return response()->json($tasks , 200);
+
 
 
     }
