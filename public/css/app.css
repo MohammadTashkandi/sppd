@@ -10704,12 +10704,7 @@ a#logout-btn:hover {
 }
 
 .grid-search-container {
-  padding-top: 0;
-  padding-bottom: 0;
-  display: grid;
-  grid-template-columns: 75%;
-  grid-gap: 0%;
-  justify-content: center;
+  margin: 0 17rem 0 45rem;
 }
 
 .grid-search-item {
@@ -10719,9 +10714,12 @@ a#logout-btn:hover {
   text-align: justify;
   justify-content: center;
   align-content: center;
+  background-color: #0d3a58;
+  display: grid;
+  grid-template-columns: 15rem 35rem 16rem 10rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #0d3a58;
+  padding-left: 5rem;
   margin-bottom: 2rem;
 }
 
@@ -10729,8 +10727,6 @@ a#logout-btn:hover {
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
   display: inline;
-  margin-left: 5rem;
-  margin-right: 7rem;
   align-content: center;
   text-align: justify;
   justify-content: center;
@@ -10740,8 +10736,6 @@ a#logout-btn:hover {
 
 .search-button {
   display: inline;
-  margin-left: 7rem;
-  margin-right: 7rem;
   align-content: center;
   text-align: justify;
   justify-content: center;
@@ -10769,8 +10763,6 @@ a#visit-page:hover {
   font-weight: 500;
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   display: inline;
-  margin-left: 7rem;
-  margin-right: 7rem;
   align-content: center;
   text-align: justify;
   justify-content: center;
@@ -10781,8 +10773,6 @@ a#visit-page:hover {
   font-weight: 500;
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   display: inline;
-  margin-left: 5rem;
-  margin-right: 9rem;
   align-content: center;
   text-align: justify;
   justify-content: center;
