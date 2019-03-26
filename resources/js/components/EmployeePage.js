@@ -1,12 +1,13 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
 import {Spring} from 'react-spring/renderprops';
 import {Radar} from 'react-chartjs-2';
 
 export default class EmployeePage extends React.Component {
     
     state = {
-        programmer:{},
+        name:"",
+        email: "",
+        number: "",
         barData:{ //the data here should also be dynamic depending on what the PM wants to see
             labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
             datasets:[ //here you mostly fill the data of the graph
@@ -28,8 +29,12 @@ export default class EmployeePage extends React.Component {
         })
         .then((res) => {
             if(res.status==200){
-                console.log("in here")
-                console.log(res.data)
+                const name = res.data.first_name + ' ' + res.data.last_name;
+                this.setState({
+                    name:name,
+                    email:res.data.email,
+                    number:res.data.phone_number,
+                })
             }
         })
         .catch((err) => {
@@ -49,7 +54,7 @@ export default class EmployeePage extends React.Component {
                 <hr className="hr" style={{margin:'0'}} />
                 <Spring from={{opacity:0}} // you must wrap the part of the component you want animated in this spring syntax
                         to={{opacity:1}}
-                        config={{duration:750}}
+                        config={{duration:1500}}
                 >
                     {props => (
                         <div style={props}>
@@ -76,11 +81,27 @@ export default class EmployeePage extends React.Component {
                                         />
                                     </div>
                                 <div className="grid-item-profile">
-                                    <h4>Personal Information:</h4>
-                                    <div className="profile-info">name</div>
-                                    <div className="profile-info">id</div>
-                                    <div className="profile-info">email</div>
-                                    <div className="profile-info">number</div>
+                                    <h4 id="profile-2" style={{marginBottom:"1.5rem"}}>Personal Information:</h4>
+                                    <div className="profile-info" id="profile">
+                                        <b style={{fontStyle:"normal"}}>Name:</b>
+                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
+                                        </div>{this.state.name}
+                                    </div>
+                                    <div className="profile-info" id="profile">
+                                        <b style={{fontStyle:"normal"}}>ID:</b>
+                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
+                                        </div>{this.props.match.params.id}
+                                    </div>
+                                    <div className="profile-info" id="profile">
+                                        <b style={{fontStyle:"normal"}}>E-Mail:</b>
+                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
+                                        </div>{this.state.email}
+                                    </div>
+                                    <div className="profile-info" id="profile">
+                                        <b style={{fontStyle:"normal"}}>Phone Number:</b>
+                                        <div style={{marginBottom:"0.8rem"}}>
+                                        </div>{this.state.number}
+                                    </div>
                                 </div> 
                                 
                             </div>

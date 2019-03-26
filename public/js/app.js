@@ -107117,10 +107117,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EmployeePage; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
-/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -107145,7 +107144,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 var EmployeePage =
 /*#__PURE__*/
 function (_React$Component) {
@@ -107165,7 +107163,9 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(EmployeePage)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      programmer: {},
+      name: "",
+      email: "",
+      number: "",
       barData: {
         //the data here should also be dynamic depending on what the PM wants to see
         labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
@@ -107186,6 +107186,8 @@ function (_React$Component) {
   _createClass(EmployeePage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       axios.get('api/getProgrammerInfo', {
         params: {
           /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
@@ -107193,8 +107195,13 @@ function (_React$Component) {
         }
       }).then(function (res) {
         if (res.status == 200) {
-          console.log("in here");
-          console.log(res.data);
+          var name = res.data.first_name + ' ' + res.data.last_name;
+
+          _this2.setState({
+            name: name,
+            email: res.data.email,
+            number: res.data.phone_number
+          });
         }
       }).catch(function (err) {
         console.log(err.response.data[0]);
@@ -107203,7 +107210,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "canvas-background"
@@ -107220,7 +107227,7 @@ function (_React$Component) {
         style: {
           margin: '0'
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__["Spring"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__["Spring"], {
         from: {
           opacity: 0
         } // you must wrap the part of the component you want animated in this spring syntax
@@ -107229,7 +107236,7 @@ function (_React$Component) {
           opacity: 1
         },
         config: {
-          duration: 750
+          duration: 1500
         }
       }, function (props) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -107238,11 +107245,11 @@ function (_React$Component) {
           className: "grid-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Radar"], {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Radar"], {
           height: "270",
           width: "665" //everything here can be dynamic depending on results 
           ,
-          data: _this2.state.barData //this should alawys be dynamic   
+          data: _this3.state.barData //this should alawys be dynamic   
           ,
           options: {
             legend: {
@@ -107262,15 +107269,56 @@ function (_React$Component) {
           }
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item-profile"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Personal Information:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "profile-info"
-        }, "name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "profile-info"
-        }, "id"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "profile-info"
-        }, "email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "profile-info"
-        }, "number"))));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          id: "profile-2",
+          style: {
+            marginBottom: "1.5rem"
+          }
+        }, "Personal Information:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, "Name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }, " "), _this3.state.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, "ID:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }, " "), _this3.props.match.params.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, "E-Mail:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }, " "), _this3.state.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, "Phone Number:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }), _this3.state.number))));
       }));
     }
   }]);
@@ -108234,14 +108282,14 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "progress-header"
-      }, "Project Progress: 75%"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Project Progress: 35%"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "track"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "thumb",
         style: {
           height: "65%"
         }
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
+      }), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
         className: "date-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Start Date:"), "2-26-2019"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
         className: "date-header",
