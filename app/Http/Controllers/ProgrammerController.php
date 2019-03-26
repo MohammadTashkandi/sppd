@@ -291,6 +291,8 @@ class ProgrammerController extends Controller
             return response()->json(['Programmer not exist'], 404);
         }
 
+        $p = $p->first();
+
         return response()->json($p , 200);
 
 
