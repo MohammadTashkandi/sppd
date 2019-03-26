@@ -23,6 +23,8 @@ Route::get('findProject','ProjectController@findProject');
 Route::get('findProgrammer','ProgrammerController@findProgrammer'); //for searching
 Route::get('autocompleteSearch','ProgrammerController@autocompleteSearch'); //for searching for programmer in create task
 Route::get('findEmployee','ProgrammerController@findEmployee'); //for assign task function
+Route::get('getProgrammerProjects','ProgrammerController@getProgrammerProjects'); //gets projects for the programmer
+Route::get('getProgrammerInfo','ProgrammerController@getProgrammerInfo'); //for view statistics page
 
 Route::post('addTask','TaskController@store');
 Route::get('getTasks','TaskController@getTasks');

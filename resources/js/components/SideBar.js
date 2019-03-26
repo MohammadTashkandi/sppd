@@ -37,8 +37,9 @@ class SideBar extends React.Component {
     renderProject = (key) => {
         const project = this.props.projects[key];
         return(
-            <React.Fragment>
+            <React.Fragment key={key}>
                 <div className="sidebar-seperator"></div>
+                {/* dont need key here if parent has key i think */}
                 <a key={key} onClick={()=> this.handleClick(key, event.target.innerText)} className="nav-link" id={"v-pills-"+key+"-tab"} data-toggle="pill" href={"#v-pills-"+key} role="tab" aria-controls={"#v-pills-"+key} aria-selected="false">{project}</a>
             </React.Fragment>
         );
@@ -55,6 +56,7 @@ class SideBar extends React.Component {
                             return (
                                 <React.Fragment>
                                     <div className="sidebar-task-seperator"></div>
+                                    {/* dont need key here if parent has key i think */}
                                     <NavLink key={id} className="sidebar-task" to={`/index/Task/${task.id}`} onClick={() => this.props.setInfobar(event.target.innerText)}>{task.title}</NavLink>
                                 </React.Fragment>
                                 );

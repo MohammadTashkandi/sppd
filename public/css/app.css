@@ -11201,3 +11201,42 @@ a#visit-page:hover {
   margin: 0.2rem 2rem 0.2rem 0rem;
 }
 
+.track {
+  height: 65%;
+  width: 3.5rem;
+  border-radius: 1rem;
+  background-color: #17c53d;
+  box-shadow: inset 0 0 1rem #5a5a5a;
+  border-color: #333;
+  margin: auto;
+}
+
+.thumb {
+  margin: auto;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  background-color: rgba(230, 230, 230, 0.973);
+  width: 100%;
+  height: 0%;
+}
+
+.progress-header {
+  font-weight: bolder;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: #333;
+  text-align: center;
+}
+
+.date-header {
+  font-weight: 500;
+  font-style: italic;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: #333;
+  margin-left: 1.5rem;
+}
+
+b {
+  font-weight: 800;
+  margin-right: 0.5rem;
+}
+

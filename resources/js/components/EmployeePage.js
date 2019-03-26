@@ -6,6 +6,7 @@ import {Radar} from 'react-chartjs-2';
 export default class EmployeePage extends React.Component {
     
     state = {
+        programmer:{},
         barData:{ //the data here should also be dynamic depending on what the PM wants to see
             labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
             datasets:[ //here you mostly fill the data of the graph
@@ -19,6 +20,23 @@ export default class EmployeePage extends React.Component {
         },
     }
 
+    componentDidMount(){
+        axios.get('api/getProgrammerInfo', {
+            params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+                Pid: this.props.match.params.id,
+            }
+        })
+        .then((res) => {
+            if(res.status==200){
+                console.log("in here")
+                console.log(res.data)
+            }
+        })
+        .catch((err) => {
+            console.log(err.response.data[0])
+        })
+        
+    }
     render() {
         return(
             <div className="canvas-background">

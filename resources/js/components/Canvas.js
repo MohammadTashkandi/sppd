@@ -2,6 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {Spring} from 'react-spring/renderprops';
 import {Bar,Line, Pie} from 'react-chartjs-2';
+import ProgressBar from './ProgressBar';
 
 export default class Canvas extends React.Component {
     
@@ -174,7 +175,10 @@ export default class Canvas extends React.Component {
                                             }
                                         }}
                                         />
-                                </div>  
+                                </div>
+                                <div className="grid-item">
+                                    <ProgressBar/>
+                                </div>   
                             </div>
                     </div>
                     )}
