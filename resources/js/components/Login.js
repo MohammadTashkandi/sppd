@@ -33,13 +33,13 @@ export default class Login extends React.Component {
             if(res.status==201) {
                 localStorage.setItem('usertoken', res.data.token);
                 localStorage.setItem('PMid', res.data.id);
-                this.props.editLoggedIn(true);
+                this.props.editLoggedIn(true, true);
                 this.props.editManager(true);
                 this.props.history.push(`/index`);
             }else if(res.status==200){
                 localStorage.setItem('usertoken', res.data.token);
-                localStorage.setItem('Pid', res.data.Pid);
-                this.props.editLoggedIn(true);
+                localStorage.setItem('Pid', res.data.id);
+                this.props.editLoggedIn(true, false);
                 this.props.editManager(false);
                 this.props.history.push(`/employeeIndex`);
             }

@@ -17,7 +17,7 @@ class Header extends React.Component {
         localStorage.removeItem('usertoken');
         localStorage.removeItem('PMid');
         localStorage.removeItem('Pid')
-        this.props.editLoggedIn(false);
+        this.props.editLoggedIn(false, null);
     }
 
     onNavClick = (e) =>{ //there is another way to do this but I couldn't find an easy way in react

@@ -51,9 +51,13 @@ export default class Index extends React.Component {
           });
     }
 
-    editLoggedIn = (loggedIn) => {
+    editLoggedIn = (loggedIn, isManager) => {
         this.setState({loggedIn: loggedIn});
-        this.getProjects(); /* I dont think this is best practice, maybe we should use a lifecycle method */
+        if(isManager) {
+            this.getProjects(); /* I dont think this is best practice, maybe we should use a lifecycle method */
+        } else {
+            this.getProgrammerProjects();
+        }
     }
 
     editManager = (isManager) => {
@@ -79,7 +83,7 @@ export default class Index extends React.Component {
 
     getProgrammerProjects = () => {
         if(this.state.loggedIn){
-            axios.get('api/findProgrammerProject', {
+            axios.get('api/getProgrammerProjects', {
                 params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
                     Pid: localStorage.getItem('Pid')
                 }
@@ -114,6 +118,29 @@ export default class Index extends React.Component {
         }
     }
 
+    getProgrammerTasks = (Pid) => {
+        /* console.log(Pid)
+        console.log(localStorage.getItem('Pid')) */
+        if(this.state.loggedIn){
+            axios.get('api/getProgrammerTasks', {
+                params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+                    Pid: Pid,
+                    ProgId: localStorage.getItem('Pid'),
+                }
+            })
+            .then((res) => {
+                if(res.status == 200) {
+                    this.setState({tasks: res.data})
+                    console.log(this.state.tasks);
+                }else if(res.status == 404){
+                    console.log(res.data);
+                }
+            })
+        }else{
+            console.log('not logged in yet');
+        }
+    }
+
     setInfobar = (text) => {
         this.setState({infobar: text});
     }
@@ -124,7 +151,7 @@ export default class Index extends React.Component {
                 <div style={{maxHeight:'100vh'}}>
                     <ReactNotification ref={this.notificationRef} /> 
                     <Header loggedIn={this.state.loggedIn} editLoggedIn={this.editLoggedIn} isManager={this.state.isManager}/>
-                    <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects} tasks={this.state.tasks} getProjects={this.getProjects} getProgrammerProjects={this.getProgrammerProjects} getTasks={this.getTasks} setInfobar={this.setInfobar} isManager={this.state.isManager}/>
+                    <SideBar loggedIn={this.state.loggedIn} projects={this.state.projects} tasks={this.state.tasks} getProjects={this.getProjects} getProgrammerProjects={this.getProgrammerProjects} getTasks={this.getTasks} setInfobar={this.setInfobar} getProgrammerTasks={this.getProgrammerTasks} isManager={this.state.isManager}/>
                     {/* <InfoBar loggedIn={this.state.loggedIn} infobar={this.state.infobar} />   */}                                                         
                     <Switch>
                         <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn} editManager={this.editManager} isManager={this.state.isManager} addNotification={this.addNotification} loggedIn={this.state.loggedIn} />} /> {/* we use render instead of component so we can add props */}

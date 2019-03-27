@@ -67,7 +67,11 @@ class SideBar extends React.Component {
     }
     
     handleClick = (key,pName) => {
-        this.props.getTasks(key);
+        if(this.props.isManager) {
+            this.props.getTasks(key);
+        } else {
+            this.props.getProgrammerTasks(key);
+        }
         this.setState({currentlyUpdating:key});
         this.changePath(key);
         this.props.setInfobar(pName);

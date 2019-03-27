@@ -76428,7 +76428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -107403,7 +107403,7 @@ function (_React$Component) {
       localStorage.removeItem('PMid');
       localStorage.removeItem('Pid');
 
-      _this.props.editLoggedIn(false);
+      _this.props.editLoggedIn(false, null);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onNavClick", function (e) {
@@ -107766,14 +107766,18 @@ function (_React$Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "editLoggedIn", function (loggedIn) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "editLoggedIn", function (loggedIn, isManager) {
       _this.setState({
         loggedIn: loggedIn
       });
 
-      _this.getProjects();
-      /* I dont think this is best practice, maybe we should use a lifecycle method */
+      if (isManager) {
+        _this.getProjects();
+        /* I dont think this is best practice, maybe we should use a lifecycle method */
 
+      } else {
+        _this.getProgrammerProjects();
+      }
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "editManager", function (isManager) {
@@ -107803,7 +107807,7 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getProgrammerProjects", function () {
       if (_this.state.loggedIn) {
-        axios.get('api/findProgrammerProject', {
+        axios.get('api/getProgrammerProjects', {
           params: {
             /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
             Pid: localStorage.getItem('Pid')
@@ -107826,6 +107830,32 @@ function (_React$Component) {
           params: {
             /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
             Pid: Pid
+          }
+        }).then(function (res) {
+          if (res.status == 200) {
+            _this.setState({
+              tasks: res.data
+            });
+
+            console.log(_this.state.tasks);
+          } else if (res.status == 404) {
+            console.log(res.data);
+          }
+        });
+      } else {
+        console.log('not logged in yet');
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getProgrammerTasks", function (Pid) {
+      /* console.log(Pid)
+      console.log(localStorage.getItem('Pid')) */
+      if (_this.state.loggedIn) {
+        axios.get('api/getProgrammerTasks', {
+          params: {
+            /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+            Pid: Pid,
+            ProgId: localStorage.getItem('Pid')
           }
         }).then(function (res) {
           if (res.status == 200) {
@@ -107875,6 +107905,7 @@ function (_React$Component) {
         getProgrammerProjects: this.getProgrammerProjects,
         getTasks: this.getTasks,
         setInfobar: this.setInfobar,
+        getProgrammerTasks: this.getProgrammerTasks,
         isManager: this.state.isManager
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
@@ -108092,16 +108123,16 @@ function (_React$Component) {
           localStorage.setItem('usertoken', res.data.token);
           localStorage.setItem('PMid', res.data.id);
 
-          _this.props.editLoggedIn(true);
+          _this.props.editLoggedIn(true, true);
 
           _this.props.editManager(true);
 
           _this.props.history.push("/index");
         } else if (res.status == 200) {
           localStorage.setItem('usertoken', res.data.token);
-          localStorage.setItem('Pid', res.data.Pid);
+          localStorage.setItem('Pid', res.data.id);
 
-          _this.props.editLoggedIn(true);
+          _this.props.editLoggedIn(true, false);
 
           _this.props.editManager(false);
 
@@ -108854,7 +108885,11 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function (key, pName) {
-      _this.props.getTasks(key);
+      if (_this.props.isManager) {
+        _this.props.getTasks(key);
+      } else {
+        _this.props.getProgrammerTasks(key);
+      }
 
       _this.setState({
         currentlyUpdating: key
@@ -109069,8 +109104,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
