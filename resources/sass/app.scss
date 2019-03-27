@@ -592,6 +592,7 @@ a#visit-page:hover{
   color: #ffc600;
   border-radius: 3px;
   margin-bottom: 1rem;
+  font-family: "Poppins", sans-serif;
 }
 
 .sidebar-task:hover {
@@ -678,23 +679,23 @@ a#visit-page:hover{
 
 .sidebar-header-projects {
   margin: 1rem 0 1rem 0.5rem;
-  color: darkcyan;
+  color: rgb(0, 184, 184);
 }
 
 .sidebar-header-tasks {
   display: none;
   margin: 1rem 0 1rem 0.5rem;
-  color: darkcyan;
+  color: rgb(0, 184, 184);
 }
 
 .sidebar-seperator {
-  border-top: 1px solid #4d3c00;
-  margin: 0.2rem 7rem 0.2rem 3rem;
+  border-top: 1.5px solid #4d3c00;
+  margin: 0.2rem 0rem;
 }
 
 .sidebar-task-seperator {
-  border-top: 1px solid #997800;
-  margin: 0.2rem 2rem 0.2rem 0rem;
+  border-top: 1.5px solid #997800;
+  margin: 0.2rem -2rem;
 }
 
 .track{

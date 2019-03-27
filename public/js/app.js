@@ -76428,7 +76428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -105758,6 +105758,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
 /* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -105777,6 +105778,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -105908,9 +105910,18 @@ function (_React$Component) {
         className: "decorative-box"
       }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-bar-page"
-      }, "Assign Employee"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, "Assign Employee to Project"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-bar-text"
-      }, this.props.infobar), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+      }, this.props.infobar), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["NavLink"], {
+        to: "/index/project/".concat(this.props.match.params.projectId)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "info-bar-btn"
+      }, "Back to Project")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "hr",
+        style: {
+          margin: '0'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "hr",
         style: {
           margin: '0'
@@ -109104,8 +109115,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

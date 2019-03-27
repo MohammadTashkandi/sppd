@@ -1,5 +1,7 @@
 import React from 'react';
 import {Spring} from 'react-spring/renderprops';
+import {NavLink} from 'react-router-dom';
+
 export default class AssignEmployee extends React.Component {
     gridRef = React.createRef();
 
@@ -85,17 +87,19 @@ export default class AssignEmployee extends React.Component {
 
     render() {
         const programmers = Object.keys(this.state.programmers);
+                
 
         return (
             <div className="canvas-background">
                 <div className="info-bar">
                     <span className="decorative-box">i</span>
-                    <span className="info-bar-page">Assign Employee</span>
+                    <span className="info-bar-page">Assign Employee to Project</span>
                     <span className="info-bar-text">{this.props.infobar}</span>
                     <span>
-                            
+                        <NavLink to={`/index/project/${this.props.match.params.projectId}`}><button className="info-bar-btn">Back to Project</button></NavLink>
                     </span>
                 </div>
+                <hr className="hr" style={{margin:'0'}} />
                 <hr className="hr" style={{margin:'0'}} />
                 <div className="pad-top">{/* just some padding top */}</div>
                 {programmers.map(this.renderProgrammer)}
