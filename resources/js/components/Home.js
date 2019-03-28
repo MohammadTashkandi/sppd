@@ -16,23 +16,42 @@ export default class Home extends React.Component {
                         </span>
                 </div>
                 <hr className="hr" style={{margin:'0'}} />
-                    <h2 className="home-h2">Welcome to Your Dashboard !</h2>
-                    <h3 className="home-h3">
-                        Start registering your employees or navigate your projects and tasks on the left sidebar  
-                    </h3>
-                    <h4 className="home-h4">
-                        Haven't started a project yet? Well click below and start !
-                    </h4>
+                    <Spring from={{opacity:0}} // you must wrap the part of the component you want animated in this spring syntax
+                    to={{opacity:1}}
+                    config={{duration:1500}}
+                    >
+                        {props => (
+                            <div style={props}>
+                                <h2 className="home-h2">Welcome to Your Dashboard !</h2>
+                                <h3 className="home-h3">
+                                    Start registering your employees or navigate your projects and tasks on the left sidebar  
+                                </h3>
+                            </div>
+                        )}
+                    </Spring>
+                    <Spring from={{opacity:0 , marginLeft: 0}} // you must wrap the part of the component you want animated in this spring syntax
+                    to={{opacity:1, marginLeft: 690}}
+                    config={{duration:1500}}
+                    >
+                        {props => (
+                            <div style={props}>
+                                <h4 className="home-h4">
+                                    Haven't started a project yet? Well click below and start !
+                                </h4>
+                            </div>
+                        )}
+                    </Spring>
+                    
                     <Spring from={{opacity:0 , marginLeft: 0}} // you must wrap the part of the component you want animated in this spring syntax
                     to={{opacity:1, marginLeft: 750}}
-                    config={{duration:2500}}
-            >
-                {props => (
-                    <div style={props}>
-                        <NavLink to={`/index/createProject`}><button className="info-bar-btn-home">Start a Project !</button></NavLink>
-                    </div>
-                )}
-            </Spring>
+                    config={{duration:3000}}
+                    >
+                        {props => (
+                            <div style={props}>
+                                <NavLink to={`/index/createProject`}><button className="info-bar-btn-home">Start a Project !</button></NavLink>
+                            </div>
+                        )}
+                    </Spring>
                     
                 
             </React.Fragment>

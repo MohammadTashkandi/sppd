@@ -107639,13 +107639,45 @@ function (_React$Component) {
         style: {
           margin: '0'
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-        className: "home-h2"
-      }, "Welcome to Your Dashboard !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        className: "home-h3"
-      }, "Start registering your employees or navigate your projects and tasks on the left sidebar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-        className: "home-h4"
-      }, "Haven't started a project yet? Well click below and start !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__["Spring"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__["Spring"], {
+        from: {
+          opacity: 0
+        } // you must wrap the part of the component you want animated in this spring syntax
+        ,
+        to: {
+          opacity: 1
+        },
+        config: {
+          duration: 1500
+        }
+      }, function (props) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: props
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "home-h2"
+        }, "Welcome to Your Dashboard !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+          className: "home-h3"
+        }, "Start registering your employees or navigate your projects and tasks on the left sidebar"));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__["Spring"], {
+        from: {
+          opacity: 0,
+          marginLeft: 0
+        } // you must wrap the part of the component you want animated in this spring syntax
+        ,
+        to: {
+          opacity: 1,
+          marginLeft: 690
+        },
+        config: {
+          duration: 1500
+        }
+      }, function (props) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: props
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "home-h4"
+        }, "Haven't started a project yet? Well click below and start !"));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__["Spring"], {
         from: {
           opacity: 0,
           marginLeft: 0
@@ -107656,7 +107688,7 @@ function (_React$Component) {
           marginLeft: 750
         },
         config: {
-          duration: 2500
+          duration: 3000
         }
       }, function (props) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
