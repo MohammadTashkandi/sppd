@@ -106984,6 +106984,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EmployeeCanvas; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
+/* harmony import */ var _ProgressBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProgressBar */ "./resources/js/components/ProgressBar.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -107006,6 +107011,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
+
+
 var EmployeeCanvas =
 /*#__PURE__*/
 function (_React$Component) {
@@ -107024,7 +107033,64 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(EmployeeCanvas)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {});
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      barData: {
+        //the data here should also be dynamic depending on what the PM wants to see
+        labels: ['Unassigned->Assigned', 'Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed'],
+        //Bar names
+        datasets: [//here you mostly fill the data of the grap
+        {
+          // this is an object that you fill in each point in the graph
+          label: 'Min',
+          data: [4, 8, 10, 12],
+          backgroundColor: 'rgb(44, 135, 196)',
+          hoverBorderWidth: 2,
+          hoverBorderColor: '#122738'
+        }, //these objects will be rendered for every label mentioned in the above array "labels"
+        {
+          label: 'Average',
+          data: [20, 15, 13, 14],
+          backgroundColor: '#9d9d9d',
+          hoverBorderWidth: 2,
+          hoverBorderColor: '#122738'
+        }, //if you want more than 1 bar for a label, then add more object with the desired aspects!
+        {
+          label: 'Max',
+          data: [40, 32, 44, 50],
+          backgroundColor: '#ffc600',
+          hoverBorderWidth: 2,
+          hoverBorderColor: '#122738'
+        }]
+      },
+      lineData: {
+        //the data here should also be dynamic depending on what the PM wants to see
+        labels: ['Major', 'Minor', 'Tweak', 'Crash'],
+        //Bar names
+        datasets: [//here you mostly fill the data of the grap
+        {
+          // this is an object that you fill in each point in the graph
+          label: 'Number of Tasks',
+          data: [3, 12, 6, 1],
+          backgroundColor: 'purple',
+          hoverBorderWidth: 2,
+          hoverBorderColor: '#122738'
+        }]
+      },
+      pieData: {
+        //the data here should also be dynamic depending on what the PM wants to see
+        labels: ['Major', 'Minor', 'Tweak', 'Crash'],
+        //Bar names
+        datasets: [//here you mostly fill the data of the grap
+        {
+          // this is an object that you fill in each point in the graph
+          label: 'Number of Tasks',
+          data: [3, 12, 6, 1],
+          backgroundColor: ['blue', 'red', 'green', 'pink'],
+          hoverBorderWidth: 2,
+          hoverBorderColor: '#122738'
+        }]
+      }
+    });
 
     return _this;
   }
@@ -107032,7 +107098,147 @@ function (_React$Component) {
   _createClass(EmployeeCanvas, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My canvas");
+      var _this2 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "canvas-background"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "info-bar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "decorative-box"
+      }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-page"
+      }, "Project"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-text"
+      }, this.props.infobar)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "hr",
+        style: {
+          margin: '0'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__["Spring"], {
+        from: {
+          opacity: 0
+        } // you must wrap the part of the component you want animated in this spring syntax
+        ,
+        to: {
+          opacity: 1
+        },
+        config: {
+          duration: 750
+        }
+      }, function (props) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: props
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Bar"], {
+          height: "270",
+          width: "665" //everything here can be dynamic depending on results 
+          ,
+          data: _this2.state.barData //this should alawys be dynamic   
+          ,
+          options: {
+            maintainAspectRatio: false,
+            title: {
+              display: true,
+              text: 'Task Duration',
+              //this should also be dynamic
+              fontSize: 25,
+              fontFamily: '"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
+            },
+            legend: {
+              //this should also be dynamic
+              display: true,
+              position: 'right',
+              labels: {
+                fontColor: '#333'
+              }
+            },
+            scales: {
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Time in Days'
+                }
+              }],
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Transition Time'
+                }
+              }]
+            }
+          }
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Pie"], {
+          height: "140",
+          width: "330" //everything here can be dynamic depending on results 
+          ,
+          data: _this2.state.pieData //this should alawys be dynamic
+          ,
+          options: {
+            maintainAspectRatio: false,
+            title: {
+              display: true,
+              text: 'Task Severity',
+              //this should also be dynamic
+              fontSize: 25
+            },
+            legend: {
+              //this should also be dynamic
+              display: true,
+              position: 'right',
+              labels: {
+                fontColor: '#333'
+              }
+            }
+          }
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Line"], {
+          height: "270",
+          width: "665" //everything here can be dynamic depending on results 
+          ,
+          data: _this2.state.lineData //this should alawys be dynamic
+          ,
+          options: {
+            maintainAspectRatio: false,
+            title: {
+              display: true,
+              text: 'Task Severity',
+              //this should also be dynamic
+              fontSize: 25
+            },
+            legend: {
+              //this should also be dynamic
+              display: true,
+              position: 'right',
+              labels: {
+                fontColor: '#333'
+              }
+            },
+            scales: {
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Percentage %'
+                }
+              }],
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Task Severity'
+                }
+              }]
+            }
+          }
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProgressBar__WEBPACK_IMPORTED_MODULE_4__["default"], null))));
+      }));
     }
   }]);
 
@@ -108086,7 +108292,7 @@ function (_React$Component) {
           }));
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        path: "/employeIndex/project/:projectId",
+        path: "/employeeIndex/project/:projectId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EmployeeCanvas__WEBPACK_IMPORTED_MODULE_19__["default"], _extends({}, props, {
             infobar: _this2.state.infobar,

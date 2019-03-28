@@ -168,7 +168,7 @@ export default class Index extends React.Component {
 
 
                         <Route exact path="/employeeIndex" render={(props)=> <EmployeeIndex {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
-                        <Route path="/employeIndex/project/:projectId" render={(props)=> <EmployeeCanvas {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route path="/employeeIndex/project/:projectId" render={(props)=> <EmployeeCanvas {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>
