@@ -106239,9 +106239,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CreateProject; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
-/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -106261,7 +106260,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -106342,7 +106340,7 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__["Spring"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__["Spring"], {
         from: {
           opacity: 0,
           marginTop: -500
@@ -107589,6 +107587,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Home; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -107606,6 +107607,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
 
 
 
@@ -107636,6 +107639,33 @@ function (_React$Component) {
         style: {
           margin: '0'
         }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "home-h2"
+      }, "Welcome to Your Dashboard !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "home-h3"
+      }, "Start registering your employees or navigate your projects and tasks on the left sidebar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "home-h4"
+      }, "Haven't started a project yet? Well click below and start !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__["Spring"], {
+        from: {
+          opacity: 0,
+          marginLeft: 0
+        } // you must wrap the part of the component you want animated in this spring syntax
+        ,
+        to: {
+          opacity: 1,
+          marginLeft: 750
+        },
+        config: {
+          duration: 2500
+        }
+      }, function (props) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: props
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+          to: "/index/createProject"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "info-bar-btn-home"
+        }, "Start a Project !")));
       }));
     }
   }]);
@@ -108175,7 +108205,15 @@ function (_React$Component) {
         this.props.history.push("/employeeIndex");
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: _LOGO2_png__WEBPACK_IMPORTED_MODULE_2___default.a,
+        style: {
+          width: '170px',
+          height: '110px',
+          marginTop: '3rem',
+          marginLeft: '69.5rem'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         style: {
           color: '#2c87c4',
           fontFamily: '"Poppins", sans-serif',
@@ -108187,14 +108225,14 @@ function (_React$Component) {
         }
       }, "Software Project Performance Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: _LOGO2_png__WEBPACK_IMPORTED_MODULE_2___default.a,
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         style: {
-          width: '170px',
-          height: '110px',
-          marginTop: '3rem'
+          color: '#ffc600',
+          fontFamily: '"Poppins", sans-serif',
+          paddingTop: '2rem',
+          marginBottom: '4rem'
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.onSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"

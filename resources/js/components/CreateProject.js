@@ -1,5 +1,4 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
 import {Spring} from 'react-spring/renderprops';
 
 export default class CreateProject extends React.Component {
