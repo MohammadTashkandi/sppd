@@ -108037,7 +108037,7 @@ function (_React$Component) {
         animationIn: ["animated", "fadeIn"],
         animationOut: ["animated", "fadeOut"],
         dismiss: {
-          duration: 1500
+          duration: 3000
         },
         dismissable: {
           click: true

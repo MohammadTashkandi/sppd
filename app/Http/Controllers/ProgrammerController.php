@@ -258,7 +258,7 @@ class ProgrammerController extends Controller
 
     public function getProgrammerProjects(Request $request)
     {
-        $progId = $request['progID'];
+        $progId = $request['Pid'];
 
         $programmer = Programmer::where('id', '=', '1')->get()->first()->projects->pluck('title', 'id');
 

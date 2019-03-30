@@ -46,7 +46,7 @@ export default class Index extends React.Component {
             container: "top-center",
             animationIn: ["animated", "fadeIn"],
             animationOut: ["animated", "fadeOut"],
-            dismiss: { duration: 1500 },
+            dismiss: { duration: 3000 },
             dismissable: { click: true }           
           });
     }
