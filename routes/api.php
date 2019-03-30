@@ -38,6 +38,7 @@ Route::post('assignEmployee','ProgrammerController@assignEmployee');
 
 Route::get('getProgrammerProjects','ProgrammerController@getProgrammerProjects');
 Route::get('getProgrammerInfo','ProgrammerController@getProgrammerInfo');
+Route::post('changeTaskStatus','TaskController@changeTaskStatus');
 
 
 
