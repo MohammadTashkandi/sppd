@@ -205,7 +205,7 @@ class TaskController extends Controller
             $task->save();
             return response()->json('Closed', 200);
 
-        } elseif ($task->status == 'Resolved_state' && $number ==1) {
+        } elseif ($task->status == 'Resolved_state' && $number ==2) {
             $task->status = 5;
             $ResolvedTime = $task->Resolved_state;
             $time = Carbon::now();
