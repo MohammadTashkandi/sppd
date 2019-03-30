@@ -70,7 +70,7 @@ class TaskController extends Controller
             'tJud' => $request['tJud'],
             'tCu' => $request['tCu'],
             'tTech' => $request['tTech'],
-            'Open_state' => Carbon::now(),
+            'Assigned_state' => Carbon::now(),
         ]);
 
         $task->save();
@@ -156,6 +156,85 @@ class TaskController extends Controller
        //  $theDiff = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $theDiff);
        //  sscanf($theDiff, "%d:%d:%d", $hours, $minutes, $seconds);
         // $theDiff_sec = $hours * 3600 + $minutes * 60 + $seconds;
+
+
+    }
+
+
+
+    public function changeTaskStatus(Request$request){
+
+
+        $number = $request['number'];
+
+        $task = Task::where('id', $request['id'])->first();
+        if ($task == null) {
+            return response()->json('ERROR', 404);
+        }
+
+        if ($task->status == 'New-assigned') {
+            $task->status = 2;
+            $assignTime = $task->Assigned_state;
+            $time = Carbon::now();
+            $task->inProgress_state = $time;
+            $assignTime = Carbon::parse($assignTime);
+            $task->AssignedDuration = $assignTime->diffInMinutes($time);
+            $task->save();
+            return response()->json('Progress', 200);
+
+
+        } elseif ($task->status == 'inProgress_state') {
+            $task->status = 3;
+            $progressTime = $task->inProgress_state;
+            $time = Carbon::now();
+            $task->Resolved_state = $time;
+
+            $progressTime = Carbon::parse($progressTime);
+            $task->inProgressDuration = $progressTime->diffInMinutes($time);
+            $task->save();
+            return response()->json('Resolved', 200);
+
+
+        } elseif ($task->status == 'Resolved_state' && $number == 1) {
+            $task->status = 4;
+            $ResolvedTime = $task->Resolved_state;
+            $time = Carbon::now();
+            $task->Closed_state = $time;
+            $ResolvedTime = Carbon::parse($ResolvedTime);
+            $task->ResolvedDuration = $ResolvedTime->diffInMinutes($time);
+            $task->save();
+            return response()->json('Closed', 200);
+
+        } elseif ($task->status == 'Resolved_state' && $number ==1) {
+            $task->status = 5;
+            $ResolvedTime = $task->Resolved_state;
+            $time = Carbon::now();
+            $task->reOpen_state = $time;
+            $ResolvedTime = Carbon::parse($ResolvedTime);
+            $task->ResolvedDuration = $ResolvedTime->diffInMinutes($time);
+            $task->save();
+
+            return response()->json('Reopened', 200);
+
+        } elseif ($task->status == 'reOpen_state') {
+            $task->status = 5;
+            $reOpen_state = $task->reOpen_state;
+            $time = Carbon::now();
+            $task->Closed_state = $time;
+            $reOpen_state = Carbon::parse($reOpen_state);
+            $task->reOpenDuration = $reOpen_state->diffInMinutes($time);
+            $task->save();
+
+            return response()->json('Closed', 200);
+
+
+
+        }
+
+
+
+
+
 
 
     }
