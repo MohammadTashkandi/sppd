@@ -260,7 +260,7 @@ class ProgrammerController extends Controller
     {
         $progId = $request['Pid'];
 
-        $programmer = Programmer::where('id', '=', '1')->get()->first()->projects->pluck('title', 'id');
+        $programmer = Programmer::where('id', '=', $progId)->get()->first()->projects->pluck('title', 'id');
 
         return response()->json($programmer, 200);
     }

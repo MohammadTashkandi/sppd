@@ -80,6 +80,21 @@ class TaskController extends Controller
 
     }
 
+    public function getTaskInfo(Request $request)
+    {
+        $t = Task::where('id', '=', $request['id']);
+
+        if ($t == null) {
+            return response()->json(['task not exist'], 404);
+        }
+
+        $t = $t->first();
+
+        return response()->json($t , 200);
+
+
+    }
+
 
     /**
      * Display the specified resource.

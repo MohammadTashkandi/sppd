@@ -70,7 +70,7 @@ export default class EmployeeCanvas extends React.Component {
                 <div className="info-bar">
                     <span className="decorative-box">i</span>
                     <span className="info-bar-page">Project</span>
-                    <span className="info-bar-text">{this.props.infobar}</span>
+                    <span className="info-bar-text">{this.props.infobar}</span> 
                 </div>
                 <hr className="hr" style={{margin:'0'}} />
                 <Spring from={{opacity:0}} // you must wrap the part of the component you want animated in this spring syntax

@@ -107309,7 +107309,7 @@ function (_React$Component) {
   _createClass(EmployeeIndex, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "home");
     }
   }]);
 
@@ -107539,6 +107539,216 @@ function (_React$Component) {
   }]);
 
   return EmployeePage;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/EmployeeTaskPage.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/EmployeeTaskPage.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EmployeeTaskPage; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var EmployeeTaskPage =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(EmployeeTaskPage, _React$Component);
+
+  function EmployeeTaskPage() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, EmployeeTaskPage);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(EmployeeTaskPage)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "statusRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "buttonRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      task: {},
+      barData: {}
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onClick", function () {
+      axios.post('api/changeTaskStatus', {
+        id: _this.props.match.params.taskId,
+        number: 0
+      }).then(function (res) {
+        console.log(res.data);
+        /* if(){
+            this.statusRef.current.innerText = "Progress"
+        }else if(){
+            this.statusRef.current.innerText = "Closed"
+        } */
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
+    return _this;
+  }
+
+  _createClass(EmployeeTaskPage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios.get('api/getTaskInfo', {
+        params: {
+          id: this.props.match.params.taskId
+        }
+      }).then(function (res) {
+        console.log(res.data);
+
+        _this2.setState({
+          task: res.data
+        });
+
+        _this2.setState({
+          barData: {
+            //the data here should also be dynamic depending on what the PM wants to see
+            labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
+            datasets: [//here you mostly fill the data of the graph
+            {
+              // this is an object that you fill in each point in the graph
+              label: '',
+              data: [res.data.tJud, res.data.tCu, res.data.tStr, res.data.tTech],
+              backgroundColor: 'rgb(247, 199, 111, 0.4)',
+              borderColor: 'orange'
+            }]
+          }
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "info-bar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "decorative-box"
+      }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-page"
+      }, "Task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-text"
+      }, "Task Info Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "hr",
+        style: {
+          margin: '0'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__["Spring"], {
+        from: {
+          opacity: 0
+        } // you must wrap the part of the component you want animated in this spring syntax
+        ,
+        to: {
+          opacity: 1
+        },
+        config: {
+          duration: 750
+        }
+      }, function (props) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: props
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginLeft: "95rem",
+            position: 'absolute'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Radar"], {
+          height: "270",
+          width: "665" //everything here can be dynamic depending on results 
+          ,
+          data: _this3.state.barData //this should alawys be dynamic   
+          ,
+          options: {
+            maintainAspectRatio: true,
+            legend: {
+              display: false
+            },
+            title: {
+              display: true,
+              text: 'Personal Performance Measures',
+              //this should also be dynamic
+              fontSize: 25
+            },
+            scale: {
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          }
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "prog-task-header"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Information:"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Title:"), _this3.state.task.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Severity:"), _this3.state.task.severity)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Status:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          ref: _this3.statusRef
+        }, _this3.state.task.status))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "login-btn",
+          ref: _this3.buttonRef,
+          style: {
+            marginBottom: '2rem',
+            marginTop: '6rem',
+            marginLeft: '47rem'
+          },
+          onClick: _this3.onClick
+        }, "Start Working !")));
+      }));
+    }
+  }]);
+
+  return EmployeeTaskPage;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 
@@ -107875,7 +108085,7 @@ function (_React$Component) {
           marginLeft: 690
         },
         config: {
-          duration: 1500
+          duration: 1000
         }
       }, function (props) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -107894,7 +108104,7 @@ function (_React$Component) {
           marginLeft: 750
         },
         config: {
-          duration: 3000
+          duration: 1000
         }
       }, function (props) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -107948,8 +108158,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component__WEBPACK_IMPORTED_MODULE_17__);
 /* harmony import */ var _EmployeeIndex__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./EmployeeIndex */ "./resources/js/components/EmployeeIndex.js");
 /* harmony import */ var _EmployeeCanvas__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./EmployeeCanvas */ "./resources/js/components/EmployeeCanvas.js");
-/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-notifications-component/dist/theme.css */ "./node_modules/react-notifications-component/dist/theme.css");
-/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var _EmployeeTaskPage__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./EmployeeTaskPage */ "./resources/js/components/EmployeeTaskPage.js");
+/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-notifications-component/dist/theme.css */ "./node_modules/react-notifications-component/dist/theme.css");
+/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_21__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -107977,6 +108188,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   /Applications/Development/projects/laravelProjects/sppd/sppd
   */
 }
+
 
 
 
@@ -108295,6 +108507,14 @@ function (_React$Component) {
         path: "/employeeIndex/project/:projectId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EmployeeCanvas__WEBPACK_IMPORTED_MODULE_19__["default"], _extends({}, props, {
+            infobar: _this2.state.infobar,
+            addNotification: _this2.addNotification
+          }));
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/employeeIndex/Task/:taskId",
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EmployeeTaskPage__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({}, props, {
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
           }));
@@ -109155,6 +109375,13 @@ function (_React$Component) {
         "aria-labelledby": "v-pills-" + key + "-tab"
       }, taskIds.map(function (id) {
         var task = _this.props.tasks[id];
+        var link = "";
+
+        if (_this.props.isManager) {
+          link = "/index/Task/".concat(task.id);
+        } else {
+          link = "/employeeIndex/Task/".concat(task.id);
+        }
 
         if (task.Pid == _this.state.currentlyUpdating) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -109162,7 +109389,7 @@ function (_React$Component) {
           }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["NavLink"], {
             key: id,
             className: "sidebar-task",
-            to: "/index/Task/".concat(task.id),
+            to: "".concat(link),
             onClick: function onClick() {
               return _this.props.setInfobar(event.target.innerText);
             }

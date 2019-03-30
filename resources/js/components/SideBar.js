@@ -47,17 +47,23 @@ class SideBar extends React.Component {
 
     renderTask = (key) => {
         const taskIds = Object.keys(this.props.tasks);
-
+        
             return(             
                 <div key={key} ref={this.taskRef} className="tab-pane fade" id={"v-pills-"+key} role="tabpanel" aria-labelledby={"v-pills-"+key+"-tab"}>
                     {taskIds.map((id) => {
                         const task = this.props.tasks[id];
+                        var link = "";
+                        if(this.props.isManager){
+                            link = `/index/Task/${task.id}`
+                        }else{
+                            link = `/employeeIndex/Task/${task.id}`
+                        }
                         if(task.Pid == this.state.currentlyUpdating) {
                             return (
                                 <React.Fragment>
                                     <div className="sidebar-task-seperator"></div>
                                     {/* dont need key here if parent has key i think */}
-                                    <NavLink key={id} className="sidebar-task" to={`/index/Task/${task.id}`} onClick={() => this.props.setInfobar(event.target.innerText)}>{task.title}</NavLink>
+                                    <NavLink key={id} className="sidebar-task" to={`${link}`} onClick={() => this.props.setInfobar(event.target.innerText)}>{task.title}</NavLink>
                                 </React.Fragment>
                                 );
                             }

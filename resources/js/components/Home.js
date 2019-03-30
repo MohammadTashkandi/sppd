@@ -31,7 +31,7 @@ export default class Home extends React.Component {
                     </Spring>
                     <Spring from={{opacity:0 , marginLeft: 0}} // you must wrap the part of the component you want animated in this spring syntax
                     to={{opacity:1, marginLeft: 690}}
-                    config={{duration:1500}}
+                    config={{duration:1000}}
                     >
                         {props => (
                             <div style={props}>
@@ -44,7 +44,7 @@ export default class Home extends React.Component {
                     
                     <Spring from={{opacity:0 , marginLeft: 0}} // you must wrap the part of the component you want animated in this spring syntax
                     to={{opacity:1, marginLeft: 750}}
-                    config={{duration:3000}}
+                    config={{duration:1000}}
                     >
                         {props => (
                             <div style={props}>

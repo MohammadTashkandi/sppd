@@ -695,7 +695,7 @@ a#visit-page:hover{
 
 .sidebar-task-seperator {
   border-top: 1.5px solid #997800;
-  margin: 0.2rem -2rem;
+  margin: 0.2rem 0rem;
 }
 
 .track{
@@ -800,4 +800,37 @@ b{
 .info-bar-btn-home:active {
   transform: translateX(200px);
   transition: 0.7s;
+}
+
+.prog-task{
+  margin-left: 42rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+.prog-task-header{
+  margin-left: 38rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-family: "Poppins", sans-serif;
+
+}
+
+.prog-task{
+  opacity: 1;
+   -webkit-animation-name: taskInfo; /* Safari 4.0 - 8.0 */
+   -webkit-animation-duration: 5.2s; /* Safari 4.0 - 8.0 */
+   animation-name: taskInfo;
+   animation-duration: 5.2s;
+
+}
+ /* Safari 4.0 - 8.0 */
+ @-webkit-keyframes taskInfo {
+   from {opacity: 0;}
+   to {opacity: 1;}
+ }
+/* Standard syntax */
+@keyframes taskInfo {
+ from {opacity: 0;}
+ to {opacity: 1;}
 }

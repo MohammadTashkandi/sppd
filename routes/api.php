@@ -29,6 +29,7 @@ Route::get('getProgrammerInfo','ProgrammerController@getProgrammerInfo'); //for 
 
 Route::post('addTask','TaskController@store');
 Route::get('getTasks','TaskController@getTasks');
+Route::get('getTaskInfo','TaskController@getTaskInfo');
 
 Route::post('assignEmployee','ProgrammerController@assignEmployee');
 
