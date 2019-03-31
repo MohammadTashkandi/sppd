@@ -249,7 +249,7 @@ class TaskController extends Controller
     }
 
 
-    public function setTaskToReOpened(Request $request)
+    public function setTaskStatusToReOpened(Request $request)
     {
 
 

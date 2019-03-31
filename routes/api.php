@@ -34,7 +34,7 @@ Route::get('getTasks','TaskController@getTasks');
 Route::get('getTaskInfo','TaskController@getTaskInfo');
 Route::post('changeTaskStatus','TaskController@changeTaskStatus');
 Route::post('setTaskStatusToClose','TaskController@setTaskStatusToClose'); // this function will receive request contain 'id'
-Route::post('setTaskToReOpened','TaskController@setTaskToReOpened'); // this function will receive request contain 'id'
+Route::post('setTaskStatusToReOpened','TaskController@setTaskStatusToReOpened'); // this function will receive request contain 'id'
 
 
 
