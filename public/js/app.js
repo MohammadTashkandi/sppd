@@ -106623,6 +106623,8 @@ function (_React$Component) {
           _this.props.history.push("/index/Task/".concat(res.data[1]));
         }
       }).catch(function (err) {
+        console.log(err);
+
         _this.props.addNotification('Error', 'Please click on a name', 'warning');
       });
     });
@@ -107611,42 +107613,36 @@ function (_React$Component) {
       barData: {}
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onClick", function () {
-      axios.post('api/changeTaskStatus', {
-        id: _this.props.match.params.taskId,
-        number: 0
-      }).then(function (res) {
-        console.log(res.data);
-        /* if(){
-            this.statusRef.current.innerText = "Progress"
-        }else if(){
-            this.statusRef.current.innerText = "Closed"
-        } */
-      }).catch(function (err) {
-        console.log(err);
-      });
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidUpdate", function (prevProps) {
+      if (prevProps.match.params.taskId != _this.props.match.params.taskId) {
+        _this.setState({
+          task: {},
+          barData: {}
+        });
+
+        _this.loadTask();
+      }
     });
 
-    return _this;
-  }
-
-  _createClass(EmployeeTaskPage, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadTask", function () {
       axios.get('api/getTaskInfo', {
         params: {
-          id: this.props.match.params.taskId
+          id: _this.props.match.params.taskId
         }
       }).then(function (res) {
-        console.log(res.data);
+        console.log(res.data.status);
 
-        _this2.setState({
+        if (res.data.status == "New-assigned" || res.data.status == "Progress" || res.data.status == "Re-Opened") {
+          _this.buttonRef.current.style.display = "block";
+        } else {
+          _this.buttonRef.current.style.display = "none";
+        }
+
+        _this.setState({
           task: res.data
         });
 
-        _this2.setState({
+        _this.setState({
           barData: {
             //the data here should also be dynamic depending on what the PM wants to see
             labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
@@ -107663,11 +107659,36 @@ function (_React$Component) {
       }).catch(function (err) {
         console.log(err);
       });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onClick", function () {
+      axios.post('api/changeTaskStatus', {
+        id: _this.props.match.params.taskId,
+        number: 0
+      }).then(function (res) {
+        if (res.data == "Progress") {
+          _this.statusRef.current.innerText = "Progress";
+        } else if (res.data == "Resolved") {
+          _this.statusRef.current.innerText = "Resolved";
+          _this.buttonRef.current.style.display = "none";
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
+    return _this;
+  }
+
+  _createClass(EmployeeTaskPage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.loadTask();
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-bar"
@@ -107705,7 +107726,7 @@ function (_React$Component) {
           height: "270",
           width: "665" //everything here can be dynamic depending on results 
           ,
-          data: _this3.state.barData //this should alawys be dynamic   
+          data: _this2.state.barData //this should alawys be dynamic   
           ,
           options: {
             maintainAspectRatio: true,
@@ -107720,7 +107741,9 @@ function (_React$Component) {
             },
             scale: {
               ticks: {
-                beginAtZero: true
+                beginAtZero: true,
+                min: 0,
+                max: 5
               }
             }
           }
@@ -107728,22 +107751,23 @@ function (_React$Component) {
           className: "prog-task-header"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Information:"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "prog-task"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Title:"), _this3.state.task.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Title:"), _this2.state.task.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "prog-task"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Severity:"), _this3.state.task.severity)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Severity:"), _this2.state.task.severity)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "prog-task"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Status:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          ref: _this3.statusRef
-        }, _this3.state.task.status))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          ref: _this2.statusRef
+        }, _this2.state.task.status))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "login-btn",
-          ref: _this3.buttonRef,
+          ref: _this2.buttonRef,
           style: {
             marginBottom: '2rem',
-            marginTop: '6rem',
-            marginLeft: '47rem'
+            marginTop: '4rem',
+            marginLeft: '37rem',
+            display: "none"
           },
-          onClick: _this3.onClick
-        }, "Start Working !")));
+          onClick: _this2.onClick
+        }, "Transition to The Next Phase")));
       }));
     }
   }]);

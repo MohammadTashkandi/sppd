@@ -12,13 +12,32 @@ export default class EmployeeTaskPage extends React.Component {
     }
 
     componentDidMount(){
+        this.loadTask();
+    }
+
+    componentDidUpdate = (prevProps) => {
+        if(prevProps.match.params.taskId != this.props.match.params.taskId) {
+            this.setState({
+                task: {},
+                barData: {},
+            });
+            this.loadTask();
+        }
+    }
+
+    loadTask = () =>{
         axios.get('api/getTaskInfo',{
             params:{
                 id: this.props.match.params.taskId
             }
         })
         .then((res)=>{
-            console.log(res.data)
+            console.log(res.data.status)
+            if(res.data.status == "New-assigned" || res.data.status == "Progress" || res.data.status == "Re-Opened"){
+                this.buttonRef.current.style.display = "block";
+            }else{
+                this.buttonRef.current.style.display = "none";
+            }
             this.setState({task: res.data});
             this.setState({
                 barData:{ //the data here should also be dynamic depending on what the PM wants to see
@@ -38,19 +57,18 @@ export default class EmployeeTaskPage extends React.Component {
             console.log(err)
         })
     }
-
     onClick = () =>{
         axios.post('api/changeTaskStatus',{
                 id: this.props.match.params.taskId,
                 number: 0
         })
         .then((res)=>{
-            console.log(res.data)
-            /* if(){
+            if(res.data == "Progress"){
                 this.statusRef.current.innerText = "Progress"
-            }else if(){
-                this.statusRef.current.innerText = "Closed"
-            } */
+            }else if(res.data == "Resolved"){
+                this.statusRef.current.innerText = "Resolved"
+                this.buttonRef.current.style.display = "none";
+            }
         })
         .catch((err)=>{
             console.log(err)
@@ -94,7 +112,9 @@ export default class EmployeeTaskPage extends React.Component {
                                         },
                                         scale: {
                                             ticks: {
-                                            beginAtZero: true
+                                            beginAtZero: true,
+                                            min: 0,
+                                            max: 5
                                             }
                                         }
                                     }}
@@ -105,7 +125,7 @@ export default class EmployeeTaskPage extends React.Component {
                     <span><h4 className="prog-task"><b>Task Title:</b>{this.state.task.title}</h4></span>
                     <span><h4 className="prog-task"><b>Severity:</b>{this.state.task.severity}</h4></span>
                     <span><h4 className="prog-task"><b>Status:</b><span ref={this.statusRef}>{this.state.task.status}</span></h4></span>
-                    <button className="login-btn" ref={this.buttonRef} style={{marginBottom:'2rem', marginTop:'6rem', marginLeft:'47rem'}} onClick={this.onClick}>Start Working !</button>
+                    <button className="login-btn" ref={this.buttonRef} style={{marginBottom:'2rem', marginTop:'4rem', marginLeft:'37rem', display:"none"}} onClick={this.onClick}>Transition to The Next Phase</button>
                     </div>
                 </div>
             )}

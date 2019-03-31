@@ -115,6 +115,7 @@ export default class CreateTask extends React.Component {
             }
         })
         .catch((err) => {
+            console.log(err);
             this.props.addNotification('Error', 'Please click on a name', 'warning');
         })
     }

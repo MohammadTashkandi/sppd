@@ -20,7 +20,7 @@ class CreateTasksTable extends Migration
             $table->string('title');
             $table->enum('status' , [ 'New-unassigned','New-assigned' , 'Progress' , 'Resolved' , 'Closed' , 'Reopened' , 'Deferred']);
             $table->enum('severity' , [ 'Feature','Trivial' , 'Text' , 'Tweak' , 'Minor' , 'Major' , 'Crash','Block)']);
-            $table->dateTime('Open_state');
+            $table->dateTime('Open_state')->nullable();
             $table->dateTime('Assigned_state')->nullable();
             $table->dateTime('inProgress_state')->nullable();
             $table->dateTime('Resolved_state')->nullable();
