@@ -17,8 +17,18 @@ Route::post('register','UserController@register');
 Route::post('login','UserController@login');
 Route::post('addProgrammer','UserController@addProgrammer');
 
+
 Route::post('storeProject','ProjectController@store');
 Route::get('findProject','ProjectController@findProject');
+Route::get('countFeature','ProjectController@countFeature'); //this function will receive request contain 'Pid' (Project id)
+Route::get('countTrivial','ProjectController@countTrivial'); //this function will receive request contain 'Pid' (Project id)
+Route::get('countText','ProjectController@countText'); //this function will receive request contain 'Pid' (Project id)
+Route::get('countTweak','ProjectController@countTweak'); //this function will receive request contain 'Pid' (Project id)
+Route::get('countMinor','ProjectController@countMinor'); //this function will receive request contain 'Pid' (Project id)
+Route::get('countMajor','ProjectController@countMajor'); //this function will receive request contain 'Pid' (Project id)
+Route::get('countCrash','ProjectController@countCrash'); //this function will receive request contain 'Pid' (Project id)
+Route::get('countBlock','ProjectController@countBlock'); //this function will receive request contain 'Pid' (Project id)
+
 
 Route::get('findProgrammer','ProgrammerController@findProgrammer'); //for searching
 Route::get('autocompleteSearch','ProgrammerController@autocompleteSearch'); //for searching for programmer in create task

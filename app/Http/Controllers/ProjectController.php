@@ -165,5 +165,61 @@ class ProjectController extends Controller
     }
 
 
+    public function countFeature(Request $request){
+
+        $Pid = $request['Pid'];
+        $num = count(Task::where('Pid', $Pid)->where('severity', 'Feature')->get());
+    }
+
+    public function countTrivial(Request $request){
+
+        $Pid = $request['Pid'];
+        $num = count(Task::where('Pid', $Pid)->where('severity', 'Trivial')->get());
+    }
+
+    public function countText(Request $request){
+
+        $Pid = $request['Pid'];
+        $num = count(Task::where('Pid', $Pid)->where('severity', 'Text')->get());
+    }
+
+    public function countTweak(Request $request){
+
+        $Pid = $request['Pid'];
+        $num = count(Task::where('Pid', $Pid)->where('severity', 'Tweak')->get());
+    }
+
+    public function countMinor(Request $request){
+
+        $Pid = $request['Pid'];
+        $num = count(Task::where('Pid', $Pid)->where('severity', 'Minor')->get());
+    }
+
+    public function countMajor(Request $request){
+
+        $Pid = $request['Pid'];
+        $num = count(Task::where('Pid', $Pid)->where('severity', 'Major')->get());
+    }
+
+
+    public function countCrash(Request $request){
+
+        $Pid = $request['Pid'];
+        $num = count(Task::where('Pid', $Pid)->where('severity', 'Crash')->get());
+    }
+
+
+    public function countBlock(Request $request){
+
+        $Pid = $request['Pid'];
+        $num = count(Task::where('Pid', $Pid)->where('severity', 'Block')->get());
+    }
+
+
+
+
+
+
+
 
 }
