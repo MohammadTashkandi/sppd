@@ -11389,6 +11389,7 @@ b {
 }
 
 .prog-task-pm {
+  font-weight: 350;
   margin-left: 42rem;
   margin-top: 4rem;
   margin-bottom: 4rem;
@@ -11427,5 +11428,140 @@ b {
   to {
     opacity: 1;
   }
+}
+
+.prog-task-pm-stat {
+  color: #019494;
+  font-weight: 350;
+  margin-left: 42rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.prog-task-pm-stat {
+  opacity: 1;
+  -webkit-animation-name: taskInfoPM;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 5.2s;
+  /* Safari 4.0 - 8.0 */
+  animation-name: taskInfoPM;
+  animation-duration: 5.2s;
+}
+
+/* Safari 4.0 - 8.0 */
+
+@-webkit-keyframes taskInfoPM {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Standard syntax */
+
+@keyframes taskInfoPM {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.prog-task-pm-stat-act {
+  color: #2c87c4;
+  font-weight: 350;
+  margin-left: 42rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.prog-task-pm-stat-act {
+  opacity: 1;
+  -webkit-animation-name: taskInfoPM;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 5.2s;
+  /* Safari 4.0 - 8.0 */
+  animation-name: taskInfoPM;
+  animation-duration: 5.2s;
+}
+
+/* Safari 4.0 - 8.0 */
+
+@-webkit-keyframes taskInfoPM {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Standard syntax */
+
+@keyframes taskInfoPM {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.prog-task-pm-stat-req {
+  color: orange;
+  font-weight: 350;
+  margin-left: 42rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.prog-task-pm-stat-req {
+  opacity: 1;
+  -webkit-animation-name: taskInfoPM;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 5.2s;
+  /* Safari 4.0 - 8.0 */
+  animation-name: taskInfoPM;
+  animation-duration: 5.2s;
+}
+
+/* Safari 4.0 - 8.0 */
+
+@-webkit-keyframes taskInfoPM {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Standard syntax */
+
+@keyframes taskInfoPM {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.deviation-container {
+  position: absolute;
+  margin-top: -32.8rem;
+  margin-left: 45rem;
 }
 

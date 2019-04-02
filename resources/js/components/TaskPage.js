@@ -122,6 +122,21 @@ export default class TaskPage extends React.Component {
                         <button className="login-btn" ref={this.buttonRef1} style={{position:"absolute", marginLeft:'33rem', display:"none", borderColor:'rgb(105, 18, 18)', color: 'rgb(105, 18, 18)'}} onClick={this.closeTask}>Close This Task</button>
                         <button className="login-btn-2" ref={this.buttonRef2} style={{position:"absolute", marginLeft:'51rem', display:"none", borderColor:'red'}} onClick={this.reOpenTask}>Re-Open This Task</button>
                     </div>
+                    <div className="deviation-container">
+                        <span><h2 className="prog-task-header"><b>Task Statistics:</b></h2></span>                    
+                        <span><h4 className="prog-task-pm-stat-req"><b>Task Stress Requirement (Out of 5):</b>3</h4></span>
+                        <span><h4 className="prog-task-pm-stat-req"><b>Task Judgement Requirement (Out of 5):</b>2</h4></span>
+                        <span><h4 className="prog-task-pm-stat-req"><b>Task Techincal Requirement (Out of 5):</b>4</h4></span>
+                        <span><h4 className="prog-task-pm-stat-req"><b>Task Communication Requirement (Out of 5):</b><span>5</span></h4></span>
+                        <span><h4 className="prog-task-pm-stat-act"><b>Task Stress Actual (Out of 5):</b>3</h4></span>
+                        <span><h4 className="prog-task-pm-stat-act"><b>Task Judgement Actual (Out of 5):</b>2</h4></span>
+                        <span><h4 className="prog-task-pm-stat-act"><b>Task Techincal Actual (Out of 5):</b>4</h4></span>
+                        <span><h4 className="prog-task-pm-stat-act"><b>Task Communication Actual (Out of 5):</b><span>4</span></h4></span>
+                        <span><h4 className="prog-task-pm-stat"><b>Stress Deviation (Negative = Below Required Level):</b><span>0</span></h4></span>
+                        <span><h4 className="prog-task-pm-stat"><b>Judgement Deviation (Negative = Below Required Level):</b><span>0</span></h4></span>
+                        <span><h4 className="prog-task-pm-stat"><b>Techincal Deviation (Negative = Below Required Level):</b><span>0</span></h4></span>
+                        <span><h4 className="prog-task-pm-stat"><b>Communication Deviation (Negative = Below Required Level):</b><span>-1</span></h4></span>
+                    </div>
                 </div>
             )}
         </Spring>

@@ -109858,7 +109858,35 @@ function (_React$Component) {
             borderColor: 'red'
           },
           onClick: _this2.reOpenTask
-        }, "Re-Open This Task")));
+        }, "Re-Open This Task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "deviation-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "prog-task-header"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Statistics:"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat-req"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Stress Requirement (Out of 5):"), "3")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat-req"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Judgement Requirement (Out of 5):"), "2")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat-req"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Techincal Requirement (Out of 5):"), "4")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat-req"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Communication Requirement (Out of 5):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "5"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat-act"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Stress Actual (Out of 5):"), "3")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat-act"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Judgement Actual (Out of 5):"), "2")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat-act"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Techincal Actual (Out of 5):"), "4")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat-act"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Communication Actual (Out of 5):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "4"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Stress Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Judgement Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Techincal Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Communication Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "-1")))));
       }));
     }
   }]);
