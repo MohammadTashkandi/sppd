@@ -109694,17 +109694,35 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "statusRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      task: {}
+      task: {},
+      programmer: ""
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidUpdate", function (prevProps) {
       if (prevProps.match.params.taskId != _this.props.match.params.taskId) {
         _this.setState({
-          task: {}
+          task: {},
+          programmer: ""
         });
 
         _this.loadTask();
+
+        _this.findProgrammer();
       }
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "findProgrammer", function () {
+      axios.get('api/findTaskProgrammer', {
+        params: {
+          id: _this.props.match.params.taskId
+        }
+      }).then(function (res) {
+        _this.setState({
+          programmer: res.data.first_name + ' ' + res.data.last_name
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadTask", function () {
@@ -109770,6 +109788,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.loadTask();
+      this.findProgrammer();
     }
   }, {
     key: "render",
@@ -109806,11 +109825,16 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
           className: "prog-task-header"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Information:"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task"
+          className: "prog-task-pm"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Title:"), _this2.state.task.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task"
+          className: "prog-task-pm",
+          style: {
+            textTransform: "capitalize"
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Employee Assigned:"), _this2.state.programmer)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Severity:"), _this2.state.task.severity)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task"
+          className: "prog-task-pm"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Status:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           ref: _this2.statusRef
         }, _this2.state.task.status))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {

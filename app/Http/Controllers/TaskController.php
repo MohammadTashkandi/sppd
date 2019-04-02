@@ -211,7 +211,7 @@ class TaskController extends Controller
             $status = 'Resolved';
             return response()->json($status, 200);
 
-        } else if ($task->status == 'Reopened') {
+        } else if ($task->status == 'Reoqpened') {
             $task->status = 3;
             $reOpenTime = $task->reOpen_state;
             $time = Carbon::now();

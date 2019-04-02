@@ -852,3 +852,29 @@ b{
  from {opacity: 0;}
  to {opacity: 1;}
 }
+
+.prog-task-pm{
+  margin-left: 42rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+.prog-task-pm{
+  opacity: 1;
+   -webkit-animation-name: taskInfoPM; /* Safari 4.0 - 8.0 */
+   -webkit-animation-duration: 5.2s; /* Safari 4.0 - 8.0 */
+   animation-name: taskInfoPM;
+   animation-duration: 5.2s;
+
+}
+ /* Safari 4.0 - 8.0 */
+ @-webkit-keyframes taskInfoPM {
+   from {opacity: 0;}
+   to {opacity: 1;}
+ }
+/* Standard syntax */
+@keyframes taskInfoPM {
+ from {opacity: 0;}
+ to {opacity: 1;}
+}

@@ -8,20 +8,38 @@ export default class TaskPage extends React.Component {
     statusRef = React.createRef();
 
     state={
-        task:{}
+        task:{},
+        programmer:""
     }
 
     componentDidMount(){
         this.loadTask();
+        this.findProgrammer();
     }
 
     componentDidUpdate = (prevProps) => {
         if(prevProps.match.params.taskId != this.props.match.params.taskId) {
             this.setState({
                 task: {},
+                programmer: "",
             });
             this.loadTask();
+            this.findProgrammer();
         }
+    }
+
+    findProgrammer = () =>{
+        axios.get('api/findTaskProgrammer',{
+            params:{
+                id: this.props.match.params.taskId
+            }
+        })
+        .then((res)=>{
+           this.setState({programmer: res.data.first_name + ' ' + res.data.last_name});
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
 
     loadTask = () =>{
@@ -43,6 +61,7 @@ export default class TaskPage extends React.Component {
         .catch((err)=>{
             console.log(err)
         })
+        
     }
 
     closeTask = () =>{
@@ -96,9 +115,10 @@ export default class TaskPage extends React.Component {
                 <div style={props}>
                     <div>
                         <span><h2 className="prog-task-header"><b>Task Information:</b></h2></span>                    
-                        <span><h4 className="prog-task"><b>Task Title:</b>{this.state.task.title}</h4></span>
-                        <span><h4 className="prog-task"><b>Severity:</b>{this.state.task.severity}</h4></span>
-                        <span><h4 className="prog-task"><b>Status:</b><span ref={this.statusRef}>{this.state.task.status}</span></h4></span>
+                        <span><h4 className="prog-task-pm"><b>Task Title:</b>{this.state.task.title}</h4></span>
+                        <span><h4 className="prog-task-pm" style={{textTransform:"capitalize"}}><b>Employee Assigned:</b>{this.state.programmer}</h4></span>
+                        <span><h4 className="prog-task-pm"><b>Severity:</b>{this.state.task.severity}</h4></span>
+                        <span><h4 className="prog-task-pm"><b>Status:</b><span ref={this.statusRef}>{this.state.task.status}</span></h4></span>
                         <button className="login-btn" ref={this.buttonRef1} style={{position:"absolute", marginLeft:'33rem', display:"none", borderColor:'rgb(105, 18, 18)', color: 'rgb(105, 18, 18)'}} onClick={this.closeTask}>Close This Task</button>
                         <button className="login-btn-2" ref={this.buttonRef2} style={{position:"absolute", marginLeft:'51rem', display:"none", borderColor:'red'}} onClick={this.reOpenTask}>Re-Open This Task</button>
                     </div>
