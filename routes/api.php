@@ -20,14 +20,7 @@ Route::post('addProgrammer','UserController@addProgrammer');
 
 Route::post('storeProject','ProjectController@store');
 Route::get('findProject','ProjectController@findProject');
-Route::get('countFeature','ProjectController@countFeature'); //this function will receive request contain 'Pid' (Project id)
-Route::get('countTrivial','ProjectController@countTrivial'); //this function will receive request contain 'Pid' (Project id)
-Route::get('countText','ProjectController@countText'); //this function will receive request contain 'Pid' (Project id)
-Route::get('countTweak','ProjectController@countTweak'); //this function will receive request contain 'Pid' (Project id)
-Route::get('countMinor','ProjectController@countMinor'); //this function will receive request contain 'Pid' (Project id)
-Route::get('countMajor','ProjectController@countMajor'); //this function will receive request contain 'Pid' (Project id)
-Route::get('countCrash','ProjectController@countCrash'); //this function will receive request contain 'Pid' (Project id)
-Route::get('countBlock','ProjectController@countBlock'); //this function will receive request contain 'Pid' (Project id)
+Route::get('countSeverityForProject','ProjectController@countSeverityForProject'); //this function will receive request contain 'Pid' (Project id)
 
 
 Route::get('findProgrammer','ProgrammerController@findProgrammer'); //for searching
@@ -37,6 +30,7 @@ Route::get('getProgrammerProjects','ProgrammerController@getProgrammerProjects')
 Route::get('getProgrammerTasks','ProgrammerController@getProgrammerTasks'); //gets tasks for the programmer
 Route::get('getProgrammerInfo','ProgrammerController@getProgrammerInfo'); //for view statistics page
 Route::post('assignEmployee','ProgrammerController@assignEmployee');
+Route::get('countSeverityForProgrammer','ProgrammerController@countSeverityForProgrammer'); //this function will receive request contain 'Pid' (Project id)
 
 
 Route::post('addTask','TaskController@store');

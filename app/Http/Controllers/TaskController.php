@@ -249,8 +249,7 @@ class TaskController extends Controller
     }
 
 
-    public function setTaskStatusToReOpened(Request $request)
-    {
+    public function setTaskStatusToReOpened(Request $request){
 
 
         $task = Task::where('id', $request['id'])->first();
@@ -270,6 +269,10 @@ class TaskController extends Controller
         return response()->json($status, 200);
 
     }
+
+
+
+
 
 
 }

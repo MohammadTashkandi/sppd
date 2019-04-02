@@ -144,76 +144,85 @@ class ProjectController extends Controller
     }
 
 
-    public function getProjectTasks(Request $request){
-        $Pid = $request['id'];
-
-        $userId= Auth::user()->id;
-        $pm = ProjectManager::find($userId);
-        $project = $pm->projects->find($Pid);
-//        $tasks = Task::with('project')->get(); // get all tasks that have relationship with this specific project
-        $tasks = $project->tasks(); // get all tasks that have relationship with this specific project
-
-        return view('Task.tasks_list'  ,  compact('tasks'));
-
-    }
-
-
-    public function returnTasksView(){
-
-        return view('Task.ProjectID');
-
-    }
+//    public function getProjectTasks(Request $request){
+//        $Pid = $request['id'];
+//
+//        $userId= Auth::user()->id;
+//        $pm = ProjectManager::find($userId);
+//        $project = $pm->projects->find($Pid);
+////        $tasks = Task::with('project')->get(); // get all tasks that have relationship with this specific project
+//        $tasks = $project->tasks(); // get all tasks that have relationship with this specific project
+//
+//        return view('Task.tasks_list'  ,  compact('tasks'));
+//
+//    }
 
 
-    public function countFeature(Request $request){
+
+    public function countSeverityForProject(Request $request){
 
         $Pid = $request['Pid'];
-        $num = count(Task::where('Pid', $Pid)->where('severity', 'Feature')->get());
+        $numOfFeature = count(Task::where('Pid', $Pid)->where('severity', 'Feature')->get());
+        $numOfTrivial = count(Task::where('Pid', $Pid)->where('severity', 'Trivial')->get());
+        $numOfText = count(Task::where('Pid', $Pid)->where('severity', 'Text')->get());
+        $numOfTweak = count(Task::where('Pid', $Pid)->where('severity', 'Tweak')->get());
+        $numOfMinor = count(Task::where('Pid', $Pid)->where('severity', 'Minor')->get());
+        $numOfMajor = count(Task::where('Pid', $Pid)->where('severity', 'Major')->get());
+        $numOfCrash = count(Task::where('Pid', $Pid)->where('severity', 'Crash')->get());
+        $numOfBlock = count(Task::where('Pid', $Pid)->where('severity', 'Block')->get());
+
+        $array = array(
+            0 => $numOfFeature ,
+            1 =>$numOfTrivial,
+            2 => $numOfText,
+            3 =>$numOfTweak,
+            4 =>$numOfMinor,
+            5 =>$numOfMajor,
+            6 =>$numOfCrash,
+            7 =>$numOfBlock
+        );
+
+        return response()->json($array);
+
+
+
+
+
     }
 
-    public function countTrivial(Request $request){
+    public function countSeverityForProgrammer(Request $request){
 
         $Pid = $request['Pid'];
-        $num = count(Task::where('Pid', $Pid)->where('severity', 'Trivial')->get());
-    }
 
-    public function countText(Request $request){
+        $numOfFeature = count(Task::where('PrID', $Pid)->where('severity', 'Feature')->get());
+        $numOfTrivial = count(Task::where('PrID', $Pid)->where('severity', 'Trivial')->get());
+        $numOfText = count(Task::where('PrID', $Pid)->where('severity', 'Text')->get());
+        $numOfTweak = count(Task::where('PrID', $Pid)->where('severity', 'Tweak')->get());
+        $numOfMinor = count(Task::where('PrID', $Pid)->where('severity', 'Minor')->get());
+        $numOfMajor = count(Task::where('PrID', $Pid)->where('severity', 'Major')->get());
+        $numOfCrash = count(Task::where('PrID', $Pid)->where('severity', 'Crash')->get());
+        $numOfBlock = count(Task::where('PrID', $Pid)->where('severity', 'Block')->get());
 
-        $Pid = $request['Pid'];
-        $num = count(Task::where('Pid', $Pid)->where('severity', 'Text')->get());
-    }
-
-    public function countTweak(Request $request){
-
-        $Pid = $request['Pid'];
-        $num = count(Task::where('Pid', $Pid)->where('severity', 'Tweak')->get());
-    }
-
-    public function countMinor(Request $request){
-
-        $Pid = $request['Pid'];
-        $num = count(Task::where('Pid', $Pid)->where('severity', 'Minor')->get());
-    }
-
-    public function countMajor(Request $request){
-
-        $Pid = $request['Pid'];
-        $num = count(Task::where('Pid', $Pid)->where('severity', 'Major')->get());
-    }
+        $array = array(
+            0 => $numOfFeature ,
+            1 =>$numOfTrivial,
+            2 => $numOfText,
+            3 =>$numOfTweak,
+            4 =>$numOfMinor,
+            5 =>$numOfMajor,
+            6 =>$numOfCrash,
+            7 =>$numOfBlock
+        );
 
 
-    public function countCrash(Request $request){
 
-        $Pid = $request['Pid'];
-        $num = count(Task::where('Pid', $Pid)->where('severity', 'Crash')->get());
+        return response()->json($array);
+
+
     }
 
 
-    public function countBlock(Request $request){
 
-        $Pid = $request['Pid'];
-        $num = count(Task::where('Pid', $Pid)->where('severity', 'Block')->get());
-    }
 
 
 
