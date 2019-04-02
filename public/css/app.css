@@ -10805,6 +10805,24 @@ a#visit-page:hover {
   transition: 0.4s;
 }
 
+.login-btn-2 {
+  background-color: transparent;
+  margin-top: 2rem;
+  border-color: #ffc600;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: red;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 2rem;
+}
+
+.login-btn-2:hover {
+  color: #0d3a58;
+  background-color: #ffc600;
+  border-color: #ffc600;
+  transition: 0.4s;
+}
+
 #form-control {
   width: 30rem;
 }

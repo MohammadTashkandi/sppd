@@ -107630,9 +107630,7 @@ function (_React$Component) {
           id: _this.props.match.params.taskId
         }
       }).then(function (res) {
-        console.log(res.data.status);
-
-        if (res.data.status == "New-assigned" || res.data.status == "Progress" || res.data.status == "Re-Opened") {
+        if (res.data.status == "New-assigned" || res.data.status == "Progress" || res.data.status == "Reopened") {
           _this.buttonRef.current.style.display = "block";
         } else {
           _this.buttonRef.current.style.display = "none";
@@ -107666,12 +107664,18 @@ function (_React$Component) {
         id: _this.props.match.params.taskId,
         number: 0
       }).then(function (res) {
+        console.log(res);
+
         if (res.data == "Progress") {
           _this.statusRef.current.innerText = "Progress";
         } else if (res.data == "Resolved") {
           _this.statusRef.current.innerText = "Resolved";
           _this.buttonRef.current.style.display = "none";
+        } else if (res.data == "Reopened") {
+          _this.statusRef.current.innerText = "Reopened";
         }
+
+        _this.props.addNotification('Success', 'Status Transition Successful', 'success');
       }).catch(function (err) {
         console.log(err);
       });
@@ -108183,8 +108187,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _EmployeeIndex__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./EmployeeIndex */ "./resources/js/components/EmployeeIndex.js");
 /* harmony import */ var _EmployeeCanvas__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./EmployeeCanvas */ "./resources/js/components/EmployeeCanvas.js");
 /* harmony import */ var _EmployeeTaskPage__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./EmployeeTaskPage */ "./resources/js/components/EmployeeTaskPage.js");
-/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-notifications-component/dist/theme.css */ "./node_modules/react-notifications-component/dist/theme.css");
-/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var _RateTaskPage__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./RateTaskPage */ "./resources/js/components/RateTaskPage.js");
+/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-notifications-component/dist/theme.css */ "./node_modules/react-notifications-component/dist/theme.css");
+/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_22__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -108212,6 +108217,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   /Applications/Development/projects/laravelProjects/sppd/sppd
   */
 }
+
 
 
 
@@ -108514,6 +108520,14 @@ function (_React$Component) {
         path: "/index/Task/:taskId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TaskPage__WEBPACK_IMPORTED_MODULE_15__["default"], _extends({}, props, {
+            infobar: _this2.state.infobar,
+            addNotification: _this2.addNotification
+          }));
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/index/rateTask/:taskId",
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RateTaskPage__WEBPACK_IMPORTED_MODULE_21__["default"], _extends({}, props, {
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
           }));
@@ -108863,6 +108877,68 @@ function (_React$Component) {
   }]);
 
   return ProgressBar;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/RateTaskPage.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/RateTaskPage.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Home; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var Home =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Home, _React$Component);
+
+  function Home() {
+    _classCallCheck(this, Home);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Home).apply(this, arguments));
+  }
+
+  _createClass(Home, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Create Form Here");
+    }
+  }]);
+
+  return Home;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 
@@ -109408,7 +109484,9 @@ function (_React$Component) {
         }
 
         if (task.Pid == _this.state.currentlyUpdating) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+            key: id
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "sidebar-task-seperator"
           }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["NavLink"], {
             key: id,
@@ -109566,6 +109644,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TaskPage; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -109576,13 +109656,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -109592,14 +109675,107 @@ function (_React$Component) {
   _inherits(TaskPage, _React$Component);
 
   function TaskPage() {
+    var _getPrototypeOf2;
+
+    var _this;
+
     _classCallCheck(this, TaskPage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(TaskPage).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(TaskPage)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "buttonRef1", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "buttonRef2", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "statusRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      task: {}
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidUpdate", function (prevProps) {
+      if (prevProps.match.params.taskId != _this.props.match.params.taskId) {
+        _this.setState({
+          task: {}
+        });
+
+        _this.loadTask();
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadTask", function () {
+      axios.get('api/getTaskInfo', {
+        params: {
+          id: _this.props.match.params.taskId
+        }
+      }).then(function (res) {
+        if (res.data.status == "Resolved") {
+          _this.buttonRef1.current.style.display = "block";
+          _this.buttonRef2.current.style.display = "block";
+        } else {
+          _this.buttonRef1.current.style.display = "none";
+          _this.buttonRef2.current.style.display = "none";
+        }
+
+        _this.setState({
+          task: res.data
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "closeTask", function () {
+      axios.post('api/setTaskStatusToClose', {
+        id: _this.props.match.params.taskId
+      }).then(function (res) {
+        console.log(res);
+
+        _this.props.addNotification('Success', 'Closed Task Successfully', 'success');
+
+        _this.buttonRef1.current.style.display = "none";
+        _this.buttonRef2.current.style.display = "none";
+        _this.statusRef.current.innerText = "Closed";
+
+        _this.props.history.push("/index/rateTask/".concat(_this.props.match.params.taskId));
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "reOpenTask", function () {
+      axios.post('api/setTaskStatusToReOpened', {
+        id: _this.props.match.params.taskId
+      }).then(function (res) {
+        console.log(res);
+
+        _this.props.addNotification('Success', 'Re-Opened Task Successfully', 'success');
+
+        _this.buttonRef1.current.style.display = "none";
+        _this.buttonRef2.current.style.display = "none";
+        _this.statusRef.current.innerText = "Reopened";
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
+    return _this;
   }
 
   _createClass(TaskPage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.loadTask();
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-bar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -109608,12 +109784,58 @@ function (_React$Component) {
         className: "info-bar-page"
       }, "Task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-bar-text"
-      }, this.props.infobar), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+      }, this.props.infobar)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "hr",
         style: {
           margin: '0'
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Task Page"));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__["Spring"], {
+        from: {
+          opacity: 0
+        } // you must wrap the part of the component you want animated in this spring syntax
+        ,
+        to: {
+          opacity: 1
+        },
+        config: {
+          duration: 750
+        }
+      }, function (props) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: props
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "prog-task-header"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Information:"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Title:"), _this2.state.task.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Severity:"), _this2.state.task.severity)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Status:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          ref: _this2.statusRef
+        }, _this2.state.task.status))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "login-btn",
+          ref: _this2.buttonRef1,
+          style: {
+            position: "absolute",
+            marginLeft: '33rem',
+            display: "none",
+            borderColor: 'rgb(105, 18, 18)',
+            color: 'rgb(105, 18, 18)'
+          },
+          onClick: _this2.closeTask
+        }, "Close This Task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "login-btn-2",
+          ref: _this2.buttonRef2,
+          style: {
+            position: "absolute",
+            marginLeft: '51rem',
+            display: "none",
+            borderColor: 'red'
+          },
+          onClick: _this2.reOpenTask
+        }, "Re-Open This Task")));
+      }));
     }
   }]);
 

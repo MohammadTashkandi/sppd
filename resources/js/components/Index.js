@@ -23,6 +23,7 @@ import ReactNotification from "react-notifications-component";
 import EmployeeIndex from './EmployeeIndex';
 import EmployeeCanvas from './EmployeeCanvas';
 import EmployeeTaskPage from './EmployeeTaskPage';
+import RateTaskPage from './RateTaskPage';
 import "react-notifications-component/dist/theme.css";
 
 
@@ -166,6 +167,7 @@ export default class Index extends React.Component {
                         <Route path="/index/assignEmployee/:projectId" render={(props)=> <AssignEmployee {...props} infobar={this.state.infobar} addNotification={this.addNotification} getTasks={this.getTasks} />} />
                         <Route path="/index/addProgrammer" render={(props)=> <AddProgrammer {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
                         <Route path="/index/Task/:taskId" render={(props)=> <TaskPage {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route path="/index/rateTask/:taskId" render={(props)=> <RateTaskPage {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
 
 
                         <Route exact path="/employeeIndex" render={(props)=> <EmployeeIndex {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />

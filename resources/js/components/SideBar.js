@@ -60,7 +60,7 @@ class SideBar extends React.Component {
                         }
                         if(task.Pid == this.state.currentlyUpdating) {
                             return (
-                                <React.Fragment>
+                                <React.Fragment key={id}>
                                     <div className="sidebar-task-seperator"></div>
                                     {/* dont need key here if parent has key i think */}
                                     <NavLink key={id} className="sidebar-task" to={`${link}`} onClick={() => this.props.setInfobar(event.target.innerText)}>{task.title}</NavLink>
