@@ -340,7 +340,7 @@ class ProgrammerController extends Controller
 
 
 
-        return response()->json($array);
+        return response()->json($array, 200);
 
 
     }
