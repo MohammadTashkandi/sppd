@@ -345,4 +345,22 @@ class ProgrammerController extends Controller
 
     }
 
+
+    public function findTaskProgrammer(Request $request){
+
+
+        $task = Task::where('id', $request['id'])->first();
+
+        if($task == null){
+            return response()->json(['Task not found'], 404);
+        }
+
+        $p = Programmer::where('id' , $task->PrID)->first();
+
+        return response()->json($p , 200);
+
+    }
+
+
+
 }
