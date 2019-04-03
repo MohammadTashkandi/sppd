@@ -162,14 +162,16 @@ class ProjectController extends Controller
     public function countSeverityForProject(Request $request){
 
         $Pid = $request['Pid'];
-        $numOfFeature = count(Task::where('Pid', $Pid)->where('severity', 'Feature')->get());
-        $numOfTrivial = count(Task::where('Pid', $Pid)->where('severity', 'Trivial')->get());
-        $numOfText = count(Task::where('Pid', $Pid)->where('severity', 'Text')->get());
-        $numOfTweak = count(Task::where('Pid', $Pid)->where('severity', 'Tweak')->get());
-        $numOfMinor = count(Task::where('Pid', $Pid)->where('severity', 'Minor')->get());
-        $numOfMajor = count(Task::where('Pid', $Pid)->where('severity', 'Major')->get());
-        $numOfCrash = count(Task::where('Pid', $Pid)->where('severity', 'Crash')->get());
-        $numOfBlock = count(Task::where('Pid', $Pid)->where('severity', 'Block')->get());
+        $tasks = Task::where('Pid', $Pid)->get();
+
+        $numOfFeature = count($tasks->where('severity', 'Feature')->get());
+        $numOfTrivial = count($tasks->where('severity', 'Trivial')->get());
+        $numOfText = count($tasks->where('severity', 'Text')->get());
+        $numOfTweak = count($tasks->where('severity', 'Tweak')->get());
+        $numOfMinor = count($tasks->where('severity', 'Minor')->get());
+        $numOfMajor = count($tasks->where('severity', 'Major')->get());
+        $numOfCrash = count($tasks->where('severity', 'Crash')->get());
+        $numOfBlock = count($tasks->where('severity', 'Block')->get());
 
         $array = array(
             0 => $numOfFeature ,
