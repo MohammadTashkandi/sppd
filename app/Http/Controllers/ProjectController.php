@@ -182,7 +182,7 @@ class ProjectController extends Controller
             7 =>$numOfBlock
         );
 
-        return response()->json($array);
+        return response()->json($array ,200);
 
 
 
@@ -190,36 +190,6 @@ class ProjectController extends Controller
 
     }
 
-    public function countSeverityForProgrammer(Request $request){
-
-        $Pid = $request['Pid'];
-
-        $numOfFeature = count(Task::where('PrID', $Pid)->where('severity', 'Feature')->get());
-        $numOfTrivial = count(Task::where('PrID', $Pid)->where('severity', 'Trivial')->get());
-        $numOfText = count(Task::where('PrID', $Pid)->where('severity', 'Text')->get());
-        $numOfTweak = count(Task::where('PrID', $Pid)->where('severity', 'Tweak')->get());
-        $numOfMinor = count(Task::where('PrID', $Pid)->where('severity', 'Minor')->get());
-        $numOfMajor = count(Task::where('PrID', $Pid)->where('severity', 'Major')->get());
-        $numOfCrash = count(Task::where('PrID', $Pid)->where('severity', 'Crash')->get());
-        $numOfBlock = count(Task::where('PrID', $Pid)->where('severity', 'Block')->get());
-
-        $array = array(
-            0 => $numOfFeature ,
-            1 =>$numOfTrivial,
-            2 => $numOfText,
-            3 =>$numOfTweak,
-            4 =>$numOfMinor,
-            5 =>$numOfMajor,
-            6 =>$numOfCrash,
-            7 =>$numOfBlock
-        );
-
-
-
-        return response()->json($array, 200);
-
-
-    }
 
 
 

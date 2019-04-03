@@ -316,16 +316,16 @@ class ProgrammerController extends Controller
 
     public function countSeverityForProgrammer(Request $request){
 
-        $Pid = $request['Pid'];
+        $PrId = $request['PrId'];
 
-        $numOfFeature = count(Task::where('PrID', $Pid)->where('severity', 'Feature')->get());
-        $numOfTrivial = count(Task::where('PrID', $Pid)->where('severity', 'Trivial')->get());
-        $numOfText = count(Task::where('PrID', $Pid)->where('severity', 'Text')->get());
-        $numOfTweak = count(Task::where('PrID', $Pid)->where('severity', 'Tweak')->get());
-        $numOfMinor = count(Task::where('PrID', $Pid)->where('severity', 'Minor')->get());
-        $numOfMajor = count(Task::where('PrID', $Pid)->where('severity', 'Major')->get());
-        $numOfCrash = count(Task::where('PrID', $Pid)->where('severity', 'Crash')->get());
-        $numOfBlock = count(Task::where('PrID', $Pid)->where('severity', 'Block')->get());
+        $numOfFeature = count(Task::where('PrID', $PrId)->where('severity', 'Feature')->get());
+        $numOfTrivial = count(Task::where('PrID', $PrId)->where('severity', 'Trivial')->get());
+        $numOfText = count(Task::where('PrID', $PrId)->where('severity', 'Text')->get());
+        $numOfTweak = count(Task::where('PrID', $PrId)->where('severity', 'Tweak')->get());
+        $numOfMinor = count(Task::where('PrID', $PrId)->where('severity', 'Minor')->get());
+        $numOfMajor = count(Task::where('PrID', $PrId)->where('severity', 'Major')->get());
+        $numOfCrash = count(Task::where('PrID', $PrId)->where('severity', 'Crash')->get());
+        $numOfBlock = count(Task::where('PrID', $PrId)->where('severity', 'Block')->get());
 
         $array = array(
             0 => $numOfFeature ,
