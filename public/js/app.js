@@ -106059,24 +106059,25 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadStatistics", function () {
       axios.get('api/countSeverityForProject', {
         params: {
-          Pid: _this.props.match.params.taskId
+          Pid: _this.props.match.params.projectId
         }
       }).then(function (res) {
-        console.log(res);
-        /* this.setState({
-            lineData:{ //the data here should also be dynamic depending on what the PM wants to see
-                labels: ['Feature', 'Trivial', 'Text', 'Tweak','Minor','Major','Crash','Block'], //Bar names
-                datasets:[ //here you mostly fill the data of the grap
-                    {// this is an object that you fill in each point in the graph
-                        label:'Number of Tasks',
-                        data:[3,12,6,1],
-                        backgroundColor:'purple',
-                        hoverBorderWidth: 2,
-                        hoverBorderColor: '#122738',
-                    },//these objects will be rendered for every label mentioned in the above array "labels"
-                ]
-            }
-        }) */
+        var total = res.data[0] + res.data[1] + res.data[2] + res.data[3] + res.data[4] + res.data[5] + res.data[6] + res.data[7];
+
+        _this.setState({
+          lineData: {
+            labels: ['Feature', 'Trivial', 'Text', 'Tweak', 'Minor', 'Major', 'Crash', 'Block'],
+            //Bar names
+            datasets: [{
+              // this is an object that you fill in each point in the graph
+              label: 'Percentage of Total Tasks',
+              data: [res.data[0] / total * 100, res.data[1] / total * 100, res.data[2] / total * 100, res.data[3] / total * 100, res.data[4] / total * 100, res.data[5] / total * 100, res.data[6] / total * 100, res.data[7] / total * 100],
+              backgroundColor: 'purple',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }]
+          }
+        });
       }).catch(function (err) {
         console.log(err);
       });
@@ -106228,6 +106229,11 @@ function (_React$Component) {
             },
             scales: {
               yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  min: 0,
+                  max: 100
+                },
                 scaleLabel: {
                   display: true,
                   labelString: 'Percentage %'
@@ -107120,26 +107126,28 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadStatistics", function () {
-      axios.get('api/countSeverityForProject', {
+      axios.get('api/countSeverityForProgrammerInProject', {
         params: {
-          Pid: _this.props.match.params.taskId
+          PrId: localStorage.getItem('Pid'),
+          Pid: _this.props.match.params.projectId
         }
       }).then(function (res) {
-        console.log(res);
-        /* this.setState({
-            lineData:{ //the data here should also be dynamic depending on what the PM wants to see
-                labels: ['Feature', 'Trivial', 'Text', 'Tweak','Minor','Major','Crash','Block'], //Bar names
-                datasets:[ //here you mostly fill the data of the grap
-                    {// this is an object that you fill in each point in the graph
-                        label:'Number of Tasks',
-                        data:[3,12,6,1],
-                        backgroundColor:'purple',
-                        hoverBorderWidth: 2,
-                        hoverBorderColor: '#122738',
-                    },//these objects will be rendered for every label mentioned in the above array "labels"
-                ]
-            }
-        }) */
+        var total = res.data[0] + res.data[1] + res.data[2] + res.data[3] + res.data[4] + res.data[5] + res.data[6] + res.data[7];
+
+        _this.setState({
+          lineData: {
+            labels: ['Feature', 'Trivial', 'Text', 'Tweak', 'Minor', 'Major', 'Crash', 'Block'],
+            //Bar names
+            datasets: [{
+              // this is an object that you fill in each point in the graph
+              label: 'Percentage of Total Tasks',
+              data: [res.data[0] / total * 100, res.data[1] / total * 100, res.data[2] / total * 100, res.data[3] / total * 100, res.data[4] / total * 100, res.data[5] / total * 100, res.data[6] / total * 100, res.data[7] / total * 100],
+              backgroundColor: 'purple',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }]
+          }
+        });
       }).catch(function (err) {
         console.log(err);
       });
@@ -107280,6 +107288,11 @@ function (_React$Component) {
             },
             scales: {
               yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  min: 0,
+                  max: 100
+                },
                 scaleLabel: {
                   display: true,
                   labelString: 'Percentage %'
