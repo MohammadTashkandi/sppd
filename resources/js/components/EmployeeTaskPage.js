@@ -125,7 +125,7 @@ export default class EmployeeTaskPage extends React.Component {
                         </div>
                     
                     <span><h2 className="prog-task-header"><b>Task Information:</b></h2></span>                    
-                    <span><h4 className="prog-task"><b>Task Title:</b>{this.state.task.title}</h4></span>
+                    <span><h4 className="prog-task" style={{textTransform:"capitalize"}}><b>Task Title:</b>{this.state.task.title}</h4></span>
                     <span><h4 className="prog-task"><b>Severity:</b>{this.state.task.severity}</h4></span>
                     <span><h4 className="prog-task"><b>Status:</b><span ref={this.statusRef}>{this.state.task.status}</span></h4></span>
                     <button className="login-btn" ref={this.buttonRef} style={{marginBottom:'2rem', marginTop:'4rem', marginLeft:'37rem', display:"none"}} onClick={this.onClick}>Transition to The Next Phase</button>

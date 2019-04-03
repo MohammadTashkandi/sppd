@@ -33,18 +33,7 @@ export default class Canvas extends React.Component {
                 }
             ]
         },
-        lineData:{ //the data here should also be dynamic depending on what the PM wants to see
-            labels: ['Major', 'Minor', 'Tweak', 'Crash'], //Bar names
-            datasets:[ //here you mostly fill the data of the grap
-                {// this is an object that you fill in each point in the graph
-                    label:'Number of Tasks',
-                    data:[3,12,6,1],
-                    backgroundColor:'purple',
-                    hoverBorderWidth: 2,
-                    hoverBorderColor: '#122738',
-                },//these objects will be rendered for every label mentioned in the above array "labels"
-            ]
-        },
+        lineData:{},
         pieData:{ //the data here should also be dynamic depending on what the PM wants to see
             labels: ['Major', 'Minor', 'Tweak', 'Crash'], //Bar names
             datasets:[ //here you mostly fill the data of the grap
@@ -62,6 +51,47 @@ export default class Canvas extends React.Component {
                 },//these objects will be rendered for every label mentioned in the above array "labels"
             ]
         }
+    }
+
+    componentDidMount(){
+        this.loadStatistics();
+    }
+
+    componentDidUpdate = (prevProps) => {
+        if(prevProps.match.params.projectId != this.props.match.params.projectId) {
+            this.setState({
+                lineData: {}
+            });
+            this.loadStatistics();
+        }
+    }
+
+    loadStatistics = () =>{
+        axios.get('api/countSeverityForProject',{
+            params:{
+                Pid: this.props.match.params.taskId
+            }
+        })
+        .then((res)=>{
+            console.log(res);
+            /* this.setState({
+                lineData:{ //the data here should also be dynamic depending on what the PM wants to see
+                    labels: ['Feature', 'Trivial', 'Text', 'Tweak','Minor','Major','Crash','Block'], //Bar names
+                    datasets:[ //here you mostly fill the data of the grap
+                        {// this is an object that you fill in each point in the graph
+                            label:'Number of Tasks',
+                            data:[3,12,6,1],
+                            backgroundColor:'purple',
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738',
+                        },//these objects will be rendered for every label mentioned in the above array "labels"
+                    ]
+                }
+            }) */
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
 
     render() {

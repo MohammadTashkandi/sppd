@@ -106029,20 +106029,7 @@ function (_React$Component) {
           hoverBorderColor: '#122738'
         }]
       },
-      lineData: {
-        //the data here should also be dynamic depending on what the PM wants to see
-        labels: ['Major', 'Minor', 'Tweak', 'Crash'],
-        //Bar names
-        datasets: [//here you mostly fill the data of the grap
-        {
-          // this is an object that you fill in each point in the graph
-          label: 'Number of Tasks',
-          data: [3, 12, 6, 1],
-          backgroundColor: 'purple',
-          hoverBorderWidth: 2,
-          hoverBorderColor: '#122738'
-        }]
-      },
+      lineData: {},
       pieData: {
         //the data here should also be dynamic depending on what the PM wants to see
         labels: ['Major', 'Minor', 'Tweak', 'Crash'],
@@ -106059,10 +106046,51 @@ function (_React$Component) {
       }
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidUpdate", function (prevProps) {
+      if (prevProps.match.params.projectId != _this.props.match.params.projectId) {
+        _this.setState({
+          lineData: {}
+        });
+
+        _this.loadStatistics();
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadStatistics", function () {
+      axios.get('api/countSeverityForProject', {
+        params: {
+          Pid: _this.props.match.params.taskId
+        }
+      }).then(function (res) {
+        console.log(res);
+        /* this.setState({
+            lineData:{ //the data here should also be dynamic depending on what the PM wants to see
+                labels: ['Feature', 'Trivial', 'Text', 'Tweak','Minor','Major','Crash','Block'], //Bar names
+                datasets:[ //here you mostly fill the data of the grap
+                    {// this is an object that you fill in each point in the graph
+                        label:'Number of Tasks',
+                        data:[3,12,6,1],
+                        backgroundColor:'purple',
+                        hoverBorderWidth: 2,
+                        hoverBorderColor: '#122738',
+                    },//these objects will be rendered for every label mentioned in the above array "labels"
+                ]
+            }
+        }) */
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
     return _this;
   }
 
   _createClass(Canvas, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.loadStatistics();
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -107754,7 +107782,10 @@ function (_React$Component) {
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
           className: "prog-task-header"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Information:"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task"
+          className: "prog-task",
+          style: {
+            textTransform: "capitalize"
+          }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Title:"), _this2.state.task.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "prog-task"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Severity:"), _this2.state.task.severity)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
@@ -109494,6 +109525,9 @@ function (_React$Component) {
             to: "".concat(link),
             onClick: function onClick() {
               return _this.props.setInfobar(event.target.innerText);
+            },
+            style: {
+              textTransform: "capitalize"
             }
           }, task.title));
         }
@@ -109825,7 +109859,10 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
           className: "prog-task-header"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Information:"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm"
+          className: "prog-task-pm",
+          style: {
+            textTransform: "capitalize"
+          }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Title:"), _this2.state.task.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "prog-task-pm",
           style: {
