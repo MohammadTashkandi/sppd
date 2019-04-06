@@ -38,7 +38,6 @@ Route::get('countSeverityForProgrammer','ProgrammerController@countSeverityForPr
 Route::get('countSeverityForProgrammerInProject','ProgrammerController@countSeverityForProgrammerInProject'); //this function will receive request contain 'PrId' (Programmer id) and 'Pid' (Project id)
 
 
-
 Route::post('addTask','TaskController@store');
 Route::get('getTasks','TaskController@getTasks');
 Route::get('getTaskInfo','TaskController@getTaskInfo');

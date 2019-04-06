@@ -5,7 +5,11 @@ import {Bar,Line, Pie} from 'react-chartjs-2';
 import ProgressBar from './ProgressBar';
 
 export default class Canvas extends React.Component {
-    
+
+    searchRef1 = React.createRef();
+    searchRef2 = React.createRef();
+    searchRef3 = React.createRef();
+
     state = {
         barData:{ //the data here should also be dynamic depending on what the PM wants to see
             labels: ['Unassigned->Assigned', 'Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed'], //Bar names
@@ -54,6 +58,7 @@ export default class Canvas extends React.Component {
     }
 
     componentDidMount(){
+        this.checkClosed();
         this.loadStatistics();
     }
 
@@ -64,6 +69,24 @@ export default class Canvas extends React.Component {
             });
             this.loadStatistics();
         }
+    }
+
+    checkClosed = () =>{
+        axios.get('api/checkClosed',{
+            params:{
+                Pid: this.props.match.params.projectId
+            }
+        })
+        .then((res)=>{
+            if(res.status == 200){
+                this.buttonRef1.current.style.display = "block";
+                this.buttonRef2.current.style.display = "block";
+                this.buttonRef3.current.style.display = "block";
+            }
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
 
     loadStatistics = () =>{
@@ -95,6 +118,20 @@ export default class Canvas extends React.Component {
         })
     }
 
+    closeProject = () =>{
+        axios.post('api/closeProject', {
+            Pid: this.props.match.params.projectId,
+        })
+        .then((res) => {
+            if(res.status == 200){
+                console.log("Success");
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
     render() {
         return(
             <div className="canvas-background">
@@ -103,9 +140,9 @@ export default class Canvas extends React.Component {
                     <span className="info-bar-page">Project</span>
                     <span className="info-bar-text">{this.props.infobar}</span>
                     <span>
-                        <NavLink to={`/index/assignEmployee/${this.props.match.params.projectId}`}><button style={{marginRight:'1rem'}}className="info-bar-btn">Assign Employee</button></NavLink>
-                        <NavLink to={`/index/createTask/${this.props.match.params.projectId}`}><button className="info-bar-btn">Create task</button></NavLink>
-                        <button className="info-bar-btn" style={{marginLeft:"9rem"}}>Close Project</button>
+                        <NavLink to={`/index/assignEmployee/${this.props.match.params.projectId}`}><button style={{marginRight:'1rem', display:"none"}} className="info-bar-btn" ref={this.buttonRef1}>Assign Employee</button></NavLink>
+                        <NavLink to={`/index/createTask/${this.props.match.params.projectId}`}><button className="info-bar-btn" style={{display:"none"}} ref={this.buttonRef2}>Create task</button></NavLink>
+                        <button className="info-bar-btn" style={{marginLeft:"9rem", display:"none"}} onClick={this.closeProject} ref={this.buttonRef3}>Close Project</button>
                     </span>
                 </div>
                 <hr className="hr" style={{margin:'0'}} />

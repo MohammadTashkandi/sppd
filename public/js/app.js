@@ -106000,6 +106000,12 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Canvas)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "searchRef1", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "searchRef2", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "searchRef3", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       barData: {
         //the data here should also be dynamic depending on what the PM wants to see
@@ -106056,6 +106062,22 @@ function (_React$Component) {
       }
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "checkClosed", function () {
+      axios.get('api/checkClosed', {
+        params: {
+          Pid: _this.props.match.params.projectId
+        }
+      }).then(function (res) {
+        if (res.status == 200) {
+          _this.buttonRef1.current.style.display = "block";
+          _this.buttonRef2.current.style.display = "block";
+          _this.buttonRef3.current.style.display = "block";
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadStatistics", function () {
       axios.get('api/countSeverityForProject', {
         params: {
@@ -106083,12 +106105,25 @@ function (_React$Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "closeProject", function () {
+      axios.post('api/closeProject', {
+        Pid: _this.props.match.params.projectId
+      }).then(function (res) {
+        if (res.status == 200) {
+          console.log("Success");
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
     return _this;
   }
 
   _createClass(Canvas, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.checkClosed();
       this.loadStatistics();
     }
   }, {
@@ -106110,18 +106145,27 @@ function (_React$Component) {
         to: "/index/assignEmployee/".concat(this.props.match.params.projectId)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         style: {
-          marginRight: '1rem'
+          marginRight: '1rem',
+          display: "none"
         },
-        className: "info-bar-btn"
+        className: "info-bar-btn",
+        ref: this.buttonRef1
       }, "Assign Employee")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         to: "/index/createTask/".concat(this.props.match.params.projectId)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "info-bar-btn"
+        className: "info-bar-btn",
+        style: {
+          display: "none"
+        },
+        ref: this.buttonRef2
       }, "Create task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "info-bar-btn",
         style: {
-          marginLeft: "9rem"
-        }
+          marginLeft: "9rem",
+          display: "none"
+        },
+        onClick: this.closeProject,
+        ref: this.buttonRef3
       }, "Close Project"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "hr",
         style: {
