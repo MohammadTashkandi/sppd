@@ -195,23 +195,26 @@ class ProjectController extends Controller
     public function getDuration(Request $request)
     {
 
-        $tasks = Task::where('Pid', $request['Pid'])->where('status', 'Closed')->get();
-
-        $maxAssigned = $tasks->max('AssignedDuration');
-        $maxProgress = $tasks->max('inProgressDuration');
-        $maxResolvedD = $tasks->max('ResolvedDuration');
-        $maxReOpen = $tasks->max('reOpenDuration');
+        $tasks = Task::where('Pid', $request['Pid'])->get();
+        $tasks2 = Task::where('Pid', $request['Pid'])->where('ResolvedDuration' , '!=' , null)->get();
+        $tasks3 = Task::where('Pid', $request['Pid'])->where('reOpenDuration' , '!=' , null)->get();
 
 
-        $minAssigned = $tasks->min('AssignedDuration');
-        $minProgress = $tasks->min('inProgressDuration');
-        $minResolvedD = $tasks->min('ResolvedDuration');
-        $minReOpen = $tasks->min('reOpenDuration');
+        $maxAssigned = $tasks->where('AssignedDuration' , '!=' , null)->max('AssignedDuration');
+        $maxProgress = $tasks->where('inProgressDuration' , '!=' , null)->max('inProgressDuration');
+        $maxResolvedD = $tasks2->max('ResolvedDuration');
+        $maxReOpen = $tasks3->max('reOpenDuration');
 
-        $avgAssigned = $tasks->max('AssignedDuration');
-        $avgProgress = $tasks->max('inProgressDuration');
-        $avgResolvedD = $tasks->max('ResolvedDuration');
-        $avgReOpen = $tasks->max('reOpenDuration');
+
+        $minAssigned = $tasks->where('AssignedDuration' , '!=' , null)->min('AssignedDuration');
+        $minProgress = $tasks->where('inProgressDuration' , '!=' , null)->min('inProgressDuration');
+        $minResolvedD = $tasks2->min('ResolvedDuration');
+        $minReOpen = $tasks3->min('reOpenDuration');
+
+        $avgAssigned =$tasks->where('AssignedDuration' , '!=' , null)->avg('AssignedDuration');
+        $avgProgress = $tasks->where('inProgressDuration' , '!=' , null)->avg('inProgressDuration');
+        $avgResolvedD = $tasks2->avg('ResolvedDuration');
+        $avgReOpen = $tasks3->avg('reOpenDuration');
 
         $result = array(
             0 => $maxAssigned,
@@ -271,13 +274,13 @@ class ProjectController extends Controller
             return response()->json('Error Project not found', 404);
         }
 
-        if ($project->Closed_Date = !null) {
+        if ($project->Closed_Date != null) {
 
             return response()->json('Done', 200);
 
         }
 
-        return response()->json('Project not Closed', 404);
+        return response()->json('Project not Closed', 201);
 
 
 

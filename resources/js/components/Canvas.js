@@ -35,6 +35,7 @@ export default class Canvas extends React.Component {
 
     componentDidMount(){
         this.checkClosed();
+        this.loadDuration();
         this.loadSeverity();
     }
 
@@ -43,6 +44,7 @@ export default class Canvas extends React.Component {
             this.setState({
                 lineData: {}
             });
+            this.loadDuration();
             this.loadSeverity();
         }
     }
@@ -54,15 +56,14 @@ export default class Canvas extends React.Component {
             }
         })
         .then((res)=>{
-            console.log(res)
-            if(res.data == "Done"){
+            if(res.status == 200){
                 this.buttonRefAssign.current.style.display = "none";
                 this.buttonRefCreate.current.style.display = "none";
                 this.buttonRefClose.current.style.display = "none";
             }else{
-                this.buttonRefAssign.current.style.display = "none";
-                this.buttonRefCreate.current.style.display = "none";
-                this.buttonRefClose.current.style.display = "none";
+                this.buttonRefAssign.current.style.display = "inline";
+                this.buttonRefCreate.current.style.display = "inline";
+                this.buttonRefClose.current.style.display = "inline";
             }
         })
         .catch((err)=>{
@@ -77,8 +78,8 @@ export default class Canvas extends React.Component {
             }
         })
         .then((res)=>{
-            const total = res.data[0] + res.data[1] + res.data[2] + res.data[3] + res.data[4] + res.data[5] + res.data[6] + res.data[7];
-            this.setState({
+            console.log(res)
+            /* this.setState({
                 barData:{ 
                     labels: ['Unassigned->Assigned', 'Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed'], //Bar names
                     datasets:[ //here you mostly fill the data of the grap
@@ -105,7 +106,7 @@ export default class Canvas extends React.Component {
                         }
                     ]
                 }
-            })
+            }) */
         })
         .catch((err)=>{
             console.log(err)
@@ -166,8 +167,8 @@ export default class Canvas extends React.Component {
                     <span className="decorative-box">i</span>
                     <span className="info-bar-page">Project</span>
                     <span className="info-bar-text">
-                        {this.props.infobar}
-                        <NavLink to={`/index/assignEmployee/${this.props.match.params.projectId}`}><button className="info-bar-btn" style={{display:"none", marginLeft:"9rem"}} ref={this.buttonRefAssign}>Assign Employee</button></NavLink>
+{/*                         {this.props.infobar}
+ */}                        <NavLink to={`/index/assignEmployee/${this.props.match.params.projectId}`}><button className="info-bar-btn" style={{display:"none", marginLeft:"9rem"}} ref={this.buttonRefAssign}>Assign Employee</button></NavLink>
                     </span>
                     <span>
                         <NavLink to={`/index/createTask/${this.props.match.params.projectId}`}><button className="info-bar-btn" style={{display:"none"}} ref={this.buttonRefCreate}>Create task</button></NavLink>
@@ -205,7 +206,7 @@ export default class Canvas extends React.Component {
                                                 yAxes:[{
                                                     scaleLabel:{
                                                         display: true,
-                                                        labelString: 'Time in Days',
+                                                        labelString: 'Time in Minutes',
                                                     }
                                                 }],
                                                 xAxes:[{

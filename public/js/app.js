@@ -106031,6 +106031,8 @@ function (_React$Component) {
           lineData: {}
         });
 
+        _this.loadDuration();
+
         _this.loadSeverity();
       }
     });
@@ -106041,16 +106043,14 @@ function (_React$Component) {
           Pid: _this.props.match.params.projectId
         }
       }).then(function (res) {
-        console.log(res);
-
-        if (res.data == "Done") {
+        if (res.status == 200) {
           _this.buttonRefAssign.current.style.display = "none";
           _this.buttonRefCreate.current.style.display = "none";
           _this.buttonRefClose.current.style.display = "none";
         } else {
-          _this.buttonRefAssign.current.style.display = "none";
-          _this.buttonRefCreate.current.style.display = "none";
-          _this.buttonRefClose.current.style.display = "none";
+          _this.buttonRefAssign.current.style.display = "inline";
+          _this.buttonRefCreate.current.style.display = "inline";
+          _this.buttonRefClose.current.style.display = "inline";
         }
       }).catch(function (err) {
         console.log(err);
@@ -106063,37 +106063,35 @@ function (_React$Component) {
           Pid: _this.props.match.params.projectId
         }
       }).then(function (res) {
-        var total = res.data[0] + res.data[1] + res.data[2] + res.data[3] + res.data[4] + res.data[5] + res.data[6] + res.data[7];
-
-        _this.setState({
-          barData: {
-            labels: ['Unassigned->Assigned', 'Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed'],
-            //Bar names
-            datasets: [//here you mostly fill the data of the grap
-            {
-              // this is an object that you fill in each point in the graph
-              label: 'Min',
-              data: [4, 8, 10, 12],
-              backgroundColor: 'rgb(44, 135, 196)',
-              hoverBorderWidth: 2,
-              hoverBorderColor: '#122738'
-            }, //these objects will be rendered for every label mentioned in the above array "labels"
-            {
-              label: 'Average',
-              data: [20, 15, 13, 14],
-              backgroundColor: '#9d9d9d',
-              hoverBorderWidth: 2,
-              hoverBorderColor: '#122738'
-            }, //if you want more than 1 bar for a label, then add more object with the desired aspects!
-            {
-              label: 'Max',
-              data: [40, 32, 44, 50],
-              backgroundColor: '#ffc600',
-              hoverBorderWidth: 2,
-              hoverBorderColor: '#122738'
-            }]
-          }
-        });
+        console.log(res);
+        /* this.setState({
+            barData:{ 
+                labels: ['Unassigned->Assigned', 'Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed'], //Bar names
+                datasets:[ //here you mostly fill the data of the grap
+                    {// this is an object that you fill in each point in the graph
+                        label:'Min',
+                        data:[4,8,10,12],
+                        backgroundColor:'rgb(44, 135, 196)',
+                        hoverBorderWidth: 2,
+                        hoverBorderColor: '#122738',
+                    },//these objects will be rendered for every label mentioned in the above array "labels"
+                    {
+                        label:'Average',
+                        data:[20,15,13,14],
+                        backgroundColor:'#9d9d9d',
+                        hoverBorderWidth: 2,
+                        hoverBorderColor: '#122738',
+                    },//if you want more than 1 bar for a label, then add more object with the desired aspects!
+                    {
+                        label:'Max',
+                        data:[40,32,44,50],
+                        backgroundColor:'#ffc600',
+                        hoverBorderWidth: 2,
+                        hoverBorderColor: '#122738'
+                    }
+                ]
+            }
+        }) */
       }).catch(function (err) {
         console.log(err);
       });
@@ -106148,6 +106146,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.checkClosed();
+      this.loadDuration();
       this.loadSeverity();
     }
   }, {
@@ -106165,7 +106164,7 @@ function (_React$Component) {
         className: "info-bar-page"
       }, "Project"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-bar-text"
-      }, this.props.infobar, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+      }, "                        ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         to: "/index/assignEmployee/".concat(this.props.match.params.projectId)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "info-bar-btn",
@@ -106240,7 +106239,7 @@ function (_React$Component) {
               yAxes: [{
                 scaleLabel: {
                   display: true,
-                  labelString: 'Time in Days'
+                  labelString: 'Time in Minutes'
                 }
               }],
               xAxes: [{
@@ -106597,7 +106596,7 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       title: "",
       PrId: "",
-      severity: "Feature",
+      severity: "1",
       tStr: "",
       tJud: "",
       tCu: "",
@@ -106832,21 +106831,21 @@ function (_React$Component) {
           onChange: _this2.onChange,
           required: true
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "Feature"
+          value: "1"
         }, "Feature"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "Trivial"
+          value: "2"
         }, "Trivial"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "Text"
+          value: "3"
         }, "Text"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "Tweak"
+          value: "4"
         }, "Tweak"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "Minor"
+          value: "5"
         }, "Minor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "Major"
+          value: "6"
         }, "Major"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "Crash"
+          value: "7"
         }, "Crash"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "Block"
+          value: "8"
         }, "Block")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group",
           id: "task-form-group"
@@ -107881,7 +107880,7 @@ function (_React$Component) {
             },
             title: {
               display: true,
-              text: 'Personal Performance Measures',
+              text: 'Task Skill Requirement Level',
               //this should also be dynamic
               fontSize: 25
             },
@@ -109988,12 +109987,10 @@ function (_React$Component) {
           className: "prog-task-pm"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Status:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           ref: _this2.statusRef
-        }, _this2.state.task.status))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, _this2.state.task.status)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "login-btn",
           ref: _this2.buttonRef1,
           style: {
-            position: "absolute",
-            marginLeft: '33rem',
             display: "none",
             borderColor: 'rgb(105, 18, 18)',
             color: 'rgb(105, 18, 18)'
@@ -110003,8 +110000,6 @@ function (_React$Component) {
           className: "login-btn-2",
           ref: _this2.buttonRef2,
           style: {
-            position: "absolute",
-            marginLeft: '51rem',
             display: "none",
             borderColor: 'red'
           },

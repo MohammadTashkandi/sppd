@@ -118,9 +118,11 @@ export default class TaskPage extends React.Component {
                         <span><h4 className="prog-task-pm" style={{textTransform:"capitalize"}}><b>Task Title:</b>{this.state.task.title}</h4></span>
                         <span><h4 className="prog-task-pm" style={{textTransform:"capitalize"}}><b>Employee Assigned:</b>{this.state.programmer}</h4></span>
                         <span><h4 className="prog-task-pm"><b>Severity:</b>{this.state.task.severity}</h4></span>
-                        <span><h4 className="prog-task-pm"><b>Status:</b><span ref={this.statusRef}>{this.state.task.status}</span></h4></span>
-                        <button className="login-btn" ref={this.buttonRef1} style={{position:"absolute", marginLeft:'33rem', display:"none", borderColor:'rgb(105, 18, 18)', color: 'rgb(105, 18, 18)'}} onClick={this.closeTask}>Close This Task</button>
-                        <button className="login-btn-2" ref={this.buttonRef2} style={{position:"absolute", marginLeft:'51rem', display:"none", borderColor:'red'}} onClick={this.reOpenTask}>Re-Open This Task</button>
+                        <span><h4 className="prog-task-pm"><b>Status:</b><span ref={this.statusRef}>{this.state.task.status}</span></h4></span>                        
+                    </div>
+                    <div>
+                    <button className="login-btn" ref={this.buttonRef1} style={{display:"none", borderColor:'rgb(105, 18, 18)', color: 'rgb(105, 18, 18)'}} onClick={this.closeTask}>Close This Task</button>
+                        <button className="login-btn-2" ref={this.buttonRef2} style={{display:"none", borderColor:'red'}} onClick={this.reOpenTask}>Re-Open This Task</button>
                     </div>
                     <div className="deviation-container">
                         <span><h2 className="prog-task-header"><b>Task Statistics:</b></h2></span>                    

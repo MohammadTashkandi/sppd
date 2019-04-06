@@ -110,7 +110,7 @@ export default class EmployeeTaskPage extends React.Component {
                                     },
                                     title:{ 
                                         display:true,
-                                        text:'Personal Performance Measures', //this should also be dynamic
+                                        text:'Task Skill Requirement Level', //this should also be dynamic
                                         fontSize:25,
                                         },
                                         scale: {

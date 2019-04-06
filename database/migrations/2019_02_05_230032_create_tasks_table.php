@@ -19,18 +19,18 @@ class CreateTasksTable extends Migration
             $table->Integer('PrID')->references('id')->on('Programmer')->defulit(null)->onDelete('cascade'); // foreign key for the Project
             $table->string('title');
             $table->enum('status' , [ 'New-unassigned','New-assigned' , 'Progress' , 'Resolved' , 'Closed' , 'Re-Opened' , 'Deferred']);
-            $table->enum('severity' , [ 'Feature','Trivial' , 'Text' , 'Tweak' , 'Minor' , 'Major' , 'Crash','Block)']);
+            $table->enum('severity' , [ 'Feature','Trivial' , 'Text' , 'Tweak' , 'Minor' , 'Major' , 'Crash','Block']);
             $table->dateTime('Open_state')->nullable();
             $table->dateTime('Assigned_state')->nullable();
             $table->dateTime('inProgress_state')->nullable();
             $table->dateTime('Resolved_state')->nullable();
             $table->dateTime('reOpen_state')->nullable();
             $table->dateTime('Closed_state')->nullable();
-            $table->integer('AssignedDuration')->nullable()->default(0);
-            $table->integer('inProgressDuration')->nullable()->default(0);
-            $table->integer('ResolvedDuration')->nullable()->default(0);
-            $table->integer('reOpenDuration')->nullable()->default(0);
-            $table->integer('ClosedDuration')->nullable()->default(0);
+            $table->integer('AssignedDuration')->nullable();
+            $table->integer('inProgressDuration')->nullable();
+            $table->integer('ResolvedDuration')->nullable();
+            $table->integer('reOpenDuration')->nullable();
+            $table->integer('ClosedDuration')->nullable();
             $table->integer('tStr');
             $table->integer('tJud');
             $table->integer('tCu');
