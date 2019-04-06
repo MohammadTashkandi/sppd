@@ -106117,7 +106117,12 @@ function (_React$Component) {
         to: "/index/createTask/".concat(this.props.match.params.projectId)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "info-bar-btn"
-      }, "Create task")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+      }, "Create task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "info-bar-btn",
+        style: {
+          marginLeft: "9rem"
+        }
+      }, "Close Project"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "hr",
         style: {
           margin: '0'

@@ -105,6 +105,7 @@ export default class Canvas extends React.Component {
                     <span>
                         <NavLink to={`/index/assignEmployee/${this.props.match.params.projectId}`}><button style={{marginRight:'1rem'}}className="info-bar-btn">Assign Employee</button></NavLink>
                         <NavLink to={`/index/createTask/${this.props.match.params.projectId}`}><button className="info-bar-btn">Create task</button></NavLink>
+                        <button className="info-bar-btn" style={{marginLeft:"9rem"}}>Close Project</button>
                     </span>
                 </div>
                 <hr className="hr" style={{margin:'0'}} />
