@@ -69,7 +69,7 @@ export default class Login extends React.Component {
                 <h3 style={{color:'#ffc600', fontFamily:'"Poppins", sans-serif', paddingTop:'2rem', marginBottom: '4rem'}}>Login</h3>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
-                            <label style={{color:'#ffc600' , textAlign:'left'}}>Username
+                            <label style={{color:'#ffc600' , textAlign:'left'}}>Email
                                 <div style={{padding: '0.5rem'}}></div> {/* just to move stuff apart */}
                                 <input className="form-control" id="form-control" type="text" name="username" placeholder="Enter username" onChange={this.onChange} required />
                             </label>
