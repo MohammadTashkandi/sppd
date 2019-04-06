@@ -193,10 +193,74 @@ class ProjectController extends Controller
     }
 
 
+    public function getMaxDuration(Request $request){
+
+        $tasks = Task::where('Pid', $request['Pid'])->where('status' , 'Closed')->get();
+
+        $maxAssigned = $tasks->max('AssignedDuration');
+        $maxProgress = $tasks->max('inProgressDuration');
+        $maxResolvedD = $tasks->max('ResolvedDuration');
+        $maxReOpen = $tasks->max('reOpenDuration');
+
+        $result = array(
+            0 => $maxAssigned,
+            1 =>$maxProgress,
+            2 => $maxResolvedD,
+            3 =>$maxReOpen
+
+        );
 
 
+        return response()->json($result ,200);
 
 
+    }
+
+    public function getMinDuration(Request $request){
+
+        $tasks = Task::where('Pid', $request['Pid'])->where('status' , 'Closed')->get();
+
+        $minAssigned = $tasks->min('AssignedDuration');
+        $minProgress = $tasks->min('inProgressDuration');
+        $minResolvedD = $tasks->min('ResolvedDuration');
+        $minReOpen = $tasks->min('reOpenDuration');
+
+        $result = array(
+            0 => $minAssigned,
+            1 =>$minProgress,
+            2 => $minResolvedD,
+            3 =>$minReOpen
+
+        );
+
+
+        return response()->json($result ,200);
+
+
+    }
+
+    public function getAverageDuration(Request $request){
+
+        $tasks = Task::where('Pid', $request['Pid'])->get();
+
+        $avgAssigned = $tasks->max('AssignedDuration');
+        $avgProgress = $tasks->max('inProgressDuration');
+        $avgResolvedD = $tasks->max('ResolvedDuration');
+        $avgReOpen = $tasks->max('reOpenDuration');
+
+        $result = array(
+            0 => $avgAssigned,
+            1 =>$avgProgress,
+            2 => $avgResolvedD,
+            3 =>$avgReOpen
+
+        );
+
+
+        return response()->json($result ,200);
+
+
+    }
 
 
 

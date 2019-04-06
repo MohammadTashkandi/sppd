@@ -26,15 +26,27 @@ class CreateTasksTable extends Migration
             $table->dateTime('Resolved_state')->nullable();
             $table->dateTime('reOpen_state')->nullable();
             $table->dateTime('Closed_state')->nullable();
-            $table->integer('AssignedDuration')->nullable();
-            $table->integer('inProgressDuration')->nullable();
-            $table->integer('ResolvedDuration')->nullable();
-            $table->integer('reOpenDuration')->nullable();
-            $table->integer('ClosedDuration')->nullable();
+            $table->integer('AssignedDuration')->nullable()->default(0);
+            $table->integer('inProgressDuration')->nullable()->default(0);
+            $table->integer('ResolvedDuration')->nullable()->default(0);
+            $table->integer('reOpenDuration')->nullable()->default(0);
+            $table->integer('ClosedDuration')->nullable()->default(0);
             $table->integer('tStr');
             $table->integer('tJud');
             $table->integer('tCu');
             $table->integer('tTech');
+            //------------------------------------------------------------------
+            $table->integer('actualTStr');
+            $table->integer('actualTJud');
+            $table->integer('actualTCu');
+            $table->integer('actualTTech');
+
+            //------------------------------------------------------------------
+            $table->integer('tStrDeviation');
+            $table->integer('tJudDeviation');
+            $table->integer('tCuDeviation');
+            $table->integer('tTechDeviation');
+
             $table->rememberToken();
 
 
