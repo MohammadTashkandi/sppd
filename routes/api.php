@@ -21,9 +21,7 @@ Route::post('addProgrammer','UserController@addProgrammer');
 Route::post('storeProject','ProjectController@store');
 Route::get('findProject','ProjectController@findProject');
 Route::get('countSeverityForProject','ProjectController@countSeverityForProject'); //this function will receive request contain 'Pid' (Project id)
-Route::get('getMaxDuration','ProjectController@getMaxDuration'); //this function will receive request contain 'Pid' (Project id)
-Route::get('getMinDuration','ProjectController@getMinDuration'); //this function will receive request contain 'Pid' (Project id)
-Route::get('getAverageDuration','ProjectController@getAverageDuration'); //this function will receive request contain 'Pid' (Project id)
+Route::get('getDuration','ProjectController@getDuration'); //this function will receive request contain 'Pid' (Project id)
 Route::post('closeProject','ProjectController@closeProject'); //this function will receive request contain 'Pid' (Project id)
 Route::get('checkClosed','ProjectController@checkClosed'); //this function will receive request contain 'Pid' (Project id)
 
