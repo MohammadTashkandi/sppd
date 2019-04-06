@@ -112,7 +112,7 @@ use Illuminate\Support\Facades\Validator;
          try{
 
            if(! $token = Auth::guard('programmer')->attempt($credentials)){
-             return response()->json(['error' => 'invalid credentials'], 400);
+             return response()->json(['error' => 'invalid Email or Password'], 400);
            }
          }catch(JWTException $e){
            return response()->json(['error' => 'could not create token'], 500);
