@@ -106000,41 +106000,14 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Canvas)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "searchRef1", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "buttonRefAssign", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "searchRef2", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "buttonRefCreate", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "searchRef3", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "buttonRefClose", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      barData: {
-        //the data here should also be dynamic depending on what the PM wants to see
-        labels: ['Unassigned->Assigned', 'Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed'],
-        //Bar names
-        datasets: [//here you mostly fill the data of the grap
-        {
-          // this is an object that you fill in each point in the graph
-          label: 'Min',
-          data: [4, 8, 10, 12],
-          backgroundColor: 'rgb(44, 135, 196)',
-          hoverBorderWidth: 2,
-          hoverBorderColor: '#122738'
-        }, //these objects will be rendered for every label mentioned in the above array "labels"
-        {
-          label: 'Average',
-          data: [20, 15, 13, 14],
-          backgroundColor: '#9d9d9d',
-          hoverBorderWidth: 2,
-          hoverBorderColor: '#122738'
-        }, //if you want more than 1 bar for a label, then add more object with the desired aspects!
-        {
-          label: 'Max',
-          data: [40, 32, 44, 50],
-          backgroundColor: '#ffc600',
-          hoverBorderWidth: 2,
-          hoverBorderColor: '#122738'
-        }]
-      },
+      barData: {},
       lineData: {},
       pieData: {
         //the data here should also be dynamic depending on what the PM wants to see
@@ -106058,7 +106031,7 @@ function (_React$Component) {
           lineData: {}
         });
 
-        _this.loadStatistics();
+        _this.loadSeverity();
       }
     });
 
@@ -106068,17 +106041,65 @@ function (_React$Component) {
           Pid: _this.props.match.params.projectId
         }
       }).then(function (res) {
-        if (res.status == 200) {
-          _this.buttonRef1.current.style.display = "block";
-          _this.buttonRef2.current.style.display = "block";
-          _this.buttonRef3.current.style.display = "block";
+        console.log(res);
+
+        if (res.data == "Done") {
+          _this.buttonRefAssign.current.style.display = "none";
+          _this.buttonRefCreate.current.style.display = "none";
+          _this.buttonRefClose.current.style.display = "none";
+        } else {
+          _this.buttonRefAssign.current.style.display = "none";
+          _this.buttonRefCreate.current.style.display = "none";
+          _this.buttonRefClose.current.style.display = "none";
         }
       }).catch(function (err) {
         console.log(err);
       });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadStatistics", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadDuration", function () {
+      axios.get('api/getDuration', {
+        params: {
+          Pid: _this.props.match.params.projectId
+        }
+      }).then(function (res) {
+        var total = res.data[0] + res.data[1] + res.data[2] + res.data[3] + res.data[4] + res.data[5] + res.data[6] + res.data[7];
+
+        _this.setState({
+          barData: {
+            labels: ['Unassigned->Assigned', 'Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed'],
+            //Bar names
+            datasets: [//here you mostly fill the data of the grap
+            {
+              // this is an object that you fill in each point in the graph
+              label: 'Min',
+              data: [4, 8, 10, 12],
+              backgroundColor: 'rgb(44, 135, 196)',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }, //these objects will be rendered for every label mentioned in the above array "labels"
+            {
+              label: 'Average',
+              data: [20, 15, 13, 14],
+              backgroundColor: '#9d9d9d',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }, //if you want more than 1 bar for a label, then add more object with the desired aspects!
+            {
+              label: 'Max',
+              data: [40, 32, 44, 50],
+              backgroundColor: '#ffc600',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }]
+          }
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadSeverity", function () {
       axios.get('api/countSeverityForProject', {
         params: {
           Pid: _this.props.match.params.projectId
@@ -106110,6 +106131,9 @@ function (_React$Component) {
         Pid: _this.props.match.params.projectId
       }).then(function (res) {
         if (res.status == 200) {
+          _this.buttonRefAssign.current.style.display = "none";
+          _this.buttonRefCreate.current.style.display = "none";
+          _this.buttonRefClose.current.style.display = "none";
           console.log("Success");
         }
       }).catch(function (err) {
@@ -106124,7 +106148,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.checkClosed();
-      this.loadStatistics();
+      this.loadSeverity();
     }
   }, {
     key: "render",
@@ -106141,31 +106165,31 @@ function (_React$Component) {
         className: "info-bar-page"
       }, "Project"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-bar-text"
-      }, this.props.infobar), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+      }, this.props.infobar, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         to: "/index/assignEmployee/".concat(this.props.match.params.projectId)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        style: {
-          marginRight: '1rem',
-          display: "none"
-        },
         className: "info-bar-btn",
-        ref: this.buttonRef1
-      }, "Assign Employee")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        style: {
+          display: "none",
+          marginLeft: "9rem"
+        },
+        ref: this.buttonRefAssign
+      }, "Assign Employee"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         to: "/index/createTask/".concat(this.props.match.params.projectId)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "info-bar-btn",
         style: {
           display: "none"
         },
-        ref: this.buttonRef2
+        ref: this.buttonRefCreate
       }, "Create task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "info-bar-btn",
         style: {
-          marginLeft: "9rem",
+          marginLeft: "1.5rem",
           display: "none"
         },
         onClick: this.closeProject,
-        ref: this.buttonRef3
+        ref: this.buttonRefClose
       }, "Close Project"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "hr",
         style: {

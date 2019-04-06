@@ -6,37 +6,13 @@ import ProgressBar from './ProgressBar';
 
 export default class Canvas extends React.Component {
 
-    searchRef1 = React.createRef();
-    searchRef2 = React.createRef();
-    searchRef3 = React.createRef();
+    buttonRefAssign = React.createRef();
+    buttonRefCreate = React.createRef();
+    buttonRefClose = React.createRef();
+
 
     state = {
-        barData:{ //the data here should also be dynamic depending on what the PM wants to see
-            labels: ['Unassigned->Assigned', 'Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed'], //Bar names
-            datasets:[ //here you mostly fill the data of the grap
-                {// this is an object that you fill in each point in the graph
-                    label:'Min',
-                    data:[4,8,10,12],
-                    backgroundColor:'rgb(44, 135, 196)',
-                    hoverBorderWidth: 2,
-                    hoverBorderColor: '#122738',
-                },//these objects will be rendered for every label mentioned in the above array "labels"
-                {
-                    label:'Average',
-                    data:[20,15,13,14],
-                    backgroundColor:'#9d9d9d',
-                    hoverBorderWidth: 2,
-                    hoverBorderColor: '#122738',
-                },//if you want more than 1 bar for a label, then add more object with the desired aspects!
-                {
-                    label:'Max',
-                    data:[40,32,44,50],
-                    backgroundColor:'#ffc600',
-                    hoverBorderWidth: 2,
-                    hoverBorderColor: '#122738'
-                }
-            ]
-        },
+        barData:{},
         lineData:{},
         pieData:{ //the data here should also be dynamic depending on what the PM wants to see
             labels: ['Major', 'Minor', 'Tweak', 'Crash'], //Bar names
@@ -59,7 +35,7 @@ export default class Canvas extends React.Component {
 
     componentDidMount(){
         this.checkClosed();
-        this.loadStatistics();
+        this.loadSeverity();
     }
 
     componentDidUpdate = (prevProps) => {
@@ -67,7 +43,7 @@ export default class Canvas extends React.Component {
             this.setState({
                 lineData: {}
             });
-            this.loadStatistics();
+            this.loadSeverity();
         }
     }
 
@@ -78,10 +54,15 @@ export default class Canvas extends React.Component {
             }
         })
         .then((res)=>{
-            if(res.status == 200){
-                this.buttonRef1.current.style.display = "block";
-                this.buttonRef2.current.style.display = "block";
-                this.buttonRef3.current.style.display = "block";
+            console.log(res)
+            if(res.data == "Done"){
+                this.buttonRefAssign.current.style.display = "none";
+                this.buttonRefCreate.current.style.display = "none";
+                this.buttonRefClose.current.style.display = "none";
+            }else{
+                this.buttonRefAssign.current.style.display = "none";
+                this.buttonRefCreate.current.style.display = "none";
+                this.buttonRefClose.current.style.display = "none";
             }
         })
         .catch((err)=>{
@@ -89,7 +70,49 @@ export default class Canvas extends React.Component {
         })
     }
 
-    loadStatistics = () =>{
+    loadDuration = () =>{
+        axios.get('api/getDuration',{
+            params:{
+                Pid: this.props.match.params.projectId
+            }
+        })
+        .then((res)=>{
+            const total = res.data[0] + res.data[1] + res.data[2] + res.data[3] + res.data[4] + res.data[5] + res.data[6] + res.data[7];
+            this.setState({
+                barData:{ 
+                    labels: ['Unassigned->Assigned', 'Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed'], //Bar names
+                    datasets:[ //here you mostly fill the data of the grap
+                        {// this is an object that you fill in each point in the graph
+                            label:'Min',
+                            data:[4,8,10,12],
+                            backgroundColor:'rgb(44, 135, 196)',
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738',
+                        },//these objects will be rendered for every label mentioned in the above array "labels"
+                        {
+                            label:'Average',
+                            data:[20,15,13,14],
+                            backgroundColor:'#9d9d9d',
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738',
+                        },//if you want more than 1 bar for a label, then add more object with the desired aspects!
+                        {
+                            label:'Max',
+                            data:[40,32,44,50],
+                            backgroundColor:'#ffc600',
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738'
+                        }
+                    ]
+                }
+            })
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
+    loadSeverity = () =>{
         axios.get('api/countSeverityForProject',{
             params:{
                 Pid: this.props.match.params.projectId
@@ -118,12 +141,16 @@ export default class Canvas extends React.Component {
         })
     }
 
+
     closeProject = () =>{
         axios.post('api/closeProject', {
             Pid: this.props.match.params.projectId,
         })
         .then((res) => {
             if(res.status == 200){
+                this.buttonRefAssign.current.style.display = "none";
+                this.buttonRefCreate.current.style.display = "none";
+                this.buttonRefClose.current.style.display = "none";
                 console.log("Success");
             }
         })
@@ -138,12 +165,15 @@ export default class Canvas extends React.Component {
                 <div className="info-bar">
                     <span className="decorative-box">i</span>
                     <span className="info-bar-page">Project</span>
-                    <span className="info-bar-text">{this.props.infobar}</span>
-                    <span>
-                        <NavLink to={`/index/assignEmployee/${this.props.match.params.projectId}`}><button style={{marginRight:'1rem', display:"none"}} className="info-bar-btn" ref={this.buttonRef1}>Assign Employee</button></NavLink>
-                        <NavLink to={`/index/createTask/${this.props.match.params.projectId}`}><button className="info-bar-btn" style={{display:"none"}} ref={this.buttonRef2}>Create task</button></NavLink>
-                        <button className="info-bar-btn" style={{marginLeft:"9rem", display:"none"}} onClick={this.closeProject} ref={this.buttonRef3}>Close Project</button>
+                    <span className="info-bar-text">
+                        {this.props.infobar}
+                        <NavLink to={`/index/assignEmployee/${this.props.match.params.projectId}`}><button className="info-bar-btn" style={{display:"none", marginLeft:"9rem"}} ref={this.buttonRefAssign}>Assign Employee</button></NavLink>
                     </span>
+                    <span>
+                        <NavLink to={`/index/createTask/${this.props.match.params.projectId}`}><button className="info-bar-btn" style={{display:"none"}} ref={this.buttonRefCreate}>Create task</button></NavLink>
+                        <button className="info-bar-btn" style={{marginLeft:"1.5rem", display:"none"}} onClick={this.closeProject} ref={this.buttonRefClose}>Close Project</button>
+                    </span>
+
                 </div>
                 <hr className="hr" style={{margin:'0'}} />
                 <Spring from={{opacity:0}} // you must wrap the part of the component you want animated in this spring syntax
