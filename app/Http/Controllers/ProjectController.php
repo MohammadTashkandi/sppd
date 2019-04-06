@@ -48,7 +48,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -58,7 +58,7 @@ class ProjectController extends Controller
         $pro = new Project();
         $title = $request['title'];
         $PMid = $request['PMid'];
-        if($title == null){
+        if ($title == null) {
             return 'You should put Title';
         }
         $pro->title = $title;
@@ -75,7 +75,7 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Project  $project
+     * @param  \App\Project $project
      * @return \Illuminate\Http\Response
      */
     public function show(Project $project)
@@ -86,7 +86,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Project  $project
+     * @param  \App\Project $project
      * @return \Illuminate\Http\Response
      */
     public function edit(Project $project)
@@ -97,8 +97,8 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Project  $project
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Project $project
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Project $project)
@@ -110,7 +110,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Project  $project
+     * @param  \App\Project $project
      * @return \Illuminate\Http\Response
      */
     public function destroy(Project $project)
@@ -119,28 +119,30 @@ class ProjectController extends Controller
     }
 
 
-    public function addProject($title){
+    public function addProject($title)
+    {
         $p = new Project();
 
         $p->title = $title;
 
 
-            $p->PMid=auth()->user()->id;
-            $current = Carbon::now();
-            $tomorrow = Carbon::tomorrow();
-            $p->Start_Date=$current;
-            $p->Closed_Date=$tomorrow;
+        $p->PMid = auth()->user()->id;
+        $current = Carbon::now();
+        $tomorrow = Carbon::tomorrow();
+        $p->Start_Date = $current;
+        $p->Closed_Date = $tomorrow;
 
         return 'Done';
 
 
     }
 
-    public function findProject(Request $request){
+    public function findProject(Request $request)
+    {
 
         $PMid = $request['PMid'];
-        $projects = Project::where('PMid',$PMid);
-        return response()->json($projects->pluck('title','id')); //dont do $projects=$projects->pluck... or the state will have nested object
+        $projects = Project::where('PMid', $PMid);
+        return response()->json($projects->pluck('title', 'id')); //dont do $projects=$projects->pluck... or the state will have nested object
     }
 
 
@@ -158,8 +160,8 @@ class ProjectController extends Controller
 //    }
 
 
-
-    public function countSeverityForProject(Request $request){
+    public function countSeverityForProject(Request $request)
+    {
 
         $Pid = $request['Pid'];
         $tasks = Task::where('Pid', $Pid)->get();
@@ -174,28 +176,26 @@ class ProjectController extends Controller
         $numOfBlock = count($tasks->where('severity', 'Block')->all());
 
         $array = array(
-            0 =>$numOfFeature,
-            1 =>$numOfTrivial,
-            2 =>$numOfText,
-            3 =>$numOfTweak,
-            4 =>$numOfMinor,
-            5 =>$numOfMajor,
-            6 =>$numOfCrash,
-            7 =>$numOfBlock
+            0 => $numOfFeature,
+            1 => $numOfTrivial,
+            2 => $numOfText,
+            3 => $numOfTweak,
+            4 => $numOfMinor,
+            5 => $numOfMajor,
+            6 => $numOfCrash,
+            7 => $numOfBlock
         );
 
-        return response()->json($array ,200);
-
-
-
+        return response()->json($array, 200);
 
 
     }
 
 
-    public function getMaxDuration(Request $request){
+    public function getMaxDuration(Request $request)
+    {
 
-        $tasks = Task::where('Pid', $request['Pid'])->where('status' , 'Closed')->get();
+        $tasks = Task::where('Pid', $request['Pid'])->where('status', 'Closed')->get();
 
         $maxAssigned = $tasks->max('AssignedDuration');
         $maxProgress = $tasks->max('inProgressDuration');
@@ -204,21 +204,22 @@ class ProjectController extends Controller
 
         $result = array(
             0 => $maxAssigned,
-            1 =>$maxProgress,
+            1 => $maxProgress,
             2 => $maxResolvedD,
-            3 =>$maxReOpen
+            3 => $maxReOpen
 
         );
 
 
-        return response()->json($result ,200);
+        return response()->json($result, 200);
 
 
     }
 
-    public function getMinDuration(Request $request){
+    public function getMinDuration(Request $request)
+    {
 
-        $tasks = Task::where('Pid', $request['Pid'])->where('status' , 'Closed')->get();
+        $tasks = Task::where('Pid', $request['Pid'])->where('status', 'Closed')->get();
 
         $minAssigned = $tasks->min('AssignedDuration');
         $minProgress = $tasks->min('inProgressDuration');
@@ -227,19 +228,20 @@ class ProjectController extends Controller
 
         $result = array(
             0 => $minAssigned,
-            1 =>$minProgress,
+            1 => $minProgress,
             2 => $minResolvedD,
-            3 =>$minReOpen
+            3 => $minReOpen
 
         );
 
 
-        return response()->json($result ,200);
+        return response()->json($result, 200);
 
 
     }
 
-    public function getAverageDuration(Request $request){
+    public function getAverageDuration(Request $request)
+    {
 
         $tasks = Task::where('Pid', $request['Pid'])->get();
 
@@ -250,21 +252,63 @@ class ProjectController extends Controller
 
         $result = array(
             0 => $avgAssigned,
-            1 =>$avgProgress,
+            1 => $avgProgress,
             2 => $avgResolvedD,
-            3 =>$avgReOpen
+            3 => $avgReOpen
 
         );
 
 
-        return response()->json($result ,200);
+        return response()->json($result, 200);
 
 
     }
 
 
+    public function closeProject(Request $request)
+    {
+        $Pid = $request['Pid'];
+
+        $project = Project::where('id', $Pid)->first();
+
+        if ($project == null) {
+
+            return response()->json('Error Project not found', 404);
+        }
+
+        if ($project->Closed_Date == null) {
+
+            $project->Closed_Date = Carbon::now();
+            $project->save();
+
+            return response()->json('Done', 200);
+        }
+
+
+    }
+
+    public function checkClosed(Request $request)
+    {
+
+        $Pid = $request['Pid'];
+
+        $project = Project::where('id', $Pid)->first();
+
+        if ($project == null) {
+
+            return response()->json('Error Project not found', 404);
+        }
+
+        if ($project->Closed_Date = !null) {
+
+            return response()->json('Done', 200);
+
+        }
+
+        return response()->json('Project not Closed', 404);
 
 
 
+    }
 
 }
