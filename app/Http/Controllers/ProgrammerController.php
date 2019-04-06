@@ -397,4 +397,39 @@ class ProgrammerController extends Controller
 
 
 
+    public function calculateProgrammerProductivity(Request $request){
+
+        $id = $request['id'];
+
+        $programmer = Programmer::where('id', $id)->first();
+
+        if($programmer == null){
+            return response()->json(['Programmer not found'], 404);
+        }
+
+
+        $tasks = Task::where('PrID', $id)->where('Status', 'Closed')->get();
+        $num = count($tasks);
+        $assigned = $tasks->sum('AssignedDuration');
+        $progress = $tasks->sum('inProgressDuration');
+        $duration = ($assigned + $progress) / 60 ;
+
+        $result = $num/$duration;
+
+
+        return response()->json($result , 200);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

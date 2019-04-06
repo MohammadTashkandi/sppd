@@ -20,6 +20,8 @@ class CreateProjectsTable extends Migration
             $table->dateTime('Start_Date');
             $table->dateTime('Closed_Date')->nullable();
             $table->dateTime('Planned_Closed_Date')->nullable();
+            $table->integer('failedTasks')->default(0);
+
         });
     }
 
