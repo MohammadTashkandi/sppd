@@ -106067,34 +106067,37 @@ function (_React$Component) {
         }
       }).then(function (res) {
         console.log(res);
-        /* this.setState({
-            barData:{ 
-                labels: ['Unassigned->Assigned', 'Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed'], //Bar names
-                datasets:[ //here you mostly fill the data of the grap
-                    {// this is an object that you fill in each point in the graph
-                        label:'Min',
-                        data:[4,8,10,12],
-                        backgroundColor:'rgb(44, 135, 196)',
-                        hoverBorderWidth: 2,
-                        hoverBorderColor: '#122738',
-                    },//these objects will be rendered for every label mentioned in the above array "labels"
-                    {
-                        label:'Average',
-                        data:[20,15,13,14],
-                        backgroundColor:'#9d9d9d',
-                        hoverBorderWidth: 2,
-                        hoverBorderColor: '#122738',
-                    },//if you want more than 1 bar for a label, then add more object with the desired aspects!
-                    {
-                        label:'Max',
-                        data:[40,32,44,50],
-                        backgroundColor:'#ffc600',
-                        hoverBorderWidth: 2,
-                        hoverBorderColor: '#122738'
-                    }
-                ]
-            }
-        }) */
+        console.log(res.data[0]);
+
+        _this.setState({
+          barData: {
+            labels: ['Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed', 'Re-Opened->Progress'],
+            //Bar names
+            datasets: [//here you mostly fill the data of the grap
+            {
+              // this is an object that you fill in each point in the graph
+              label: 'Min',
+              data: [res.data[1], res.data[4], res.data[7], res.data[10]],
+              backgroundColor: 'rgb(44, 135, 196)',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }, //these objects will be rendered for every label mentioned in the above array "labels"
+            {
+              label: 'Average',
+              data: [res.data[2], res.data[5], res.data[8], res.data[11]],
+              backgroundColor: '#ffc600',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }, //if you want more than 1 bar for a label, then add more object with the desired aspects!
+            {
+              label: 'Max',
+              data: [res.data[0], res.data[3], res.data[6], res.data[9]],
+              backgroundColor: 'red',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }]
+          }
+        });
       }).catch(function (err) {
         console.log(err);
       });
