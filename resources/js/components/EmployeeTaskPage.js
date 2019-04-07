@@ -32,7 +32,8 @@ export default class EmployeeTaskPage extends React.Component {
             }
         })
         .then((res)=>{
-            if(res.data.status == "New-assigned" || res.data.status == "Progress" || res.data.status == "Reopened"){
+            console.log(res.data)
+            if(res.data.status == "New-assigned" || res.data.status == "Progress" || res.data.status == "Re-Opened"){
                 this.buttonRef.current.style.display = "block";
             }else{
                 this.buttonRef.current.style.display = "none";
@@ -68,8 +69,8 @@ export default class EmployeeTaskPage extends React.Component {
             }else if(res.data == "Resolved"){
                 this.statusRef.current.innerText = "Resolved"
                 this.buttonRef.current.style.display = "none";
-            }else if(res.data == "Reopened"){
-                this.statusRef.current.innerText = "Reopened"
+            }else if(res.data == "Re-Opened"){
+                this.statusRef.current.innerText = "Re-Opened"
             }
             this.props.addNotification('Success', 'Status Transition Successful', 'success');
         })

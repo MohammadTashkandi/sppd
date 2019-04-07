@@ -49,7 +49,7 @@ export default class CreateTask extends React.Component {
             return(<span key={key} className="autocomplete-entries">No employees found</span>);
         }
         return(
-            <span key={key} className="autocomplete-entries" onClick={()=> this.handleSearchClick(employee)}>{employee.first_name +' '+ employee.last_name}</span>
+            <span key={key} className="autocomplete-entries" onClick={()=> this.handleSearchClick(employee)} style={{textTransform:"capitalize"}}>{employee.first_name +' '+ employee.last_name}</span>
         );
     }
 

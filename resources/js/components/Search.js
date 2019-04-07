@@ -56,7 +56,7 @@ export default class Search extends React.Component {
                             <div className="grid-search-container" >
                                     <div className="grid-search-item">
                                         <div className="search-tag">{tag}</div> 
-                                        <div className="search-name">{name}</div>
+                                        <div className="search-name" style={{textTransform:"capitalize"}}>{name}</div>
                                         <div className="search-id">{this.state.programmers[key].id}</div>
                                         <div className="search-button">
                                             <NavLink to={`/index/employeePage/${this.state.programmers[key].id}`} className="btn btn-default btn-sm" id="visit-page">

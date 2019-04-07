@@ -47,7 +47,7 @@ export default class AssignEmployee extends React.Component {
                         <div className="assign-container" style={props}>
                                 <div className="grid-assign-item" id="grid">
                                     <div className="assign-tag">{tag}</div>
-                                    <div className="assign-name">{name}</div>
+                                    <div className="assign-name" style={{textTransform:"capitalize"}}>{name}</div>
                                     <div className="assign-id">{this.state.programmers[key].id}</div>
                                     <div className="assign-button">
                                         {/* name={id of programmer} */}
