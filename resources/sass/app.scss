@@ -281,18 +281,9 @@ a#visit-page:hover{
 }
 
 .form {
-  margin-top:4rem;
-  margin-left: 30rem;
-  margin-right: 30rem;
-  text-align:center;
-  background-color: #0d3a58;
-  border-radius: 20px;
-}
-
-.login-form {
-  margin-top:4rem;
-  margin-left: 42rem;
-  margin-right: 42rem;
+  margin-top: -11rem;
+  margin-left: 85rem;
+  margin-right: 10rem;
   text-align:center;
   background-color: #0d3a58;
   border-radius: 20px;
@@ -978,14 +969,38 @@ b{
   margin-left: 45rem;
 }
 
-.rate-employee-form {
-  text-align:center;
-  background-color: #0d3a58;
-  border-radius: 20px;
-  margin: 1rem 0 1rem 0;
-  padding: 1rem;
+.login-desc {
+  position: absolute;
+  margin-left: 0.9rem;
+  margin-top: 11rem;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.8rem;
 }
 
-.rate-employee-container {
-  margin: 0rem 18rem 0rem 44rem;
+.login-desc-2{
+  position: absolute;
+  margin-left: 4.5rem;
+  margin-top: 17rem;
+  font-style: italic;
+  font-weight: 100;
+  font-size: 1.4rem;
+
+}
+
+.login-desc-3 {
+  position: absolute;
+  margin-left: 18.5rem;
+  margin-top: 19.5rem;
+  font-style: italic;
+  font-weight: 100;
+  font-size: 1.4rem;
+}
+
+.line {
+  padding: 31rem;
+  border-top: 2px solid #ffc600;
+  position: absolute;
+  margin-left: 8rem;
+  margin-top: 4rem;
 }

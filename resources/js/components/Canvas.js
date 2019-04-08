@@ -79,8 +79,6 @@ export default class Canvas extends React.Component {
             }
         })
         .then((res)=>{
-            console.log(res)
-            console.log(res.data[0])
             this.setState({
                 barData:{ 
                     labels: ['Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed', 'Re-Opened->Progress'], //Bar names
