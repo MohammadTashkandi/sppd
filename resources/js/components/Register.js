@@ -58,7 +58,7 @@ export default class Register extends React.Component {
 
     render() {
         return(
-            <div className="form">
+            <div className="form-reg">
             <img src={logo} style={{width:'170px', height:'110px', marginTop:'3rem'}} />
             <h3 style={{color:'#ffc600', fontFamily:'"Poppins", sans-serif'}}>Register</h3>
                 <form onSubmit={this.onSubmit}>
