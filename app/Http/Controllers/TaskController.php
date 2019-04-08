@@ -243,6 +243,12 @@ class TaskController extends Controller
         $ResolvedTime = Carbon::parse($ResolvedTime);
         $task->ResolvedDuration = $ResolvedTime->diffInMinutes($time);
         $task->save();
+
+        // add 1 to numOfTasks for this programmer
+        $p = Programmer::where('id', $task->PrID)->first();
+        $p->numOfTasks = $p->numOfTasks + 1 ;
+        $p->save();
+
         $status = 'Closed';
         return response()->json($status, 200);
 
@@ -265,8 +271,90 @@ class TaskController extends Controller
         $task->ResolvedDuration = $ResolvedTime->diffInMinutes($time);
         $task->save();
 
+        // add 1 to failedTask for this programmer
+        $p = Programmer::where('id', $task->PrID)->first();
+        $p->failedTasks = $p->failedTasks + 1 ;
+        $p->save();
+
+        // add 1 to failedTask for this project
+        $project = Project::where('id', $task->Pid)->first();
+        $project->failedTasks = $project->failedTasks +1 ;
+        $project->save();
+
+
         $status = 'Re-Opened';
         return response()->json($status, 200);
+
+    }
+
+
+    public function rateTask(Request $request)
+    {
+
+        $task = Task::where('id' , $request['Tid'])->fisrt();
+        $programmer = Programmer::where('id', $task->PrID)->first();
+
+        if($task == null || $programmer == null){
+            return response()->json('ERROR', 404);
+        }
+
+        $actualTStr = $request['pStr'];
+        $actualTJud = $request['pJud'];
+        $actualTCu = $request['pCu'];
+        $actualTTech = $request['pTech'];
+
+
+        $task->actualTStr = $actualTStr;
+        $task->actualTJud =$actualTJud;
+        $task->actualTCu =$actualTCu;
+        $task->actualTTech =$actualTTech;
+
+        $task->tStrDeviation  = ($actualTStr-$task->tStr) /$task->tStr;
+        $task->tJudDeviation  = ($actualTJud-$task->tJud) /$task->tJud;
+        $task->tCuDeviation   = ($actualTCu-$task->tCu) /$task->tCu;
+        $task->tTechDeviation = ($actualTTech-$task->tTech) /$task->tTech;
+        $task->save();
+
+        $value = 0 ;
+
+
+        if($task->severity = 'Trivial'){
+            $value = 1;
+        }elseif ($task->severity = 'Text'){
+            $value = 2;
+        }elseif ($task->severity = 'Tweak '){
+            $value =3;
+        }elseif ($task->severity = 'Minor') {
+            $value =4;
+        }elseif ($task->severity = 'Feature  ') {
+            $value =5;
+        } elseif ($task->severity = 'Major ') {
+            $value =6;
+        } elseif ($task->severity = 'Crash ') {
+            $value =7;
+        } elseif ($task->severity = 'Block') {
+            $value =8;
+        }
+//        numOfTasks
+
+
+
+        $tech = $actualTTech * $value /8 ;
+        $programmer->pStrSum = $programmer->pStrSum + $actualTStr ;
+        $programmer->pJudSum = $programmer->pJudSum + $actualTJud;
+        $programmer->pCuSum = $programmer->pCuSum + $actualTCu;
+        $programmer->pTechSum =$programmer->pTechSum + $tech ;
+        $programmer->save();
+
+        // calculate programmer performance
+        $programmer->pStr = $programmer->pStrSum / $programmer->numOfTasks+1; // +1 because we give the rate programmer first without finish any task
+        $programmer->pJud = $programmer->pJudSum / $programmer->numOfTasks+1;
+        $programmer->pCu = $programmer->pCuSum / $programmer->numOfTasks+1;
+        $programmer->pTech = $programmer->pTechSum / $programmer->numOfTasks+1;
+        $programmer->save();
+
+        return response()->json($task, 200);
+
 
     }
 
