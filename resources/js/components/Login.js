@@ -67,8 +67,8 @@ export default class Login extends React.Component {
                     <h3 style={{color:'#2c87c4', fontFamily:'"Poppins", sans-serif', fontStyle:'italic', marginLeft: '8rem', fontSize: '3rem', fontWeight: 'bolder', marginTop:'20rem'}}>Software Project Performance Dashboard</h3>
                     <hr className="line"></hr>
                     <div className="login-desc">"A web-based service aimed at tracking and monitoring a software enigneer's performance"</div>
-                    <div className="login-desc-2">As a software <b>Project Manager</b>, you can use this dashboard to <b>create projects</b>, <b>assign tasks</b> to your engineers</div>
-                    <div className="login-desc-3">and <b>monitor their performance</b> on the project or given task!</div>
+                    <div className="login-desc-2">As a <b>software Project Manager</b>, you can use our dashboard to <b>create projects</b>, <b>assign tasks</b> to your engineers</div>
+                    <div className="login-desc-3">and <b>monitor their performance</b>in a given project or task!</div>
                 <div className="form">
                 <h3 style={{color:'#ffc600', fontFamily:'"Poppins", sans-serif', paddingTop:'2rem', marginBottom: '4rem'}}>Login</h3>
                     <form onSubmit={this.onSubmit}>

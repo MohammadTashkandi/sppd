@@ -108879,9 +108879,9 @@ function (_React$Component) {
         className: "login-desc"
       }, "\"A web-based service aimed at tracking and monitoring a software enigneer's performance\""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-desc-2"
-      }, "As a software ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Project Manager"), ", you can use this dashboard to ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "create projects"), ", ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "assign tasks"), " to your engineers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "As a ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "software Project Manager"), ", you can use our dashboard to ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "create projects"), ", ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "assign tasks"), " to your engineers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-desc-3"
-      }, "and ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "monitor their performance"), " on the project or given task!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "and ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "monitor their performance"), "in a given project or task!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         style: {
