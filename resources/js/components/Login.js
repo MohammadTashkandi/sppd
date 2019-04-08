@@ -65,7 +65,7 @@ export default class Login extends React.Component {
             <React.Fragment>
                 <img src={logo} style={{width:'170px', height:'110px', marginTop:'3rem', marginLeft:'69.5rem'}} />
                 <h3 style={{color:'#2c87c4', fontFamily:'"Poppins", sans-serif', fontStyle:'italic', marginLeft: '35rem', fontSize: '4rem', fontWeight: 'bolder', marginTop:'5rem'}}>Software Project Performance Dashboard</h3>
-                <div className="form">
+                <div className="login-form">
                 <h3 style={{color:'#ffc600', fontFamily:'"Poppins", sans-serif', paddingTop:'2rem', marginBottom: '4rem'}}>Login</h3>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">

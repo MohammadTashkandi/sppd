@@ -76428,7 +76428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -106034,6 +106034,8 @@ function (_React$Component) {
           lineData: {}
         });
 
+        _this.checkClosed();
+
         _this.loadDuration();
 
         _this.loadSeverity();
@@ -106170,7 +106172,7 @@ function (_React$Component) {
         className: "info-bar-page"
       }, "Project"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-bar-text"
-      }, "                        ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+      }, this.props.infobar), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         to: "/index/assignEmployee/".concat(this.props.match.params.projectId)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "info-bar-btn",
@@ -106179,7 +106181,7 @@ function (_React$Component) {
           marginLeft: "9rem"
         },
         ref: this.buttonRefAssign
-      }, "Assign Employee"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+      }, "Assign Employee")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         to: "/index/createTask/".concat(this.props.match.params.projectId)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "info-bar-btn",
@@ -106190,7 +106192,6 @@ function (_React$Component) {
       }, "Create task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "info-bar-btn",
         style: {
-          marginLeft: "1.5rem",
           display: "none"
         },
         onClick: this.closeProject,
@@ -108875,7 +108876,7 @@ function (_React$Component) {
           marginTop: '5rem'
         }
       }, "Software Project Performance Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form"
+        className: "login-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         style: {
           color: '#ffc600',
@@ -109063,13 +109064,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -109081,15 +109084,301 @@ function (_React$Component) {
   _inherits(Home, _React$Component);
 
   function Home() {
+    var _getPrototypeOf2;
+
+    var _this;
+
     _classCallCheck(this, Home);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Home).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Home)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      prID: "",
+      pStr: "",
+      pJud: "",
+      pCu: "",
+      pTech: ""
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
+      _this.setState(_defineProperty({}, e.target.name, e.target.value));
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSubmit", function (event) {
+      event.preventDefault();
+      console.log(_this.state);
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "findProgrammer", function () {
+      axios.get('api/findTaskProgrammer', {
+        params: {
+          id: _this.props.match.params.taskId
+        }
+      }).then(function (res) {
+        _this.setState({
+          prID: res.data.id
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
+    return _this;
   }
 
   _createClass(Home, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.findProgrammer();
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Create Form Here");
+      var _this2 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "info-bar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "decorative-box"
+      }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-page"
+      }, "Rate employee's performance"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-bar-text"
+      }, this.props.infobar)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "hr",
+        style: {
+          margin: '0'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__["Spring"], {
+        from: {
+          opacity: 0
+        },
+        to: {
+          opacity: 1
+        },
+        config: {
+          duration: 750
+        }
+      }, function (props) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "rate-employee-container",
+          style: props
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          className: "rate-employee-form",
+          onSubmit: _this2.onSubmit
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group-add-prog"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-form-div-add-prog"
+        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "task-span"
+        }, "Stress level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pStr",
+          value: "1",
+          required: true
+        }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pStr",
+          value: "2",
+          required: true
+        }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pStr",
+          value: "3",
+          required: true
+        }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pStr",
+          value: "4",
+          required: true
+        }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pStr",
+          value: "5",
+          required: true
+        }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group-add-prog"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-form-div-add-prog"
+        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "task-span"
+        }, "Judgement level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pJud",
+          value: "1",
+          required: true
+        }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pJud",
+          value: "2",
+          required: true
+        }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pJud",
+          value: "3",
+          required: true
+        }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pJud",
+          value: "4",
+          required: true
+        }), " 4"), "                                    ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pJud",
+          value: "5",
+          required: true
+        }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group-add-prog"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-form-div-add-prog"
+        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "task-span"
+        }, "Communication level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pCu",
+          value: "1",
+          required: true
+        }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pCu",
+          value: "2",
+          required: true
+        }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pCu",
+          value: "3",
+          required: true
+        }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pCu",
+          value: "4",
+          required: true
+        }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pCu",
+          value: "5",
+          required: true
+        }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group-add-prog"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-form-div-add-prog"
+        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "task-span"
+        }, "Technical level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pTech",
+          value: "1",
+          required: true
+        }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pTech",
+          value: "2",
+          required: true
+        }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pTech",
+          value: "3",
+          required: true
+        }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pTech",
+          value: "4",
+          required: true
+        }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-radio"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: _this2.onChange,
+          className: "radio-inline",
+          type: "radio",
+          name: "pTech",
+          value: "5",
+          required: true
+        }), " 5")), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "login-btn-add-prog",
+          type: "submit"
+        }, "Submit rating")));
+      }));
     }
   }]);
 
@@ -110076,8 +110365,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
