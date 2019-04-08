@@ -11601,3 +11601,12 @@ b {
   margin-top: 4rem;
 }
 
+.form-reg {
+  margin-top: 3rem;
+  margin-left: 39rem;
+  margin-right: 35rem;
+  text-align: center;
+  background-color: #0d3a58;
+  border-radius: 20px;
+}
+
