@@ -106066,9 +106066,6 @@ function (_React$Component) {
           Pid: _this.props.match.params.projectId
         }
       }).then(function (res) {
-        console.log(res);
-        console.log(res.data[0]);
-
         _this.setState({
           barData: {
             labels: ['Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed', 'Re-Opened->Progress'],
@@ -108861,20 +108858,29 @@ function (_React$Component) {
         style: {
           width: '170px',
           height: '110px',
-          marginTop: '3rem',
-          marginLeft: '69.5rem'
+          marginTop: '-12.5rem',
+          position: "absolute",
+          marginLeft: '29.75rem'
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         style: {
           color: '#2c87c4',
           fontFamily: '"Poppins", sans-serif',
           fontStyle: 'italic',
-          marginLeft: '35rem',
-          fontSize: '4rem',
+          marginLeft: '8rem',
+          fontSize: '3rem',
           fontWeight: 'bolder',
-          marginTop: '5rem'
+          marginTop: '20rem'
         }
-      }, "Software Project Performance Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Software Project Performance Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "line"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "login-desc"
+      }, "\"A web-based service aimed at tracking and monitoring a software enigneer's performance\""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "login-desc-2"
+      }, "As a software ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Project Manager"), ", you can use this dashboard to ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "create projects"), ", ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "assign tasks"), " to your engineers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "login-desc-3"
+      }, "and ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "monitor their performance"), " on the project or given task!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         style: {
