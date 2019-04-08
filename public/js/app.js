@@ -105916,7 +105916,10 @@ function (_React$Component) {
       }, "Assign Employee to Project"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-bar-text"
       }, this.props.infobar), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["NavLink"], {
-        to: "/index/project/".concat(this.props.match.params.projectId)
+        to: "/index/project/".concat(this.props.match.params.projectId),
+        style: {
+          marginLeft: "20rem"
+        }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "info-bar-btn"
       }, "Back to Project")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
@@ -109139,12 +109142,30 @@ function (_React$Component) {
   _createClass(Home, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.findProgrammer();
+      var _this2 = this;
+
+      axios.get('api/getTaskInfo', {
+        params: {
+          id: this.props.match.params.taskId
+        }
+      }).then(function (res) {
+        console.log(res.data);
+
+        if (res.data.actualTCu == null && res.data.status == "Closed") {
+          _this2.findProgrammer();
+        } else {
+          _this2.props.addNotification('Error', 'Unauthorized access', 'danger');
+
+          _this2.props.history.push("/index");
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-bar"
@@ -109175,7 +109196,7 @@ function (_React$Component) {
           style: props
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           className: "rate-employee-form",
-          onSubmit: _this2.onSubmit
+          onSubmit: _this3.onSubmit
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group-add-prog"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -109185,7 +109206,7 @@ function (_React$Component) {
         }, "Stress level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pStr",
@@ -109194,7 +109215,7 @@ function (_React$Component) {
         }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pStr",
@@ -109203,7 +109224,7 @@ function (_React$Component) {
         }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pStr",
@@ -109212,7 +109233,7 @@ function (_React$Component) {
         }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pStr",
@@ -109221,7 +109242,7 @@ function (_React$Component) {
         }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pStr",
@@ -109236,7 +109257,7 @@ function (_React$Component) {
         }, "Judgement level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pJud",
@@ -109245,7 +109266,7 @@ function (_React$Component) {
         }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pJud",
@@ -109254,7 +109275,7 @@ function (_React$Component) {
         }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pJud",
@@ -109263,7 +109284,7 @@ function (_React$Component) {
         }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pJud",
@@ -109272,7 +109293,7 @@ function (_React$Component) {
         }), " 4"), "                                    ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pJud",
@@ -109287,7 +109308,7 @@ function (_React$Component) {
         }, "Communication level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pCu",
@@ -109296,7 +109317,7 @@ function (_React$Component) {
         }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pCu",
@@ -109305,7 +109326,7 @@ function (_React$Component) {
         }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pCu",
@@ -109314,7 +109335,7 @@ function (_React$Component) {
         }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pCu",
@@ -109323,7 +109344,7 @@ function (_React$Component) {
         }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pCu",
@@ -109338,7 +109359,7 @@ function (_React$Component) {
         }, "Technical level *"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pTech",
@@ -109347,7 +109368,7 @@ function (_React$Component) {
         }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pTech",
@@ -109356,7 +109377,7 @@ function (_React$Component) {
         }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pTech",
@@ -109365,7 +109386,7 @@ function (_React$Component) {
         }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pTech",
@@ -109374,7 +109395,7 @@ function (_React$Component) {
         }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "task-radio"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          onChange: _this2.onChange,
+          onChange: _this3.onChange,
           className: "radio-inline",
           type: "radio",
           name: "pTech",
@@ -110187,7 +110208,7 @@ function (_React$Component) {
           id: _this.props.match.params.taskId
         }
       }).then(function (res) {
-        if (res.data.status == "Resolved") {
+        if (res.data.status == "Resolved" || res.data.status == "Closed" && res.data.actualTCU == null) {
           _this.buttonRef1.current.style.display = "block";
           _this.buttonRef2.current.style.display = "block";
         } else {

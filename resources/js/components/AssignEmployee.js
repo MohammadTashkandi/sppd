@@ -96,7 +96,7 @@ export default class AssignEmployee extends React.Component {
                     <span className="info-bar-page">Assign Employee to Project</span>
                     <span className="info-bar-text">{this.props.infobar}</span>
                     <span>
-                        <NavLink to={`/index/project/${this.props.match.params.projectId}`}><button className="info-bar-btn">Back to Project</button></NavLink>
+                        <NavLink to={`/index/project/${this.props.match.params.projectId}`} style={{marginLeft:"20rem"}}><button className="info-bar-btn">Back to Project</button></NavLink>
                     </span>
                 </div>
                 <hr className="hr" style={{margin:'0'}} />

@@ -13,7 +13,23 @@ export default class Home extends React.Component {
     }
 
     componentDidMount() {
-        this.findProgrammer();
+        axios.get('api/getTaskInfo',{
+            params:{
+                id: this.props.match.params.taskId
+            }
+        })
+        .then((res)=>{
+            console.log(res.data)
+            if(res.data.actualTCu == null && res.data.status == "Closed"){
+                this.findProgrammer();
+            }else{
+                this.props.addNotification('Error', 'Unauthorized access', 'danger');
+                this.props.history.push(`/index`);
+            }
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
     
     onChange = (e) => {

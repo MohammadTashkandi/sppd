@@ -49,7 +49,7 @@ export default class TaskPage extends React.Component {
             }
         })
         .then((res)=>{
-            if(res.data.status == "Resolved"){
+            if(res.data.status == "Resolved" || ((res.data.status ==  "Closed") && (res.data.actualTCU == null))){
                 this.buttonRef1.current.style.display = "block";
                 this.buttonRef2.current.style.display = "block";
             }else{
@@ -104,6 +104,7 @@ export default class TaskPage extends React.Component {
                         <span className="decorative-box">i</span>
                         <span className="info-bar-page">Task</span>
                         <span className="info-bar-text">{this.props.infobar}</span>
+                        
                 </div>
                 <hr className="hr" style={{margin:'0'}} />
 
