@@ -44,6 +44,7 @@ export default class Canvas extends React.Component {
             this.setState({
                 lineData: {}
             });
+            this.checkClosed();
             this.loadDuration();
             this.loadSeverity();
         }
@@ -141,7 +142,6 @@ export default class Canvas extends React.Component {
         })
     }
 
-
     closeProject = () =>{
         axios.post('api/closeProject', {
             Pid: this.props.match.params.projectId,
@@ -166,12 +166,12 @@ export default class Canvas extends React.Component {
                     <span className="decorative-box">i</span>
                     <span className="info-bar-page">Project</span>
                     <span className="info-bar-text">
-{/*                         {this.props.infobar}
- */}                        <NavLink to={`/index/assignEmployee/${this.props.match.params.projectId}`}><button className="info-bar-btn" style={{display:"none", marginLeft:"9rem"}} ref={this.buttonRefAssign}>Assign Employee</button></NavLink>
+                         {this.props.infobar}
                     </span>
                     <span>
+                        <NavLink to={`/index/assignEmployee/${this.props.match.params.projectId}`}><button className="info-bar-btn" style={{display:"none", marginLeft:"9rem"}} ref={this.buttonRefAssign}>Assign Employee</button></NavLink>
                         <NavLink to={`/index/createTask/${this.props.match.params.projectId}`}><button className="info-bar-btn" style={{display:"none"}} ref={this.buttonRefCreate}>Create task</button></NavLink>
-                        <button className="info-bar-btn" style={{marginLeft:"1.5rem", display:"none"}} onClick={this.closeProject} ref={this.buttonRefClose}>Close Project</button>
+                        <button className="info-bar-btn" style={{display:"none"}} onClick={this.closeProject} ref={this.buttonRefClose}>Close Project</button>
                     </span>
 
                 </div>
