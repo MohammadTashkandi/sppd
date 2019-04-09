@@ -23,7 +23,7 @@ export default class Home extends React.Component {
             if(res.data.actualTCu == null && res.data.status == "Closed"){
                 this.findProgrammer();
             }else{
-                this.props.addNotification('Error', 'Unauthorized access', 'danger');
+                this.props.addNotification('Error', 'This task has already been rated!', 'danger');
                 this.props.history.push(`/index`);
             }
         })
