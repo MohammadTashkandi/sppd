@@ -107534,18 +107534,54 @@ function (_React$Component) {
       name: "",
       email: "",
       number: "",
-      barData: {
+      barData: {},
+      pieData: {
         //the data here should also be dynamic depending on what the PM wants to see
-        labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
-        datasets: [//here you mostly fill the data of the graph
+        labels: ['Completed', 'Failed'],
+        //Bar names
+        datasets: [//here you mostly fill the data of the grap
         {
           // this is an object that you fill in each point in the graph
-          label: '',
-          data: [1, 3, 5, 4],
-          backgroundColor: 'rgb(247, 199, 111, 0.4)',
-          borderColor: 'orange'
+          label: 'Number of Tasks',
+          data: [3, 12],
+          backgroundColor: ['green', 'red'],
+          hoverBorderWidth: 2,
+          hoverBorderColor: '#122738'
         }]
       }
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadProgrammerInfo", function () {
+      axios.get('api/getProgrammerInfo', {
+        params: {
+          /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+          Pid: _this.props.match.params.id
+        }
+      }).then(function (res) {
+        if (res.status == 200) {
+          var name = res.data.first_name + ' ' + res.data.last_name;
+
+          _this.setState({
+            name: name,
+            email: res.data.email,
+            number: res.data.phone_number,
+            barData: {
+              //the data here should also be dynamic depending on what the PM wants to see
+              labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
+              datasets: [//here you mostly fill the data of the graph
+              {
+                // this is an object that you fill in each point in the graph
+                label: '',
+                data: [res.data.pJud, res.data.pCu, res.data.pStr, res.data.pTech],
+                backgroundColor: 'rgb(247, 199, 111, 0.4)',
+                borderColor: 'orange'
+              }]
+            }
+          });
+        }
+      }).catch(function (err) {
+        console.log(err.response.data[0]);
+      });
     });
 
     return _this;
@@ -107554,31 +107590,12 @@ function (_React$Component) {
   _createClass(EmployeePage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
-
-      axios.get('api/getProgrammerInfo', {
-        params: {
-          /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
-          Pid: this.props.match.params.id
-        }
-      }).then(function (res) {
-        if (res.status == 200) {
-          var name = res.data.first_name + ' ' + res.data.last_name;
-
-          _this2.setState({
-            name: name,
-            email: res.data.email,
-            number: res.data.phone_number
-          });
-        }
-      }).catch(function (err) {
-        console.log(err.response.data[0]);
-      });
+      this.loadProgrammerInfo();
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "canvas-background"
@@ -107610,14 +107627,14 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: props
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-container"
+          className: "grid-container-2"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Radar"], {
           height: "270",
           width: "665" //everything here can be dynamic depending on results 
           ,
-          data: _this3.state.barData //this should alawys be dynamic   
+          data: _this2.state.barData //this should alawys be dynamic   
           ,
           options: {
             legend: {
@@ -107653,7 +107670,7 @@ function (_React$Component) {
           style: {
             marginBottom: "0.8rem"
           }
-        }, " "), _this3.state.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, " "), _this2.state.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "profile-info",
           id: "profile"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
@@ -107664,7 +107681,7 @@ function (_React$Component) {
           style: {
             marginBottom: "0.8rem"
           }
-        }, " "), _this3.props.match.params.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, " "), _this2.props.match.params.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "profile-info",
           id: "profile"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
@@ -107675,7 +107692,7 @@ function (_React$Component) {
           style: {
             marginBottom: "0.8rem"
           }
-        }, " "), _this3.state.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, " "), _this2.state.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "profile-info",
           id: "profile"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
@@ -107686,7 +107703,32 @@ function (_React$Component) {
           style: {
             marginBottom: "0.8rem"
           }
-        }), _this3.state.number))));
+        }), _this2.state.number)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
+          height: "270",
+          width: "800" //everything here can be dynamic depending on results 
+          ,
+          data: _this2.state.pieData //this should alawys be dynamic
+          ,
+          options: {
+            maintainAspectRatio: false,
+            title: {
+              display: true,
+              text: 'Task Severity',
+              //this should also be dynamic
+              fontSize: 25
+            },
+            legend: {
+              //this should also be dynamic
+              display: true,
+              position: 'right',
+              labels: {
+                fontColor: '#333'
+              }
+            }
+          }
+        }))));
       }));
     }
   }]);
@@ -107876,12 +107918,12 @@ function (_React$Component) {
           style: props
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
-            marginLeft: "95rem",
+            marginLeft: "83rem",
             position: 'absolute'
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Radar"], {
-          height: "270",
-          width: "665" //everything here can be dynamic depending on results 
+          height: "350",
+          width: "800" //everything here can be dynamic depending on results 
           ,
           data: _this2.state.barData //this should alawys be dynamic   
           ,
@@ -109154,7 +109196,7 @@ function (_React$Component) {
         if (res.data.actualTCu == null && res.data.status == "Closed") {
           _this2.findProgrammer();
         } else {
-          _this2.props.addNotification('Error', 'Unauthorized access', 'danger');
+          _this2.props.addNotification('Error', 'This task has already been rated!', 'danger');
 
           _this2.props.history.push("/index");
         }
@@ -110123,6 +110165,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
 /* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -110142,6 +110185,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -110172,7 +110216,25 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       task: {},
-      programmer: ""
+      programmer: "",
+      barData: {
+        //the data here should also be dynamic depending on what the PM wants to see
+        labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
+        datasets: [//here you mostly fill the data of the graph
+        {
+          // this is an object that you fill in each point in the graph
+          label: 'Required',
+          data: [3, 2, 4, 5],
+          backgroundColor: 'rgb(255, 198, 0, 0.1)',
+          borderColor: 'rgb(255, 198, 0)'
+        }, //these objects will be rendered for every label mentioned in the above array "labels"
+        {
+          label: 'Actual',
+          data: [3, 2, 4, 4],
+          backgroundColor: 'rgb(44, 135, 196, 0.1)',
+          borderColor: 'rgb(44, 135, 196)'
+        }]
+      }
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidUpdate", function (prevProps) {
@@ -110317,12 +110379,54 @@ function (_React$Component) {
           className: "prog-task-pm"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Status:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           ref: _this2.statusRef
-        }, _this2.state.task.status)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, _this2.state.task.status)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginLeft: "79rem",
+            marginTop: "-31.5rem",
+            position: 'absolute'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Radar"], {
+          height: "350",
+          width: "800" //everything here can be dynamic depending on results 
+          ,
+          data: _this2.state.barData //this should alawys be dynamic   
+          ,
+          options: {
+            maintainAspectRatio: true,
+            legend: {
+              display: true
+            },
+            title: {
+              display: true,
+              text: 'Task Skill Requirement Level',
+              //this should also be dynamic
+              fontSize: 25
+            },
+            scale: {
+              ticks: {
+                beginAtZero: true,
+                min: 0,
+                max: 5
+              }
+            }
+          }
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "deviation-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Stress Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.state.task.tStrDeviation))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Judgement Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.state.task.tJudDeviation))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Techincal Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.state.task.tTechDeviation))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Communication Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "-", _this2.state.task.tCuDeviation)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "login-btn",
           ref: _this2.buttonRef1,
           style: {
             display: "none",
             borderColor: 'rgb(105, 18, 18)',
+            marginLeft: "45rem",
             color: 'rgb(105, 18, 18)'
           },
           onClick: _this2.closeTask
@@ -110331,38 +110435,11 @@ function (_React$Component) {
           ref: _this2.buttonRef2,
           style: {
             display: "none",
-            borderColor: 'red'
+            borderColor: 'red',
+            marginLeft: "43.7rem"
           },
           onClick: _this2.reOpenTask
-        }, "Re-Open This Task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "deviation-container"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-          className: "prog-task-header"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Statistics:"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat-req"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Stress Requirement (Out of 5):"), "3")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat-req"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Judgement Requirement (Out of 5):"), "2")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat-req"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Techincal Requirement (Out of 5):"), "4")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat-req"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Communication Requirement (Out of 5):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "5"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat-act"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Stress Actual (Out of 5):"), "3")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat-act"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Judgement Actual (Out of 5):"), "2")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat-act"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Techincal Actual (Out of 5):"), "4")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat-act"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Communication Actual (Out of 5):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "4"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Stress Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Judgement Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Techincal Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Communication Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "-1")))));
+        }, "Re-Open This Task"));
       }));
     }
   }]);

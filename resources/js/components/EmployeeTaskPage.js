@@ -100,9 +100,9 @@ export default class EmployeeTaskPage extends React.Component {
                 
                 <div style={props}>
                 <div>
-                    <div style={{marginLeft:"95rem", position:'absolute'}}>
+                    <div style={{marginLeft:"83rem", position:'absolute'}}>
 
-                        <Radar height = '270' width = '665' //everything here can be dynamic depending on results 
+                        <Radar height = '350' width = '800' //everything here can be dynamic depending on results 
                             data={this.state.barData} //this should alawys be dynamic   
                             options={{
                                 maintainAspectRatio: true,

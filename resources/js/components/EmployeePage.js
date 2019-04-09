@@ -1,6 +1,6 @@
 import React from 'react';
 import {Spring} from 'react-spring/renderprops';
-import {Radar} from 'react-chartjs-2';
+import {Radar,Pie} from 'react-chartjs-2';
 
 export default class EmployeePage extends React.Component {
     
@@ -8,20 +8,29 @@ export default class EmployeePage extends React.Component {
         name:"",
         email: "",
         number: "",
-        barData:{ //the data here should also be dynamic depending on what the PM wants to see
-            labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
-            datasets:[ //here you mostly fill the data of the graph
+        barData:{},
+        pieData:{ //the data here should also be dynamic depending on what the PM wants to see
+            labels: ['Completed', 'Failed'], //Bar names
+            datasets:[ //here you mostly fill the data of the grap
                 {// this is an object that you fill in each point in the graph
-                    label:'',
-                    data:[1,3,5,4],
-                    backgroundColor:'rgb(247, 199, 111, 0.4)',
-                    borderColor: 'orange',
+                    label:'Number of Tasks',
+                    data:[3,12],
+                    backgroundColor: [
+                        'green',
+                        'red',
+                    ],
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: '#122738',
                 },//these objects will be rendered for every label mentioned in the above array "labels"
             ]
-        },
+        }
     }
 
     componentDidMount(){
+        this.loadProgrammerInfo();
+    }
+
+    loadProgrammerInfo = () =>{
         axios.get('api/getProgrammerInfo', {
             params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
                 Pid: this.props.match.params.id,
@@ -34,13 +43,23 @@ export default class EmployeePage extends React.Component {
                     name:name,
                     email:res.data.email,
                     number:res.data.phone_number,
+                    barData:{ //the data here should also be dynamic depending on what the PM wants to see
+                        labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
+                        datasets:[ //here you mostly fill the data of the graph
+                            {// this is an object that you fill in each point in the graph
+                                label:'',
+                                data:[res.data.pJud,res.data.pCu,res.data.pStr,res.data.pTech],
+                                backgroundColor:'rgb(247, 199, 111, 0.4)',
+                                borderColor: 'orange',
+                            },//these objects will be rendered for every label mentioned in the above array "labels"
+                        ]
+                    }
                 })
             }
         })
         .catch((err) => {
             console.log(err.response.data[0])
         })
-        
     }
     render() {
         return(
@@ -58,7 +77,7 @@ export default class EmployeePage extends React.Component {
                 >
                     {props => (
                         <div style={props}>
-                            <div className="grid-container">
+                            <div className="grid-container-2">
                             <div className="grid-item">
                                     <Radar height = '270' width = '665'  //everything here can be dynamic depending on results 
                                         data={this.state.barData} //this should alawys be dynamic   
@@ -102,6 +121,27 @@ export default class EmployeePage extends React.Component {
                                         <div style={{marginBottom:"0.8rem"}}>
                                         </div>{this.state.number}
                                     </div>
+                                </div>
+                                <div className="grid-item">
+                                <Pie height='270' width='800'//everything here can be dynamic depending on results 
+                                        data={this.state.pieData} //this should alawys be dynamic
+                                        options={{
+                                            maintainAspectRatio: false,
+                                            title:{ 
+                                                display:true,
+                                                text:'Task Severity', //this should also be dynamic
+                                                fontSize:25
+                                            },
+                                            legend:{ //this should also be dynamic
+                                                display:true,
+                                                position:'right',
+                                                labels:{
+                                                    fontColor:'#333'
+                                                }
+                                            },
+                                            
+                                        }}
+                                        />
                                 </div> 
                                 
                             </div>

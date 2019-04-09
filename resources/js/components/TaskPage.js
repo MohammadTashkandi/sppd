@@ -1,5 +1,6 @@
 import React from 'react';
 import {Spring} from 'react-spring/renderprops';
+import {Radar} from 'react-chartjs-2';
 
 export default class TaskPage extends React.Component {
 
@@ -9,7 +10,24 @@ export default class TaskPage extends React.Component {
 
     state={
         task:{},
-        programmer:""
+        programmer:"",
+        barData:{ //the data here should also be dynamic depending on what the PM wants to see
+            labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
+            datasets:[ //here you mostly fill the data of the graph
+                {// this is an object that you fill in each point in the graph
+                    label:'Required',
+                    data:[3,2,4,5],
+                    backgroundColor:'rgb(255, 198, 0, 0.1)',
+                    borderColor: 'rgb(255, 198, 0)',
+                },//these objects will be rendered for every label mentioned in the above array "labels"
+                {
+                    label:'Actual',
+                    data:[3,2,4,4],
+                    backgroundColor:'rgb(44, 135, 196, 0.1)',
+                    borderColor: 'rgb(44, 135, 196)',
+                },
+            ]
+        }
     }
 
     componentDidMount(){
@@ -121,25 +139,38 @@ export default class TaskPage extends React.Component {
                         <span><h4 className="prog-task-pm"><b>Severity:</b>{this.state.task.severity}</h4></span>
                         <span><h4 className="prog-task-pm"><b>Status:</b><span ref={this.statusRef}>{this.state.task.status}</span></h4></span>                        
                     </div>
-                    <div>
-                    <button className="login-btn" ref={this.buttonRef1} style={{display:"none", borderColor:'rgb(105, 18, 18)', color: 'rgb(105, 18, 18)'}} onClick={this.closeTask}>Close This Task</button>
-                        <button className="login-btn-2" ref={this.buttonRef2} style={{display:"none", borderColor:'red'}} onClick={this.reOpenTask}>Re-Open This Task</button>
-                    </div>
+                    <div style={{marginLeft:"79rem", marginTop:"-31.5rem", position:'absolute'}}>
+
+                        <Radar height = '350' width = '800' //everything here can be dynamic depending on results 
+                            data={this.state.barData} //this should alawys be dynamic   
+                            options={{
+                                maintainAspectRatio: true,
+                                legend: {
+                                    display: true
+                                    },
+                                    title:{ 
+                                        display:true,
+                                        text:'Task Skill Requirement Level', //this should also be dynamic
+                                        fontSize:25,
+                                        },
+                                        scale: {
+                                            ticks: {
+                                            beginAtZero: true,
+                                            min: 0,
+                                            max: 5
+                                            }
+                                        }
+                                    }}
+                        />
+                        </div>
                     <div className="deviation-container">
-                        <span><h2 className="prog-task-header"><b>Task Statistics:</b></h2></span>                    
-                        <span><h4 className="prog-task-pm-stat-req"><b>Task Stress Requirement (Out of 5):</b>3</h4></span>
-                        <span><h4 className="prog-task-pm-stat-req"><b>Task Judgement Requirement (Out of 5):</b>2</h4></span>
-                        <span><h4 className="prog-task-pm-stat-req"><b>Task Techincal Requirement (Out of 5):</b>4</h4></span>
-                        <span><h4 className="prog-task-pm-stat-req"><b>Task Communication Requirement (Out of 5):</b><span>5</span></h4></span>
-                        <span><h4 className="prog-task-pm-stat-act"><b>Task Stress Actual (Out of 5):</b>3</h4></span>
-                        <span><h4 className="prog-task-pm-stat-act"><b>Task Judgement Actual (Out of 5):</b>2</h4></span>
-                        <span><h4 className="prog-task-pm-stat-act"><b>Task Techincal Actual (Out of 5):</b>4</h4></span>
-                        <span><h4 className="prog-task-pm-stat-act"><b>Task Communication Actual (Out of 5):</b><span>4</span></h4></span>
-                        <span><h4 className="prog-task-pm-stat"><b>Stress Deviation (Negative = Below Required Level):</b><span>0</span></h4></span>
-                        <span><h4 className="prog-task-pm-stat"><b>Judgement Deviation (Negative = Below Required Level):</b><span>0</span></h4></span>
-                        <span><h4 className="prog-task-pm-stat"><b>Techincal Deviation (Negative = Below Required Level):</b><span>0</span></h4></span>
-                        <span><h4 className="prog-task-pm-stat"><b>Communication Deviation (Negative = Below Required Level):</b><span>-1</span></h4></span>
+                        <span><h4 className="prog-task-pm-stat"><b>Stress Deviation (Negative = Below Required Level):</b><span>{this.state.task.tStrDeviation}</span></h4></span>
+                        <span><h4 className="prog-task-pm-stat"><b>Judgement Deviation (Negative = Below Required Level):</b><span>{this.state.task.tJudDeviation}</span></h4></span>
+                        <span><h4 className="prog-task-pm-stat"><b>Techincal Deviation (Negative = Below Required Level):</b><span>{this.state.task.tTechDeviation}</span></h4></span>
+                        <span><h4 className="prog-task-pm-stat"><b>Communication Deviation (Negative = Below Required Level):</b><span>-{this.state.task.tCuDeviation}</span></h4></span>
                     </div>
+                    <button className="login-btn" ref={this.buttonRef1} style={{display:"none", borderColor:'rgb(105, 18, 18)', marginLeft:"45rem", color: 'rgb(105, 18, 18)'}} onClick={this.closeTask}>Close This Task</button>
+                        <button className="login-btn-2" ref={this.buttonRef2} style={{display:"none", borderColor:'red', marginLeft:"43.7rem"}} onClick={this.reOpenTask}>Re-Open This Task</button>
                 </div>
             )}
         </Spring>
