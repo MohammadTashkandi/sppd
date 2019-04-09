@@ -72,8 +72,12 @@ export default class Search extends React.Component {
     }
 
     render() {
+        if(!this.props.loggedIn) {
+            this.props.addNotification('Error', 'Please login first', 'danger');
+            this.props.history.push('/');
+        }
+        
         const programmers = Object.keys(this.state.programmers);
-
         return (
             <div className="canvas-background">
                 <div className="info-bar">

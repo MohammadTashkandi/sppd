@@ -20,7 +20,7 @@ export default class Home extends React.Component {
         })
         .then((res)=>{
             console.log(res.data)
-            if(res.data.actualTCu == null && res.data.status == "Closed"){
+            if(res.data.actualTCu == null /*&&  res.data.status == "Closed" */){
                 this.findProgrammer();
             }else{
                 this.props.addNotification('Error', 'This task has already been rated!', 'danger');
@@ -38,7 +38,21 @@ export default class Home extends React.Component {
     
     onSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state)
+        axios.post('api/rateTask', {
+            tID: this.props.match.params.taskId,
+            pStr: this.state.pStr,
+            pJud: this.state.pJud,
+            pCu: this.state.pCu,
+            pTech: this.state.pTech,
+        })
+        .then((res) => {
+            if (res.status == 200) {
+                this.props.addNotification('Success', 'The task was rated Successfully', 'success');
+            }
+        })
+        .then((err) => {
+            this.props.addNotification('Error', 'An error ocurred while rating the task', 'danger');
+        })
     }
     
     findProgrammer = () => {
@@ -56,6 +70,10 @@ export default class Home extends React.Component {
     }
     
     render() {
+        if(!this.props.loggedIn) {
+            this.props.addNotification('Error', 'Please login first', 'danger');
+            this.props.history.push('/');
+        }
         return(
             <React.Fragment>
                 <div className="info-bar">
