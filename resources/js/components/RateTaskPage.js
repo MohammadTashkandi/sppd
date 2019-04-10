@@ -50,7 +50,7 @@ export default class Home extends React.Component {
                 this.props.addNotification('Success', 'The task was rated Successfully', 'success');
             }
         })
-        .then((err) => {
+        .catch((err) => {
             this.props.addNotification('Error', 'An error ocurred while rating the task', 'danger');
         })
     }

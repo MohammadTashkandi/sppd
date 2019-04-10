@@ -101,11 +101,11 @@ export default class AddProgrammer extends React.Component {
                         <div className="form-group">           
                             <label className="reg-form-label">Phone number
                             <div className="reg-form-div"></div> {/* just to move stuff apart */}
-                                <input className="form-control" id="form-control" type="text" name="phonenumber" placeholder="Enter Phone number" onChange={this.onChange} />
+                                <input className="form-control" id="form-control" type="text" name="phonenumber" placeholder="Ex: 0551234567" onChange={this.onChange} />
                             </label>
                             <label className="reg-form-label">Age
                                 <div className="reg-form-div"></div> {/* just to move stuff apart */}
-                                <input className="form-control" id="form-control" type="text" name="age" placeholder="Enter age" onChange={this.onChange} />
+                                <input className="form-control" id="form-control" type="text" name="age"  placeholder="Enter age (Ex: 21)" onChange={this.onChange} />
                             </label>
                         </div>
                         <div className="form-group-add-prog">

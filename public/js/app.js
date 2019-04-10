@@ -105501,7 +105501,7 @@ function (_React$Component) {
           id: "form-control",
           type: "text",
           name: "phonenumber",
-          placeholder: "Enter Phone number",
+          placeholder: "Ex: 0551234567",
           onChange: _this2.onChange
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           className: "reg-form-label"
@@ -105512,7 +105512,7 @@ function (_React$Component) {
           id: "form-control",
           type: "text",
           name: "age",
-          placeholder: "Enter age",
+          placeholder: "Enter age (Ex: 21)",
           onChange: _this2.onChange
         }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group-add-prog"
