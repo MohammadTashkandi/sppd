@@ -55,6 +55,10 @@ export default class CreateProject extends React.Component {
     }
     
     render() {
+        if(!this.props.loggedIn) {
+            this.props.addNotification('Error', 'Please login first', 'danger');
+            this.props.history.push('/');
+        }
         return(
             <Spring from={{opacity:0 , marginTop: -500}} // you must wrap the part of the component you want animated in this spring syntax
                     to={{opacity:1, marginTop:0}}

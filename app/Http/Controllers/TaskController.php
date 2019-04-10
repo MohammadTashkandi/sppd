@@ -291,7 +291,7 @@ class TaskController extends Controller
     public function rateTask(Request $request)
     {
 
-        $task = Task::where('id' , $request['Tid'])->fisrt();
+        $task = Task::where('id' , $request['tID'])->first();
         $programmer = Programmer::where('id', $task->PrID)->first();
 
         if($task == null || $programmer == null){

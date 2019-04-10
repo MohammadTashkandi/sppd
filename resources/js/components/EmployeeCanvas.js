@@ -95,6 +95,10 @@ export default class EmployeeCanvas extends React.Component {
     }
     
     render() {
+        if(!this.props.loggedIn) {
+            this.props.addNotification('Error', 'Please login first', 'danger');
+            this.props.history.push('/');
+        }
         return(
             <div className="canvas-background">
                 <div className="info-bar">

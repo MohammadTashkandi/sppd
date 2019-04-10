@@ -72,6 +72,10 @@ export default class EmployeePage extends React.Component {
         console.log(this.state);
     }
     render() {
+        if(!this.props.loggedIn) {
+            this.props.addNotification('Error', 'Please login first', 'danger');
+            this.props.history.push('/');
+        }
         return(
             <div className="canvas-background">
                 <div className="info-bar">

@@ -76428,7 +76428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -105395,6 +105395,11 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      if (!this.props.loggedIn) {
+        this.props.addNotification('Error', 'Please login first', 'danger');
+        this.props.history.push('/');
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-bar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -105904,6 +105909,11 @@ function (_React$Component) {
   _createClass(AssignEmployee, [{
     key: "render",
     value: function render() {
+      if (!this.props.loggedIn) {
+        this.props.addNotification('Error', 'Please login first', 'danger');
+        this.props.history.push('/');
+      }
+
       var programmers = Object.keys(this.state.programmers);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "canvas-background"
@@ -106163,6 +106173,11 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this2 = this;
+
+      if (!this.props.loggedIn) {
+        this.props.addNotification('Error', 'Please login first', 'danger');
+        this.props.history.push('/');
+      }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "canvas-background"
@@ -106452,6 +106467,11 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this2 = this;
+
+      if (!this.props.loggedIn) {
+        this.props.addNotification('Error', 'Please login first', 'danger');
+        this.props.history.push('/');
+      }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__["Spring"], {
         from: {
@@ -106752,6 +106772,11 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this2 = this;
+
+      if (!this.props.loggedIn) {
+        this.props.addNotification('Error', 'Please login first', 'danger');
+        this.props.history.push('/');
+      }
 
       var searchResult = Object.keys(this.state.result);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -107244,6 +107269,11 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      if (!this.props.loggedIn) {
+        this.props.addNotification('Error', 'Please login first', 'danger');
+        this.props.history.push('/');
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "canvas-background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -107454,6 +107484,11 @@ function (_React$Component) {
   _createClass(EmployeeIndex, [{
     key: "render",
     value: function render() {
+      if (!this.props.loggedIn) {
+        this.props.addNotification('Error', 'Please login first', 'danger');
+        this.props.history.push('/');
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "home");
     }
   }]);
@@ -107598,6 +107633,11 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this2 = this;
+
+      if (!this.props.loggedIn) {
+        this.props.addNotification('Error', 'Please login first', 'danger');
+        this.props.history.push('/');
+      }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "canvas-background"
@@ -107946,6 +107986,11 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this2 = this;
+
+      if (!this.props.loggedIn) {
+        this.props.addNotification('Error', 'Please login first', 'danger');
+        this.props.history.push('/');
+      }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-bar"
@@ -108326,6 +108371,11 @@ function (_React$Component) {
   _createClass(Home, [{
     key: "render",
     value: function render() {
+      if (!this.props.loggedIn) {
+        this.props.addNotification('Error', 'Please login first', 'danger');
+        this.props.history.push('/');
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-bar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -108700,6 +108750,7 @@ function (_React$Component) {
         path: "/register",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Register__WEBPACK_IMPORTED_MODULE_10__["default"], _extends({}, props, {
+            loggedIn: _this2.state.loggedIn,
             addNotification: _this2.addNotification
           }));
         }
@@ -108708,6 +108759,7 @@ function (_React$Component) {
         path: "/index",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Home__WEBPACK_IMPORTED_MODULE_7__["default"], _extends({}, props, {
+            loggedIn: _this2.state.loggedIn,
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
           }));
@@ -108716,6 +108768,7 @@ function (_React$Component) {
         path: "/index/createProject",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CreateProject__WEBPACK_IMPORTED_MODULE_11__["default"], _extends({}, props, {
+            loggedIn: _this2.state.loggedIn,
             getProjects: _this2.getProjects,
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
@@ -108725,6 +108778,7 @@ function (_React$Component) {
         path: "/index/search/:userId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_8__["default"], _extends({}, props, {
+            loggedIn: _this2.state.loggedIn,
             isSearchFull: _this2.isSearchFull,
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
@@ -108734,6 +108788,7 @@ function (_React$Component) {
         path: "/index/project/:projectId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Canvas__WEBPACK_IMPORTED_MODULE_6__["default"], _extends({}, props, {
+            loggedIn: _this2.state.loggedIn,
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
           }));
@@ -108742,6 +108797,7 @@ function (_React$Component) {
         path: "/index/employeePage/:id",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EmployeePage__WEBPACK_IMPORTED_MODULE_16__["default"], _extends({}, props, {
+            loggedIn: _this2.state.loggedIn,
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
           }));
@@ -108750,6 +108806,7 @@ function (_React$Component) {
         path: "/index/createTask/:projectId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CreateTask__WEBPACK_IMPORTED_MODULE_12__["default"], _extends({}, props, {
+            loggedIn: _this2.state.loggedIn,
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification,
             getTasks: _this2.getTasks
@@ -108759,6 +108816,7 @@ function (_React$Component) {
         path: "/index/assignEmployee/:projectId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AssignEmployee__WEBPACK_IMPORTED_MODULE_14__["default"], _extends({}, props, {
+            loggedIn: _this2.state.loggedIn,
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification,
             getTasks: _this2.getTasks
@@ -108768,6 +108826,7 @@ function (_React$Component) {
         path: "/index/addProgrammer",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddProgrammer__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({}, props, {
+            loggedIn: _this2.state.loggedIn,
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
           }));
@@ -108776,6 +108835,7 @@ function (_React$Component) {
         path: "/index/Task/:taskId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TaskPage__WEBPACK_IMPORTED_MODULE_15__["default"], _extends({}, props, {
+            loggedIn: _this2.state.loggedIn,
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
           }));
@@ -108784,6 +108844,7 @@ function (_React$Component) {
         path: "/index/rateTask/:taskId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RateTaskPage__WEBPACK_IMPORTED_MODULE_21__["default"], _extends({}, props, {
+            loggedIn: _this2.state.loggedIn,
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
           }));
@@ -108793,6 +108854,7 @@ function (_React$Component) {
         path: "/employeeIndex",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EmployeeIndex__WEBPACK_IMPORTED_MODULE_18__["default"], _extends({}, props, {
+            loggedIn: _this2.state.loggedIn,
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
           }));
@@ -108801,6 +108863,7 @@ function (_React$Component) {
         path: "/employeeIndex/project/:projectId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EmployeeCanvas__WEBPACK_IMPORTED_MODULE_19__["default"], _extends({}, props, {
+            loggedIn: _this2.state.loggedIn,
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
           }));
@@ -108809,6 +108872,7 @@ function (_React$Component) {
         path: "/employeeIndex/Task/:taskId",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EmployeeTaskPage__WEBPACK_IMPORTED_MODULE_20__["default"], _extends({}, props, {
+            loggedIn: _this2.state.loggedIn,
             infobar: _this2.state.infobar,
             addNotification: _this2.addNotification
           }));
@@ -109219,7 +109283,19 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onSubmit", function (event) {
       event.preventDefault();
-      console.log(_this.state);
+      axios.post('api/rateTask', {
+        tID: _this.props.match.params.taskId,
+        pStr: _this.state.pStr,
+        pJud: _this.state.pJud,
+        pCu: _this.state.pCu,
+        pTech: _this.state.pTech
+      }).then(function (res) {
+        if (res.status == 200) {
+          _this.props.addNotification('Success', 'The task was rated Successfully', 'success');
+        }
+      }).then(function (err) {
+        _this.props.addNotification('Error', 'An error ocurred while rating the task', 'danger');
+      });
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "findProgrammer", function () {
@@ -109251,9 +109327,11 @@ function (_React$Component) {
       }).then(function (res) {
         console.log(res.data);
 
-        if (res.data.actualTCu == null && res.data.status == "Closed") {
-          _this2.findProgrammer();
-        } else {
+        if (res.data.actualTCu == null
+        /*&&  res.data.status == "Closed" */
+        ) {
+            _this2.findProgrammer();
+          } else {
           _this2.props.addNotification('Error', 'This task has already been rated!', 'danger');
 
           _this2.props.history.push("/index");
@@ -109266,6 +109344,11 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this3 = this;
+
+      if (!this.props.loggedIn) {
+        this.props.addNotification('Error', 'Please login first', 'danger');
+        this.props.history.push('/');
+      }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-bar"
@@ -109912,6 +109995,11 @@ function (_React$Component) {
   _createClass(Search, [{
     key: "render",
     value: function render() {
+      if (!this.props.loggedIn) {
+        this.props.addNotification('Error', 'Please login first', 'danger');
+        this.props.history.push('/');
+      }
+
       var programmers = Object.keys(this.state.programmers);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "canvas-background"
@@ -110392,6 +110480,11 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      if (!this.props.loggedIn) {
+        this.props.addNotification('Error', 'Please login first', 'danger');
+        this.props.history.push('/');
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-bar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -110527,8 +110620,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

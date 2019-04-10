@@ -81,6 +81,10 @@ export default class EmployeeTaskPage extends React.Component {
     }
 
     render() {
+        if(!this.props.loggedIn) {
+            this.props.addNotification('Error', 'Please login first', 'danger');
+            this.props.history.push('/');
+        }
         return(
             <React.Fragment>
                 <div className="info-bar">

@@ -121,6 +121,10 @@ export default class CreateTask extends React.Component {
     }
 
     render() {
+        if(!this.props.loggedIn) {
+            this.props.addNotification('Error', 'Please login first', 'danger');
+            this.props.history.push('/');
+        }
         const searchResult = Object.keys(this.state.result);
         return(
             <React.Fragment>

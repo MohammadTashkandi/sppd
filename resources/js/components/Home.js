@@ -5,6 +5,10 @@ import {Spring} from 'react-spring/renderprops';
 export default class Home extends React.Component {
 
     render() {
+        if(!this.props.loggedIn) {
+            this.props.addNotification('Error', 'Please login first', 'danger');
+            this.props.history.push('/');
+        }
         return(
             <React.Fragment>
                 <div className="info-bar">

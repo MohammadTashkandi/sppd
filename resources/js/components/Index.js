@@ -157,22 +157,22 @@ export default class Index extends React.Component {
                     {/* <InfoBar loggedIn={this.state.loggedIn} infobar={this.state.infobar} />   */}                                                         
                     <Switch>
                         <Route exact path="/" render={(props)=> <Login {...props} editLoggedIn={this.editLoggedIn} editManager={this.editManager} isManager={this.state.isManager} addNotification={this.addNotification} loggedIn={this.state.loggedIn} />} /> {/* we use render instead of component so we can add props */}
-                        <Route path="/register" render={(props) => <Register {...props} addNotification={this.addNotification} />} />
-                        <Route exact path="/index" render={(props)=> <Home {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
-                        <Route path="/index/createProject" render={(props)=> <CreateProject {...props} getProjects={this.getProjects} infobar={this.state.infobar} addNotification={this.addNotification} />} />
-                        <Route path="/index/search/:userId" render={(props)=> <Search {...props} isSearchFull={this.isSearchFull} infobar={this.state.infobar} addNotification={this.addNotification} />} />
-                        <Route path="/index/project/:projectId" render={(props)=> <Canvas {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
-                        <Route path="/index/employeePage/:id" render={(props)=> <EmployeePage {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
-                        <Route path="/index/createTask/:projectId" render={(props)=> <CreateTask {...props} infobar={this.state.infobar} addNotification={this.addNotification} getTasks={this.getTasks} />} />
-                        <Route path="/index/assignEmployee/:projectId" render={(props)=> <AssignEmployee {...props} infobar={this.state.infobar} addNotification={this.addNotification} getTasks={this.getTasks} />} />
-                        <Route path="/index/addProgrammer" render={(props)=> <AddProgrammer {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
-                        <Route path="/index/Task/:taskId" render={(props)=> <TaskPage {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
-                        <Route path="/index/rateTask/:taskId" render={(props)=> <RateTaskPage {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route path="/register" render={(props) => <Register {...props} loggedIn={this.state.loggedIn} addNotification={this.addNotification} />} />
+                        <Route exact path="/index" render={(props)=> <Home {...props} loggedIn={this.state.loggedIn} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route path="/index/createProject" render={(props)=> <CreateProject {...props} loggedIn={this.state.loggedIn} getProjects={this.getProjects} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route path="/index/search/:userId" render={(props)=> <Search {...props} loggedIn={this.state.loggedIn} isSearchFull={this.isSearchFull} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route path="/index/project/:projectId" render={(props)=> <Canvas {...props} loggedIn={this.state.loggedIn} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route path="/index/employeePage/:id" render={(props)=> <EmployeePage {...props} loggedIn={this.state.loggedIn} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route path="/index/createTask/:projectId" render={(props)=> <CreateTask {...props} loggedIn={this.state.loggedIn} infobar={this.state.infobar} addNotification={this.addNotification} getTasks={this.getTasks} />} />
+                        <Route path="/index/assignEmployee/:projectId" render={(props)=> <AssignEmployee {...props} loggedIn={this.state.loggedIn} infobar={this.state.infobar} addNotification={this.addNotification} getTasks={this.getTasks} />} />
+                        <Route path="/index/addProgrammer" render={(props)=> <AddProgrammer {...props} loggedIn={this.state.loggedIn} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route path="/index/Task/:taskId" render={(props)=> <TaskPage {...props} loggedIn={this.state.loggedIn} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route path="/index/rateTask/:taskId" render={(props)=> <RateTaskPage {...props} loggedIn={this.state.loggedIn} infobar={this.state.infobar} addNotification={this.addNotification} />} />
 
 
-                        <Route exact path="/employeeIndex" render={(props)=> <EmployeeIndex {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
-                        <Route path="/employeeIndex/project/:projectId" render={(props)=> <EmployeeCanvas {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
-                        <Route path="/employeeIndex/Task/:taskId" render={(props)=> <EmployeeTaskPage {...props} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route exact path="/employeeIndex" render={(props)=> <EmployeeIndex {...props} loggedIn={this.state.loggedIn} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route path="/employeeIndex/project/:projectId" render={(props)=> <EmployeeCanvas {...props} loggedIn={this.state.loggedIn} infobar={this.state.infobar} addNotification={this.addNotification} />} />
+                        <Route path="/employeeIndex/Task/:taskId" render={(props)=> <EmployeeTaskPage {...props} loggedIn={this.state.loggedIn} infobar={this.state.infobar} addNotification={this.addNotification} />} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>
