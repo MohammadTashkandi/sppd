@@ -11,23 +11,7 @@ export default class TaskPage extends React.Component {
     state={
         task:{},
         programmer:"",
-        barData:{ //the data here should also be dynamic depending on what the PM wants to see
-            labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
-            datasets:[ //here you mostly fill the data of the graph
-                {// this is an object that you fill in each point in the graph
-                    label:'Required',
-                    data:[3,2,4,5],
-                    backgroundColor:'rgb(255, 198, 0, 0.1)',
-                    borderColor: 'rgb(255, 198, 0)',
-                },//these objects will be rendered for every label mentioned in the above array "labels"
-                {
-                    label:'Actual',
-                    data:[3,2,4,4],
-                    backgroundColor:'rgb(44, 135, 196, 0.1)',
-                    borderColor: 'rgb(44, 135, 196)',
-                },
-            ]
-        }
+        barData:{}
     }
 
     componentDidMount(){
@@ -67,14 +51,44 @@ export default class TaskPage extends React.Component {
             }
         })
         .then((res)=>{
-            if(res.data.status == "Resolved" || ((res.data.status ==  "Closed") && (res.data.actualTCU == null))){
+            if(res.data.status == "Resolved" || ((res.data.status ==  "Closed") && (res.data.actualTCu == null))){
                 this.buttonRef1.current.style.display = "block";
                 this.buttonRef2.current.style.display = "block";
             }else{
                 this.buttonRef1.current.style.display = "none";
                 this.buttonRef2.current.style.display = "none";
             }
-            this.setState({task: res.data});
+            console.log(res.data)
+            this.setState({
+                task: res.data,
+                barData:{ //the data here should also be dynamic depending on what the PM wants to see
+                    labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
+                    datasets:[ //here you mostly fill the data of the graph
+                        {// this is an object that you fill in each point in the graph
+                            label:'Required',
+                            data:[
+                                res.data.tCu,
+                                res.data.tJud,
+                                res.data.tStr,
+                                res.data.tTech,
+                            ],
+                            backgroundColor:'rgb(255, 198, 0, 0.1)',
+                            borderColor: 'rgb(255, 198, 0)',
+                        },//these objects will be rendered for every label mentioned in the above array "labels"
+                        {
+                            label:'Actual',
+                            data:[
+                                res.data.actualTCu,
+                                res.data.actualTJud,
+                                res.data.actualTStr,
+                                res.data.actualTTech,
+                            ],
+                            backgroundColor:'rgb(44, 135, 196, 0.1)',
+                            borderColor: 'rgb(44, 135, 196)',
+                        },
+                    ]
+                }
+            });
         })
         .catch((err)=>{
             console.log(err)
@@ -154,7 +168,7 @@ export default class TaskPage extends React.Component {
                                     },
                                     title:{ 
                                         display:true,
-                                        text:'Task Skill Requirement Level', //this should also be dynamic
+                                        text:'Task Skill Requirement Vs Actual Employee Performance', //this should also be dynamic
                                         fontSize:25,
                                         },
                                         scale: {
@@ -171,7 +185,7 @@ export default class TaskPage extends React.Component {
                         <span><h4 className="prog-task-pm-stat"><b>Stress Deviation (Negative = Below Required Level):</b><span>{this.state.task.tStrDeviation}</span></h4></span>
                         <span><h4 className="prog-task-pm-stat"><b>Judgement Deviation (Negative = Below Required Level):</b><span>{this.state.task.tJudDeviation}</span></h4></span>
                         <span><h4 className="prog-task-pm-stat"><b>Techincal Deviation (Negative = Below Required Level):</b><span>{this.state.task.tTechDeviation}</span></h4></span>
-                        <span><h4 className="prog-task-pm-stat"><b>Communication Deviation (Negative = Below Required Level):</b><span>-{this.state.task.tCuDeviation}</span></h4></span>
+                        <span><h4 className="prog-task-pm-stat"><b>Communication Deviation (Negative = Below Required Level):</b><span>{this.state.task.tCuDeviation}</span></h4></span>
                     </div>
                     <button className="login-btn" ref={this.buttonRef1} style={{display:"none", borderColor:'rgb(105, 18, 18)', marginLeft:"45rem", color: 'rgb(105, 18, 18)'}} onClick={this.closeTask}>Close This Task</button>
                         <button className="login-btn-2" ref={this.buttonRef2} style={{display:"none", borderColor:'red', marginLeft:"43.7rem"}} onClick={this.reOpenTask}>Re-Open This Task</button>

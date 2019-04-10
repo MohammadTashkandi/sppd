@@ -76428,7 +76428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -105372,7 +105372,6 @@ function (_React$Component) {
         pCu: _this.state.pCu,
         pTech: _this.state.pTech
       };
-      console.log(newProgrammer);
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/addProgrammer', newProgrammer).then(function (res) {
         if (res.status == 201) {
           _this.props.addNotification('Success', 'Employee registered successfully!', 'success');
@@ -106749,8 +106748,6 @@ function (_React$Component) {
         Pid: _this.props.match.params.projectId
       };
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/addTask', newTask).then(function (res) {
-        console.log(res);
-
         if (res.status == 200) {
           _this.props.getTasks(_this.props.match.params.projectId);
 
@@ -107687,13 +107684,15 @@ function (_React$Component) {
             },
             title: {
               display: true,
-              text: 'Personal Performance Measures',
+              text: 'Programmer Performance Measures',
               //this should also be dynamic
               fontSize: 25
             },
             scale: {
               ticks: {
-                beginAtZero: true
+                beginAtZero: true,
+                min: 0,
+                max: 5
               }
             }
           }
@@ -110363,24 +110362,7 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       task: {},
       programmer: "",
-      barData: {
-        //the data here should also be dynamic depending on what the PM wants to see
-        labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
-        datasets: [//here you mostly fill the data of the graph
-        {
-          // this is an object that you fill in each point in the graph
-          label: 'Required',
-          data: [3, 2, 4, 5],
-          backgroundColor: 'rgb(255, 198, 0, 0.1)',
-          borderColor: 'rgb(255, 198, 0)'
-        }, //these objects will be rendered for every label mentioned in the above array "labels"
-        {
-          label: 'Actual',
-          data: [3, 2, 4, 4],
-          backgroundColor: 'rgb(44, 135, 196, 0.1)',
-          borderColor: 'rgb(44, 135, 196)'
-        }]
-      }
+      barData: {}
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidUpdate", function (prevProps) {
@@ -110416,7 +110398,7 @@ function (_React$Component) {
           id: _this.props.match.params.taskId
         }
       }).then(function (res) {
-        if (res.data.status == "Resolved" || res.data.status == "Closed" && res.data.actualTCU == null) {
+        if (res.data.status == "Resolved" || res.data.status == "Closed" && res.data.actualTCu == null) {
           _this.buttonRef1.current.style.display = "block";
           _this.buttonRef2.current.style.display = "block";
         } else {
@@ -110424,8 +110406,28 @@ function (_React$Component) {
           _this.buttonRef2.current.style.display = "none";
         }
 
+        console.log(res.data);
+
         _this.setState({
-          task: res.data
+          task: res.data,
+          barData: {
+            //the data here should also be dynamic depending on what the PM wants to see
+            labels: ['Judgement', 'Communication', 'Stress Tolerance', 'Technical'],
+            datasets: [//here you mostly fill the data of the graph
+            {
+              // this is an object that you fill in each point in the graph
+              label: 'Required',
+              data: [res.data.tCu, res.data.tJud, res.data.tStr, res.data.tTech],
+              backgroundColor: 'rgb(255, 198, 0, 0.1)',
+              borderColor: 'rgb(255, 198, 0)'
+            }, //these objects will be rendered for every label mentioned in the above array "labels"
+            {
+              label: 'Actual',
+              data: [res.data.actualTCu, res.data.actualTJud, res.data.actualTStr, res.data.actualTTech],
+              backgroundColor: 'rgb(44, 135, 196, 0.1)',
+              borderColor: 'rgb(44, 135, 196)'
+            }]
+          }
         });
       }).catch(function (err) {
         console.log(err);
@@ -110549,7 +110551,7 @@ function (_React$Component) {
             },
             title: {
               display: true,
-              text: 'Task Skill Requirement Level',
+              text: 'Task Skill Requirement Vs Actual Employee Performance',
               //this should also be dynamic
               fontSize: 25
             },
@@ -110571,7 +110573,7 @@ function (_React$Component) {
           className: "prog-task-pm-stat"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Techincal Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.state.task.tTechDeviation))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "prog-task-pm-stat"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Communication Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "-", _this2.state.task.tCuDeviation)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Communication Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.state.task.tCuDeviation)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "login-btn",
           ref: _this2.buttonRef1,
           style: {
@@ -110620,8 +110622,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -38,7 +38,6 @@ export default class AddProgrammer extends React.Component {
             pCu: this.state.pCu,
             pTech: this.state.pTech,
         };
-        console.log(newProgrammer)
         axios.post('api/addProgrammer', newProgrammer)
         .then((res)=> {
             if(res.status==201) {

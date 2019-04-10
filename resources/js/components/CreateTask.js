@@ -107,7 +107,6 @@ export default class CreateTask extends React.Component {
         }
         axios.post('api/addTask', newTask)
         .then((res) => {
-            console.log(res);
             if(res.status==200) {
                 this.props.getTasks(this.props.match.params.projectId);
                 this.props.addNotification('Success', res.data[0], 'success');

@@ -101,12 +101,14 @@ export default class EmployeePage extends React.Component {
                                               },
                                               title:{ 
                                                 display:true,
-                                                text:'Personal Performance Measures', //this should also be dynamic
+                                                text:'Programmer Performance Measures', //this should also be dynamic
                                                 fontSize:25,
                                                 },
                                               scale: {
                                                 ticks: {
-                                                  beginAtZero: true
+                                                    beginAtZero: true,
+                                                    min: 0,
+                                                    max: 5
                                                 }
                                             }
 
