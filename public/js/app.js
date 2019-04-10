@@ -107558,8 +107558,6 @@ function (_React$Component) {
       name: "",
       email: "",
       number: "",
-      start: "",
-      end: 0,
       barData: {},
       pieData: {
         //the data here should also be dynamic depending on what the PM wants to see
@@ -107608,14 +107606,6 @@ function (_React$Component) {
       }).catch(function (err) {
         console.log(err.response.data[0]);
       });
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
-      _this.setState(_defineProperty({}, e.target.name, e.target.value));
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onClick", function () {
-      console.log(_this.state);
     });
 
     return _this;
@@ -107774,58 +107764,38 @@ function (_React$Component) {
           }
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item-profile"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           id: "profile-2",
           style: {
-            marginBottom: "1.5rem"
+            marginBottom: "5rem"
           }
-        }, "Calculate Programmer Productivity:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "Programmer Productivity:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "profile-info",
           id: "profile"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
           style: {
             fontStyle: "normal"
           }
-        }, "Enter Start Time (In date):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "Productivity (Tasks Completed Per Day):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
             marginBottom: "0.8rem"
           }
-        }, " "), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "date",
-          name: "start",
-          onChange: _this2.onChange,
-          required: true
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "3rem"
+          }
+        }, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "profile-info",
           id: "profile"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
           style: {
             fontStyle: "normal"
           }
-        }, "Enter Length Of Time Beginning From Start Date:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "This Programmer Finishes:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
             marginBottom: "0.8rem"
           }
-        }, " "), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "number",
-          name: "end",
-          placeholder: "In Hours",
-          onChange: _this2.onChange,
-          required: true
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "profile-info",
-          id: "profile"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
-          style: {
-            fontStyle: "normal"
-          }
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: _this2.onClick
-        }, "Calculate")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          style: {
-            marginBottom: "0.8rem"
-          }
-        }, " "))))));
+        }, " "), " 1.3 Tasks everyday"))));
       }));
     }
   }]);

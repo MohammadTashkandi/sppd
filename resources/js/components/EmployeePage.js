@@ -8,8 +8,6 @@ export default class EmployeePage extends React.Component {
         name:"",
         email: "",
         number: "",
-        start:"",
-        end:0,
         barData:{},
         pieData:{ //the data here should also be dynamic depending on what the PM wants to see
             labels: ['Completed', 'Failed'], //Bar names
@@ -64,13 +62,6 @@ export default class EmployeePage extends React.Component {
         })
     }
 
-    onChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
-    }
-
-    onClick = () =>{
-        console.log(this.state);
-    }
     render() {
         if(!this.props.loggedIn) {
             this.props.addNotification('Error', 'Please login first', 'danger');
@@ -160,24 +151,18 @@ export default class EmployeePage extends React.Component {
                                         />
                                 </div> 
                                 <div className="grid-item-profile">
-                                    <div>
-
-                                    <h4 id="profile-2" style={{marginBottom:"1.5rem"}}>Calculate Programmer Productivity:</h4>
+                                    <h4 id="profile-2" style={{marginBottom:"5rem"}}>Programmer Productivity:</h4>
                                     <div className="profile-info" id="profile">
-                                        <b style={{fontStyle:"normal"}}>Enter Start Time (In date):</b>
-                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
-                                        </div> <input type= "date" name = "start" onChange={this.onChange} required />
-                                    </div>
-                                    <div className="profile-info" id="profile">
-                                        <b style={{fontStyle:"normal"}}>Enter Length Of Time Beginning From Start Date:</b>
-                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
-                                        </div> <input type="number" name = "end" placeholder="In Hours" onChange={this.onChange} required />
-                                    </div>
-                                    <div className="profile-info" id="profile">
-                                        <b style={{fontStyle:"normal"}}><button onClick={this.onClick}>Calculate</button></b>
+                                        <b style={{fontStyle:"normal"}}>Productivity (Tasks Completed Per Day):</b>
                                         <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
                                         </div>
                                     </div>
+                                    <div style={{marginBottom:"3rem"}}> {/* seperator */}
+                                        </div>
+                                    <div className="profile-info" id="profile">
+                                        <b style={{fontStyle:"normal"}}>This Programmer Finishes:</b>
+                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
+                                        </div> 1.3 Tasks everyday
                                     </div>
                                 </div>
                             </div>
