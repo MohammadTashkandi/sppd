@@ -15,16 +15,14 @@ export default class Canvas extends React.Component {
         barData:{},
         lineData:{},
         pieData:{ //the data here should also be dynamic depending on what the PM wants to see
-            labels: ['Major', 'Minor', 'Tweak', 'Crash'], //Bar names
+            labels: ['Completed', 'Failed'], //Bar names
             datasets:[ //here you mostly fill the data of the grap
                 {// this is an object that you fill in each point in the graph
                     label:'Number of Tasks',
-                    data:[3,12,6,1],
+                    data:[3,12],
                     backgroundColor: [
-                        'blue',
-                        'red',
                         'green',
-                        'pink',
+                        'red',
                     ],
                     hoverBorderWidth: 2,
                     hoverBorderColor: '#122738',
@@ -79,6 +77,7 @@ export default class Canvas extends React.Component {
             }
         })
         .then((res)=>{
+            console.log(res.data)
             this.setState({
                 barData:{ 
                     labels: ['Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed', 'Re-Opened->Progress'], //Bar names
@@ -221,7 +220,7 @@ export default class Canvas extends React.Component {
                                         />
                                     </div>
                                 <div className="grid-item">
-                                    <Pie height='140' width='330'//everything here can be dynamic depending on results 
+                                    <Pie //everything here can be dynamic depending on results 
                                         data={this.state.pieData} //this should alawys be dynamic
                                         options={{
                                             maintainAspectRatio: false,
@@ -239,7 +238,7 @@ export default class Canvas extends React.Component {
                                             },
                                             
                                         }}
-                                        />
+                                    />
                                 </div> 
                                 <div className="grid-item">
                                     <Line height = '270' width = '665' //everything here can be dynamic depending on results 

@@ -8,6 +8,8 @@ export default class EmployeePage extends React.Component {
         name:"",
         email: "",
         number: "",
+        start:"",
+        end:0,
         barData:{},
         pieData:{ //the data here should also be dynamic depending on what the PM wants to see
             labels: ['Completed', 'Failed'], //Bar names
@@ -61,13 +63,21 @@ export default class EmployeePage extends React.Component {
             console.log(err.response.data[0])
         })
     }
+
+    onChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    onClick = () =>{
+        console.log(this.state);
+    }
     render() {
         return(
             <div className="canvas-background">
                 <div className="info-bar">
                     <span className="decorative-box">i</span>
                     <span className="info-bar-page">Employee's Profile</span>
-                    <span className="info-bar-text">{this.props.infobar}</span>
+                    <span className="info-bar-text" style={{textTransform:"capitalize"}}>{this.state.name}</span>
                     
                 </div>
                 <hr className="hr" style={{margin:'0'}} />
@@ -123,7 +133,7 @@ export default class EmployeePage extends React.Component {
                                     </div>
                                 </div>
                                 <div className="grid-item">
-                                <Pie height='270' width='800'//everything here can be dynamic depending on results 
+                                <Pie height='260' width='700'//everything here can be dynamic depending on results 
                                         data={this.state.pieData} //this should alawys be dynamic
                                         options={{
                                             maintainAspectRatio: false,
@@ -143,7 +153,27 @@ export default class EmployeePage extends React.Component {
                                         }}
                                         />
                                 </div> 
-                                
+                                <div className="grid-item-profile">
+                                    <div>
+
+                                    <h4 id="profile-2" style={{marginBottom:"1.5rem"}}>Calculate Programmer Productivity:</h4>
+                                    <div className="profile-info" id="profile">
+                                        <b style={{fontStyle:"normal"}}>Enter Start Time (In date):</b>
+                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
+                                        </div> <input type= "date" name = "start" onChange={this.onChange} required />
+                                    </div>
+                                    <div className="profile-info" id="profile">
+                                        <b style={{fontStyle:"normal"}}>Enter Length Of Time Beginning From Start Date:</b>
+                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
+                                        </div> <input type="number" name = "end" placeholder="In Hours" onChange={this.onChange} required />
+                                    </div>
+                                    <div className="profile-info" id="profile">
+                                        <b style={{fontStyle:"normal"}}><button onClick={this.onClick}>Calculate</button></b>
+                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
                             </div>
                     </div>
                     )}

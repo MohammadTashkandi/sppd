@@ -1,8 +1,6 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
 import {Spring} from 'react-spring/renderprops';
 import {Bar,Line, Pie} from 'react-chartjs-2';
-import ProgressBar from './ProgressBar';
 
 export default class EmployeeCanvas extends React.Component {
     
@@ -134,7 +132,7 @@ export default class EmployeeCanvas extends React.Component {
                                                 yAxes:[{
                                                     scaleLabel:{
                                                         display: true,
-                                                        labelString: 'Time in Days',
+                                                        labelString: 'Time in Minutes',
                                                     }
                                                 }],
                                                 xAxes:[{
@@ -150,7 +148,7 @@ export default class EmployeeCanvas extends React.Component {
                                         />
                                     </div>
                                 <div className="grid-item">
-                                    <Pie height='140' width='330'//everything here can be dynamic depending on results 
+                                    <Pie //everything here can be dynamic depending on results 
                                         data={this.state.pieData} //this should alawys be dynamic
                                         options={{
                                             maintainAspectRatio: false,
@@ -168,7 +166,7 @@ export default class EmployeeCanvas extends React.Component {
                                             },
                                             
                                         }}
-                                        />
+                                    />
                                 </div> 
                                 <div className="grid-item">
                                     <Line height = '270' width = '665' //everything here can be dynamic depending on results 
@@ -210,9 +208,6 @@ export default class EmployeeCanvas extends React.Component {
                                         }}
                                         />
                                 </div>
-                                <div className="grid-item">
-                                    <ProgressBar/>
-                                </div>   
                             </div>
                     </div>
                     )}

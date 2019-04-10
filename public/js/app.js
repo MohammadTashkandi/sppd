@@ -106017,14 +106017,14 @@ function (_React$Component) {
       lineData: {},
       pieData: {
         //the data here should also be dynamic depending on what the PM wants to see
-        labels: ['Major', 'Minor', 'Tweak', 'Crash'],
+        labels: ['Completed', 'Failed'],
         //Bar names
         datasets: [//here you mostly fill the data of the grap
         {
           // this is an object that you fill in each point in the graph
           label: 'Number of Tasks',
-          data: [3, 12, 6, 1],
-          backgroundColor: ['blue', 'red', 'green', 'pink'],
+          data: [3, 12],
+          backgroundColor: ['green', 'red'],
           hoverBorderWidth: 2,
           hoverBorderColor: '#122738'
         }]
@@ -106071,6 +106071,8 @@ function (_React$Component) {
           Pid: _this.props.match.params.projectId
         }
       }).then(function (res) {
+        console.log(res.data);
+
         _this.setState({
           barData: {
             labels: ['Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed', 'Re-Opened->Progress'],
@@ -106259,10 +106261,8 @@ function (_React$Component) {
           }
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Pie"], {
-          height: "140",
-          width: "330" //everything here can be dynamic depending on results 
-          ,
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Pie"] //everything here can be dynamic depending on results 
+        , {
           data: _this2.state.pieData //this should alawys be dynamic
           ,
           options: {
@@ -107102,11 +107102,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EmployeeCanvas; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
-/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
-/* harmony import */ var _ProgressBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProgressBar */ "./resources/js/components/ProgressBar.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
+/* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -107126,8 +107124,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
 
 
 
@@ -107263,7 +107259,7 @@ function (_React$Component) {
         style: {
           margin: '0'
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_2__["Spring"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__["Spring"], {
         from: {
           opacity: 0
         } // you must wrap the part of the component you want animated in this spring syntax
@@ -107281,7 +107277,7 @@ function (_React$Component) {
           className: "grid-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Bar"], {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Bar"], {
           height: "270",
           width: "665" //everything here can be dynamic depending on results 
           ,
@@ -107308,7 +107304,7 @@ function (_React$Component) {
               yAxes: [{
                 scaleLabel: {
                   display: true,
-                  labelString: 'Time in Days'
+                  labelString: 'Time in Minutes'
                 }
               }],
               xAxes: [{
@@ -107321,10 +107317,8 @@ function (_React$Component) {
           }
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Pie"], {
-          height: "140",
-          width: "330" //everything here can be dynamic depending on results 
-          ,
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"] //everything here can be dynamic depending on results 
+        , {
           data: _this2.state.pieData //this should alawys be dynamic
           ,
           options: {
@@ -107346,7 +107340,7 @@ function (_React$Component) {
           }
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__["Line"], {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Line"], {
           height: "270",
           width: "665" //everything here can be dynamic depending on results 
           ,
@@ -107388,9 +107382,7 @@ function (_React$Component) {
               }]
             }
           }
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-item"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProgressBar__WEBPACK_IMPORTED_MODULE_4__["default"], null))));
+        }))));
       }));
     }
   }]);
@@ -107534,6 +107526,8 @@ function (_React$Component) {
       name: "",
       email: "",
       number: "",
+      start: "",
+      end: 0,
       barData: {},
       pieData: {
         //the data here should also be dynamic depending on what the PM wants to see
@@ -107584,6 +107578,14 @@ function (_React$Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (e) {
+      _this.setState(_defineProperty({}, e.target.name, e.target.value));
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onClick", function () {
+      console.log(_this.state);
+    });
+
     return _this;
   }
 
@@ -107606,8 +107608,11 @@ function (_React$Component) {
       }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-bar-page"
       }, "Employee's Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "info-bar-text"
-      }, this.props.infobar)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "info-bar-text",
+        style: {
+          textTransform: "capitalize"
+        }
+      }, this.state.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "hr",
         style: {
           margin: '0'
@@ -107706,8 +107711,8 @@ function (_React$Component) {
         }), _this2.state.number)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
-          height: "270",
-          width: "800" //everything here can be dynamic depending on results 
+          height: "260",
+          width: "700" //everything here can be dynamic depending on results 
           ,
           data: _this2.state.pieData //this should alawys be dynamic
           ,
@@ -107728,7 +107733,60 @@ function (_React$Component) {
               }
             }
           }
-        }))));
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item-profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          id: "profile-2",
+          style: {
+            marginBottom: "1.5rem"
+          }
+        }, "Calculate Programmer Productivity:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, "Enter Start Time (In date):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }, " "), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "date",
+          name: "start",
+          onChange: _this2.onChange,
+          required: true
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, "Enter Length Of Time Beginning From Start Date:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }, " "), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "number",
+          name: "end",
+          placeholder: "In Hours",
+          onChange: _this2.onChange,
+          required: true
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: _this2.onClick
+        }, "Calculate")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }, " "))))));
       }));
     }
   }]);
