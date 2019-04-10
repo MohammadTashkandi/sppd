@@ -109262,7 +109262,7 @@ function (_React$Component) {
         if (res.status == 200) {
           _this.props.addNotification('Success', 'The task was rated Successfully', 'success');
         }
-      }).then(function (err) {
+      }).catch(function (err) {
         _this.props.addNotification('Error', 'An error ocurred while rating the task', 'danger');
       });
     });
@@ -109296,14 +109296,12 @@ function (_React$Component) {
       }).then(function (res) {
         console.log(res.data);
 
-        if (res.data.actualTCu == null
-        /*&&  res.data.status == "Closed" */
-        ) {
-            _this2.findProgrammer();
-          } else {
-          _this2.props.addNotification('Error', 'This task has already been rated!', 'danger');
-
+        if (res.data.actualTCu == null && res.data.status == "Closed") {
+          _this2.findProgrammer();
+        } else {
           _this2.props.history.push("/index");
+
+          _this2.props.addNotification('Error', 'Cannot rate this task', 'danger');
         }
       }).catch(function (err) {
         console.log(err);

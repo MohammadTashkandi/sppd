@@ -20,11 +20,11 @@ export default class Home extends React.Component {
         })
         .then((res)=>{
             console.log(res.data)
-            if(res.data.actualTCu == null /*&&  res.data.status == "Closed" */){
+            if(res.data.actualTCu == null &&  res.data.status == "Closed"){
                 this.findProgrammer();
             }else{
-                this.props.addNotification('Error', 'This task has already been rated!', 'danger');
                 this.props.history.push(`/index`);
+                this.props.addNotification('Error', 'Cannot rate this task', 'danger');
             }
         })
         .catch((err)=>{
