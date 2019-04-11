@@ -32,27 +32,12 @@ export default class EmployeeCanvas extends React.Component {
             ]
         },
         lineData:{},
-        pieData:{ //the data here should also be dynamic depending on what the PM wants to see
-            labels: ['Major', 'Minor', 'Tweak', 'Crash'], //Bar names
-            datasets:[ //here you mostly fill the data of the grap
-                {// this is an object that you fill in each point in the graph
-                    label:'Number of Tasks',
-                    data:[3,12,6,1],
-                    backgroundColor: [
-                        'blue',
-                        'red',
-                        'green',
-                        'pink',
-                    ],
-                    hoverBorderWidth: 2,
-                    hoverBorderColor: '#122738',
-                },//these objects will be rendered for every label mentioned in the above array "labels"
-            ]
-        }
+        pieData:{},
     }
 
     componentDidMount(){
         this.loadStatistics();
+        this.getFailedTasks();
     }
 
     componentDidUpdate = (prevProps) => {
@@ -61,6 +46,7 @@ export default class EmployeeCanvas extends React.Component {
                 lineData: {}
             });
             this.loadStatistics();
+            this.getFailedTasks();
         }
     }
 
@@ -82,6 +68,38 @@ export default class EmployeeCanvas extends React.Component {
                             data:[(res.data[0]/total * 100), (res.data[1]/total * 100), (res.data[2]/total * 100), (res.data[3]/total * 100),
                             (res.data[4]/total * 100), (res.data[5]/total * 100), (res.data[6]/total * 100), (res.data[7]/total * 100),],
                             backgroundColor:'purple',
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738',
+                        },//these objects will be rendered for every label mentioned in the above array "labels"
+                    ]
+                }
+            })
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
+    getFailedTasks = () =>{
+        axios.get('api/getFailedTasksForProgrammerInProject',{
+            params:{
+                PrId: localStorage.getItem('Pid'),
+                Pid: this.props.match.params.projectId
+            }
+        })
+        .then((res)=>{
+            console.log(res.data)
+            this.setState({
+                pieData:{ //the data here should also be dynamic depending on what the PM wants to see
+                    labels: ['Completed', 'Failed'], //Bar names
+                    datasets:[ //here you mostly fill the data of the grap
+                        {// this is an object that you fill in each point in the graph
+                            label:'Number of Tasks',
+                            data:[3,12],
+                            backgroundColor: [
+                                'green',
+                                'red',
+                            ],
                             hoverBorderWidth: 2,
                             hoverBorderColor: '#122738',
                         },//these objects will be rendered for every label mentioned in the above array "labels"
@@ -152,7 +170,7 @@ export default class EmployeeCanvas extends React.Component {
                                         />
                                     </div>
                                 <div className="grid-item">
-                                    <Pie //everything here can be dynamic depending on results 
+                                <Pie //everything here can be dynamic depending on results 
                                         data={this.state.pieData} //this should alawys be dynamic
                                         options={{
                                             maintainAspectRatio: false,

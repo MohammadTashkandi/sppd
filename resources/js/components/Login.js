@@ -63,8 +63,9 @@ export default class Login extends React.Component {
         }
         return(
             <React.Fragment>
+                <div style={{marginTop:"20rem"}}></div>
                 <img src={logo} style={{width:'170px', height:'110px', marginTop:'-12.5rem', position:"absolute", marginLeft:'29.75rem'}} />
-                    <h3 style={{color:'#2c87c4', fontFamily:'"Poppins", sans-serif', fontStyle:'italic', marginLeft: '8rem', fontSize: '3rem', fontWeight: 'bolder', marginTop:'20rem'}}>Software Project Performance Dashboard</h3>
+                    <h3 style={{color:'#2c87c4', fontFamily:'"Poppins", sans-serif', fontStyle:'italic', marginLeft: '8rem', fontSize: '3rem', fontWeight: 'bolder'}}>Software Project Performance Dashboard</h3>
                     <hr className="line"></hr>
                     <div className="login-desc">"A web-based service aimed at tracking and monitoring a software enigneer's performance"</div>
                     <div className="login-desc-2">As a <b>software Project Manager</b>, you can use our dashboard to <b>create projects</b>, <b>assign tasks</b> to your engineers</div>

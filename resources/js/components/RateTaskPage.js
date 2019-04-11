@@ -48,6 +48,7 @@ export default class Home extends React.Component {
         .then((res) => {
             if (res.status == 200) {
                 this.props.addNotification('Success', 'The task was rated Successfully', 'success');
+                this.props.history.push(`/index/Task/${this.props.match.params.taskId}`);
             }
         })
         .catch((err) => {

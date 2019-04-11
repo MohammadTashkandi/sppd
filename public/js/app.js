@@ -106024,20 +106024,9 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       barData: {},
       lineData: {},
-      pieData: {
-        //the data here should also be dynamic depending on what the PM wants to see
-        labels: ['Completed', 'Failed'],
-        //Bar names
-        datasets: [//here you mostly fill the data of the grap
-        {
-          // this is an object that you fill in each point in the graph
-          label: 'Number of Tasks',
-          data: [3, 12],
-          backgroundColor: ['green', 'red'],
-          hoverBorderWidth: 2,
-          hoverBorderColor: '#122738'
-        }]
-      }
+      pieData: {},
+      planned: 0,
+      actual: 0
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidUpdate", function (prevProps) {
@@ -106051,6 +106040,8 @@ function (_React$Component) {
         _this.loadDuration();
 
         _this.loadSeverity();
+
+        _this.getFailedTasks();
       }
     });
 
@@ -106080,8 +106071,6 @@ function (_React$Component) {
           Pid: _this.props.match.params.projectId
         }
       }).then(function (res) {
-        console.log(res.data);
-
         _this.setState({
           barData: {
             labels: ['Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed', 'Re-Opened->Progress'],
@@ -106143,6 +106132,35 @@ function (_React$Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getFailedTasks", function () {
+      axios.get('api/getFailedTasksForProject', {
+        params: {
+          Pid: _this.props.match.params.projectId
+        }
+      }).then(function (res) {
+        console.log(res.data);
+
+        _this.setState({
+          pieData: {
+            //the data here should also be dynamic depending on what the PM wants to see
+            labels: ['Completed', 'Failed'],
+            //Bar names
+            datasets: [//here you mostly fill the data of the grap
+            {
+              // this is an object that you fill in each point in the graph
+              label: 'Number of Tasks',
+              data: [3, 12],
+              backgroundColor: ['green', 'red'],
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }]
+          }
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "closeProject", function () {
       axios.post('api/closeProject', {
         Pid: _this.props.match.params.projectId
@@ -106167,6 +106185,7 @@ function (_React$Component) {
       this.checkClosed();
       this.loadDuration();
       this.loadSeverity();
+      this.getFailedTasks();
     }
   }, {
     key: "render",
@@ -106262,7 +106281,13 @@ function (_React$Component) {
               yAxes: [{
                 scaleLabel: {
                   display: true,
-                  labelString: 'Time in Minutes'
+                  labelString: 'Time in Hours'
+                },
+                ticks: {
+                  callback: function callback(value) {
+                    return Number(value).toFixed(2).replace('.', ':');
+                  },
+                  beginAtZero: true
                 }
               }],
               xAxes: [{
@@ -106323,6 +106348,9 @@ function (_React$Component) {
             scales: {
               yAxes: [{
                 ticks: {
+                  callback: function callback(value) {
+                    return Number(value).toFixed() + "%";
+                  },
                   beginAtZero: true,
                   min: 0,
                   max: 100
@@ -106342,7 +106370,27 @@ function (_React$Component) {
           }
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProgressBar__WEBPACK_IMPORTED_MODULE_4__["default"], null))));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProgressBar__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          projectId: _this2.props.match.params.projectId
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            position: "absolute",
+            marginLeft: "103rem",
+            marginTop: "36rem"
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "red"
+        }, "Red:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "red"
+        }, "Off Schedule"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "green"
+        }, "Green:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "green"
+        }, "On  Schedule"))));
       }));
     }
   }]);
@@ -107199,20 +107247,7 @@ function (_React$Component) {
         }]
       },
       lineData: {},
-      pieData: {
-        //the data here should also be dynamic depending on what the PM wants to see
-        labels: ['Major', 'Minor', 'Tweak', 'Crash'],
-        //Bar names
-        datasets: [//here you mostly fill the data of the grap
-        {
-          // this is an object that you fill in each point in the graph
-          label: 'Number of Tasks',
-          data: [3, 12, 6, 1],
-          backgroundColor: ['blue', 'red', 'green', 'pink'],
-          hoverBorderWidth: 2,
-          hoverBorderColor: '#122738'
-        }]
-      }
+      pieData: {}
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidUpdate", function (prevProps) {
@@ -107222,6 +107257,8 @@ function (_React$Component) {
         });
 
         _this.loadStatistics();
+
+        _this.getFailedTasks();
       }
     });
 
@@ -107253,6 +107290,36 @@ function (_React$Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getFailedTasks", function () {
+      axios.get('api/getFailedTasksForProgrammerInProject', {
+        params: {
+          PrId: localStorage.getItem('Pid'),
+          Pid: _this.props.match.params.projectId
+        }
+      }).then(function (res) {
+        console.log(res.data);
+
+        _this.setState({
+          pieData: {
+            //the data here should also be dynamic depending on what the PM wants to see
+            labels: ['Completed', 'Failed'],
+            //Bar names
+            datasets: [//here you mostly fill the data of the grap
+            {
+              // this is an object that you fill in each point in the graph
+              label: 'Number of Tasks',
+              data: [3, 12],
+              backgroundColor: ['green', 'red'],
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }]
+          }
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
     return _this;
   }
 
@@ -107260,6 +107327,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.loadStatistics();
+      this.getFailedTasks();
     }
   }, {
     key: "render",
@@ -108990,7 +109058,11 @@ function (_React$Component) {
         this.props.history.push("/employeeIndex");
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          marginTop: "20rem"
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: _LOGO2_png__WEBPACK_IMPORTED_MODULE_2___default.a,
         style: {
           width: '170px',
@@ -109006,8 +109078,7 @@ function (_React$Component) {
           fontStyle: 'italic',
           marginLeft: '8rem',
           fontSize: '3rem',
-          fontWeight: 'bolder',
-          marginTop: '20rem'
+          fontWeight: 'bolder'
         }
       }, "Software Project Performance Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "line"
@@ -109130,13 +109201,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -109146,31 +109219,96 @@ function (_React$Component) {
   _inherits(ProgressBar, _React$Component);
 
   function ProgressBar() {
+    var _getPrototypeOf2;
+
+    var _this;
+
     _classCallCheck(this, ProgressBar);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProgressBar).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ProgressBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "barRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      height: 100,
+      start: "",
+      end: ""
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getProgress", function () {
+      axios.get('api/getProgress', {
+        params: {
+          Pid: _this.props.projectId
+        }
+      }).then(function (res) {
+        if (res.data[1] >= res.data[0]) {
+          _this.barRef.current.style.backgroundColor = 'rgb(23, 197, 61)';
+        } else {
+          _this.barRef.current.style.backgroundColor = 'rgb(204, 7, 7)';
+        }
+
+        _this.setState({
+          height: 100 - res.data[1]
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getProjectInfo", function () {
+      axios.get('api/getProjectInfo', {
+        params: {
+          id: _this.props.projectId
+        }
+      }).then(function (res) {
+        var start = res.data.Start_Date;
+        var end = res.data.Planned_Closed_Date;
+        start = start.substring(0, 10);
+        end = end.substring(0, 10);
+
+        _this.setState({
+          start: start,
+          end: end
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
+    return _this;
   }
 
   _createClass(ProgressBar, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getProgress();
+      this.getProjectInfo();
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "progress-header"
-      }, "Project Progress: 35%"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "track"
+      }, "Project Progress: ", 100 - this.state.height, "%"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "track",
+        ref: this.barRef
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "thumb",
         style: {
-          height: "65%"
+          height: "".concat(this.state.height, "%")
         }
-      }), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
         className: "date-header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Start Date:"), "2-26-2019"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Start Date:"), this.state.start), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
         className: "date-header",
         style: {
           marginBottom: "2rem"
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Planned End Date:"), "2-30-2019"));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Planned End Date:"), this.state.end));
     }
   }]);
 
@@ -109261,6 +109399,8 @@ function (_React$Component) {
       }).then(function (res) {
         if (res.status == 200) {
           _this.props.addNotification('Success', 'The task was rated Successfully', 'success');
+
+          _this.props.history.push("/index/Task/".concat(_this.props.match.params.taskId));
         }
       }).catch(function (err) {
         _this.props.addNotification('Error', 'An error ocurred while rating the task', 'danger');
@@ -110323,8 +110463,6 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "buttonRef1", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "buttonRef2", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
-
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "statusRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
@@ -110367,11 +110505,9 @@ function (_React$Component) {
         }
       }).then(function (res) {
         if (res.data.status == "Resolved" || res.data.status == "Closed" && res.data.actualTCu == null) {
-          _this.buttonRef1.current.style.display = "block";
-          _this.buttonRef2.current.style.display = "block";
+          _this.buttonRef1.current.style.display = "inline";
         } else {
           _this.buttonRef1.current.style.display = "none";
-          _this.buttonRef2.current.style.display = "none";
         }
 
         console.log(res.data);
@@ -110411,7 +110547,6 @@ function (_React$Component) {
         _this.props.addNotification('Success', 'Closed Task Successfully', 'success');
 
         _this.buttonRef1.current.style.display = "none";
-        _this.buttonRef2.current.style.display = "none";
         _this.statusRef.current.innerText = "Closed";
 
         _this.props.history.push("/index/rateTask/".concat(_this.props.match.params.taskId));
@@ -110429,7 +110564,6 @@ function (_React$Component) {
         _this.props.addNotification('Success', 'Re-Opened Task Successfully', 'success');
 
         _this.buttonRef1.current.style.display = "none";
-        _this.buttonRef2.current.style.display = "none";
         _this.statusRef.current.innerText = "Reopened";
       }).catch(function (err) {
         console.log(err);
@@ -110541,26 +110675,27 @@ function (_React$Component) {
           className: "prog-task-pm-stat"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Techincal Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.state.task.tTechDeviation))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "prog-task-pm-stat"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Communication Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.state.task.tCuDeviation)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "login-btn",
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Communication Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.state.task.tCuDeviation)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           ref: _this2.buttonRef1,
           style: {
             display: "none",
+            marginLeft: "9rem"
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "login-btn",
+          style: {
             borderColor: 'rgb(105, 18, 18)',
-            marginLeft: "45rem",
             color: 'rgb(105, 18, 18)'
           },
           onClick: _this2.closeTask
         }, "Close This Task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "login-btn-2",
-          ref: _this2.buttonRef2,
           style: {
-            display: "none",
             borderColor: 'red',
-            marginLeft: "43.7rem"
+            marginLeft: "2rem"
           },
           onClick: _this2.reOpenTask
-        }, "Re-Open This Task"));
+        }, "Re-Open This Task")));
       }));
     }
   }]);

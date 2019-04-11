@@ -1,17 +1,74 @@
 import React from 'react';
 
 export default class ProgressBar extends React.Component{
+
+    barRef = React.createRef();
+
+    state={
+        height:100,
+        start:"",
+        end:""
+    }
+
+    componentDidMount(){
+        this.getProgress();
+        this.getProjectInfo();
+    }
+
+
+    getProgress = () =>{
+        axios.get('api/getProgress',{
+            params:{
+                Pid: this.props.projectId
+            }
+        })
+        .then((res)=>{
+            if(res.data[1] >= res.data[0]){
+                this.barRef.current.style.backgroundColor = 'rgb(23, 197, 61)';
+            }else{
+                this.barRef.current.style.backgroundColor = 'rgb(204, 7, 7)';
+            }
+            this.setState({
+                height: 100 - res.data[1]
+            })
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
+    getProjectInfo = () =>{
+        axios.get('api/getProjectInfo',{
+            params:{
+                id: this.props.projectId
+            }
+        })
+        .then((res)=>{
+            var start = res.data.Start_Date;
+            var end = res.data.Planned_Closed_Date;
+
+            start = start.substring(0,10);
+            end = end.substring(0,10);
+
+            this.setState({
+                start:start,
+                end:end
+            })
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+    
     render(){
         return(
             <React.Fragment>
-                <h5 className="progress-header">Project Progress: 35%</h5> {/* dynamic */} 
-                <div className="track">
-                    <div className="thumb" style={{height: "65%"}}></div> {/* 0% means complete 100% means not started
-                                                                            so for 35% we do 100-35 = 65 nad vice versa
-                                                                          heigh its also dynamic depending on calculations */}
+                <h5 className="progress-header">Project Progress: {100-this.state.height}%</h5>
+                <div className="track" ref={this.barRef}>
+                    <div className="thumb" style={{height: `${this.state.height}%`}}></div>
                 </div>
-                <h6 className="date-header"><b>Start Date:</b>2-26-2019</h6>
-                <h6 className="date-header" style={{marginBottom:"2rem"}}><b>Planned End Date:</b>2-30-2019</h6>
+                <h6 className="date-header"><b>Start Date:</b>{this.state.start}</h6>
+                <h6 className="date-header" style={{marginBottom:"2rem"}}><b>Planned End Date:</b>{this.state.end}</h6>
             </React.Fragment>
         )
     }

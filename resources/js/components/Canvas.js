@@ -14,27 +14,16 @@ export default class Canvas extends React.Component {
     state = {
         barData:{},
         lineData:{},
-        pieData:{ //the data here should also be dynamic depending on what the PM wants to see
-            labels: ['Completed', 'Failed'], //Bar names
-            datasets:[ //here you mostly fill the data of the grap
-                {// this is an object that you fill in each point in the graph
-                    label:'Number of Tasks',
-                    data:[3,12],
-                    backgroundColor: [
-                        'green',
-                        'red',
-                    ],
-                    hoverBorderWidth: 2,
-                    hoverBorderColor: '#122738',
-                },//these objects will be rendered for every label mentioned in the above array "labels"
-            ]
-        }
+        pieData:{},
+        planned: 0,
+        actual: 0,
     }
 
     componentDidMount(){
         this.checkClosed();
         this.loadDuration();
         this.loadSeverity();
+        this.getFailedTasks();
     }
 
     componentDidUpdate = (prevProps) => {
@@ -45,6 +34,7 @@ export default class Canvas extends React.Component {
             this.checkClosed();
             this.loadDuration();
             this.loadSeverity();
+            this.getFailedTasks();
         }
     }
 
@@ -77,7 +67,6 @@ export default class Canvas extends React.Component {
             }
         })
         .then((res)=>{
-            console.log(res.data)
             this.setState({
                 barData:{ 
                     labels: ['Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed', 'Re-Opened->Progress'], //Bar names
@@ -140,6 +129,38 @@ export default class Canvas extends React.Component {
             console.log(err)
         })
     }
+    
+    getFailedTasks = () =>{
+        axios.get('api/getFailedTasksForProject',{
+            params:{
+                Pid: this.props.match.params.projectId
+            }
+        })
+        .then((res)=>{
+            console.log(res.data)
+            this.setState({
+                pieData:{ //the data here should also be dynamic depending on what the PM wants to see
+                    labels: ['Completed', 'Failed'], //Bar names
+                    datasets:[ //here you mostly fill the data of the grap
+                        {// this is an object that you fill in each point in the graph
+                            label:'Number of Tasks',
+                            data:[3,12],
+                            backgroundColor: [
+                                'green',
+                                'red',
+                            ],
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738',
+                        },//these objects will be rendered for every label mentioned in the above array "labels"
+                    ]
+                }
+            })
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
 
     closeProject = () =>{
         axios.post('api/closeProject', {
@@ -208,8 +229,14 @@ export default class Canvas extends React.Component {
                                                 yAxes:[{
                                                     scaleLabel:{
                                                         display: true,
-                                                        labelString: 'Time in Minutes',
-                                                    }
+                                                        labelString: 'Time in Hours',
+                                                    },
+                                                    ticks: {
+                                                        callback: function (value) {
+                                                            return Number(value).toFixed(2).replace('.',':')
+                                                          },
+                                                        beginAtZero: true,
+                                                        },
                                                 }],
                                                 xAxes:[{
                                                     scaleLabel:{
@@ -264,6 +291,9 @@ export default class Canvas extends React.Component {
                                             scales:{
                                                 yAxes:[{
                                                     ticks: {
+                                                        callback: function (value) {
+                                                            return Number(value).toFixed()+"%"
+                                                          },
                                                         beginAtZero: true,
                                                         min: 0,
                                                         max: 100
@@ -285,8 +315,15 @@ export default class Canvas extends React.Component {
                                         />
                                 </div>
                                 <div className="grid-item">
-                                    <ProgressBar/>
-                                </div>   
+                                    <ProgressBar projectId={this.props.match.params.projectId}/>
+                                </div>
+                                <div style={{position:"absolute", marginLeft:"103rem", marginTop:"36rem"}}>
+                                    <div className="red">Red:</div>
+                                    <div className="red">Off Schedule</div>
+                                    <div style={{marginBottom:"0.8rem"}}></div>
+                                    <div className="green">Green:</div>
+                                    <div className="green">On  Schedule</div>
+                                </div>
                             </div>
                     </div>
                     )}

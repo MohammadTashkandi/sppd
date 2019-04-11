@@ -145,6 +145,21 @@ class ProjectController extends Controller
         return response()->json($projects->pluck('title', 'id')); //dont do $projects=$projects->pluck... or the state will have nested object
     }
 
+    public function getProjectInfo(Request $request)
+    {
+        $p = Project::where('id', '=', $request['id']);
+
+        if ($p == null) {
+            return response()->json(['project not exist'], 404);
+        }
+
+        $p = $p->first();
+
+        return response()->json($p, 200);
+
+
+    }
+
 
 //    public function getProjectTasks(Request $request){
 //        $Pid = $request['id'];
@@ -338,14 +353,16 @@ class ProjectController extends Controller
         $tasks = Task::where('Pid' , $project->id)->get();
         $num = count($tasks);
 
+        $assigned = count($tasks->where('status', 'New-Assigned')->all());
         $progress = count($tasks->where('status', 'Progress')->all());
         $resolved = count($tasks->where('status', 'Resolved')->all());
         $closed = count($tasks->where('status', 'Closed')->all());
 
-        $progress = $progress * 0.25;
+        $assigned = $assigned * 0.25;
+        $progress = $progress * 0.50;
         $resolved = $resolved * 0.75;
 
-        $tasksProgress = (($progress + $resolved + $closed) * (1/$num)) * 100;
+        $tasksProgress = (($assigned + $progress + $resolved + $closed) * (1/$num)) * 100;
         $tasksProgress = number_format((float)$tasksProgress, 2, '.', '');
 
         $array = array(

@@ -5,7 +5,6 @@ import {Radar} from 'react-chartjs-2';
 export default class TaskPage extends React.Component {
 
     buttonRef1 = React.createRef();
-    buttonRef2 = React.createRef();
     statusRef = React.createRef();
 
     state={
@@ -52,11 +51,9 @@ export default class TaskPage extends React.Component {
         })
         .then((res)=>{
             if(res.data.status == "Resolved" || ((res.data.status ==  "Closed") && (res.data.actualTCu == null))){
-                this.buttonRef1.current.style.display = "block";
-                this.buttonRef2.current.style.display = "block";
+                this.buttonRef1.current.style.display = "inline";
             }else{
                 this.buttonRef1.current.style.display = "none";
-                this.buttonRef2.current.style.display = "none";
             }
             console.log(res.data)
             this.setState({
@@ -104,7 +101,6 @@ export default class TaskPage extends React.Component {
             console.log(res)
             this.props.addNotification('Success', 'Closed Task Successfully', 'success');
             this.buttonRef1.current.style.display = "none";
-            this.buttonRef2.current.style.display = "none";
             this.statusRef.current.innerText = "Closed"
             this.props.history.push(`/index/rateTask/${this.props.match.params.taskId}`)
         })
@@ -121,7 +117,6 @@ export default class TaskPage extends React.Component {
             console.log(res)
             this.props.addNotification('Success', 'Re-Opened Task Successfully', 'success');
             this.buttonRef1.current.style.display = "none";
-            this.buttonRef2.current.style.display = "none";
             this.statusRef.current.innerText = "Reopened"
         })
         .catch((err)=>{
@@ -187,8 +182,10 @@ export default class TaskPage extends React.Component {
                         <span><h4 className="prog-task-pm-stat"><b>Techincal Deviation (Negative = Below Required Level):</b><span>{this.state.task.tTechDeviation}</span></h4></span>
                         <span><h4 className="prog-task-pm-stat"><b>Communication Deviation (Negative = Below Required Level):</b><span>{this.state.task.tCuDeviation}</span></h4></span>
                     </div>
-                    <button className="login-btn" ref={this.buttonRef1} style={{display:"none", borderColor:'rgb(105, 18, 18)', marginLeft:"45rem", color: 'rgb(105, 18, 18)'}} onClick={this.closeTask}>Close This Task</button>
-                        <button className="login-btn-2" ref={this.buttonRef2} style={{display:"none", borderColor:'red', marginLeft:"43.7rem"}} onClick={this.reOpenTask}>Re-Open This Task</button>
+                    <div ref={this.buttonRef1} style={{display:"none", marginLeft:"9rem"}}>
+                        <button className="login-btn"  style={{borderColor:'rgb(105, 18, 18)', color: 'rgb(105, 18, 18)'}} onClick={this.closeTask}>Close This Task</button>
+                        <button className="login-btn-2"  style={{ borderColor:'red', marginLeft:"2rem"}} onClick={this.reOpenTask}>Re-Open This Task</button>
+                    </div>
                 </div>
             )}
         </Spring>
