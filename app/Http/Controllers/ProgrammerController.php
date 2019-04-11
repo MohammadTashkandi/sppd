@@ -445,7 +445,7 @@ class ProgrammerController extends Controller
         $programmer = Programmer::where('id', $request['PrId'])->first();
 
 
-        if($project = null ) {
+        if($project == null ) {
             return response()->json('Error Project not found', 404);
         }
         if ($programmer == null) {
