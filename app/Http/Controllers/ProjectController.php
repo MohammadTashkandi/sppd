@@ -313,7 +313,7 @@ class ProjectController extends Controller
 
         $failedTasks = $p->failedTasks ;
 
-        $allTasks = $p->count($tasks);
+        $allTasks = count($tasks);
 
         $completedTasks = $allTasks - $failedTasks ;
 
