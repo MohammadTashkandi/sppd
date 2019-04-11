@@ -28,9 +28,6 @@ export default class CreateProject extends React.Component {
         var todaysDate = new Date();
         var today = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate()).getTime()
 
-
-        console.log("st d: "+startDate)
-        console.log("today: "+today)
         if(this.state.start >= this.state.end){
             this.props.addNotification('Invalid Dates', 'The end date cannot be the same or before the start date', 'danger');
         }else if(startDate < today){

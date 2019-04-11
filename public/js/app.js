@@ -106481,8 +106481,6 @@ function (_React$Component) {
       endDate = new Date(newEnd).getTime();
       var todaysDate = new Date();
       var today = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate()).getTime();
-      console.log("st d: " + startDate);
-      console.log("today: " + today);
 
       if (_this.state.start >= _this.state.end) {
         _this.props.addNotification('Invalid Dates', 'The end date cannot be the same or before the start date', 'danger');
