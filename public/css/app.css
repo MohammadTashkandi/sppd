@@ -11644,3 +11644,28 @@ b {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.home-img {
+  float: right;
+  margin: 1rem 1rem 0 0;
+}
+
+.home {
+  margin-left: 31rem;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.home.main {
+  font-weight: 800;
+  color: #ffc600;
+  font-size: 4rem;
+}
+
+.home.secondary {
+  color: #2c87c4;
+}
+
+.home.tertiary {
+  color: #2c87c4;
+  margin-top: 9rem;
+}
+
