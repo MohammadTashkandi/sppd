@@ -20,6 +20,7 @@ export default class Home extends React.Component {
                         </span>
                 </div>
                 <hr className="hr" style={{margin:'0'}} />
+                
                     <Spring from={{opacity:0}} // you must wrap the part of the component you want animated in this spring syntax
                     to={{opacity:1}}
                     config={{duration:1500}}

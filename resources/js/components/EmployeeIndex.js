@@ -11,6 +11,16 @@ export default class EmployeeIndex extends React.Component {
         }
         return(
             <React.Fragment>
+                <div className="info-bar">
+                        <span className="decorative-box">i</span>
+                        <span className="info-bar-page">Home</span>
+                        <span className="info-bar-text"></span>
+                        <span>
+                            
+                        </span>
+                </div>
+                <hr className="hr" style={{margin:'0'}} />
+                
                 <Spring from={{opacity:0}} // you must wrap the part of the component you want animated in this spring syntax
                     to={{opacity:1}}
                     config={{duration:1500}}
