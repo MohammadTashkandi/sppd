@@ -24,7 +24,7 @@ class Programmer extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name' , 'email', 'password', 'nationality', 'age', 'pStr', 'pJud', 'PCu', 'pTech','PMid',
+        'first_name', 'last_name' , 'email', 'password', 'nationality', 'age', 'pStr', 'pJud', 'pCu', 'pTech','PMid',
         'numOfTasks','pStrSum','pJudSum','pCuSum','pTechSum','phone_number','numOfTasks','pStrSum','pJudSum','pCuSum','pTechSum',
 
     ];
@@ -58,7 +58,6 @@ class Programmer extends Authenticatable implements JWTSubject
     ];
 
 
-    public $timestamps = false;
 
 
     public function projects()

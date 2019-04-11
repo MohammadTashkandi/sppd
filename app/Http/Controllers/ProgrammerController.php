@@ -6,6 +6,7 @@ use App\Programmer;
 use App\Project;
 use App\Task;
 use App\User;
+use Carbon\Carbon;
 use function GuzzleHttp\Promise\all;
 use http\Message;
 use Illuminate\Http\Request;
@@ -91,7 +92,7 @@ class ProgrammerController extends Controller
             'password' => Hash::make($request['password']),
             'pStr' => $request['pStr'],
             'pJud' => $request['pJud'],
-            'PCu' => $request['pCu'],
+            'pCu' => $request['pCu'],
             'pTech' => $request['pTech'],
             'PMid' => $request['PMid'],
         ]);
@@ -348,8 +349,20 @@ class ProgrammerController extends Controller
 
     public function countSeverityForProgrammerInProject(Request $request){
 
+        $project = Project::where('id', $request['Pid'])->first();
+        $programmer = Programmer::where('id', $request['PrId'])->first();
+
+
+        if($project = null ) {
+            return response()->json('Error Project not found', 404);
+        }
+        if ($programmer == null) {
+            return response()->json('Error Programmer not found', 404);
+        }
+
         $PrId = $request['PrId'];
         $Pid = $request['Pid'];
+
         $tasks = Task::where('Pid', $Pid)->where('PrID', $PrId)->get();
 
         $numOfFeature = count($tasks->where('severity', 'Feature')->all());
@@ -399,7 +412,7 @@ class ProgrammerController extends Controller
 
     public function calculateProgrammerProductivity(Request $request){
 
-        $id = $request['id'];
+        $id = $request['PrId'];
 
         $programmer = Programmer::where('id', $id)->first();
 
@@ -408,13 +421,16 @@ class ProgrammerController extends Controller
         }
 
 
-        $tasks = Task::where('PrID', $id)->where('Status', 'Closed')->get();
-        $num = count($tasks);
-        $assigned = $tasks->sum('AssignedDuration');
-        $progress = $tasks->sum('inProgressDuration');
-        $duration = ($assigned + $progress) / 60 ;
+        $tasks = $programmer->numOfTasks;
+        $registerTime =  $programmer->created_at ;
+        $registerTime = Carbon::parse($registerTime);
+        $now = Carbon::now();
 
-        $result = $num/$duration;
+        $time = $registerTime->diffInDays($now);
+
+
+
+        $result = $tasks/$time;
 
 
         return response()->json($result , 200);
@@ -422,6 +438,199 @@ class ProgrammerController extends Controller
     }
 
 
+
+    public function getFailedTasksForProgrammerInProject(Request $request){
+
+        $project = Project::where('id', $request['Pid'])->first();
+        $programmer = Programmer::where('id', $request['PrId'])->first();
+
+
+        if($project = null ) {
+            return response()->json('Error Project not found', 404);
+        }
+        if ($programmer == null) {
+            return response()->json('Error Programmer not found', 404);
+        }
+
+
+        $failedTasks = Task::where('PrID' , $programmer->id)->where('Pid',$project->id)->where('reOpen_state', '!=', null)->get(); ;
+        $completedTasks = Task::where('PrID' , $programmer->id)->where('Pid',$project->id)->where('reOpen_state',null)->get();
+
+        $failedTasks = count($failedTasks);
+        $completedTasks = count($completedTasks);
+
+        $array = array(
+            0 => $failedTasks ,
+            1 => $completedTasks
+        );
+
+        return response()->json($array, 200);
+
+    }
+
+
+    public function getFailedTasksForProgrammer(Request $request){
+
+        $programmer = Programmer::where('id', $request['PrId'])->first();
+
+        if ($programmer == null) {
+            return response()->json('Error Programmer not found', 404);
+        }
+
+
+        $failedTasks = $programmer->failedTasks ;
+
+        $completedTasks = $programmer->numOfTasks - $failedTasks ;
+
+        $array = array(
+            0 => $failedTasks ,
+            1 => $completedTasks
+        );
+
+        return response()->json($array, 200);
+
+    }
+
+
+
+    public function getSkillGap(Request $request)
+    {
+        $programmer = Programmer::where($request['PrId'])->fisrt();
+
+        if ($programmer == null) {
+            return response()->json('Error Programmer not found', 404);
+
+        }
+
+        $tasks = Task::where('PrID' , $programmer->id)->get();
+
+        $averageTStrDeviation = $tasks->avg('tStrDeviation');
+        $averageTJudDeviation = $tasks->avg('tJudDeviation');
+        $averageTCuDeviation = $tasks->avg('tCuDeviation');
+        $averageTTechDeviation = $tasks->avg('tTechDeviation');
+
+        $array = array(
+            0 => number_format((float)$averageTStrDeviation, 2, '.', '') ,
+            1 => number_format((float)$averageTJudDeviation, 2, '.', '') ,
+            2 => number_format((float)$averageTCuDeviation, 2, '.', '') ,
+            3 => number_format((float)$averageTTechDeviation, 2, '.', '')
+        );
+
+
+        return response()->json($array, 200);
+
+
+    }
+
+
+    public function getMaxMinDeviation(Request $request)
+    {
+        $programmer = Programmer::where($request['PrId'])->fisrt();
+
+        if ($programmer == null) {
+            return response()->json('Error Programmer not found', 404);
+
+        }
+
+        $tasks = Task::where('PrID' , $programmer->id)->get();
+
+        $maxTStrDeviation = $tasks->max('tStrDeviation');
+        $maxTJudDeviation = $tasks->max('tJudDeviation');
+        $maxTCuDeviation = $tasks->max('tCuDeviation');
+        $maxTTechDeviation = $tasks->max('tTechDeviation');
+
+        $minTStrDeviation = $tasks->where('tStrDeviation' , '!=' , null)->min('tStrDeviation');
+        $minTJudDeviation = $tasks->where('tJudDeviation' , '!=' , null)->min('tJudDeviation');
+        $minTCuDeviation = $tasks->where('tCuDeviation' , '!=' , null)->min('tCuDeviation');
+        $minTTechDeviation = $tasks->where('tTechDeviation' , '!=' , null)->min('tTechDeviation');
+
+
+        $array = array(
+            0 => $maxTStrDeviation,
+            1 => $maxTJudDeviation,
+            2 => $maxTCuDeviation,
+            3 => $maxTTechDeviation,
+            4 => $minTStrDeviation,
+            5 => $minTJudDeviation,
+            6 => $minTCuDeviation,
+            7 => $minTTechDeviation
+        );
+
+
+        return response()->json($array, 200);
+
+
+    }
+
+
+    public function countStatusForProgrammerInProject(Request $request)
+    {
+
+        $project = Project::where('id', $request['Pid'])->first();
+        $programmer = Programmer::where('id', $request['PrId'])->first();
+
+
+        if($project = null ) {
+            return response()->json('Error Project not found', 404);
+        }
+        if ($programmer == null) {
+            return response()->json('Error Programmer not found', 404);
+        }
+
+        $tasks = Task::where('Pid', $project->id)->where('PrID', $programmer->id)->get();
+
+        $assigned = count($tasks->where('status', 'New-assigned')->all());
+        $progress = count($tasks->where('status', 'Progress')->all());
+        $resolved = count($tasks->where('status', 'Resolved')->all());
+        $closed = count($tasks->where('status', 'Closed')->all());
+        $reOpened = count($tasks->where('status', 'Re-Opened')->all());
+
+
+
+        $array = array(
+            0 => $assigned ,
+            1 => $progress ,
+            2 => $resolved ,
+            3 => $closed ,
+            4 => $reOpened
+        );
+
+        return response()->json($array, 200);
+
+
+    }
+
+    public function countStatusForProgrammer(Request $request)
+    {
+
+        $programmer = Programmer::where('id', $request['PrId'])->first();
+
+        if ($programmer == null) {
+            return response()->json('Error Programmer not found', 404);
+        }
+
+        $tasks = Task::where('PrID', $programmer->id)->get();
+
+        $assigned = count($tasks->where('status', 'New-assigned')->all());
+        $progress = count($tasks->where('status', 'Progress')->all());
+        $resolved = count($tasks->where('status', 'Resolved')->all());
+        $closed = count($tasks->where('status', 'Closed')->all());
+        $reOpened = count($tasks->where('status', 'Re-Opened')->all());
+
+
+
+        $array = array(
+            0 => $assigned ,
+            1 => $progress ,
+            2 => $resolved ,
+            3 => $closed ,
+            4 => $reOpened
+        );
+
+        return response()->json($array, 200);
+
+
+    }
 
 
 

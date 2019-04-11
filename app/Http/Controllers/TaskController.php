@@ -291,11 +291,12 @@ class TaskController extends Controller
     public function rateTask(Request $request)
     {
 
+
         $task = Task::where('id' , $request['tID'])->first();
         $programmer = Programmer::where('id', $task->PrID)->first();
 
         if($task == null || $programmer == null){
-            return response()->json('ERROR', 404);
+            return response()->json(['ERROR'], 404);
         }
 
         $actualTStr = $request['pStr'];
@@ -309,30 +310,36 @@ class TaskController extends Controller
         $task->actualTCu =$actualTCu;
         $task->actualTTech =$actualTTech;
 
-        $task->tStrDeviation  = ($actualTStr-$task->tStr) /$task->tStr;
-        $task->tJudDeviation  = ($actualTJud-$task->tJud) /$task->tJud;
-        $task->tCuDeviation   = ($actualTCu-$task->tCu) /$task->tCu;
-        $task->tTechDeviation = ($actualTTech-$task->tTech) /$task->tTech;
-        $task->save();
+        $tStrDeviation = ($actualTStr-$task->tStr) /$task->tStr;
+        $tJudDeviation = ($actualTJud-$task->tJud) /$task->tJud;
+        $tCuDeviation = ($actualTCu-$task->tCu) /$task->tCu;
+        $tTechDeviation = ($actualTTech-$task->tTech) /$task->tTech;
+
+
+        $task->tStrDeviation  =  number_format((float)$tStrDeviation, 2, '.', '');
+        $task->tJudDeviation  =  number_format((float)$tJudDeviation, 2, '.', '');
+        $task->tCuDeviation   =  number_format((float)$tCuDeviation, 2, '.', '');
+        $task->tTechDeviation =  number_format((float)$tTechDeviation, 2, '.', '');
+        $task->update();
 
         $value = 0 ;
 
 
-        if($task->severity = 'Trivial'){
+        if($task->severity == 'Trivial'){
             $value = 1;
-        }elseif ($task->severity = 'Text'){
+        }elseif ($task->severity =='Text'){
             $value = 2;
-        }elseif ($task->severity = 'Tweak '){
+        }elseif ($task->severity == 'Tweak '){
             $value =3;
-        }elseif ($task->severity = 'Minor') {
+        }elseif ($task->severity == 'Minor') {
             $value =4;
-        }elseif ($task->severity = 'Feature  ') {
+        }elseif ($task->severity =='Feature  ') {
             $value =5;
-        } elseif ($task->severity = 'Major ') {
+        } elseif ($task->severity == 'Major ') {
             $value =6;
-        } elseif ($task->severity = 'Crash ') {
+        } elseif ($task->severity == 'Crash ') {
             $value =7;
-        } elseif ($task->severity = 'Block') {
+        } elseif ($task->severity == 'Block') {
             $value =8;
         }
 //        numOfTasks
@@ -340,18 +347,19 @@ class TaskController extends Controller
 
 
         $tech = $actualTTech * $value /8 ;
+
         $programmer->pStrSum = $programmer->pStrSum + $actualTStr ;
         $programmer->pJudSum = $programmer->pJudSum + $actualTJud;
         $programmer->pCuSum = $programmer->pCuSum + $actualTCu;
         $programmer->pTechSum =$programmer->pTechSum + $tech ;
-        $programmer->save();
+        $programmer->update();
 
         // calculate programmer performance
-        $programmer->pStr = $programmer->pStrSum / $programmer->numOfTasks+1; // +1 because we give the rate programmer first without finish any task
-        $programmer->pJud = $programmer->pJudSum / $programmer->numOfTasks+1;
-        $programmer->pCu = $programmer->pCuSum / $programmer->numOfTasks+1;
-        $programmer->pTech = $programmer->pTechSum / $programmer->numOfTasks+1;
-        $programmer->save();
+        $programmer->pStr = $programmer->pStrSum / ($programmer->numOfTasks+1); // +1 because we give the rate programmer first without finish any task
+        $programmer->pJud = $programmer->pJudSum / ($programmer->numOfTasks+1);
+        $programmer->pCu = $programmer->pCuSum / ($programmer->numOfTasks+1);
+        $programmer->pTech = $programmer->pTechSum / ($programmer->numOfTasks+1);
+        $programmer->update();
 
         return response()->json($task, 200);
 

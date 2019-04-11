@@ -24,6 +24,9 @@ Route::get('countSeverityForProject','ProjectController@countSeverityForProject'
 Route::get('getDuration','ProjectController@getDuration'); //this function will receive request contain 'Pid' (Project id)
 Route::post('closeProject','ProjectController@closeProject'); //this function will receive request contain 'Pid' (Project id)
 Route::get('checkClosed','ProjectController@checkClosed'); //this function will receive request contain 'Pid' (Project id)
+Route::get('getFailedTasksForProject','ProjectController@getFailedTasksForProject'); //this function will receive request contain 'Pid' (Project id)
+Route::get('getProgress','ProjectController@getProgress'); //this function will receive request contain 'Pid' (Project id)
+Route::get('countStatusForProject','ProjectController@countStatusForProject'); //this function will receive request contain 'Pid' (Project id)
 
 
 Route::get('findProgrammer','ProgrammerController@findProgrammer'); //for searching
@@ -36,6 +39,13 @@ Route::post('assignEmployee','ProgrammerController@assignEmployee');
 Route::get('findTaskProgrammer','ProgrammerController@findTaskProgrammer'); // this function will receive request contain 'id'
 Route::get('countSeverityForProgrammer','ProgrammerController@countSeverityForProgrammer'); //this function will receive request contain 'PrId' (Programmer id)
 Route::get('countSeverityForProgrammerInProject','ProgrammerController@countSeverityForProgrammerInProject'); //this function will receive request contain 'PrId' (Programmer id) and 'Pid' (Project id)
+Route::get('getFailedTasksForProgrammer','ProgrammerController@getFailedTasksForProgrammer'); //this function will receive request contain 'PrId' (Programmer id)
+Route::get('getFailedTasksForProgrammerInProject','ProgrammerController@getFailedTasksForProgrammerInProject'); //this function will receive request contain 'PrId' (Programmer id) and 'Pid' (Project id)
+Route::get('calculateProgrammerProductivity','ProgrammerController@calculateProgrammerProductivity'); //this function will receive request contain 'PrId' (Programmer id)
+Route::get('getSkillGap','ProgrammerController@getSkillGap'); //this function will receive request contain 'PrId' (Programmer id)
+Route::get('getMaxMinDeviation','ProgrammerController@getMaxMinDeviation'); //this function will receive request contain 'PrId' (Programmer id)
+Route::get('countStatusForProgrammerInProject','ProgrammerController@countStatusForProgrammerInProject'); //this function will receive request contain 'PrId' (Programmer id) and 'Pid' (Project id)
+Route::get('countStatusForProgrammer','ProgrammerController@countStatusForProgrammer'); //this function will receive request contain 'PrId' (Programmer id)
 
 
 Route::post('addTask','TaskController@store');

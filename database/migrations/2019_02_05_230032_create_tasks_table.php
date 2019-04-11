@@ -42,10 +42,10 @@ class CreateTasksTable extends Migration
             $table->integer('actualTTech')->nullable();
 
             //------------------------------------------------------------------
-            $table->integer('tStrDeviation')->nullable();
-            $table->integer('tJudDeviation')->nullable();
-            $table->integer('tCuDeviation')->nullable();
-            $table->integer('tTechDeviation')->nullable();
+            $table->double('tStrDeviation')->nullable();
+            $table->double('tJudDeviation')->nullable();
+            $table->double('tCuDeviation')->nullable();
+            $table->double('tTechDeviation')->nullable();
 
             $table->rememberToken();
 

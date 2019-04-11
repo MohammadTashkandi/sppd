@@ -217,20 +217,19 @@ class ProjectController extends Controller
         $avgReOpen = $tasks3->avg('reOpenDuration');
 
         $result = array(
-            0 => $maxAssigned,
-            1 => $minAssigned,
-            2 => $avgAssigned,
-            3 => $maxProgress,
-            4 => $minProgress,
-            5 => $avgProgress,
-            6 => $maxResolvedD,
-            7 => $minResolvedD,
-            8 => $avgResolvedD,
-            9 => $maxReOpen,
-            10 => $minReOpen,
-            11 => $avgReOpen
+            0 => floor($maxAssigned/60) + (($maxAssigned % 60)/100),
+            1 => floor($minAssigned/60) + (( $minAssigned% 60)/100),
+            2 => floor($avgAssigned/60) + (($avgAssigned % 60)/100),
+            3 => floor($maxProgress/60) + (( $maxProgress% 60)/100),
+            4 => floor($minProgress/60) + (($minProgress % 60)/100),
+            5 => floor($avgProgress/60) + (( $avgProgress% 60)/100),
+            6 => floor($maxResolvedD/60)+ (($maxResolvedD % 60)/100),
+            7 => floor($minResolvedD/60)+ (($minResolvedD % 60)/100),
+            8 => floor($avgResolvedD/60)+ (( $avgResolvedD% 60)/100),
+            9 => floor($maxReOpen/60) + (($maxReOpen % 60)/100) ,
+            10 => floor($minReOpen/60)+ (($minReOpen% 60)/100),
+            11 => floor($avgReOpen/60) + (($avgReOpen% 60)/100)
         );
-
 
         return response()->json($result, 200);
 
@@ -285,5 +284,115 @@ class ProjectController extends Controller
 
 
     }
+
+
+    public function getFailedTasksForProject(Request $request){
+
+        $p = Project::where('id', $request['Pid'])->first();
+
+        if($p = null){
+            return response()->json('Error Project not found', 404);
+        }
+
+        $tasks = Task::where('Pid', $p->id)->get();
+
+        $failedTasks = $p->failedTasks ;
+
+        $allTasks = $p->count($tasks);
+
+        $completedTasks = $allTasks - $failedTasks ;
+
+        $array = array(
+            0 => $failedTasks ,
+            1 => $completedTasks
+        );
+
+        return response()->json($array, 200);
+
+    }
+
+
+    public function getProgress(Request $request)
+    {
+        $project = Project::where('id' , $request['Pid'])->first();
+
+        if ($project == null) {
+            return response()->json('Error Project not found', 404);
+        }
+
+
+        // Calculate Progress for project by days
+        $startDate = Carbon::parse($project->Start_Date) ;
+        $plannedEndDate = Carbon::parse($project->Planned_Closed_Date);
+
+        $diffDays = $startDate->diffInDays($plannedEndDate);
+
+        $now =$startDate->diffInDays( Carbon::now());
+
+        $daysProgress = ($now * (1/$diffDays)) *100 ;
+
+        $daysProgress = number_format((float)$daysProgress, 2, '.', '');
+    //---------------------------------------------------------------------------------------------
+        // Calculate Progress using Tasks progress
+
+        $tasks = Task::where('Pid' , $project->id)->get();
+        $num = count($tasks);
+
+        $progress = count($tasks->where('status', 'Progress')->all());
+        $resolved = count($tasks->where('status', 'Resolved')->all());
+        $closed = count($tasks->where('status', 'Closed')->all());
+
+        $progress = $progress * 0.25;
+        $resolved = $resolved * 0.75;
+
+        $tasksProgress = (($progress + $resolved + $closed) * (1/$num)) * 100;
+        $tasksProgress = number_format((float)$tasksProgress, 2, '.', '');
+
+        $array = array(
+            0 => $daysProgress ,
+            1 => $tasksProgress
+        );
+
+        return response()->json($array, 200);
+
+
+    }
+
+
+    public function countStatusForProject(Request $request)
+    {
+
+        $project = Project::where('id' , $request['Pid'])->first();
+
+        if($project == null){
+            return response()->json('Error Project not found', 404);
+        }
+
+        $tasks = Task::where('Pid' , $project->id)->get();
+
+        $assigned = count($tasks->where('status', 'New-assigned')->all());
+        $progress = count($tasks->where('status', 'Progress')->all());
+        $resolved = count($tasks->where('status', 'Resolved')->all());
+        $closed = count($tasks->where('status', 'Closed')->all());
+        $reOpened = count($tasks->where('status', 'Re-Opened')->all());
+
+
+
+        $array = array(
+            0 => $assigned ,
+            1 => $progress ,
+            2 => $resolved ,
+            3 => $closed ,
+            4 => $reOpened
+        );
+
+        return response()->json($array, 200);
+
+
+    }
+
+
+
+
 
 }
