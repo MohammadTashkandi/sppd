@@ -305,7 +305,7 @@ class ProjectController extends Controller
 
         $p = Project::where('id', $request['Pid'])->first();
 
-        if($p = null){
+        if($p == null){
             return response()->json('Error Project not found', 404);
         }
 
