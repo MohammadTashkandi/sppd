@@ -495,7 +495,7 @@ class ProgrammerController extends Controller
 
     public function getSkillGap(Request $request)
     {
-        $programmer = Programmer::where($request['PrId'])->fisrt();
+        $programmer = Programmer::where($request['PrId'])->first();
 
         if ($programmer == null) {
             return response()->json('Error Programmer not found', 404);

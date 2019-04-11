@@ -76428,7 +76428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -107550,7 +107550,9 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       name: "",
       email: "",
-      number: ""
+      number: "",
+      barData: {},
+      graphData: {}
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadProgrammerInfo", function () {
@@ -107586,6 +107588,33 @@ function (_React$Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getTaskNumbers", function () {
+      axios.get('api/countStatusForProgrammer', {
+        params: {
+          /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+          PrId: localStorage.getItem('Pid')
+        }
+      }).then(function (res) {
+        //New-assigned - Progress - Resolved - Closed - Re-Opened
+        _this.setState({
+          graphData: {
+            //the data here should also be dynamic depending on what the PM wants to see
+            labels: ['New-Assigned', 'Progress', 'Resolved', 'Closed', 'Re-Opened'],
+            datasets: [//here you mostly fill the data of the graph
+            {
+              // this is an object that you fill in each point in the graph
+              label: '',
+              data: [res.data[0], res.data[1], res.data[2], res.data[3], res.data[4]],
+              backgroundColor: '#00b8b8',
+              borderColor: 'orange'
+            }]
+          }
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
     return _this;
   }
 
@@ -107593,6 +107622,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.loadProgrammerInfo();
+      this.getTaskNumbers();
     }
   }, {
     key: "render",
@@ -107717,27 +107747,38 @@ function (_React$Component) {
           }
         }), _this2.state.number)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
-          height: "260",
-          width: "700" //everything here can be dynamic depending on results 
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Bar"], {
+          height: "270",
+          width: "665" //everything here can be dynamic depending on results 
           ,
-          data: _this2.state.pieData //this should alawys be dynamic
+          data: _this2.state.graphData //this should alawys be dynamic   
           ,
           options: {
             maintainAspectRatio: false,
             title: {
               display: true,
-              text: 'Task Severity',
+              text: 'Task Status Count',
               //this should also be dynamic
-              fontSize: 25
+              fontSize: 25,
+              fontFamily: '"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
             },
             legend: {
               //this should also be dynamic
-              display: true,
-              position: 'right',
-              labels: {
-                fontColor: '#333'
-              }
+              display: false
+            },
+            scales: {
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number Of Tasks Of Status'
+                }
+              }],
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Status Type'
+                }
+              }]
             }
           }
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -107896,6 +107937,19 @@ function (_React$Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getProductivity", function () {
+      axios.get('api/getSkillGap', {
+        params: {
+          /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+          PrId: _this.props.match.params.id
+        }
+      }).then(function (res) {
+        console.log(res.data);
+      }).catch(function (err) {
+        console.log(err.response.data[0]);
+      });
+    });
+
     return _this;
   }
 
@@ -107903,6 +107957,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.loadProgrammerInfo();
+      this.getProductivity();
     }
   }, {
     key: "render",
@@ -108668,7 +108723,7 @@ function (_React$Component) {
           width: "528",
           height: "378",
           viewBox: "0 0 846 605"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("title", null, "pie graph"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("rect", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("title", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("rect", {
           y: "22",
           width: "822",
           height: "470",
@@ -111128,8 +111183,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

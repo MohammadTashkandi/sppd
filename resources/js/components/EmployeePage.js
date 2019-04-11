@@ -28,6 +28,7 @@ export default class EmployeePage extends React.Component {
 
     componentDidMount(){
         this.loadProgrammerInfo();
+        this.getProductivity();
     }
 
     loadProgrammerInfo = () =>{
@@ -56,6 +57,20 @@ export default class EmployeePage extends React.Component {
                     }
                 })
             }
+        })
+        .catch((err) => {
+            console.log(err.response.data[0])
+        })
+    }
+
+    getProductivity = () =>{
+        axios.get('api/getSkillGap', {
+            params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+                PrId: this.props.match.params.id,
+            }
+        })
+        .then((res) => {
+            console.log(res.data)
         })
         .catch((err) => {
             console.log(err.response.data[0])

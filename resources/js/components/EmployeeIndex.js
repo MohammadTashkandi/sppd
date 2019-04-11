@@ -1,16 +1,19 @@
 import React from 'react';
 import {Spring} from 'react-spring/renderprops';
-import {Radar,Pie} from 'react-chartjs-2';
+import {Radar,Bar} from 'react-chartjs-2';
 
 export default class EmployeeIndex extends React.Component {    
     state = {
         name: "",
         email: "",
         number: "",
+        barData:{},
+        graphData:{}
     }
 
     componentDidMount(){
         this.loadProgrammerInfo();
+        this.getTaskNumbers();
     }
 
     loadProgrammerInfo = () =>{
@@ -42,6 +45,33 @@ export default class EmployeeIndex extends React.Component {
         })
         .catch((err) => {
             console.log(err.response.data[0])
+        })
+    }
+
+    getTaskNumbers = () =>{
+        axios.get('api/countStatusForProgrammer', {
+            params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+                PrId: localStorage.getItem('Pid')
+            }
+        })
+        .then((res) => {
+        //New-assigned - Progress - Resolved - Closed - Re-Opened
+        this.setState({
+            graphData:{ //the data here should also be dynamic depending on what the PM wants to see
+                    labels: ['New-Assigned', 'Progress', 'Resolved', 'Closed','Re-Opened'],
+                    datasets:[ //here you mostly fill the data of the graph
+                        {// this is an object that you fill in each point in the graph
+                            label:'',
+                            data:[res.data[0],res.data[1],res.data[2],res.data[3],res.data[4]],
+                            backgroundColor:'#00b8b8',
+                            borderColor: 'orange',
+                        },//these objects will be rendered for every label mentioned in the above array "labels"
+                    ]
+                }
+            })
+        })
+        .catch((err) => {
+            console.log(err)
         })
     }
 
@@ -115,24 +145,36 @@ export default class EmployeeIndex extends React.Component {
                                     </div>
                                 </div>
                                 <div className="grid-item">
-                                <Pie height='260' width='700'//everything here can be dynamic depending on results 
-                                        data={this.state.pieData} //this should alawys be dynamic
+                                <Bar height = '270' width = '665'  //everything here can be dynamic depending on results 
+                                        data={this.state.graphData} //this should alawys be dynamic   
                                         options={{
                                             maintainAspectRatio: false,
                                             title:{ 
                                                 display:true,
-                                                text:'Task Severity', //this should also be dynamic
-                                                fontSize:25
+                                                text:'Task Status Count', //this should also be dynamic
+                                                fontSize:25,
+                                                fontFamily: '"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
                                             },
                                             legend:{ //this should also be dynamic
-                                                display:true,
-                                                position:'right',
-                                                labels:{
-                                                    fontColor:'#333'
-                                                }
+                                                display:false,
                                             },
+                                            scales:{
+                                                yAxes:[{
+                                                    scaleLabel:{
+                                                        display: true,
+                                                        labelString: 'Number Of Tasks Of Status',
+                                                    }
+                                                }],
+                                                xAxes:[{
+                                                    scaleLabel:{
+                                                        display:true,
+                                                        labelString: 'Status Type',
+                                                    }
+                                                }]
+                                            }
                                             
-                                        }}
+
+                                            }}
                                         />
                                 </div> 
                                 <div className="grid-item-profile">
