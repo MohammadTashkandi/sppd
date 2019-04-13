@@ -106138,8 +106138,7 @@ function (_React$Component) {
           Pid: _this.props.match.params.projectId
         }
       }).then(function (res) {
-        console.log(res.data);
-
+        //failed then completed
         _this.setState({
           pieData: {
             //the data here should also be dynamic depending on what the PM wants to see
@@ -106149,7 +106148,7 @@ function (_React$Component) {
             {
               // this is an object that you fill in each point in the graph
               label: 'Number of Tasks',
-              data: [3, 12],
+              data: [res.data[1], res.data[0]],
               backgroundColor: ['green', 'red'],
               hoverBorderWidth: 2,
               hoverBorderColor: '#122738'
@@ -106169,7 +106168,6 @@ function (_React$Component) {
           _this.buttonRefAssign.current.style.display = "none";
           _this.buttonRefCreate.current.style.display = "none";
           _this.buttonRefClose.current.style.display = "none";
-          console.log("Success");
         }
       }).catch(function (err) {
         console.log(err);
@@ -106221,13 +106219,23 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "info-bar-btn",
         style: {
-          display: "none"
+          display: "none",
+          borderColor: "blue",
+          color: "blue"
         },
         ref: this.buttonRefCreate
       }, "Create task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "info-bar-btn",
         style: {
-          display: "none"
+          borderColor: "purple",
+          color: "purple"
+        }
+      }, "Generate Reports"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "info-bar-btn",
+        style: {
+          display: "none",
+          borderColor: "red",
+          color: "red"
         },
         onClick: this.closeProject,
         ref: this.buttonRefClose
@@ -106379,18 +106387,18 @@ function (_React$Component) {
             marginTop: "36rem"
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "red"
-        }, "Red:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "red"
-        }, "Off Schedule"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "green"
+        }, "Green:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "green"
+        }, "On  Schedule"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
             marginBottom: "0.8rem"
           }
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "green"
-        }, "Green:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "green"
-        }, "On  Schedule"))));
+          className: "red"
+        }, "Red:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "red"
+        }, "Off Schedule"))));
       }));
     }
   }]);
@@ -107887,21 +107895,9 @@ function (_React$Component) {
       name: "",
       email: "",
       number: "",
+      productivity: 0,
       barData: {},
-      pieData: {
-        //the data here should also be dynamic depending on what the PM wants to see
-        labels: ['Completed', 'Failed'],
-        //Bar names
-        datasets: [//here you mostly fill the data of the grap
-        {
-          // this is an object that you fill in each point in the graph
-          label: 'Number of Tasks',
-          data: [3, 12],
-          backgroundColor: ['green', 'red'],
-          hoverBorderWidth: 2,
-          hoverBorderColor: '#122738'
-        }]
-      }
+      pieData: {}
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadProgrammerInfo", function () {
@@ -107938,15 +107934,45 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getProductivity", function () {
-      axios.get('api/getSkillGap', {
+      axios.get('api/calculateProgrammerProductivity', {
         params: {
           /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
           PrId: _this.props.match.params.id
         }
       }).then(function (res) {
-        console.log(res.data);
+        _this.setState({
+          productivity: res.data
+        });
       }).catch(function (err) {
         console.log(err.response.data[0]);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getFailedTasks", function () {
+      axios.get('api/getFailedTasksForProgrammer', {
+        params: {
+          PrId: _this.props.match.params.id
+        }
+      }).then(function (res) {
+        //failed then completed
+        _this.setState({
+          pieData: {
+            //the data here should also be dynamic depending on what the PM wants to see
+            labels: ['Completed', 'Failed'],
+            //Bar names
+            datasets: [//here you mostly fill the data of the grap
+            {
+              // this is an object that you fill in each point in the graph
+              label: 'Number of Tasks',
+              data: [res.data[1], res.data[0]],
+              backgroundColor: ['green', 'red'],
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }]
+          }
+        });
+      }).catch(function (err) {
+        console.log(err);
       });
     });
 
@@ -107958,6 +107984,7 @@ function (_React$Component) {
     value: function componentDidMount() {
       this.loadProgrammerInfo();
       this.getProductivity();
+      this.getFailedTasks();
     }
   }, {
     key: "render",
@@ -108092,7 +108119,7 @@ function (_React$Component) {
             maintainAspectRatio: false,
             title: {
               display: true,
-              text: 'Task Severity',
+              text: 'Completed Tasks Vs Failed Tasks',
               //this should also be dynamic
               fontSize: 25
             },
@@ -108138,7 +108165,11 @@ function (_React$Component) {
           style: {
             marginBottom: "0.8rem"
           }
-        }, " "), " 1.3 Tasks everyday"))));
+        }, " "), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            color: "blue"
+          }
+        }, _this2.state.productivity, " Tasks everyday")))));
       }));
     }
   }]);
@@ -109703,7 +109734,14 @@ function (_React$Component) {
           Pid: _this.props.projectId
         }
       }).then(function (res) {
-        if (res.data[1] >= res.data[0]) {
+        var planned = parseFloat(res.data[0]);
+        var actual = parseFloat(res.data[1]);
+        console.log(planned);
+        console.log(actual);
+        console.log(actual > planned);
+
+        if (actual >= planned) {
+          console.log("green");
           _this.barRef.current.style.backgroundColor = 'rgb(23, 197, 61)';
         } else {
           _this.barRef.current.style.backgroundColor = 'rgb(204, 7, 7)';
