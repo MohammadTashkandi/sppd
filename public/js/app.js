@@ -76428,7 +76428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -107316,13 +107316,13 @@ function (_React$Component) {
       }).then(function (res) {
         _this.setState({
           pieData2: {
-            labels: ['Feature', 'Trivial', 'Text', 'Tweak', 'Minor', 'Major', 'Crash', 'Block'],
+            labels: ['Text', 'Trivial', 'Tweak', 'Minor', 'Feature', 'Major', 'Crash', 'Block'],
             //Bar names
             datasets: [{
               // this is an object that you fill in each point in the graph
               label: 'Number of Total Tasks',
-              data: [res.data[0], res.data[1], res.data[2], res.data[3], res.data[4], res.data[5], res.data[6], res.data[7]],
-              backgroundColor: 'purple',
+              data: [res.data[2], res.data[1], res.data[3], res.data[4], res.data[0], res.data[5], res.data[6], res.data[7]],
+              backgroundColor: ['#31bb05', '#a9e200', '#fbe022', '#ffce7a', '#fcb064', '#fd8854', '#fb5d4a', '#f8284a'],
               hoverBorderWidth: 2,
               hoverBorderColor: '#122738'
             }]
@@ -107350,7 +107350,7 @@ function (_React$Component) {
               // this is an object that you fill in each point in the graph
               label: 'Number of Tasks',
               data: [res.data[1], res.data[0]],
-              backgroundColor: ['green', 'red'],
+              backgroundColor: ['#003f5c', '#ffa600'],
               hoverBorderWidth: 2,
               hoverBorderColor: '#122738'
             }]
@@ -111395,8 +111395,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
