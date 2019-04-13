@@ -310,9 +310,7 @@ a#visit-page:hover{
 }
 
 .form {
-  margin-top: -11rem;
-  margin-left: 85rem;
-  margin-right: 10rem;
+  flex: 0 0 50rem;
   text-align:center;
   background-color: #0d3a58;
   border-radius: 20px;
@@ -672,6 +670,8 @@ a#visit-page:hover{
   margin-top: 1rem;
   text-align: center;
 }
+
+
 .form-task-prog {
   margin-left: 48rem;
   margin-right: 18rem;
@@ -998,40 +998,27 @@ b{
   margin-left: 51rem;
 }
 
-.login-desc {
-  position: absolute;
-  margin-left: 0.9rem;
-  margin-top: 11rem;
-  font-style: italic;
-  font-weight: 700;
-  font-size: 1.8rem;
+.login-flex {
+  display: flex;
+  justify-content: space-between;
+  margin: 10rem 4rem 0 2rem;
 }
 
-.login-desc-2{
-  position: absolute;
-  margin-left: 4.5rem;
-  margin-top: 17rem;
+.login-container {
+  flex: 0 0 83rem;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
   font-style: italic;
-  font-weight: 100;
-  font-size: 1.4rem;
-
 }
 
-.login-desc-3 {
-  position: absolute;
-  margin-left: 18.5rem;
-  margin-top: 19.5rem;
-  font-style: italic;
-  font-weight: 100;
-  font-size: 1.4rem;
+.login-header {
+  font-size: 3rem;
+  font-weight: bolder;
+  color: #2c87c4;
 }
 
 .line {
-  padding: 31rem;
   border-top: 2px solid #ffc600;
-  position: absolute;
-  margin-left: 8rem;
-  margin-top: 4rem;
 }
 
 .form-reg {

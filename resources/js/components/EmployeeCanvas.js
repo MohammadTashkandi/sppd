@@ -104,12 +104,12 @@ export default class EmployeeCanvas extends React.Component {
         .then((res)=>{
             this.setState({
                 pieData2:{
-                    labels: ['Feature', 'Trivial', 'Text', 'Tweak','Minor','Major','Crash','Block'], //Bar names
+                    labels: ['Text', 'Trivial', 'Tweak', 'Minor','Feature','Major','Crash','Block'], //Bar names
                     datasets:[
                         {// this is an object that you fill in each point in the graph
                             label:'Number of Total Tasks',
-                            data:[res.data[0],res.data[1],res.data[2],res.data[3],res.data[4],res.data[5],res.data[6],res.data[7]],
-                            backgroundColor:'purple',
+                            data:[res.data[2],res.data[1],res.data[3],res.data[4],res.data[0],res.data[5],res.data[6],res.data[7]],
+                            backgroundColor: ['#31bb05', '#a9e200', '#fbe022', '#ffce7a', '#fcb064', '#fd8854', '#fb5d4a', '#f8284a'],
                             hoverBorderWidth: 2,
                             hoverBorderColor: '#122738',
                         },//these objects will be rendered for every label mentioned in the above array "labels"
@@ -138,8 +138,8 @@ export default class EmployeeCanvas extends React.Component {
                             label:'Number of Tasks',
                             data:[res.data[1],res.data[0]],
                             backgroundColor: [
-                                'green',
-                                'red',
+                                '#003f5c',
+                                '#ffa600',
                             ],
                             hoverBorderWidth: 2,
                             hoverBorderColor: '#122738',

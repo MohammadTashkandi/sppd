@@ -63,31 +63,34 @@ export default class Login extends React.Component {
         }
         return(
             <React.Fragment>
-                <div style={{marginTop:"20rem"}}></div>
-                <img src={logo} style={{width:'170px', height:'110px', marginTop:'-12.5rem', position:"absolute", marginLeft:'29.75rem'}} />
-                    <h3 style={{color:'#2c87c4', fontFamily:'"Poppins", sans-serif', fontStyle:'italic', marginLeft: '8rem', fontSize: '3rem', fontWeight: 'bolder'}}>Software Project Performance Dashboard</h3>
-                    <hr className="line"></hr>
-                    <div className="login-desc">"A web-based service aimed at tracking and monitoring a software enigneer's performance"</div>
-                    <div className="login-desc-2">As a <b>software Project Manager</b>, you can use our dashboard to <b>create projects</b>, <b>assign tasks</b> to your engineers</div>
-                    <div className="login-desc-3">and <b>monitor their performance</b>in a given project or task!</div>
-                <div className="form">
-                <h3 style={{color:'#ffc600', fontFamily:'"Poppins", sans-serif', paddingTop:'2rem', marginBottom: '4rem'}}>Login</h3>
-                    <form onSubmit={this.onSubmit}>
-                        <div className="form-group">
-                            <label style={{color:'#ffc600' , textAlign:'left'}}>Email
-                                <div style={{padding: '0.5rem'}}></div> {/* just to move stuff apart */}
-                                <input className="form-control" id="form-control" type="text" name="username" placeholder="Enter username" onChange={this.onChange} required />
-                            </label>
-                        </div>
-                        <div className="form-group">    
-                            <label style={{color:'#ffc600' , textAlign:'left'}}>Password
-                                <div style={{padding: '0.5rem'}}></div> {/* just to move stuff apart */}
-                                <input className="form-control" id="form-control" type="password" name="password" placeholder="Enter password" onChange={this.onChange} required />
-                            </label>
-                        </div>
-                            <button className="login-btn" type="submit">Login</button>
-                    </form>
-                    <NavLink to={"/register"}><button className="login-btn" style={{marginBottom:'2rem'}}>Make a new Account!</button></NavLink>
+                <div className="login-flex">
+                    <div className="login-container">
+                        <img src={logo} style={{width:'170px', height:'110px'}} />
+                        <h3 className="login-header">Software Project Performance Dashboard</h3>
+                        <hr className="line"></hr>
+                        <div style={{fontSize: '2rem'}}>"A web-based service aimed at tracking and monitoring a software enigneer's performance"</div>
+                        <div style={{marginTop: '3rem'}}>As a <b>software Project Manager</b>, you can use our dashboard to <b>create projects</b>, <b>assign tasks</b> to your engineers and <b>monitor their performance</b>in a given project or task!</div>
+                    </div>
+
+                    <div className="form">
+                    <h3 style={{color:'#ffc600', fontFamily:'"Poppins", sans-serif', paddingTop:'2rem', marginBottom: '4rem'}}>Login</h3>
+                        <form onSubmit={this.onSubmit}>
+                            <div className="form-group">
+                                <label style={{color:'#ffc600' , textAlign:'left'}}>Email
+                                    <div style={{padding: '0.5rem'}}></div> {/* just to move stuff apart */}
+                                    <input className="form-control" id="form-control" type="text" name="username" placeholder="Enter username" onChange={this.onChange} required />
+                                </label>
+                            </div>
+                            <div className="form-group">    
+                                <label style={{color:'#ffc600' , textAlign:'left'}}>Password
+                                    <div style={{padding: '0.5rem'}}></div> {/* just to move stuff apart */}
+                                    <input className="form-control" id="form-control" type="password" name="password" placeholder="Enter password" onChange={this.onChange} required />
+                                </label>
+                            </div>
+                                <button className="login-btn" type="submit">Login</button>
+                        </form>
+                        <NavLink to={"/register"}><button className="login-btn" style={{marginBottom:'2rem'}}>Make a new Account!</button></NavLink>
+                    </div>
                 </div>
             </React.Fragment>
         );

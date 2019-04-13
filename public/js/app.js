@@ -106149,7 +106149,7 @@ function (_React$Component) {
               // this is an object that you fill in each point in the graph
               label: 'Number of Tasks',
               data: [res.data[1], res.data[0]],
-              backgroundColor: ['green', 'red'],
+              backgroundColor: ['#003f5c', '#ffa600'],
               hoverBorderWidth: 2,
               hoverBorderColor: '#122738'
             }]
@@ -107316,13 +107316,13 @@ function (_React$Component) {
       }).then(function (res) {
         _this.setState({
           pieData2: {
-            labels: ['Feature', 'Trivial', 'Text', 'Tweak', 'Minor', 'Major', 'Crash', 'Block'],
+            labels: ['Text', 'Trivial', 'Tweak', 'Minor', 'Feature', 'Major', 'Crash', 'Block'],
             //Bar names
             datasets: [{
               // this is an object that you fill in each point in the graph
               label: 'Number of Total Tasks',
-              data: [res.data[0], res.data[1], res.data[2], res.data[3], res.data[4], res.data[5], res.data[6], res.data[7]],
-              backgroundColor: 'purple',
+              data: [res.data[2], res.data[1], res.data[3], res.data[4], res.data[0], res.data[5], res.data[6], res.data[7]],
+              backgroundColor: ['#31bb05', '#a9e200', '#fbe022', '#ffce7a', '#fcb064', '#fd8854', '#fb5d4a', '#f8284a'],
               hoverBorderWidth: 2,
               hoverBorderColor: '#122738'
             }]
@@ -107350,7 +107350,7 @@ function (_React$Component) {
               // this is an object that you fill in each point in the graph
               label: 'Number of Tasks',
               data: [res.data[1], res.data[0]],
-              backgroundColor: ['green', 'red'],
+              backgroundColor: ['#003f5c', '#ffa600'],
               hoverBorderWidth: 2,
               hoverBorderColor: '#122738'
             }]
@@ -107709,34 +107709,41 @@ function (_React$Component) {
           PrId: localStorage.getItem('Pid')
         }
       }).then(function (res) {
-        console.log(res.data);
-        /* this.setState({
-            labels: ['Stress', 'Judgement', 'Communication', 'Techincal'], //Bar names
-                datasets:[ //here you mostly fill the data of the grap
-                    {// this is an object that you fill in each point in the graph
-                        label:'Min',
-                        data:[2,4,5,7],
-                        backgroundColor:'rgb(44, 135, 196)',
-                        hoverBorderWidth: 2,
-                        hoverBorderColor: '#122738',
-                        fontSize: 4
-                    },//these objects will be rendered for every label mentioned in the above array "labels"
-                    {
-                        label:'Average',
-                        data:[4,5,6,5],
-                        backgroundColor:'#ffc600',
-                        hoverBorderWidth: 2,
-                        hoverBorderColor: '#122738',
-                    },//if you want more than 1 bar for a label, then add more object with the desired aspects!
-                    {
-                        label:'Max',
-                        data:[7,6,6,5],
-                        backgroundColor:'red',
-                        hoverBorderWidth: 2,
-                        hoverBorderColor: '#122738'
-                    }
-                ]
-        }) */
+        var num4 = parseFloat(res.data[4]);
+        var num5 = parseFloat(res.data[5]);
+        var num6 = parseFloat(res.data[6]);
+        var num7 = parseFloat(res.data[7]);
+
+        _this.setState({
+          skillGapData: {
+            labels: ['Stress', 'Judgement', 'Communication', 'Techincal'],
+            //Bar names
+            datasets: [//here you mostly fill the data of the grap
+            {
+              // this is an object that you fill in each point in the graph
+              label: 'Min',
+              data: [res.data[0], res.data[1], res.data[2], res.data[3]],
+              backgroundColor: 'rgb(44, 135, 196)',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738',
+              fontSize: 4
+            }, //these objects will be rendered for every label mentioned in the above array "labels"
+            {
+              label: 'Average',
+              data: [num4, num5, num6, num7],
+              backgroundColor: '#ffc600',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }, //if you want more than 1 bar for a label, then add more object with the desired aspects!
+            {
+              label: 'Max',
+              data: [res.data[8], res.data[9], res.data[10], res.data[11]],
+              backgroundColor: 'red',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }]
+          }
+        });
       }).catch(function (err) {
         console.log(err);
       });
@@ -107759,7 +107766,7 @@ function (_React$Component) {
               // this is an object that you fill in each point in the graph
               label: 'Number of Tasks',
               data: [res.data[1], res.data[0]],
-              backgroundColor: ['green', 'red'],
+              backgroundColor: ['#003f5c', '#ffa600'],
               hoverBorderWidth: 2,
               hoverBorderColor: '#122738'
             }]
@@ -107884,20 +107891,23 @@ function (_React$Component) {
               yAxes: [{
                 scaleLabel: {
                   display: true,
-                  labelString: 'Gap Number'
+                  labelString: 'Gap Number',
+                  fontSize: 15
                 },
                 ticks: {
-                  beginAtZero: true,
-                  fontSize: 12.5
+                  fontSize: 15,
+                  min: -1,
+                  max: 1
                 }
               }],
               xAxes: [{
                 ticks: {
-                  fontSize: 12.5
+                  fontSize: 11.5
                 },
                 scaleLabel: {
                   display: true,
-                  labelString: 'Skill Type'
+                  labelString: 'Skill Type',
+                  fontSize: 15
                 }
               }]
             }
@@ -107956,7 +107966,7 @@ function (_React$Component) {
               display: true,
               text: 'Completed Vs Failed Tasks',
               //this should also be dynamic
-              fontSize: 20
+              fontSize: 18
             },
             legend: {
               //this should also be dynamic
@@ -107994,7 +108004,8 @@ function (_React$Component) {
           id: "profile"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
           style: {
-            fontStyle: "normal"
+            fontStyle: "normal",
+            color: '#003f5c'
           }
         }, "This Programmer Finishes:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
@@ -108016,7 +108027,8 @@ function (_React$Component) {
           id: "profile"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
           style: {
-            fontStyle: "normal"
+            fontStyle: "normal",
+            color: '#003f5c'
           }
         }, "Name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
@@ -108027,7 +108039,8 @@ function (_React$Component) {
           id: "profile"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
           style: {
-            fontStyle: "normal"
+            fontStyle: "normal",
+            color: '#003f5c'
           }
         }, "ID:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
@@ -108038,7 +108051,8 @@ function (_React$Component) {
           id: "profile"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
           style: {
-            fontStyle: "normal"
+            fontStyle: "normal",
+            color: '#003f5c'
           }
         }, "E-Mail:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
@@ -108049,7 +108063,8 @@ function (_React$Component) {
           id: "profile"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
           style: {
-            fontStyle: "normal"
+            fontStyle: "normal",
+            color: '#003f5c'
           }
         }, "Phone Number:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
@@ -108070,7 +108085,7 @@ function (_React$Component) {
               display: true,
               text: 'Programmer Performance Measures',
               //this should also be dynamic
-              fontSize: 20
+              fontSize: 14
             },
             scale: {
               ticks: {
@@ -108215,34 +108230,41 @@ function (_React$Component) {
           PrId: _this.props.match.params.id
         }
       }).then(function (res) {
-        console.log(res.data);
-        /* this.setState({
-            labels: ['Stress', 'Judgement', 'Communication', 'Techincal'], //Bar names
-                datasets:[ //here you mostly fill the data of the grap
-                    {// this is an object that you fill in each point in the graph
-                        label:'Min',
-                        data:[2,4,5,7],
-                        backgroundColor:'rgb(44, 135, 196)',
-                        hoverBorderWidth: 2,
-                        hoverBorderColor: '#122738',
-                        fontSize: 4
-                    },//these objects will be rendered for every label mentioned in the above array "labels"
-                    {
-                        label:'Average',
-                        data:[4,5,6,5],
-                        backgroundColor:'#ffc600',
-                        hoverBorderWidth: 2,
-                        hoverBorderColor: '#122738',
-                    },//if you want more than 1 bar for a label, then add more object with the desired aspects!
-                    {
-                        label:'Max',
-                        data:[7,6,6,5],
-                        backgroundColor:'red',
-                        hoverBorderWidth: 2,
-                        hoverBorderColor: '#122738'
-                    }
-                ]
-        }) */
+        var num4 = parseFloat(res.data[4]);
+        var num5 = parseFloat(res.data[5]);
+        var num6 = parseFloat(res.data[6]);
+        var num7 = parseFloat(res.data[7]);
+
+        _this.setState({
+          skillGapData: {
+            labels: ['Stress', 'Judgement', 'Communication', 'Techincal'],
+            //Bar names
+            datasets: [//here you mostly fill the data of the grap
+            {
+              // this is an object that you fill in each point in the graph
+              label: 'Min',
+              data: [res.data[0], res.data[1], res.data[2], res.data[3]],
+              backgroundColor: 'rgb(44, 135, 196)',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738',
+              fontSize: 4
+            }, //these objects will be rendered for every label mentioned in the above array "labels"
+            {
+              label: 'Average',
+              data: [num4, num5, num6, num7],
+              backgroundColor: '#ffc600',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }, //if you want more than 1 bar for a label, then add more object with the desired aspects!
+            {
+              label: 'Max',
+              data: [res.data[8], res.data[9], res.data[10], res.data[11]],
+              backgroundColor: 'red',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }]
+          }
+        });
       }).catch(function (err) {
         console.log(err);
       });
@@ -108265,7 +108287,7 @@ function (_React$Component) {
               // this is an object that you fill in each point in the graph
               label: 'Number of Tasks',
               data: [res.data[1], res.data[0]],
-              backgroundColor: ['green', 'red'],
+              backgroundColor: ['#003f5c', '#ffa600'],
               hoverBorderWidth: 2,
               hoverBorderColor: '#122738'
             }]
@@ -108390,20 +108412,23 @@ function (_React$Component) {
               yAxes: [{
                 scaleLabel: {
                   display: true,
-                  labelString: 'Gap Number'
+                  labelString: 'Gap Number',
+                  fontSize: 15
                 },
                 ticks: {
-                  beginAtZero: true,
-                  fontSize: 12.5
+                  fontSize: 15,
+                  min: -1,
+                  max: 1
                 }
               }],
               xAxes: [{
                 ticks: {
-                  fontSize: 12.5
+                  fontSize: 11.5
                 },
                 scaleLabel: {
                   display: true,
-                  labelString: 'Skill Type'
+                  labelString: 'Skill Type',
+                  fontSize: 15
                 }
               }]
             }
@@ -108576,7 +108601,7 @@ function (_React$Component) {
               display: true,
               text: 'Programmer Performance Measures',
               //this should also be dynamic
-              fontSize: 20
+              fontSize: 14
             },
             scale: {
               ticks: {
@@ -109965,36 +109990,28 @@ function (_React$Component) {
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          marginTop: "20rem"
-        }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "login-flex"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "login-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: _LOGO2_png__WEBPACK_IMPORTED_MODULE_2___default.a,
         style: {
           width: '170px',
-          height: '110px',
-          marginTop: '-12.5rem',
-          position: "absolute",
-          marginLeft: '29.75rem'
+          height: '110px'
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        style: {
-          color: '#2c87c4',
-          fontFamily: '"Poppins", sans-serif',
-          fontStyle: 'italic',
-          marginLeft: '8rem',
-          fontSize: '3rem',
-          fontWeight: 'bolder'
-        }
+        className: "login-header"
       }, "Software Project Performance Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "line"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-desc"
+        style: {
+          fontSize: '2rem'
+        }
       }, "\"A web-based service aimed at tracking and monitoring a software enigneer's performance\""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-desc-2"
-      }, "As a ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "software Project Manager"), ", you can use our dashboard to ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "create projects"), ", ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "assign tasks"), " to your engineers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-desc-3"
-      }, "and ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "monitor their performance"), "in a given project or task!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          marginTop: '3rem'
+        }
+      }, "As a ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "software Project Manager"), ", you can use our dashboard to ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "create projects"), ", ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "assign tasks"), " to your engineers and ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "monitor their performance"), "in a given project or task!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         style: {
@@ -110053,7 +110070,7 @@ function (_React$Component) {
         style: {
           marginBottom: '2rem'
         }
-      }, "Make a new Account!"))));
+      }, "Make a new Account!")))));
     }
   }]);
 
