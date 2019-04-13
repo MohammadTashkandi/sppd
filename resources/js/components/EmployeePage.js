@@ -8,27 +8,15 @@ export default class EmployeePage extends React.Component {
         name:"",
         email: "",
         number: "",
+        productivity: 0,
         barData:{},
-        pieData:{ //the data here should also be dynamic depending on what the PM wants to see
-            labels: ['Completed', 'Failed'], //Bar names
-            datasets:[ //here you mostly fill the data of the grap
-                {// this is an object that you fill in each point in the graph
-                    label:'Number of Tasks',
-                    data:[3,12],
-                    backgroundColor: [
-                        'green',
-                        'red',
-                    ],
-                    hoverBorderWidth: 2,
-                    hoverBorderColor: '#122738',
-                },//these objects will be rendered for every label mentioned in the above array "labels"
-            ]
-        }
+        pieData:{}
     }
 
     componentDidMount(){
         this.loadProgrammerInfo();
         this.getProductivity();
+        this.getFailedTasks();
     }
 
     loadProgrammerInfo = () =>{
@@ -64,16 +52,49 @@ export default class EmployeePage extends React.Component {
     }
 
     getProductivity = () =>{
-        axios.get('api/getSkillGap', {
+        axios.get('api/calculateProgrammerProductivity', {
             params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
                 PrId: this.props.match.params.id,
             }
         })
         .then((res) => {
-            console.log(res.data)
+            this.setState({
+                productivity:res.data
+            })
         })
         .catch((err) => {
             console.log(err.response.data[0])
+        })
+    }
+
+    getFailedTasks = () =>{
+        axios.get('api/getFailedTasksForProgrammer',{
+            params:{
+                PrId: this.props.match.params.id
+            }
+        })
+        .then((res)=>{
+            //failed then completed
+            this.setState({
+                pieData:{ //the data here should also be dynamic depending on what the PM wants to see
+                    labels: ['Completed', 'Failed'], //Bar names
+                    datasets:[ //here you mostly fill the data of the grap
+                        {// this is an object that you fill in each point in the graph
+                            label:'Number of Tasks',
+                            data:[res.data[1],res.data[0]],
+                            backgroundColor: [
+                                'green',
+                                'red',
+                            ],
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738',
+                        },//these objects will be rendered for every label mentioned in the above array "labels"
+                    ]
+                }
+            })
+        })
+        .catch((err)=>{
+            console.log(err)
         })
     }
 
@@ -131,7 +152,7 @@ export default class EmployeePage extends React.Component {
                                             maintainAspectRatio: false,
                                             title:{ 
                                                 display:true,
-                                                text:'Task Severity', //this should also be dynamic
+                                                text:'Completed Tasks Vs Failed Tasks', //this should also be dynamic
                                                 fontSize:25
                                             },
                                             legend:{ //this should also be dynamic
@@ -157,7 +178,7 @@ export default class EmployeePage extends React.Component {
                                     <div className="profile-info" id="profile">
                                         <b style={{fontStyle:"normal"}}>This Programmer Finishes:</b>
                                         <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
-                                        </div> 1.3 Tasks everyday
+                                        </div> <div style={{color:"blue"}}>{this.state.productivity} Tasks everyday</div>
                                     </div>
                                 </div>
                                 <div className="grid-item">
