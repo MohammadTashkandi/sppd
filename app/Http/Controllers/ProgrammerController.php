@@ -523,6 +523,24 @@ class ProgrammerController extends Controller
         $minTCuDeviation = $tasks->where('tCuDeviation', '!=', null)->min('tCuDeviation');
         $minTTechDeviation = $tasks->where('tTechDeviation', '!=', null)->min('tTechDeviation');
 
+        if($minTStrDeviation == null){
+            $minTStrDeviation = 0 ;
+        }
+
+        if($minTJudDeviation == null) {
+            $minTJudDeviation =0 ;
+        }
+
+
+        if($minTCuDeviation == null) {
+            $minTCuDeviation =0 ;
+        }
+
+
+        if($minTTechDeviation == null) {
+            $minTTechDeviation = 0;
+        }
+
 
         $array = array(
             0 => $minTStrDeviation,
