@@ -109703,7 +109703,14 @@ function (_React$Component) {
           Pid: _this.props.projectId
         }
       }).then(function (res) {
-        if (res.data[1] >= res.data[0]) {
+        var planned = parseFloat(res.data[0]);
+        var actual = parseFloat(res.data[1]);
+        console.log(planned);
+        console.log(actual);
+        console.log(actual > planned);
+
+        if (actual >= planned) {
+          console.log("green");
           _this.barRef.current.style.backgroundColor = 'rgb(23, 197, 61)';
         } else {
           _this.barRef.current.style.backgroundColor = 'rgb(204, 7, 7)';
