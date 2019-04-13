@@ -458,7 +458,7 @@ class ProgrammerController extends Controller
 
 
         $failedTasks = Task::where('PrID', $programmer->id)->where('Pid', $project->id)->where('reOpen_state', '!=', null)->get();;
-        $completedTasks = Task::where('PrID', $programmer->id)->where('Pid', $project->id)->where('reOpen_state', null)->get();
+        $completedTasks = Task::where('PrID', $programmer->id)->where('Pid', $project->id)->where('status' , 'Closed')->where('actualTStr', '!=' , null)->where('reOpen_state', null)->get();
 
         $failedTasks = count($failedTasks);
         $completedTasks = count($completedTasks);
