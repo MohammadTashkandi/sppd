@@ -106316,9 +106316,9 @@ function (_React$Component) {
             maintainAspectRatio: false,
             title: {
               display: true,
-              text: 'Task Severity',
+              text: 'Completed Vs Failed Tasks',
               //this should also be dynamic
-              fontSize: 25
+              fontSize: 18
             },
             legend: {
               //this should also be dynamic
@@ -107469,7 +107469,8 @@ function (_React$Component) {
                   labelString: 'Number Of Tasks Of Status'
                 },
                 ticks: {
-                  beginAtZero: true
+                  beginAtZero: true,
+                  stepSize: 1
                 }
               }],
               xAxes: [{
@@ -107490,9 +107491,9 @@ function (_React$Component) {
             maintainAspectRatio: false,
             title: {
               display: true,
-              text: 'Task Severity',
+              text: 'Completed Vs Failed Tasks',
               //this should also be dynamic
-              fontSize: 25
+              fontSize: 18
             },
             legend: {
               //this should also be dynamic
@@ -107562,7 +107563,7 @@ function (_React$Component) {
               display: true,
               text: 'Task Severity Numbers',
               //this should also be dynamic
-              fontSize: 25
+              fontSize: 18
             },
             legend: {
               //this should also be dynamic
@@ -107646,7 +107647,10 @@ function (_React$Component) {
       name: "",
       email: "",
       number: "",
+      productivity: 0,
       barData: {},
+      pieData: {},
+      skillGapData: {},
       graphData: {}
     });
 
@@ -107680,6 +107684,89 @@ function (_React$Component) {
         }
       }).catch(function (err) {
         console.log(err.response.data[0]);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getProductivity", function () {
+      axios.get('api/calculateProgrammerProductivity', {
+        params: {
+          /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+          PrId: localStorage.getItem('Pid')
+        }
+      }).then(function (res) {
+        _this.setState({
+          productivity: res.data
+        });
+      }).catch(function (err) {
+        console.log(err.response.data[0]);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getSkillGap", function () {
+      axios.get('api/getSkillGap', {
+        params: {
+          /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+          PrId: localStorage.getItem('Pid')
+        }
+      }).then(function (res) {
+        console.log(res.data);
+        /* this.setState({
+            labels: ['Stress', 'Judgement', 'Communication', 'Techincal'], //Bar names
+                datasets:[ //here you mostly fill the data of the grap
+                    {// this is an object that you fill in each point in the graph
+                        label:'Min',
+                        data:[2,4,5,7],
+                        backgroundColor:'rgb(44, 135, 196)',
+                        hoverBorderWidth: 2,
+                        hoverBorderColor: '#122738',
+                        fontSize: 4
+                    },//these objects will be rendered for every label mentioned in the above array "labels"
+                    {
+                        label:'Average',
+                        data:[4,5,6,5],
+                        backgroundColor:'#ffc600',
+                        hoverBorderWidth: 2,
+                        hoverBorderColor: '#122738',
+                    },//if you want more than 1 bar for a label, then add more object with the desired aspects!
+                    {
+                        label:'Max',
+                        data:[7,6,6,5],
+                        backgroundColor:'red',
+                        hoverBorderWidth: 2,
+                        hoverBorderColor: '#122738'
+                    }
+                ]
+        }) */
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getFailedTasks", function () {
+      axios.get('api/getFailedTasksForProgrammer', {
+        params: {
+          PrId: localStorage.getItem('Pid')
+        }
+      }).then(function (res) {
+        //failed then completed
+        _this.setState({
+          pieData: {
+            //the data here should also be dynamic depending on what the PM wants to see
+            labels: ['Completed', 'Failed'],
+            //Bar names
+            datasets: [//here you mostly fill the data of the grap
+            {
+              // this is an object that you fill in each point in the graph
+              label: 'Number of Tasks',
+              data: [res.data[1], res.data[0]],
+              backgroundColor: ['green', 'red'],
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }]
+          }
+        });
+      }).catch(function (err) {
+        console.log(err);
       });
     });
 
@@ -107718,6 +107805,9 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.loadProgrammerInfo();
+      this.getProductivity();
+      this.getFailedTasks();
+      this.getSkillGap();
       this.getTaskNumbers();
     }
   }, {
@@ -107730,7 +107820,7 @@ function (_React$Component) {
         this.props.history.push('/');
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "canvas-background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-bar"
@@ -107738,7 +107828,7 @@ function (_React$Component) {
         className: "decorative-box"
       }, "i"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-bar-page"
-      }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, "Employee's Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-bar-text",
         style: {
           textTransform: "capitalize"
@@ -107763,86 +107853,57 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: props
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-container-2"
+          className: "employee-grid-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-item"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Radar"], {
+          className: "grid-item large-left"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Bar"], {
           height: "270",
           width: "665" //everything here can be dynamic depending on results 
           ,
-          data: _this2.state.barData //this should alawys be dynamic   
+          data: _this2.state.skillGapData //this should alawys be dynamic   
           ,
           options: {
-            legend: {
-              display: false
-            },
+            maintainAspectRatio: false,
             title: {
               display: true,
-              text: 'Programmer Performance Measures',
+              text: 'Skill Gap',
               //this should also be dynamic
-              fontSize: 25
+              fontSize: 20,
+              fontFamily: '"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
             },
-            scale: {
-              ticks: {
-                beginAtZero: true,
-                min: 0,
-                max: 5
+            legend: {
+              //this should also be dynamic
+              display: true,
+              position: 'right',
+              labels: {
+                fontColor: '#333',
+                fontSize: 11
               }
+            },
+            scales: {
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Gap Number'
+                },
+                ticks: {
+                  beginAtZero: true,
+                  fontSize: 12.5
+                }
+              }],
+              xAxes: [{
+                ticks: {
+                  fontSize: 12.5
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Skill Type'
+                }
+              }]
             }
           }
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-item-profile"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          id: "profile-2",
-          style: {
-            marginBottom: "1.5rem"
-          }
-        }, "Personal Information:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "profile-info",
-          id: "profile"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
-          style: {
-            fontStyle: "normal"
-          }
-        }, "Name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          style: {
-            marginBottom: "0.8rem"
-          }
-        }, " "), _this2.state.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "profile-info",
-          id: "profile"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
-          style: {
-            fontStyle: "normal"
-          }
-        }, "ID:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          style: {
-            marginBottom: "0.8rem"
-          }
-        }, " "), _this2.props.match.params.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "profile-info",
-          id: "profile"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
-          style: {
-            fontStyle: "normal"
-          }
-        }, "E-Mail:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          style: {
-            marginBottom: "0.8rem"
-          }
-        }, " "), _this2.state.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "profile-info",
-          id: "profile"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
-          style: {
-            fontStyle: "normal"
-          }
-        }, "Phone Number:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          style: {
-            marginBottom: "0.8rem"
-          }
-        }), _this2.state.number)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-item"
+          className: "grid-item large-right"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Bar"], {
           height: "270",
           width: "665" //everything here can be dynamic depending on results 
@@ -107869,7 +107930,8 @@ function (_React$Component) {
                   labelString: 'Number Of Tasks Of Status'
                 },
                 ticks: {
-                  beginAtZero: true
+                  beginAtZero: true,
+                  stepSize: 1
                 }
               }],
               xAxes: [{
@@ -107878,6 +107940,31 @@ function (_React$Component) {
                   labelString: 'Status Type'
                 }
               }]
+            }
+          }
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
+          height: "260",
+          width: "700" //everything here can be dynamic depending on results 
+          ,
+          data: _this2.state.pieData //this should alawys be dynamic
+          ,
+          options: {
+            maintainAspectRatio: false,
+            title: {
+              display: true,
+              text: 'Completed Vs Failed Tasks',
+              //this should also be dynamic
+              fontSize: 20
+            },
+            legend: {
+              //this should also be dynamic
+              display: true,
+              position: 'right',
+              labels: {
+                fontColor: '#333'
+              }
             }
           }
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -107913,8 +108000,88 @@ function (_React$Component) {
           style: {
             marginBottom: "0.8rem"
           }
-        }, " "), " 1.3 Tasks everyday"))));
-      })));
+        }, " "), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            color: "blue"
+          }
+        }, _this2.state.productivity, " Tasks everyday"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          id: "profile-2",
+          style: {
+            marginBottom: "1.5rem"
+          }
+        }, "Personal Information:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, "Name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }, " "), _this2.state.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, "ID:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }, " "), localStorage.getItem('Pid')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, "E-Mail:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }, " "), _this2.state.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, "Phone Number:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }), _this2.state.number)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Radar"] //everything here can be dynamic depending on results 
+        , {
+          data: _this2.state.barData //this should alawys be dynamic   
+          ,
+          options: {
+            maintainAspectRatio: false,
+            legend: {
+              display: false
+            },
+            title: {
+              display: true,
+              text: 'Programmer Performance Measures',
+              //this should also be dynamic
+              fontSize: 20
+            },
+            scale: {
+              ticks: {
+                beginAtZero: true,
+                min: 0,
+                max: 5
+              }
+            }
+          }
+        }))));
+      }));
     }
   }]);
 
@@ -107989,7 +108156,8 @@ function (_React$Component) {
       productivity: 0,
       barData: {},
       pieData: {},
-      skillGapData: {}
+      skillGapData: {},
+      graphData: {}
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadProgrammerInfo", function () {
@@ -108108,6 +108276,34 @@ function (_React$Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getTaskNumbers", function () {
+      axios.get('api/countStatusForProgrammer', {
+        params: {
+          /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+          PrId: _this.props.match.params.id
+        }
+      }).then(function (res) {
+        //New-assigned - Progress - Resolved - Closed - Re-Opened
+        _this.setState({
+          graphData: {
+            //the data here should also be dynamic depending on what the PM wants to see
+            labels: ['New-Assigned', 'Progress', 'Resolved', 'Closed', 'Re-Opened'],
+            datasets: [//here you mostly fill the data of the graph
+            {
+              // this is an object that you fill in each point in the graph
+              label: '',
+              data: [res.data[0], res.data[1], res.data[2], res.data[3], res.data[4], res.data[5], res.data[6], res.data[7]],
+              //change thisisishissis
+              backgroundColor: ['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600'],
+              borderColor: 'orange'
+            }]
+          }
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
     return _this;
   }
 
@@ -108118,6 +108314,7 @@ function (_React$Component) {
       this.getProductivity();
       this.getFailedTasks();
       this.getSkillGap();
+      this.getTaskNumbers();
     }
   }, {
     key: "render",
@@ -108213,7 +108410,45 @@ function (_React$Component) {
           }
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item large-right"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Bar"], {
+          height: "270",
+          width: "665" //everything here can be dynamic depending on results 
+          ,
+          data: _this2.state.graphData //this should alawys be dynamic   
+          ,
+          options: {
+            maintainAspectRatio: false,
+            title: {
+              display: true,
+              text: 'Task Status Count',
+              //this should also be dynamic
+              fontSize: 25,
+              fontFamily: '"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
+            },
+            legend: {
+              //this should also be dynamic
+              display: false
+            },
+            scales: {
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number Of Tasks Of Status'
+                },
+                ticks: {
+                  beginAtZero: true,
+                  stepSize: 1
+                }
+              }],
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Status Type'
+                }
+              }]
+            }
+          }
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
           height: "260",

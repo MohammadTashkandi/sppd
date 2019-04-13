@@ -223,6 +223,7 @@ export default class EmployeeCanvas extends React.Component {
                                                     },
                                                     ticks: {   
                                                         beginAtZero: true,
+                                                        stepSize: 1
                                                     },
                                                 }],
                                                 xAxes:[{
@@ -244,8 +245,8 @@ export default class EmployeeCanvas extends React.Component {
                                             maintainAspectRatio: false,
                                             title:{ 
                                                 display:true,
-                                                text:'Task Severity', //this should also be dynamic
-                                                fontSize:25
+                                                text:'Completed Vs Failed Tasks', //this should also be dynamic
+                                                fontSize:18
                                             },
                                             legend:{ //this should also be dynamic
                                                 display:true,
@@ -309,7 +310,7 @@ export default class EmployeeCanvas extends React.Component {
                                             title:{ 
                                                 display:true,
                                                 text:'Task Severity Numbers', //this should also be dynamic
-                                                fontSize:25
+                                                fontSize:18
                                             },
                                             legend:{ //this should also be dynamic
                                                 display:true,
