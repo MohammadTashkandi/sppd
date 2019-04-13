@@ -11,7 +11,8 @@ export default class EmployeePage extends React.Component {
         productivity: 0,
         barData:{},
         pieData:{},
-        skillGapData:{}
+        skillGapData:{},
+        graphData:{}
     }
 
     componentDidMount(){
@@ -19,6 +20,7 @@ export default class EmployeePage extends React.Component {
         this.getProductivity();
         this.getFailedTasks();
         this.getSkillGap();
+        this.getTaskNumbers();
     }
 
     loadProgrammerInfo = () =>{
@@ -141,6 +143,33 @@ export default class EmployeePage extends React.Component {
         })
     }
 
+    getTaskNumbers = () =>{
+        axios.get('api/countStatusForProgrammer', {
+            params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+                PrId: this.props.match.params.id
+            }
+        })
+        .then((res) => {
+        //New-assigned - Progress - Resolved - Closed - Re-Opened
+        this.setState({
+            graphData:{ //the data here should also be dynamic depending on what the PM wants to see
+                    labels: ['New-Assigned', 'Progress', 'Resolved', 'Closed','Re-Opened'],
+                    datasets:[ //here you mostly fill the data of the graph
+                        {// this is an object that you fill in each point in the graph
+                            label:'',
+                            data:[res.data[0],res.data[1],res.data[2],res.data[3],res.data[4],res.data[5],res.data[6],res.data[7]], //change thisisishissis
+                            backgroundColor: ['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600'],
+                            borderColor: 'orange',
+                        },//these objects will be rendered for every label mentioned in the above array "labels"
+                    ]
+                }
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
     render() {
         if(!this.props.loggedIn) {
             this.props.addNotification('Error', 'Please login first', 'danger');
@@ -208,7 +237,41 @@ export default class EmployeePage extends React.Component {
                                         />
                                     </div>
                                 <div className="grid-item large-right">
-                                    
+                                    <Bar height = '270' width = '665'  //everything here can be dynamic depending on results 
+                                        data={this.state.graphData} //this should alawys be dynamic   
+                                        options={{
+                                            maintainAspectRatio: false,
+                                            title:{ 
+                                                display:true,
+                                                text:'Task Status Count', //this should also be dynamic
+                                                fontSize:25,
+                                                fontFamily: '"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
+                                            },
+                                            legend:{ //this should also be dynamic
+                                                display:false,
+                                            },
+                                            scales:{
+                                                yAxes:[{
+                                                    scaleLabel:{
+                                                        display: true,
+                                                        labelString: 'Number Of Tasks Of Status',
+                                                    },
+                                                    ticks: {
+                                                        beginAtZero: true,
+                                                        stepSize: 1
+                                                    }
+                                                }],
+                                                xAxes:[{
+                                                    scaleLabel:{
+                                                        display:true,
+                                                        labelString: 'Status Type',
+                                                    }
+                                                }]
+                                            }
+                                            
+
+                                            }}
+                                        />
                                 </div>
                                 <div className="grid-item">
                                 <Pie height='260' width='700'//everything here can be dynamic depending on results 

@@ -325,9 +325,9 @@ class TaskController extends Controller
         $value = 0 ;
 
 
-        if($task->severity == 'Trivial'){
+        if($task->severity == 'Text'){
             $value = 1;
-        }elseif ($task->severity =='Text'){
+        }elseif ($task->severity =='Trivial'){
             $value = 2;
         }elseif ($task->severity == 'Tweak '){
             $value =3;

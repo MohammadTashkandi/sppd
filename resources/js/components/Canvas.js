@@ -257,8 +257,8 @@ export default class Canvas extends React.Component {
                                             maintainAspectRatio: false,
                                             title:{ 
                                                 display:true,
-                                                text:'Task Severity', //this should also be dynamic
-                                                fontSize:25
+                                                text:'Completed Vs Failed Tasks', //this should also be dynamic
+                                                fontSize:18
                                             },
                                             legend:{ //this should also be dynamic
                                                 display:true,
