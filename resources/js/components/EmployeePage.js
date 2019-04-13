@@ -1,6 +1,6 @@
 import React from 'react';
 import {Spring} from 'react-spring/renderprops';
-import {Radar,Pie} from 'react-chartjs-2';
+import {Radar,Pie,Bar} from 'react-chartjs-2';
 
 export default class EmployeePage extends React.Component {
     
@@ -10,13 +10,15 @@ export default class EmployeePage extends React.Component {
         number: "",
         productivity: 0,
         barData:{},
-        pieData:{}
+        pieData:{},
+        skillGapData:{}
     }
 
     componentDidMount(){
         this.loadProgrammerInfo();
         this.getProductivity();
         this.getFailedTasks();
+        this.getSkillGap();
     }
 
     loadProgrammerInfo = () =>{
@@ -64,6 +66,47 @@ export default class EmployeePage extends React.Component {
         })
         .catch((err) => {
             console.log(err.response.data[0])
+        })
+    }
+
+    getSkillGap = () =>{
+        axios.get('api/getSkillGap', {
+            params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+                PrId: this.props.match.params.id,
+            }
+        })
+        .then((res) => {
+            console.log(res.data)
+            /* this.setState({
+                labels: ['Stress', 'Judgement', 'Communication', 'Techincal'], //Bar names
+                    datasets:[ //here you mostly fill the data of the grap
+                        {// this is an object that you fill in each point in the graph
+                            label:'Min',
+                            data:[2,4,5,7],
+                            backgroundColor:'rgb(44, 135, 196)',
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738',
+                            fontSize: 4
+                        },//these objects will be rendered for every label mentioned in the above array "labels"
+                        {
+                            label:'Average',
+                            data:[4,5,6,5],
+                            backgroundColor:'#ffc600',
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738',
+                        },//if you want more than 1 bar for a label, then add more object with the desired aspects!
+                        {
+                            label:'Max',
+                            data:[7,6,6,5],
+                            backgroundColor:'red',
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738'
+                        }
+                    ]
+            }) */
+        })
+        .catch((err) => {
+            console.log(err)
         })
     }
 
@@ -120,24 +163,46 @@ export default class EmployeePage extends React.Component {
                         <div style={props}>
                             <div className="employee-grid-container">
                             <div className="grid-item large-left">
-                                    <Radar height = '270' width = '665'  //everything here can be dynamic depending on results 
-                                        data={this.state.barData} //this should alawys be dynamic   
+                            <Bar height = '270' width = '665'  //everything here can be dynamic depending on results 
+                                        data={this.state.skillGapData} //this should alawys be dynamic   
                                         options={{
-                                            legend: {
-                                                display: false
-                                              },
-                                              title:{ 
+                                            maintainAspectRatio: false,
+                                            title:{ 
                                                 display:true,
-                                                text:'Programmer Performance Measures', //this should also be dynamic
-                                                fontSize:25,
-                                                },
-                                              scale: {
-                                                ticks: {
-                                                    beginAtZero: true,
-                                                    min: 0,
-                                                    max: 5
+                                                text:'Skill Gap', //this should also be dynamic
+                                                fontSize:20,
+                                                fontFamily: '"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
+                                            },
+                                            legend:{ //this should also be dynamic
+                                                display:true,
+                                                position:'right',
+                                                labels:{
+                                                    fontColor: '#333',
+                                                    fontSize: 11
                                                 }
+                                            },
+                                            scales:{
+                                                yAxes:[{
+                                                    scaleLabel:{
+                                                        display: true,
+                                                        labelString: 'Gap Number',
+                                                    },
+                                                    ticks: {
+                                                        beginAtZero: true,
+                                                        fontSize: 12.5
+                                                        },
+                                                }],
+                                                xAxes:[{
+                                                    ticks: {
+                                                        fontSize: 12.5
+                                                    },
+                                                    scaleLabel:{
+                                                        display:true,
+                                                        labelString: 'Skill Type',
+                                                    }
+                                                }]
                                             }
+                                            
 
                                             }}
                                         />
@@ -152,8 +217,8 @@ export default class EmployeePage extends React.Component {
                                             maintainAspectRatio: false,
                                             title:{ 
                                                 display:true,
-                                                text:'Completed Tasks Vs Failed Tasks', //this should also be dynamic
-                                                fontSize:25
+                                                text:'Completed Vs Failed Tasks', //this should also be dynamic
+                                                fontSize:20
                                             },
                                             legend:{ //this should also be dynamic
                                                 display:true,
@@ -205,7 +270,28 @@ export default class EmployeePage extends React.Component {
                                     </div>
                                 </div>
                                 <div className="grid-item">
-                                        {/* put stuff here */}
+                                    <Radar  //everything here can be dynamic depending on results 
+                                        data={this.state.barData} //this should alawys be dynamic   
+                                        options={{
+                                            maintainAspectRatio: false,
+                                            legend: {
+                                                display: false
+                                              },
+                                              title:{ 
+                                                display:true,
+                                                text:'Programmer Performance Measures', //this should also be dynamic
+                                                fontSize:20,
+                                                },
+                                              scale: {
+                                                ticks: {
+                                                    beginAtZero: true,
+                                                    min: 0,
+                                                    max: 5
+                                                }
+                                            }
+
+                                            }}
+                                        />
                                 </div>
                             </div>
                     </div>

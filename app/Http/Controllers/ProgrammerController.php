@@ -294,13 +294,14 @@ class ProgrammerController extends Controller
 
         $p = $p->first();
 
-        return response()->json($p , 200);
+        return response()->json($p, 200);
 
 
     }
 
 
-    public function getProgrammerTasks(Request $request){
+    public function getProgrammerTasks(Request $request)
+    {
 
         $ProgrammerId = $request['ProgId'];
         $Pid = $request['Pid'];
@@ -308,14 +309,14 @@ class ProgrammerController extends Controller
 
         $tasks = Task::where('Pid', '=', $Pid)->where('PrID', '=', $ProgrammerId)->get();
 
-        return response()->json($tasks , 200);
-
+        return response()->json($tasks, 200);
 
 
     }
 
 
-    public function countSeverityForProgrammer(Request $request){
+    public function countSeverityForProgrammer(Request $request)
+    {
 
         $PrId = $request['PrId'];
         $tasks = Task::where('PrID', $PrId)->get();
@@ -330,16 +331,15 @@ class ProgrammerController extends Controller
         $numOfBlock = count($tasks->where('severity', 'Block')->all());
 
         $array = array(
-            0 => $numOfFeature ,
-            1 =>$numOfTrivial,
+            0 => $numOfFeature,
+            1 => $numOfTrivial,
             2 => $numOfText,
-            3 =>$numOfTweak,
-            4 =>$numOfMinor,
-            5 =>$numOfMajor,
-            6 =>$numOfCrash,
-            7 =>$numOfBlock
+            3 => $numOfTweak,
+            4 => $numOfMinor,
+            5 => $numOfMajor,
+            6 => $numOfCrash,
+            7 => $numOfBlock
         );
-
 
 
         return response()->json($array, 200);
@@ -347,13 +347,14 @@ class ProgrammerController extends Controller
 
     }
 
-    public function countSeverityForProgrammerInProject(Request $request){
+    public function countSeverityForProgrammerInProject(Request $request)
+    {
 
         $project = Project::where('id', $request['Pid'])->first();
         $programmer = Programmer::where('id', $request['PrId'])->first();
 
 
-        if($project = null ) {
+        if ($project = null) {
             return response()->json('Error Project not found', 404);
         }
         if ($programmer == null) {
@@ -375,16 +376,15 @@ class ProgrammerController extends Controller
         $numOfBlock = count($tasks->where('severity', 'Block')->all());
 
         $array = array(
-            0 => $numOfFeature ,
-            1 =>$numOfTrivial,
+            0 => $numOfFeature,
+            1 => $numOfTrivial,
             2 => $numOfText,
-            3 =>$numOfTweak,
-            4 =>$numOfMinor,
-            5 =>$numOfMajor,
-            6 =>$numOfCrash,
-            7 =>$numOfBlock
+            3 => $numOfTweak,
+            4 => $numOfMinor,
+            5 => $numOfMajor,
+            6 => $numOfCrash,
+            7 => $numOfBlock
         );
-
 
 
         return response()->json($array, 200);
@@ -393,36 +393,37 @@ class ProgrammerController extends Controller
     }
 
 
-    public function findTaskProgrammer(Request $request){
+    public function findTaskProgrammer(Request $request)
+    {
 
 
         $task = Task::where('id', $request['id'])->first();
 
-        if($task == null){
+        if ($task == null) {
             return response()->json(['Task not found'], 404);
         }
 
-        $p = Programmer::where('id' , $task->PrID)->first();
+        $p = Programmer::where('id', $task->PrID)->first();
 
-        return response()->json($p , 200);
+        return response()->json($p, 200);
 
     }
 
 
-
-    public function calculateProgrammerProductivity(Request $request){
+    public function calculateProgrammerProductivity(Request $request)
+    {
 
         $id = $request['PrId'];
 
         $programmer = Programmer::where('id', $id)->first();
 
-        if($programmer == null){
+        if ($programmer == null) {
             return response()->json(['Programmer not found'], 404);
         }
 
 
         $tasks = $programmer->numOfTasks;
-        $registerTime =  $programmer->created_at ;
+        $registerTime = $programmer->created_at;
         $registerTime = Carbon::parse($registerTime);
         $now = Carbon::now();
 
@@ -431,24 +432,24 @@ class ProgrammerController extends Controller
 
         if ($time == 0) {
             $result = $tasks;
-        }else{
-            $result = $tasks/$time;
+        } else {
+            $result = $tasks / $time;
         }
 
 
-        return response()->json($result , 200);
+        return response()->json($result, 200);
 
     }
 
 
-
-    public function getFailedTasksForProgrammerInProject(Request $request){
+    public function getFailedTasksForProgrammerInProject(Request $request)
+    {
 
         $project = Project::where('id', $request['Pid'])->first();
         $programmer = Programmer::where('id', $request['PrId'])->first();
 
 
-        if($project == null ) {
+        if ($project == null) {
             return response()->json('Error Project not found', 404);
         }
         if ($programmer == null) {
@@ -456,14 +457,14 @@ class ProgrammerController extends Controller
         }
 
 
-        $failedTasks = Task::where('PrID' , $programmer->id)->where('Pid',$project->id)->where('reOpen_state', '!=', null)->get(); ;
-        $completedTasks = Task::where('PrID' , $programmer->id)->where('Pid',$project->id)->where('reOpen_state',null)->get();
+        $failedTasks = Task::where('PrID', $programmer->id)->where('Pid', $project->id)->where('reOpen_state', '!=', null)->get();;
+        $completedTasks = Task::where('PrID', $programmer->id)->where('Pid', $project->id)->where('reOpen_state', null)->get();
 
         $failedTasks = count($failedTasks);
         $completedTasks = count($completedTasks);
 
         $array = array(
-            0 => $failedTasks ,
+            0 => $failedTasks,
             1 => $completedTasks
         );
 
@@ -472,7 +473,8 @@ class ProgrammerController extends Controller
     }
 
 
-    public function getFailedTasksForProgrammer(Request $request){
+    public function getFailedTasksForProgrammer(Request $request)
+    {
 
         $programmer = Programmer::where('id', $request['PrId'])->first();
 
@@ -481,12 +483,12 @@ class ProgrammerController extends Controller
         }
 
 
-        $failedTasks = $programmer->failedTasks ;
+        $failedTasks = $programmer->failedTasks;
 
-        $completedTasks = $programmer->numOfTasks - $failedTasks ;
+        $completedTasks = $programmer->numOfTasks - $failedTasks;
 
         $array = array(
-            0 => $failedTasks ,
+            0 => $failedTasks,
             1 => $completedTasks
         );
 
@@ -495,70 +497,47 @@ class ProgrammerController extends Controller
     }
 
 
-
     public function getSkillGap(Request $request)
     {
-        $programmer = Programmer::where( 'id' , $request['PrId'])->first();
+        $programmer = Programmer::where('id', $request['PrId'])->first();
 
         if ($programmer == null) {
             return response()->json('Error Programmer not found', 404);
 
         }
 
-        $tasks = Task::where('PrID' , $programmer->id)->get();
+        $tasks = Task::where('PrID', $programmer->id)->get();
 
         $averageTStrDeviation = $tasks->avg('tStrDeviation');
         $averageTJudDeviation = $tasks->avg('tJudDeviation');
         $averageTCuDeviation = $tasks->avg('tCuDeviation');
         $averageTTechDeviation = $tasks->avg('tTechDeviation');
 
-        $array = array(
-            0 => number_format((float)$averageTStrDeviation, 2, '.', '') ,
-            1 => number_format((float)$averageTJudDeviation, 2, '.', '') ,
-            2 => number_format((float)$averageTCuDeviation, 2, '.', '') ,
-            3 => number_format((float)$averageTTechDeviation, 2, '.', '')
-        );
-
-
-        return response()->json($array, 200);
-
-
-    }
-
-
-    public function getMaxMinDeviation(Request $request)
-    {
-        $programmer = Programmer::where($request['PrId'])->fisrt();
-
-        if ($programmer == null) {
-            return response()->json('Error Programmer not found', 404);
-
-        }
-
-        $tasks = Task::where('PrID' , $programmer->id)->get();
-
         $maxTStrDeviation = $tasks->max('tStrDeviation');
         $maxTJudDeviation = $tasks->max('tJudDeviation');
         $maxTCuDeviation = $tasks->max('tCuDeviation');
         $maxTTechDeviation = $tasks->max('tTechDeviation');
 
-        $minTStrDeviation = $tasks->where('tStrDeviation' , '!=' , null)->min('tStrDeviation');
-        $minTJudDeviation = $tasks->where('tJudDeviation' , '!=' , null)->min('tJudDeviation');
-        $minTCuDeviation = $tasks->where('tCuDeviation' , '!=' , null)->min('tCuDeviation');
-        $minTTechDeviation = $tasks->where('tTechDeviation' , '!=' , null)->min('tTechDeviation');
+        $minTStrDeviation = $tasks->where('tStrDeviation', '!=', null)->min('tStrDeviation');
+        $minTJudDeviation = $tasks->where('tJudDeviation', '!=', null)->min('tJudDeviation');
+        $minTCuDeviation = $tasks->where('tCuDeviation', '!=', null)->min('tCuDeviation');
+        $minTTechDeviation = $tasks->where('tTechDeviation', '!=', null)->min('tTechDeviation');
 
 
         $array = array(
-            0 => $maxTStrDeviation,
-            1 => $maxTJudDeviation,
-            2 => $maxTCuDeviation,
-            3 => $maxTTechDeviation,
-            4 => $minTStrDeviation,
-            5 => $minTJudDeviation,
-            6 => $minTCuDeviation,
-            7 => $minTTechDeviation
+            0 => $minTStrDeviation,
+            1 => $minTJudDeviation,
+            2 => $minTCuDeviation,
+            3 => $minTTechDeviation,
+            4 => number_format((float)$averageTStrDeviation, 2, '.', ''),
+            5 => number_format((float)$averageTJudDeviation, 2, '.', ''),
+            6 => number_format((float)$averageTCuDeviation, 2, '.', ''),
+            7 => number_format((float)$averageTTechDeviation, 2, '.', ''),
+            8 => $maxTStrDeviation,
+            9 => $maxTJudDeviation,
+            10 => $maxTCuDeviation,
+            11 => $maxTTechDeviation
         );
-
 
         return response()->json($array, 200);
 
@@ -573,7 +552,7 @@ class ProgrammerController extends Controller
         $programmer = Programmer::where('id', $request['PrId'])->first();
 
 
-        if($project = null ) {
+        if ($project == null) {
             return response()->json('Error Project not found', 404);
         }
         if ($programmer == null) {
@@ -589,12 +568,11 @@ class ProgrammerController extends Controller
         $reOpened = count($tasks->where('status', 'Re-Opened')->all());
 
 
-
         $array = array(
-            0 => $assigned ,
-            1 => $progress ,
-            2 => $resolved ,
-            3 => $closed ,
+            0 => $assigned,
+            1 => $progress,
+            2 => $resolved,
+            3 => $closed,
             4 => $reOpened
         );
 
@@ -621,12 +599,11 @@ class ProgrammerController extends Controller
         $reOpened = count($tasks->where('status', 'Re-Opened')->all());
 
 
-
         $array = array(
-            0 => $assigned ,
-            1 => $progress ,
-            2 => $resolved ,
-            3 => $closed ,
+            0 => $assigned,
+            1 => $progress,
+            2 => $resolved,
+            3 => $closed,
             4 => $reOpened
         );
 
@@ -634,14 +611,6 @@ class ProgrammerController extends Controller
 
 
     }
-
-
-
-
-
-
-
-
 
 
 }
