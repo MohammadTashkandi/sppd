@@ -154,9 +154,10 @@ export default class EmployeeCanvas extends React.Component {
     }
 
     getTaskNumbers = () =>{
-        axios.get('api/countStatusForProgrammer', {
+        axios.get('api/countStatusForProgrammerInProject', {
             params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
-                PrId: localStorage.getItem('Pid')
+                PrId: localStorage.getItem('Pid'),
+                Pid: this.props.match.params.projectId
             }
         })
         .then((res) => {
@@ -168,7 +169,7 @@ export default class EmployeeCanvas extends React.Component {
                         {// this is an object that you fill in each point in the graph
                             label:'',
                             data:[res.data[0],res.data[1],res.data[2],res.data[3],res.data[4]],
-                            backgroundColor:'#00b8b8',
+                            backgroundColor:['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600'],
                             borderColor: 'orange',
                         },//these objects will be rendered for every label mentioned in the above array "labels"
                     ]
@@ -307,7 +308,7 @@ export default class EmployeeCanvas extends React.Component {
                                             maintainAspectRatio: false,
                                             title:{ 
                                                 display:true,
-                                                text:'Task Severity', //this should also be dynamic
+                                                text:'Task Severity Numbers', //this should also be dynamic
                                                 fontSize:25
                                             },
                                             legend:{ //this should also be dynamic

@@ -76428,7 +76428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -107362,10 +107362,11 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getTaskNumbers", function () {
-      axios.get('api/countStatusForProgrammer', {
+      axios.get('api/countStatusForProgrammerInProject', {
         params: {
           /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
-          PrId: localStorage.getItem('Pid')
+          PrId: localStorage.getItem('Pid'),
+          Pid: _this.props.match.params.projectId
         }
       }).then(function (res) {
         //New-assigned - Progress - Resolved - Closed - Re-Opened
@@ -107378,7 +107379,7 @@ function (_React$Component) {
               // this is an object that you fill in each point in the graph
               label: '',
               data: [res.data[0], res.data[1], res.data[2], res.data[3], res.data[4]],
-              backgroundColor: '#00b8b8',
+              backgroundColor: ['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600'],
               borderColor: 'orange'
             }]
           }
@@ -107559,7 +107560,7 @@ function (_React$Component) {
             maintainAspectRatio: false,
             title: {
               display: true,
-              text: 'Task Severity',
+              text: 'Task Severity Numbers',
               //this should also be dynamic
               fontSize: 25
             },
@@ -107698,7 +107699,7 @@ function (_React$Component) {
             {
               // this is an object that you fill in each point in the graph
               label: '',
-              data: [5, 3, 3, 3, 3],
+              data: [res.data[0], res.data[1], res.data[2], res.data[3], res.data[4], res.data[5], res.data[6], res.data[7]],
               //change thisisishissis
               backgroundColor: ['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600'],
               borderColor: 'orange'
@@ -111315,8 +111316,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
