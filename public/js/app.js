@@ -106149,7 +106149,7 @@ function (_React$Component) {
               // this is an object that you fill in each point in the graph
               label: 'Number of Tasks',
               data: [res.data[1], res.data[0]],
-              backgroundColor: ['green', 'red'],
+              backgroundColor: ['#003f5c', '#ffa600'],
               hoverBorderWidth: 2,
               hoverBorderColor: '#122738'
             }]
@@ -107759,7 +107759,7 @@ function (_React$Component) {
               // this is an object that you fill in each point in the graph
               label: 'Number of Tasks',
               data: [res.data[1], res.data[0]],
-              backgroundColor: ['green', 'red'],
+              backgroundColor: ['#003f5c', '#ffa600'],
               hoverBorderWidth: 2,
               hoverBorderColor: '#122738'
             }]
@@ -108265,7 +108265,7 @@ function (_React$Component) {
               // this is an object that you fill in each point in the graph
               label: 'Number of Tasks',
               data: [res.data[1], res.data[0]],
-              backgroundColor: ['green', 'red'],
+              backgroundColor: ['#003f5c', '#ffa600'],
               hoverBorderWidth: 2,
               hoverBorderColor: '#122738'
             }]

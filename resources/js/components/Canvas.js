@@ -146,8 +146,8 @@ export default class Canvas extends React.Component {
                             label:'Number of Tasks',
                             data:[res.data[1],res.data[0]],
                             backgroundColor: [
-                                'green',
-                                'red',
+                                '#003f5c',
+                                '#ffa600',
                             ],
                             hoverBorderWidth: 2,
                             hoverBorderColor: '#122738',
