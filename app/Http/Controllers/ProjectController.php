@@ -309,7 +309,7 @@ class ProjectController extends Controller
             return response()->json('Error Project not found', 404);
         }
 
-        $tasks = Task::where('Pid', $p->id)->get();
+        $tasks = Task::where('Pid', $p->id)->where('status' , 'Closed')->where('actualTStr', '!=' , null)->get();
 
         $failedTasks = $p->failedTasks ;
 
