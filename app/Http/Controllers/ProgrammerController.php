@@ -429,8 +429,11 @@ class ProgrammerController extends Controller
         $time = $registerTime->diffInDays($now);
 
 
-
-        $result = $tasks/$time;
+        if ($time == 0) {
+            $result = $tasks;
+        }else{
+            $result = $tasks/$time;
+        }
 
 
         return response()->json($result , 200);
@@ -495,7 +498,7 @@ class ProgrammerController extends Controller
 
     public function getSkillGap(Request $request)
     {
-        $programmer = Programmer::where($request['PrId'])->first();
+        $programmer = Programmer::where( 'id' , $request['PrId'])->first();
 
         if ($programmer == null) {
             return response()->json('Error Programmer not found', 404);
