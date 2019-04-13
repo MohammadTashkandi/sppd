@@ -10,7 +10,7 @@ export default class CreateTask extends React.Component {
     state={
         title: "",
         PrId: "",
-        severity: "1",
+        severity: "Feature",
         tStr: "",
         tJud: "",
         tCu: "",
@@ -55,7 +55,6 @@ export default class CreateTask extends React.Component {
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
-
         if([e.target.name] == "PrId") {
             this.setState({query: e.target.value})
             if(this.state.query.length>1) {
@@ -67,7 +66,7 @@ export default class CreateTask extends React.Component {
         }
 
         const option = e.target.value;
-        if(option == "Trivial"){
+            if(option == "Trivial"){
             this.setState({severityDesc : "Nitpicky; disagreement with wording, colors textures etc."})
         }
         else if(option == "Text"){
@@ -162,14 +161,14 @@ export default class CreateTask extends React.Component {
                             <label className="reg-form-label">Severity *
                                 <div className="reg-form-div"></div> {/* just to move stuff apart */}
                                 <select  className="form-control" id="form-control" name="severity" placeholder="Enter severity level" onChange={this.onChange} required>
-                                    <option value="1">Feature</option>
-                                    <option value="2">Trivial</option>
-                                    <option value="3">Text</option>
-                                    <option value="4">Tweak</option>
-                                    <option value="5">Minor</option>
-                                    <option value="6">Major</option>
-                                    <option value="7">Crash</option>
-                                    <option value="8">Block</option>
+                                    <option value="Feature">Feature</option>
+                                    <option value="Trivial">Trivial</option>
+                                    <option value="Text">Text</option>
+                                    <option value="Tweak">Tweak</option>
+                                    <option value="Minor">Minor</option>
+                                    <option value="Major">Major</option>
+                                    <option value="Crash">Crash</option>
+                                    <option value="Block">Block</option>
                                 </select>
                             </label>
                         </div>

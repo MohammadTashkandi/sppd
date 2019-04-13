@@ -106681,7 +106681,7 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       title: "",
       PrId: "",
-      severity: "1",
+      severity: "Feature",
       tStr: "",
       tJud: "",
       tCu: "",
@@ -106922,21 +106922,21 @@ function (_React$Component) {
           onChange: _this2.onChange,
           required: true
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "1"
+          value: "Feature"
         }, "Feature"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "2"
+          value: "Trivial"
         }, "Trivial"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "3"
+          value: "Text"
         }, "Text"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "4"
+          value: "Tweak"
         }, "Tweak"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "5"
+          value: "Minor"
         }, "Minor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "6"
+          value: "Major"
         }, "Major"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "7"
+          value: "Crash"
         }, "Crash"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: "8"
+          value: "Block"
         }, "Block")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group",
           id: "task-form-group"
@@ -111444,13 +111444,25 @@ function (_React$Component) {
           id: _this.props.match.params.taskId
         }
       }).then(function (res) {
+        console.log(res.data);
+
         if (res.data.status == "Resolved" || res.data.status == "Closed" && res.data.actualTCu == null) {
           _this.buttonRef1.current.style.display = "inline";
-          _this.dev1Ref.current.style.display = "none";
-          _this.dev2Ref.current.style.display = "none";
-          _this.dev3Ref.current.style.display = "none";
-          _this.dev4Ref.current.style.display = "none";
+
+          if (res.data.actualTCu != null) {
+            _this.dev1Ref.current.style.display = "none";
+            _this.dev2Ref.current.style.display = "none";
+            _this.dev3Ref.current.style.display = "none";
+            _this.dev4Ref.current.style.display = "none";
+          }
         } else {
+          if (res.data.actualTCu != null) {
+            _this.dev1Ref.current.style.display = "none";
+            _this.dev2Ref.current.style.display = "none";
+            _this.dev3Ref.current.style.display = "none";
+            _this.dev4Ref.current.style.display = "none";
+          }
+
           _this.buttonRef1.current.style.display = "none";
         }
 

@@ -54,14 +54,23 @@ export default class TaskPage extends React.Component {
             }
         })
         .then((res)=>{
+            console.log(res.data)
             if(res.data.status == "Resolved" || ((res.data.status ==  "Closed") && (res.data.actualTCu == null))){
                 this.buttonRef1.current.style.display = "inline";
-                this.dev1Ref.current.style.display = "none";
-                this.dev2Ref.current.style.display = "none";
-                this.dev3Ref.current.style.display = "none";
-                this.dev4Ref.current.style.display = "none";
+                if(res.data.actualTCu != null){
+                    this.dev1Ref.current.style.display = "none";
+                    this.dev2Ref.current.style.display = "none";
+                    this.dev3Ref.current.style.display = "none";
+                    this.dev4Ref.current.style.display = "none";
+                }
 
             }else{
+                if(res.data.actualTCu != null){
+                    this.dev1Ref.current.style.display = "none";
+                    this.dev2Ref.current.style.display = "none";
+                    this.dev3Ref.current.style.display = "none";
+                    this.dev4Ref.current.style.display = "none";
+                }
                 this.buttonRef1.current.style.display = "none";
             }
             console.log(res.data)
