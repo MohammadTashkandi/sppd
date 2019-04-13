@@ -107988,7 +107988,35 @@ function (_React$Component) {
       number: "",
       productivity: 0,
       barData: {},
-      pieData: {}
+      pieData: {},
+      skillGapData: {
+        labels: ['Stress', 'Judgement', 'Communication', 'Techincal'],
+        //Bar names
+        datasets: [//here you mostly fill the data of the grap
+        {
+          // this is an object that you fill in each point in the graph
+          label: 'Min',
+          data: [2, 4, 5, 7],
+          backgroundColor: 'rgb(44, 135, 196)',
+          hoverBorderWidth: 2,
+          hoverBorderColor: '#122738',
+          fontSize: 4
+        }, //these objects will be rendered for every label mentioned in the above array "labels"
+        {
+          label: 'Average',
+          data: [4, 5, 6, 5],
+          backgroundColor: '#ffc600',
+          hoverBorderWidth: 2,
+          hoverBorderColor: '#122738'
+        }, //if you want more than 1 bar for a label, then add more object with the desired aspects!
+        {
+          label: 'Max',
+          data: [7, 6, 6, 5],
+          backgroundColor: 'red',
+          hoverBorderWidth: 2,
+          hoverBorderColor: '#122738'
+        }]
+      }
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadProgrammerInfo", function () {
@@ -108019,6 +108047,21 @@ function (_React$Component) {
             }
           });
         }
+      }).catch(function (err) {
+        console.log(err.response.data[0]);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getProductivity", function () {
+      axios.get('api/calculateProgrammerProductivity', {
+        params: {
+          /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+          PrId: _this.props.match.params.id
+        }
+      }).then(function (res) {
+        _this.setState({
+          productivity: res.data
+        });
       }).catch(function (err) {
         console.log(err.response.data[0]);
       });
@@ -108123,28 +108166,50 @@ function (_React$Component) {
           className: "employee-grid-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item large-left"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Radar"], {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Bar"], {
           height: "270",
           width: "665" //everything here can be dynamic depending on results 
           ,
-          data: _this2.state.barData //this should alawys be dynamic   
+          data: _this2.state.skillGapData //this should alawys be dynamic   
           ,
           options: {
-            legend: {
-              display: false
-            },
+            maintainAspectRatio: false,
             title: {
               display: true,
-              text: 'Programmer Performance Measures',
+              text: 'Skill Gap',
               //this should also be dynamic
-              fontSize: 25
+              fontSize: 20,
+              fontFamily: '"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
             },
-            scale: {
-              ticks: {
-                beginAtZero: true,
-                min: 0,
-                max: 5
+            legend: {
+              //this should also be dynamic
+              display: true,
+              position: 'right',
+              labels: {
+                fontColor: '#333',
+                fontSize: 11
               }
+            },
+            scales: {
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Gap Number'
+                },
+                ticks: {
+                  beginAtZero: true,
+                  fontSize: 12.5
+                }
+              }],
+              xAxes: [{
+                ticks: {
+                  fontSize: 12.5
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Skill Type'
+                }
+              }]
             }
           }
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -108161,9 +108226,9 @@ function (_React$Component) {
             maintainAspectRatio: false,
             title: {
               display: true,
-              text: 'Completed Tasks Vs Failed Tasks',
+              text: 'Completed Vs Failed Tasks',
               //this should also be dynamic
-              fontSize: 25
+              fontSize: 20
             },
             legend: {
               //this should also be dynamic
@@ -108264,7 +108329,30 @@ function (_React$Component) {
           }
         }), _this2.state.number)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item"
-        })));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Radar"] //everything here can be dynamic depending on results 
+        , {
+          data: _this2.state.barData //this should alawys be dynamic   
+          ,
+          options: {
+            maintainAspectRatio: false,
+            legend: {
+              display: false
+            },
+            title: {
+              display: true,
+              text: 'Programmer Performance Measures',
+              //this should also be dynamic
+              fontSize: 20
+            },
+            scale: {
+              ticks: {
+                beginAtZero: true,
+                min: 0,
+                max: 5
+              }
+            }
+          }
+        }))));
       }));
     }
   }]);
