@@ -109556,36 +109556,28 @@ function (_React$Component) {
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          marginTop: "20rem"
-        }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "login-flex"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "login-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: _LOGO2_png__WEBPACK_IMPORTED_MODULE_2___default.a,
         style: {
           width: '170px',
-          height: '110px',
-          marginTop: '-12.5rem',
-          position: "absolute",
-          marginLeft: '29.75rem'
+          height: '110px'
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        style: {
-          color: '#2c87c4',
-          fontFamily: '"Poppins", sans-serif',
-          fontStyle: 'italic',
-          marginLeft: '8rem',
-          fontSize: '3rem',
-          fontWeight: 'bolder'
-        }
+        className: "login-header"
       }, "Software Project Performance Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "line"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-desc"
+        style: {
+          fontSize: '2rem'
+        }
       }, "\"A web-based service aimed at tracking and monitoring a software enigneer's performance\""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-desc-2"
-      }, "As a ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "software Project Manager"), ", you can use our dashboard to ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "create projects"), ", ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "assign tasks"), " to your engineers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-desc-3"
-      }, "and ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "monitor their performance"), "in a given project or task!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          marginTop: '3rem'
+        }
+      }, "As a ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "software Project Manager"), ", you can use our dashboard to ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "create projects"), ", ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "assign tasks"), " to your engineers and ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "monitor their performance"), "in a given project or task!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         style: {
@@ -109644,7 +109636,7 @@ function (_React$Component) {
         style: {
           marginBottom: '2rem'
         }
-      }, "Make a new Account!"))));
+      }, "Make a new Account!")))));
     }
   }]);
 
