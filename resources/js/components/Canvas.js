@@ -138,6 +138,7 @@ export default class Canvas extends React.Component {
         })
         .then((res)=>{
             //failed then completed
+            console.log(res.data)
             this.setState({
                 pieData:{ //the data here should also be dynamic depending on what the PM wants to see
                     labels: ['Completed', 'Failed'], //Bar names
@@ -245,9 +246,7 @@ export default class Canvas extends React.Component {
                                                     }
                                                 }]
                                             }
-                                            
-
-                                            }}
+                                        }}
                                         />
                                     </div>
                                 <div className="grid-item">

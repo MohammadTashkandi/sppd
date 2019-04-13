@@ -6,6 +6,10 @@ export default class TaskPage extends React.Component {
 
     buttonRef1 = React.createRef();
     statusRef = React.createRef();
+    dev1Ref = React.createRef();
+    dev2Ref = React.createRef();
+    dev3Ref = React.createRef();
+    dev4Ref = React.createRef();
 
     state={
         task:{},
@@ -52,6 +56,11 @@ export default class TaskPage extends React.Component {
         .then((res)=>{
             if(res.data.status == "Resolved" || ((res.data.status ==  "Closed") && (res.data.actualTCu == null))){
                 this.buttonRef1.current.style.display = "inline";
+                this.dev1Ref.current.style.display = "none";
+                this.dev2Ref.current.style.display = "none";
+                this.dev3Ref.current.style.display = "none";
+                this.dev4Ref.current.style.display = "none";
+
             }else{
                 this.buttonRef1.current.style.display = "none";
             }
@@ -177,10 +186,10 @@ export default class TaskPage extends React.Component {
                         />
                         </div>
                     <div className="deviation-container">
-                        <span><h4 className="prog-task-pm-stat"><b>Stress Deviation (Negative = Below Required Level):</b><span>{this.state.task.tStrDeviation}</span></h4></span>
-                        <span><h4 className="prog-task-pm-stat"><b>Judgement Deviation (Negative = Below Required Level):</b><span>{this.state.task.tJudDeviation}</span></h4></span>
-                        <span><h4 className="prog-task-pm-stat"><b>Techincal Deviation (Negative = Below Required Level):</b><span>{this.state.task.tTechDeviation}</span></h4></span>
-                        <span><h4 className="prog-task-pm-stat"><b>Communication Deviation (Negative = Below Required Level):</b><span>{this.state.task.tCuDeviation}</span></h4></span>
+                        <span><h4 className="prog-task-pm-stat"><b>Stress Deviation (Negative = Below Required Level): </b><span><span ref={this.dev1Ref}>N/A</span>{this.state.task.tStrDeviation}</span></h4></span>
+                        <span><h4 className="prog-task-pm-stat"><b>Judgement Deviation (Negative = Below Required Level):</b><span><span ref={this.dev2Ref}>N/A</span>{this.state.task.tJudDeviation}</span></h4></span>
+                        <span><h4 className="prog-task-pm-stat"><b>Techincal Deviation (Negative = Below Required Level):</b><span><span ref={this.dev3Ref}>N/A</span>{this.state.task.tTechDeviation}</span></h4></span>
+                        <span><h4 className="prog-task-pm-stat"><b>Communication Deviation (Negative = Below Required Level):</b><span><span ref={this.dev4Ref}>N/A</span>{this.state.task.tCuDeviation}</span></h4></span>
                     </div>
                     <div ref={this.buttonRef1} style={{display:"none", marginLeft:"9rem"}}>
                         <button className="login-btn"  style={{borderColor:'rgb(105, 18, 18)', color: 'rgb(105, 18, 18)'}} onClick={this.closeTask}>Close This Task</button>

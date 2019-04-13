@@ -106139,6 +106139,8 @@ function (_React$Component) {
         }
       }).then(function (res) {
         //failed then completed
+        console.log(res.data);
+
         _this.setState({
           pieData: {
             //the data here should also be dynamic depending on what the PM wants to see
@@ -111395,6 +111397,14 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "statusRef", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "dev1Ref", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "dev2Ref", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "dev3Ref", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "dev4Ref", react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       task: {},
       programmer: "",
@@ -111436,6 +111446,10 @@ function (_React$Component) {
       }).then(function (res) {
         if (res.data.status == "Resolved" || res.data.status == "Closed" && res.data.actualTCu == null) {
           _this.buttonRef1.current.style.display = "inline";
+          _this.dev1Ref.current.style.display = "none";
+          _this.dev2Ref.current.style.display = "none";
+          _this.dev3Ref.current.style.display = "none";
+          _this.dev4Ref.current.style.display = "none";
         } else {
           _this.buttonRef1.current.style.display = "none";
         }
@@ -111599,13 +111613,21 @@ function (_React$Component) {
           className: "deviation-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "prog-task-pm-stat"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Stress Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.state.task.tStrDeviation))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Stress Deviation (Negative = Below Required Level): "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          ref: _this2.dev1Ref
+        }, "N/A"), _this2.state.task.tStrDeviation))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "prog-task-pm-stat"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Judgement Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.state.task.tJudDeviation))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Judgement Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          ref: _this2.dev2Ref
+        }, "N/A"), _this2.state.task.tJudDeviation))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "prog-task-pm-stat"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Techincal Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.state.task.tTechDeviation))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Techincal Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          ref: _this2.dev3Ref
+        }, "N/A"), _this2.state.task.tTechDeviation))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "prog-task-pm-stat"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Communication Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.state.task.tCuDeviation)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Communication Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          ref: _this2.dev4Ref
+        }, "N/A"), _this2.state.task.tCuDeviation)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           ref: _this2.buttonRef1,
           style: {
             display: "none",
