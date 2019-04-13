@@ -346,7 +346,14 @@ class ProjectController extends Controller
 
         $daysProgress = ($now * (1/$diffDays)) *100 ;
 
+
+
         $daysProgress = number_format((float)$daysProgress, 2, '.', '');
+
+
+        if($now >= $diffDays){
+            $daysProgress = 100 ;
+        }
     //---------------------------------------------------------------------------------------------
         // Calculate Progress using Tasks progress
 
