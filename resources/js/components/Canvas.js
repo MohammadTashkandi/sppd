@@ -171,7 +171,6 @@ export default class Canvas extends React.Component {
                 this.buttonRefAssign.current.style.display = "none";
                 this.buttonRefCreate.current.style.display = "none";
                 this.buttonRefClose.current.style.display = "none";
-                console.log("Success");
             }
         })
         .catch((err) => {
@@ -194,8 +193,9 @@ export default class Canvas extends React.Component {
                     </span>
                     <span>
                         <NavLink to={`/index/assignEmployee/${this.props.match.params.projectId}`}><button className="info-bar-btn" style={{display:"none", marginLeft:"9rem"}} ref={this.buttonRefAssign}>Assign Employee</button></NavLink>
-                        <NavLink to={`/index/createTask/${this.props.match.params.projectId}`}><button className="info-bar-btn" style={{display:"none"}} ref={this.buttonRefCreate}>Create task</button></NavLink>
-                        <button className="info-bar-btn" style={{display:"none"}} onClick={this.closeProject} ref={this.buttonRefClose}>Close Project</button>
+                        <NavLink to={`/index/createTask/${this.props.match.params.projectId}`}><button className="info-bar-btn" style={{display:"none", borderColor:"blue", color:"blue"}} ref={this.buttonRefCreate}>Create task</button></NavLink>
+                        <button className="info-bar-btn" style={{borderColor:"purple", color:"purple"}}>Generate Reports</button>
+                        <button className="info-bar-btn" style={{display:"none",borderColor:"red", color:"red"}} onClick={this.closeProject} ref={this.buttonRefClose}>Close Project</button>
                     </span>
 
                 </div>
@@ -318,11 +318,11 @@ export default class Canvas extends React.Component {
                                     <ProgressBar projectId={this.props.match.params.projectId}/>
                                 </div>
                                 <div style={{position:"absolute", marginLeft:"103rem", marginTop:"36rem"}}>
-                                    <div className="red">Red:</div>
-                                    <div className="red">Off Schedule</div>
-                                    <div style={{marginBottom:"0.8rem"}}></div>
                                     <div className="green">Green:</div>
                                     <div className="green">On  Schedule</div>
+                                    <div style={{marginBottom:"0.8rem"}}></div>
+                                    <div className="red">Red:</div>
+                                    <div className="red">Off Schedule</div>
                                 </div>
                             </div>
                     </div>

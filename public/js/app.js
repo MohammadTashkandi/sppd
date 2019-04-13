@@ -106168,7 +106168,6 @@ function (_React$Component) {
           _this.buttonRefAssign.current.style.display = "none";
           _this.buttonRefCreate.current.style.display = "none";
           _this.buttonRefClose.current.style.display = "none";
-          console.log("Success");
         }
       }).catch(function (err) {
         console.log(err);
@@ -106220,13 +106219,23 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "info-bar-btn",
         style: {
-          display: "none"
+          display: "none",
+          borderColor: "blue",
+          color: "blue"
         },
         ref: this.buttonRefCreate
       }, "Create task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "info-bar-btn",
         style: {
-          display: "none"
+          borderColor: "purple",
+          color: "purple"
+        }
+      }, "Generate Reports"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "info-bar-btn",
+        style: {
+          display: "none",
+          borderColor: "red",
+          color: "red"
         },
         onClick: this.closeProject,
         ref: this.buttonRefClose
@@ -106378,18 +106387,18 @@ function (_React$Component) {
             marginTop: "36rem"
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "red"
-        }, "Red:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "red"
-        }, "Off Schedule"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "green"
+        }, "Green:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "green"
+        }, "On  Schedule"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
             marginBottom: "0.8rem"
           }
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "green"
-        }, "Green:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "green"
-        }, "On  Schedule"))));
+          className: "red"
+        }, "Red:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "red"
+        }, "Off Schedule"))));
       }));
     }
   }]);
