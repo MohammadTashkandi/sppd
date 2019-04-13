@@ -107227,36 +107227,10 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(EmployeeCanvas)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      barData: {
-        //the data here should also be dynamic depending on what the PM wants to see
-        labels: ['Unassigned->Assigned', 'Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed'],
-        //Bar names
-        datasets: [//here you mostly fill the data of the grap
-        {
-          // this is an object that you fill in each point in the graph
-          label: 'Min',
-          data: [4, 8, 10, 12],
-          backgroundColor: 'rgb(44, 135, 196)',
-          hoverBorderWidth: 2,
-          hoverBorderColor: '#122738'
-        }, //these objects will be rendered for every label mentioned in the above array "labels"
-        {
-          label: 'Average',
-          data: [20, 15, 13, 14],
-          backgroundColor: '#9d9d9d',
-          hoverBorderWidth: 2,
-          hoverBorderColor: '#122738'
-        }, //if you want more than 1 bar for a label, then add more object with the desired aspects!
-        {
-          label: 'Max',
-          data: [40, 32, 44, 50],
-          backgroundColor: '#ffc600',
-          hoverBorderWidth: 2,
-          hoverBorderColor: '#122738'
-        }]
-      },
       lineData: {},
-      pieData: {}
+      pieData: {},
+      graphData: {},
+      pieData2: {}
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidUpdate", function (prevProps) {
@@ -107268,7 +107242,41 @@ function (_React$Component) {
         _this.loadStatistics();
 
         _this.getFailedTasks();
+
+        _this.getTaskNumbers();
+
+        _this.getSeverityNumbers();
       }
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getFailedTasks", function () {
+      axios.get('api/getFailedTasksForProgrammerInProject', {
+        params: {
+          PrId: localStorage.getItem('Pid'),
+          Pid: _this.props.match.params.projectId
+        }
+      }).then(function (res) {
+        console.log(res.data); //failed then completed
+
+        _this.setState({
+          pieData: {
+            //the data here should also be dynamic depending on what the PM wants to see
+            labels: ['Completed', 'Failed'],
+            //Bar names
+            datasets: [//here you mostly fill the data of the grap
+            {
+              // this is an object that you fill in each point in the graph
+              label: 'Number of Tasks',
+              data: [res.data[1], res.data[0]],
+              backgroundColor: ['green', 'red'],
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }]
+          }
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "loadStatistics", function () {
@@ -107299,6 +107307,32 @@ function (_React$Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getSeverityNumbers", function () {
+      axios.get('api/countSeverityForProgrammerInProject', {
+        params: {
+          PrId: localStorage.getItem('Pid'),
+          Pid: _this.props.match.params.projectId
+        }
+      }).then(function (res) {
+        _this.setState({
+          pieData2: {
+            labels: ['Feature', 'Trivial', 'Text', 'Tweak', 'Minor', 'Major', 'Crash', 'Block'],
+            //Bar names
+            datasets: [{
+              // this is an object that you fill in each point in the graph
+              label: 'Number of Total Tasks',
+              data: [res.data[0], res.data[1], res.data[2], res.data[3], res.data[4], res.data[5], res.data[6], res.data[7]],
+              backgroundColor: 'purple',
+              hoverBorderWidth: 2,
+              hoverBorderColor: '#122738'
+            }]
+          }
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getFailedTasks", function () {
       axios.get('api/getFailedTasksForProgrammerInProject', {
         params: {
@@ -107306,8 +107340,6 @@ function (_React$Component) {
           Pid: _this.props.match.params.projectId
         }
       }).then(function (res) {
-        console.log(res.data);
-
         _this.setState({
           pieData: {
             //the data here should also be dynamic depending on what the PM wants to see
@@ -107317,10 +107349,37 @@ function (_React$Component) {
             {
               // this is an object that you fill in each point in the graph
               label: 'Number of Tasks',
-              data: [3, 12],
+              data: [res.data[1], res.data[0]],
               backgroundColor: ['green', 'red'],
               hoverBorderWidth: 2,
               hoverBorderColor: '#122738'
+            }]
+          }
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getTaskNumbers", function () {
+      axios.get('api/countStatusForProgrammer', {
+        params: {
+          /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+          PrId: localStorage.getItem('Pid')
+        }
+      }).then(function (res) {
+        //New-assigned - Progress - Resolved - Closed - Re-Opened
+        _this.setState({
+          graphData: {
+            //the data here should also be dynamic depending on what the PM wants to see
+            labels: ['New-Assigned', 'Progress', 'Resolved', 'Closed', 'Re-Opened'],
+            datasets: [//here you mostly fill the data of the graph
+            {
+              // this is an object that you fill in each point in the graph
+              label: '',
+              data: [res.data[0], res.data[1], res.data[2], res.data[3], res.data[4]],
+              backgroundColor: '#00b8b8',
+              borderColor: 'orange'
             }]
           }
         });
@@ -107337,6 +107396,8 @@ function (_React$Component) {
     value: function componentDidMount() {
       this.loadStatistics();
       this.getFailedTasks();
+      this.getTaskNumbers();
+      this.getSeverityNumbers();
     }
   }, {
     key: "render",
@@ -107385,36 +107446,35 @@ function (_React$Component) {
           height: "270",
           width: "665" //everything here can be dynamic depending on results 
           ,
-          data: _this2.state.barData //this should alawys be dynamic   
+          data: _this2.state.graphData //this should alawys be dynamic   
           ,
           options: {
             maintainAspectRatio: false,
             title: {
               display: true,
-              text: 'Task Duration',
+              text: 'Task Status Count',
               //this should also be dynamic
               fontSize: 25,
               fontFamily: '"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
             },
             legend: {
               //this should also be dynamic
-              display: true,
-              position: 'right',
-              labels: {
-                fontColor: '#333'
-              }
+              display: false
             },
             scales: {
               yAxes: [{
                 scaleLabel: {
                   display: true,
-                  labelString: 'Time in Minutes'
+                  labelString: 'Number Of Tasks Of Status'
+                },
+                ticks: {
+                  beginAtZero: true
                 }
               }],
               xAxes: [{
                 scaleLabel: {
                   display: true,
-                  labelString: 'Transition Time'
+                  labelString: 'Status Type'
                 }
               }]
             }
@@ -107469,6 +107529,9 @@ function (_React$Component) {
             scales: {
               yAxes: [{
                 ticks: {
+                  callback: function callback(value) {
+                    return Number(value).toFixed() + "%";
+                  },
                   beginAtZero: true,
                   min: 0,
                   max: 100
@@ -107484,6 +107547,29 @@ function (_React$Component) {
                   labelString: 'Task Severity'
                 }
               }]
+            }
+          }
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"] //everything here can be dynamic depending on results 
+        , {
+          data: _this2.state.pieData2 //this should alawys be dynamic
+          ,
+          options: {
+            maintainAspectRatio: false,
+            title: {
+              display: true,
+              text: 'Task Severity',
+              //this should also be dynamic
+              fontSize: 25
+            },
+            legend: {
+              //this should also be dynamic
+              display: true,
+              position: 'right',
+              labels: {
+                fontColor: '#333'
+              }
             }
           }
         }))));

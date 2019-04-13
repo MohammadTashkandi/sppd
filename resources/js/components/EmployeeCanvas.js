@@ -5,39 +5,17 @@ import {Bar,Line, Pie} from 'react-chartjs-2';
 export default class EmployeeCanvas extends React.Component {
     
     state = {
-        barData:{ //the data here should also be dynamic depending on what the PM wants to see
-            labels: ['Unassigned->Assigned', 'Assigned->Progress', 'Progress->Resolved', 'Resolved->Closed'], //Bar names
-            datasets:[ //here you mostly fill the data of the grap
-                {// this is an object that you fill in each point in the graph
-                    label:'Min',
-                    data:[4,8,10,12],
-                    backgroundColor:'rgb(44, 135, 196)',
-                    hoverBorderWidth: 2,
-                    hoverBorderColor: '#122738',
-                },//these objects will be rendered for every label mentioned in the above array "labels"
-                {
-                    label:'Average',
-                    data:[20,15,13,14],
-                    backgroundColor:'#9d9d9d',
-                    hoverBorderWidth: 2,
-                    hoverBorderColor: '#122738',
-                },//if you want more than 1 bar for a label, then add more object with the desired aspects!
-                {
-                    label:'Max',
-                    data:[40,32,44,50],
-                    backgroundColor:'#ffc600',
-                    hoverBorderWidth: 2,
-                    hoverBorderColor: '#122738'
-                }
-            ]
-        },
         lineData:{},
         pieData:{},
+        graphData:{},
+        pieData2:{},
     }
 
     componentDidMount(){
         this.loadStatistics();
         this.getFailedTasks();
+        this.getTaskNumbers();
+        this.getSeverityNumbers();
     }
 
     componentDidUpdate = (prevProps) => {
@@ -47,7 +25,43 @@ export default class EmployeeCanvas extends React.Component {
             });
             this.loadStatistics();
             this.getFailedTasks();
+            this.getTaskNumbers();
+            this.getSeverityNumbers();
+
         }
+    }
+
+    getFailedTasks = () =>{
+        axios.get('api/getFailedTasksForProgrammerInProject',{
+            params:{
+                PrId: localStorage.getItem('Pid'),
+                Pid: this.props.match.params.projectId
+            }
+        })
+        .then((res)=>{
+            console.log(res.data)
+            //failed then completed
+            this.setState({
+                pieData:{ //the data here should also be dynamic depending on what the PM wants to see
+                    labels: ['Completed', 'Failed'], //Bar names
+                    datasets:[ //here you mostly fill the data of the grap
+                        {// this is an object that you fill in each point in the graph
+                            label:'Number of Tasks',
+                            data:[res.data[1],res.data[0]],
+                            backgroundColor: [
+                                'green',
+                                'red',
+                            ],
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738',
+                        },//these objects will be rendered for every label mentioned in the above array "labels"
+                    ]
+                }
+            })
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
 
     loadStatistics = () =>{
@@ -80,6 +94,34 @@ export default class EmployeeCanvas extends React.Component {
         })
     }
 
+    getSeverityNumbers = () =>{
+        axios.get('api/countSeverityForProgrammerInProject',{
+            params:{
+                PrId: localStorage.getItem('Pid'),
+                Pid: this.props.match.params.projectId
+            }
+        })
+        .then((res)=>{
+            this.setState({
+                pieData2:{
+                    labels: ['Feature', 'Trivial', 'Text', 'Tweak','Minor','Major','Crash','Block'], //Bar names
+                    datasets:[
+                        {// this is an object that you fill in each point in the graph
+                            label:'Number of Total Tasks',
+                            data:[res.data[0],res.data[1],res.data[2],res.data[3],res.data[4],res.data[5],res.data[6],res.data[7]],
+                            backgroundColor:'purple',
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738',
+                        },//these objects will be rendered for every label mentioned in the above array "labels"
+                    ]
+                }
+            })
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
     getFailedTasks = () =>{
         axios.get('api/getFailedTasksForProgrammerInProject',{
             params:{
@@ -88,14 +130,13 @@ export default class EmployeeCanvas extends React.Component {
             }
         })
         .then((res)=>{
-            console.log(res.data)
             this.setState({
                 pieData:{ //the data here should also be dynamic depending on what the PM wants to see
                     labels: ['Completed', 'Failed'], //Bar names
                     datasets:[ //here you mostly fill the data of the grap
                         {// this is an object that you fill in each point in the graph
                             label:'Number of Tasks',
-                            data:[3,12],
+                            data:[res.data[1],res.data[0]],
                             backgroundColor: [
                                 'green',
                                 'red',
@@ -108,6 +149,33 @@ export default class EmployeeCanvas extends React.Component {
             })
         })
         .catch((err)=>{
+            console.log(err)
+        })
+    }
+
+    getTaskNumbers = () =>{
+        axios.get('api/countStatusForProgrammer', {
+            params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
+                PrId: localStorage.getItem('Pid')
+            }
+        })
+        .then((res) => {
+        //New-assigned - Progress - Resolved - Closed - Re-Opened
+        this.setState({
+            graphData:{ //the data here should also be dynamic depending on what the PM wants to see
+                    labels: ['New-Assigned', 'Progress', 'Resolved', 'Closed','Re-Opened'],
+                    datasets:[ //here you mostly fill the data of the graph
+                        {// this is an object that you fill in each point in the graph
+                            label:'',
+                            data:[res.data[0],res.data[1],res.data[2],res.data[3],res.data[4]],
+                            backgroundColor:'#00b8b8',
+                            borderColor: 'orange',
+                        },//these objects will be rendered for every label mentioned in the above array "labels"
+                    ]
+                }
+            })
+        })
+        .catch((err) => {
             console.log(err)
         })
     }
@@ -133,34 +201,33 @@ export default class EmployeeCanvas extends React.Component {
                         <div style={props}>
                             <div className="grid-container">
                             <div className="grid-item">
-                                    <Bar height = '270' width = '665'  //everything here can be dynamic depending on results 
-                                        data={this.state.barData} //this should alawys be dynamic   
+                            <Bar height = '270' width = '665'  //everything here can be dynamic depending on results 
+                                        data={this.state.graphData} //this should alawys be dynamic   
                                         options={{
                                             maintainAspectRatio: false,
                                             title:{ 
                                                 display:true,
-                                                text:'Task Duration', //this should also be dynamic
+                                                text:'Task Status Count', //this should also be dynamic
                                                 fontSize:25,
                                                 fontFamily: '"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
                                             },
                                             legend:{ //this should also be dynamic
-                                                display:true,
-                                                position:'right',
-                                                labels:{
-                                                    fontColor: '#333'
-                                                }
+                                                display:false,
                                             },
                                             scales:{
                                                 yAxes:[{
                                                     scaleLabel:{
                                                         display: true,
-                                                        labelString: 'Time in Minutes',
-                                                    }
+                                                        labelString: 'Number Of Tasks Of Status',
+                                                    },
+                                                    ticks: {   
+                                                        beginAtZero: true,
+                                                    },
                                                 }],
                                                 xAxes:[{
                                                     scaleLabel:{
                                                         display:true,
-                                                        labelString: 'Transition Time',
+                                                        labelString: 'Status Type',
                                                     }
                                                 }]
                                             }
@@ -210,6 +277,9 @@ export default class EmployeeCanvas extends React.Component {
                                             scales:{
                                                 yAxes:[{
                                                     ticks: {
+                                                        callback: function (value) {
+                                                            return Number(value).toFixed()+"%"
+                                                          },
                                                         beginAtZero: true,
                                                         min: 0,
                                                         max: 100
@@ -229,6 +299,27 @@ export default class EmployeeCanvas extends React.Component {
                                             }
                                         }}
                                         />
+                                </div>
+                                <div className="grid-item">
+                                <Pie //everything here can be dynamic depending on results 
+                                        data={this.state.pieData2} //this should alawys be dynamic
+                                        options={{
+                                            maintainAspectRatio: false,
+                                            title:{ 
+                                                display:true,
+                                                text:'Task Severity', //this should also be dynamic
+                                                fontSize:25
+                                            },
+                                            legend:{ //this should also be dynamic
+                                                display:true,
+                                                position:'right',
+                                                labels:{
+                                                    fontColor:'#333'
+                                                }
+                                            },
+                                            
+                                        }}
+                                    />
                                 </div>
                             </div>
                     </div>
