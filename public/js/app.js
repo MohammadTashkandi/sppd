@@ -76428,7 +76428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -107698,8 +107698,9 @@ function (_React$Component) {
             {
               // this is an object that you fill in each point in the graph
               label: '',
-              data: [res.data[0], res.data[1], res.data[2], res.data[3], res.data[4]],
-              backgroundColor: '#00b8b8',
+              data: [5, 3, 3, 3, 3],
+              //change thisisishissis
+              backgroundColor: ['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600'],
               borderColor: 'orange'
             }]
           }
@@ -107865,6 +107866,9 @@ function (_React$Component) {
                 scaleLabel: {
                   display: true,
                   labelString: 'Number Of Tasks Of Status'
+                },
+                ticks: {
+                  beginAtZero: true
                 }
               }],
               xAxes: [{
@@ -108115,9 +108119,9 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: props
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-container-2"
+          className: "employee-grid-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-item"
+          className: "grid-item large-left"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Radar"], {
           height: "270",
           width: "665" //everything here can be dynamic depending on results 
@@ -108143,57 +108147,8 @@ function (_React$Component) {
             }
           }
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "grid-item-profile"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          id: "profile-2",
-          style: {
-            marginBottom: "1.5rem"
-          }
-        }, "Personal Information:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "profile-info",
-          id: "profile"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
-          style: {
-            fontStyle: "normal"
-          }
-        }, "Name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          style: {
-            marginBottom: "0.8rem"
-          }
-        }, " "), _this2.state.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "profile-info",
-          id: "profile"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
-          style: {
-            fontStyle: "normal"
-          }
-        }, "ID:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          style: {
-            marginBottom: "0.8rem"
-          }
-        }, " "), _this2.props.match.params.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "profile-info",
-          id: "profile"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
-          style: {
-            fontStyle: "normal"
-          }
-        }, "E-Mail:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          style: {
-            marginBottom: "0.8rem"
-          }
-        }, " "), _this2.state.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "profile-info",
-          id: "profile"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
-          style: {
-            fontStyle: "normal"
-          }
-        }, "Phone Number:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          style: {
-            marginBottom: "0.8rem"
-          }
-        }), _this2.state.number)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item large-right"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "grid-item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Pie"], {
           height: "260",
@@ -108255,7 +108210,60 @@ function (_React$Component) {
           style: {
             color: "blue"
           }
-        }, _this2.state.productivity, " Tasks everyday")))));
+        }, _this2.state.productivity, " Tasks everyday"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          id: "profile-2",
+          style: {
+            marginBottom: "1.5rem"
+          }
+        }, "Personal Information:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, "Name:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }, " "), _this2.state.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, "ID:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }, " "), _this2.props.match.params.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, "E-Mail:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }, " "), _this2.state.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "profile-info",
+          id: "profile"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+          style: {
+            fontStyle: "normal"
+          }
+        }, "Phone Number:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginBottom: "0.8rem"
+          }
+        }), _this2.state.number)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "grid-item"
+        })));
       }));
     }
   }]);
@@ -111307,8 +111315,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
