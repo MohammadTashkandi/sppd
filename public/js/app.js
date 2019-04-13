@@ -76428,7 +76428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -107709,34 +107709,39 @@ function (_React$Component) {
           PrId: localStorage.getItem('Pid')
         }
       }).then(function (res) {
-        console.log(res.data);
-        /* this.setState({
-            labels: ['Stress', 'Judgement', 'Communication', 'Techincal'], //Bar names
-                datasets:[ //here you mostly fill the data of the grap
-                    {// this is an object that you fill in each point in the graph
-                        label:'Min',
-                        data:[2,4,5,7],
-                        backgroundColor:'rgb(44, 135, 196)',
-                        hoverBorderWidth: 2,
-                        hoverBorderColor: '#122738',
-                        fontSize: 4
-                    },//these objects will be rendered for every label mentioned in the above array "labels"
-                    {
-                        label:'Average',
-                        data:[4,5,6,5],
-                        backgroundColor:'#ffc600',
-                        hoverBorderWidth: 2,
-                        hoverBorderColor: '#122738',
-                    },//if you want more than 1 bar for a label, then add more object with the desired aspects!
-                    {
-                        label:'Max',
-                        data:[7,6,6,5],
-                        backgroundColor:'red',
-                        hoverBorderWidth: 2,
-                        hoverBorderColor: '#122738'
-                    }
-                ]
-        }) */
+        var num4 = parseFloat(res.data[4]);
+        var num5 = parseFloat(res.data[5]);
+        var num6 = parseFloat(res.data[6]);
+        var num7 = parseFloat(res.data[7]);
+
+        _this.setState({
+          labels: ['Stress', 'Judgement', 'Communication', 'Techincal'],
+          //Bar names
+          datasets: [//here you mostly fill the data of the grap
+          {
+            // this is an object that you fill in each point in the graph
+            label: 'Min',
+            data: [res.data[0], res.data[1], res.data[2], res.data[3]],
+            backgroundColor: 'rgb(44, 135, 196)',
+            hoverBorderWidth: 2,
+            hoverBorderColor: '#122738',
+            fontSize: 4
+          }, //these objects will be rendered for every label mentioned in the above array "labels"
+          {
+            label: 'Average',
+            data: [num4, num5, num6, num7],
+            backgroundColor: '#ffc600',
+            hoverBorderWidth: 2,
+            hoverBorderColor: '#122738'
+          }, //if you want more than 1 bar for a label, then add more object with the desired aspects!
+          {
+            label: 'Max',
+            data: [res.data[8], res.data[9], res.data[10], res.data[11]],
+            backgroundColor: 'red',
+            hoverBorderWidth: 2,
+            hoverBorderColor: '#122738'
+          }]
+        });
       }).catch(function (err) {
         console.log(err);
       });
@@ -111630,8 +111635,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
