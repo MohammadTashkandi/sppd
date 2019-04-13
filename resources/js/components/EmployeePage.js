@@ -11,39 +11,14 @@ export default class EmployeePage extends React.Component {
         productivity: 0,
         barData:{},
         pieData:{},
-        skillGapData:{
-            labels: ['Stress', 'Judgement', 'Communication', 'Techincal'], //Bar names
-                    datasets:[ //here you mostly fill the data of the grap
-                        {// this is an object that you fill in each point in the graph
-                            label:'Min',
-                            data:[2,4,5,7],
-                            backgroundColor:'rgb(44, 135, 196)',
-                            hoverBorderWidth: 2,
-                            hoverBorderColor: '#122738',
-                            fontSize: 4
-                        },//these objects will be rendered for every label mentioned in the above array "labels"
-                        {
-                            label:'Average',
-                            data:[4,5,6,5],
-                            backgroundColor:'#ffc600',
-                            hoverBorderWidth: 2,
-                            hoverBorderColor: '#122738',
-                        },//if you want more than 1 bar for a label, then add more object with the desired aspects!
-                        {
-                            label:'Max',
-                            data:[7,6,6,5],
-                            backgroundColor:'red',
-                            hoverBorderWidth: 2,
-                            hoverBorderColor: '#122738'
-                        }
-                    ]
-        }
+        skillGapData:{}
     }
 
     componentDidMount(){
         this.loadProgrammerInfo();
         this.getProductivity();
         this.getFailedTasks();
+        this.getSkillGap();
     }
 
     loadProgrammerInfo = () =>{
@@ -94,19 +69,44 @@ export default class EmployeePage extends React.Component {
         })
     }
 
-    getProductivity = () =>{
-        axios.get('api/calculateProgrammerProductivity', {
+    getSkillGap = () =>{
+        axios.get('api/getSkillGap', {
             params: { /* if youre using get requests in axios and you want to send a parameter you have to use this syntax(put params) */
                 PrId: this.props.match.params.id,
             }
         })
         .then((res) => {
-            this.setState({
-                productivity:res.data
-            })
+            console.log(res.data)
+            /* this.setState({
+                labels: ['Stress', 'Judgement', 'Communication', 'Techincal'], //Bar names
+                    datasets:[ //here you mostly fill the data of the grap
+                        {// this is an object that you fill in each point in the graph
+                            label:'Min',
+                            data:[2,4,5,7],
+                            backgroundColor:'rgb(44, 135, 196)',
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738',
+                            fontSize: 4
+                        },//these objects will be rendered for every label mentioned in the above array "labels"
+                        {
+                            label:'Average',
+                            data:[4,5,6,5],
+                            backgroundColor:'#ffc600',
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738',
+                        },//if you want more than 1 bar for a label, then add more object with the desired aspects!
+                        {
+                            label:'Max',
+                            data:[7,6,6,5],
+                            backgroundColor:'red',
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#122738'
+                        }
+                    ]
+            }) */
         })
         .catch((err) => {
-            console.log(err.response.data[0])
+            console.log(err)
         })
     }
 
