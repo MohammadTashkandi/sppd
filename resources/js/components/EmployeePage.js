@@ -97,8 +97,8 @@ export default class EmployeePage extends React.Component {
                 >
                     {props => (
                         <div style={props}>
-                            <div className="grid-container-2">
-                            <div className="grid-item">
+                            <div className="employee-grid-container">
+                            <div className="grid-item large-left">
                                     <Radar height = '270' width = '665'  //everything here can be dynamic depending on results 
                                         data={this.state.barData} //this should alawys be dynamic   
                                         options={{
@@ -121,28 +121,8 @@ export default class EmployeePage extends React.Component {
                                             }}
                                         />
                                     </div>
-                                <div className="grid-item-profile">
-                                    <h4 id="profile-2" style={{marginBottom:"1.5rem"}}>Personal Information:</h4>
-                                    <div className="profile-info" id="profile">
-                                        <b style={{fontStyle:"normal"}}>Name:</b>
-                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
-                                        </div>{this.state.name}
-                                    </div>
-                                    <div className="profile-info" id="profile">
-                                        <b style={{fontStyle:"normal"}}>ID:</b>
-                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
-                                        </div>{this.props.match.params.id}
-                                    </div>
-                                    <div className="profile-info" id="profile">
-                                        <b style={{fontStyle:"normal"}}>E-Mail:</b>
-                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
-                                        </div>{this.state.email}
-                                    </div>
-                                    <div className="profile-info" id="profile">
-                                        <b style={{fontStyle:"normal"}}>Phone Number:</b>
-                                        <div style={{marginBottom:"0.8rem"}}>
-                                        </div>{this.state.number}
-                                    </div>
+                                <div className="grid-item large-right">
+                                    
                                 </div>
                                 <div className="grid-item">
                                 <Pie height='260' width='700'//everything here can be dynamic depending on results 
@@ -179,6 +159,32 @@ export default class EmployeePage extends React.Component {
                                         <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
                                         </div> 1.3 Tasks everyday
                                     </div>
+                                </div>
+                                <div className="grid-item">
+                                    <h4 id="profile-2" style={{marginBottom:"1.5rem"}}>Personal Information:</h4>
+                                    <div className="profile-info" id="profile">
+                                        <b style={{fontStyle:"normal"}}>Name:</b>
+                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
+                                        </div>{this.state.name}
+                                    </div>
+                                    <div className="profile-info" id="profile">
+                                        <b style={{fontStyle:"normal"}}>ID:</b>
+                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
+                                        </div>{this.props.match.params.id}
+                                    </div>
+                                    <div className="profile-info" id="profile">
+                                        <b style={{fontStyle:"normal"}}>E-Mail:</b>
+                                        <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
+                                        </div>{this.state.email}
+                                    </div>
+                                    <div className="profile-info" id="profile">
+                                        <b style={{fontStyle:"normal"}}>Phone Number:</b>
+                                        <div style={{marginBottom:"0.8rem"}}>
+                                        </div>{this.state.number}
+                                    </div>
+                                </div>
+                                <div className="grid-item">
+                                        {/* put stuff here */}
                                 </div>
                             </div>
                     </div>

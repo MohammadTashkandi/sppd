@@ -62,8 +62,8 @@ export default class EmployeeIndex extends React.Component {
                     datasets:[ //here you mostly fill the data of the graph
                         {// this is an object that you fill in each point in the graph
                             label:'',
-                            data:[res.data[0],res.data[1],res.data[2],res.data[3],res.data[4]],
-                            backgroundColor:'#00b8b8',
+                            data:[5,3,3,3,3], //change thisisishissis
+                            backgroundColor: ['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600'],
                             borderColor: 'orange',
                         },//these objects will be rendered for every label mentioned in the above array "labels"
                     ]
@@ -163,6 +163,9 @@ export default class EmployeeIndex extends React.Component {
                                                     scaleLabel:{
                                                         display: true,
                                                         labelString: 'Number Of Tasks Of Status',
+                                                    },
+                                                    ticks: {
+                                                        beginAtZero: true,
                                                     }
                                                 }],
                                                 xAxes:[{
