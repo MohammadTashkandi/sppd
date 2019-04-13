@@ -137,14 +137,14 @@ export default class Canvas extends React.Component {
             }
         })
         .then((res)=>{
-            console.log(res.data)
+            //failed then completed
             this.setState({
                 pieData:{ //the data here should also be dynamic depending on what the PM wants to see
                     labels: ['Completed', 'Failed'], //Bar names
                     datasets:[ //here you mostly fill the data of the grap
                         {// this is an object that you fill in each point in the graph
                             label:'Number of Tasks',
-                            data:[3,12],
+                            data:[res.data[1],res.data[0]],
                             backgroundColor: [
                                 'green',
                                 'red',
