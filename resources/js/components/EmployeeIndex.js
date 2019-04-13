@@ -83,7 +83,8 @@ export default class EmployeeIndex extends React.Component {
             const num6 = parseFloat(res.data[6]);
             const num7 = parseFloat(res.data[7]);
             this.setState({
-                labels: ['Stress', 'Judgement', 'Communication', 'Techincal'], //Bar names
+                skillGapData:{
+                    labels: ['Stress', 'Judgement', 'Communication', 'Techincal'], //Bar names
                     datasets:[ //here you mostly fill the data of the grap
                         {// this is an object that you fill in each point in the graph
                             label:'Min',
@@ -108,6 +109,7 @@ export default class EmployeeIndex extends React.Component {
                             hoverBorderColor: '#122738'
                         }
                     ]
+                }
             })
         })
         .catch((err) => {
@@ -218,19 +220,22 @@ export default class EmployeeIndex extends React.Component {
                                                     scaleLabel:{
                                                         display: true,
                                                         labelString: 'Gap Number',
+                                                        fontSize:15
                                                     },
                                                     ticks: {
-                                                        beginAtZero: true,
-                                                        fontSize: 12.5
+                                                        fontSize: 15,
+                                                        min: -1,
+                                                        max: 1
                                                         },
                                                 }],
                                                 xAxes:[{
                                                     ticks: {
-                                                        fontSize: 12.5
+                                                        fontSize: 11.5
                                                     },
                                                     scaleLabel:{
                                                         display:true,
                                                         labelString: 'Skill Type',
+                                                        fontSize:15
                                                     }
                                                 }]
                                             }
@@ -284,7 +289,7 @@ export default class EmployeeIndex extends React.Component {
                                             title:{ 
                                                 display:true,
                                                 text:'Completed Vs Failed Tasks', //this should also be dynamic
-                                                fontSize:20
+                                                fontSize:18
                                             },
                                             legend:{ //this should also be dynamic
                                                 display:true,
@@ -307,7 +312,7 @@ export default class EmployeeIndex extends React.Component {
                                     <div style={{marginBottom:"3rem"}}> {/* seperator */}
                                         </div>
                                     <div className="profile-info" id="profile">
-                                        <b style={{fontStyle:"normal"}}>This Programmer Finishes:</b>
+                                        <b style={{fontStyle:"normal", color: '#003f5c'}}>This Programmer Finishes:</b>
                                         <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
                                         </div> <div style={{color:"blue"}}>{this.state.productivity} Tasks everyday</div>
                                     </div>
@@ -315,22 +320,22 @@ export default class EmployeeIndex extends React.Component {
                                 <div className="grid-item">
                                     <h4 id="profile-2" style={{marginBottom:"1.5rem"}}>Personal Information:</h4>
                                     <div className="profile-info" id="profile">
-                                        <b style={{fontStyle:"normal"}}>Name:</b>
+                                        <b style={{fontStyle:"normal", color: '#003f5c'}}>Name:</b>
                                         <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
                                         </div>{this.state.name}
                                     </div>
                                     <div className="profile-info" id="profile">
-                                        <b style={{fontStyle:"normal"}}>ID:</b>
+                                        <b style={{fontStyle:"normal", color: '#003f5c'}}>ID:</b>
                                         <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
                                         </div>{localStorage.getItem('Pid')}
                                     </div>
                                     <div className="profile-info" id="profile">
-                                        <b style={{fontStyle:"normal"}}>E-Mail:</b>
+                                        <b style={{fontStyle:"normal", color: '#003f5c'}}>E-Mail:</b>
                                         <div style={{marginBottom:"0.8rem"}}> {/* seperator */}
                                         </div>{this.state.email}
                                     </div>
                                     <div className="profile-info" id="profile">
-                                        <b style={{fontStyle:"normal"}}>Phone Number:</b>
+                                        <b style={{fontStyle:"normal", color: '#003f5c'}}>Phone Number:</b>
                                         <div style={{marginBottom:"0.8rem"}}>
                                         </div>{this.state.number}
                                     </div>
@@ -341,12 +346,12 @@ export default class EmployeeIndex extends React.Component {
                                         options={{
                                             maintainAspectRatio: false,
                                             legend: {
-                                                display: false
+                                                display: false,
                                               },
                                               title:{ 
                                                 display:true,
                                                 text:'Programmer Performance Measures', //this should also be dynamic
-                                                fontSize:20,
+                                                fontSize:14,
                                                 },
                                               scale: {
                                                 ticks: {

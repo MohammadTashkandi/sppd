@@ -78,13 +78,17 @@ export default class EmployeePage extends React.Component {
             }
         })
         .then((res) => {
-            console.log(res.data)
-            /* this.setState({
-                labels: ['Stress', 'Judgement', 'Communication', 'Techincal'], //Bar names
+            const num4 = parseFloat(res.data[4]);
+            const num5 = parseFloat(res.data[5]);
+            const num6 = parseFloat(res.data[6]);
+            const num7 = parseFloat(res.data[7]);
+            this.setState({
+                skillGapData:{
+                    labels: ['Stress', 'Judgement', 'Communication', 'Techincal'], //Bar names
                     datasets:[ //here you mostly fill the data of the grap
                         {// this is an object that you fill in each point in the graph
                             label:'Min',
-                            data:[2,4,5,7],
+                            data:[res.data[0],res.data[1],res.data[2],res.data[3]],
                             backgroundColor:'rgb(44, 135, 196)',
                             hoverBorderWidth: 2,
                             hoverBorderColor: '#122738',
@@ -92,20 +96,21 @@ export default class EmployeePage extends React.Component {
                         },//these objects will be rendered for every label mentioned in the above array "labels"
                         {
                             label:'Average',
-                            data:[4,5,6,5],
+                            data:[num4,num5,num6,num7],
                             backgroundColor:'#ffc600',
                             hoverBorderWidth: 2,
                             hoverBorderColor: '#122738',
                         },//if you want more than 1 bar for a label, then add more object with the desired aspects!
                         {
                             label:'Max',
-                            data:[7,6,6,5],
+                            data:[res.data[8],res.data[9],res.data[10],res.data[11]],
                             backgroundColor:'red',
                             hoverBorderWidth: 2,
                             hoverBorderColor: '#122738'
                         }
                     ]
-            }) */
+                }
+            })
         })
         .catch((err) => {
             console.log(err)
@@ -215,19 +220,22 @@ export default class EmployeePage extends React.Component {
                                                     scaleLabel:{
                                                         display: true,
                                                         labelString: 'Gap Number',
+                                                        fontSize:15
                                                     },
                                                     ticks: {
-                                                        beginAtZero: true,
-                                                        fontSize: 12.5
+                                                        fontSize: 15,
+                                                        min: -1,
+                                                        max: 1
                                                         },
                                                 }],
                                                 xAxes:[{
                                                     ticks: {
-                                                        fontSize: 12.5
+                                                        fontSize: 11.5
                                                     },
                                                     scaleLabel:{
                                                         display:true,
                                                         labelString: 'Skill Type',
+                                                        fontSize:15
                                                     }
                                                 }]
                                             }
@@ -343,7 +351,7 @@ export default class EmployeePage extends React.Component {
                                               title:{ 
                                                 display:true,
                                                 text:'Programmer Performance Measures', //this should also be dynamic
-                                                fontSize:20,
+                                                fontSize:14,
                                                 },
                                               scale: {
                                                 ticks: {
