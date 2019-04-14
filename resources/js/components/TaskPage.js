@@ -54,7 +54,6 @@ export default class TaskPage extends React.Component {
             }
         })
         .then((res)=>{
-            console.log(res.data)
             if(res.data.status == "Resolved" || ((res.data.status ==  "Closed") && (res.data.actualTCu == null))){
                 this.buttonRef1.current.style.display = "inline";
                 if(res.data.actualTCu != null){

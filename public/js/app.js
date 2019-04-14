@@ -111444,8 +111444,6 @@ function (_React$Component) {
           id: _this.props.match.params.taskId
         }
       }).then(function (res) {
-        console.log(res.data);
-
         if (res.data.status == "Resolved" || res.data.status == "Closed" && res.data.actualTCu == null) {
           _this.buttonRef1.current.style.display = "inline";
 
