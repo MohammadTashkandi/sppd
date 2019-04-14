@@ -169,8 +169,8 @@ export default class TaskPage extends React.Component {
                 <div style={props}>
                     <div className="task-flex">
                         <div className="task-flex-box">
-                            <div style={{marginBottom:'10rem'}}>
-                                <Radar height = '265' width = '600' //everything here can be dynamic depending on results 
+                            <div style={{marginTop:'2rem'}}>
+                                <Radar height = '375' width = '700' //everything here can be dynamic depending on results 
                                     data={this.state.barData} //this should alawys be dynamic   
                                     options={{
                                         maintainAspectRatio: true,
@@ -180,7 +180,7 @@ export default class TaskPage extends React.Component {
                                         title:{ 
                                             display:true,
                                             text:'Task Skill Requirement Vs Actual Employee Performance', //this should also be dynamic
-                                            fontSize:25,
+                                            fontSize:20,
                                         },
                                         scale: {
                                             ticks: {
