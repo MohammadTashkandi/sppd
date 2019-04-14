@@ -76428,7 +76428,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) && "development";
+var NODE_ENV = typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development";
 
 var ChartComponent = function (_React$Component) {
   _inherits(ChartComponent, _React$Component);
@@ -111351,6 +111351,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-spring/renderprops */ "./node_modules/react-spring/renderprops.js");
 /* harmony import */ var react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_spring_renderprops__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -111370,6 +111371,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -111430,8 +111432,11 @@ function (_React$Component) {
           id: _this.props.match.params.taskId
         }
       }).then(function (res) {
+        console.log(res.data);
+
         _this.setState({
-          programmer: res.data.first_name + ' ' + res.data.last_name
+          programmer: res.data.first_name + ' ' + res.data.last_name,
+          PrID: res.data.id
         });
       }).catch(function (err) {
         console.log(err);
@@ -111465,8 +111470,6 @@ function (_React$Component) {
 
           _this.buttonRef1.current.style.display = "none";
         }
-
-        console.log(res.data);
 
         _this.setState({
           task: res.data,
@@ -111572,33 +111575,17 @@ function (_React$Component) {
       }, function (props) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: props
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-          className: "prog-task-header"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Information:"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm",
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-flex"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-flex-box"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           style: {
-            textTransform: "capitalize"
-          }
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Title:"), _this2.state.task.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm",
-          style: {
-            textTransform: "capitalize"
-          }
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Employee Assigned:"), _this2.state.programmer)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Severity:"), _this2.state.task.severity)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Status:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          ref: _this2.statusRef
-        }, _this2.state.task.status)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          style: {
-            marginLeft: "79rem",
-            marginTop: "-31.5rem",
-            position: 'absolute'
+            marginBottom: '10rem'
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Radar"], {
-          height: "350",
-          width: "800" //everything here can be dynamic depending on results 
+          height: "265",
+          width: "600" //everything here can be dynamic depending on results 
           ,
           data: _this2.state.barData //this should alawys be dynamic   
           ,
@@ -111622,28 +111609,10 @@ function (_React$Component) {
             }
           }
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "deviation-container"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Stress Deviation (Negative = Below Required Level): "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          ref: _this2.dev1Ref
-        }, "N/A"), _this2.state.task.tStrDeviation))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Judgement Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          ref: _this2.dev2Ref
-        }, "N/A"), _this2.state.task.tJudDeviation))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Techincal Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          ref: _this2.dev3Ref
-        }, "N/A"), _this2.state.task.tTechDeviation))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "prog-task-pm-stat"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Communication Deviation (Negative = Below Required Level):"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          ref: _this2.dev4Ref
-        }, "N/A"), _this2.state.task.tCuDeviation)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           ref: _this2.buttonRef1,
           style: {
             display: "none",
-            marginLeft: "9rem"
+            marginLeft: '10rem'
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "login-btn",
@@ -111659,7 +111628,64 @@ function (_React$Component) {
             marginLeft: "2rem"
           },
           onClick: _this2.reOpenTask
-        }, "Re-Open This Task")));
+        }, "Re-Open This Task"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "task-flex-box"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "prog-task-header"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Information:")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm",
+          style: {
+            textTransform: "capitalize"
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Task Title:"), _this2.state.task.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm",
+          style: {
+            textTransform: "capitalize"
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Employee Assigned:"), " ", _this2.state.programmer, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "task-page-btn"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["NavLink"], {
+          to: "/index/employeePage/".concat(_this2.state.PrID),
+          className: "btn btn-default btn-sm",
+          id: "task-visit-page"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "glyphicon glyphicon-stats"
+        }), " View Stats"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Severity:"), _this2.state.task.severity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Status:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          ref: _this2.statusRef
+        }, _this2.state.task.status))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            marginTop: '4rem'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "prog-task-header",
+          style: {
+            color: '#019494'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Deviation ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          style: {
+            fontSize: '1.5rem'
+          }
+        }, "(Negative = Below Required Level)"), " :")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Stress Deviation: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          ref: _this2.dev1Ref
+        }, "N/A"), _this2.state.task.tStrDeviation)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Judgement Deviation: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          ref: _this2.dev2Ref
+        }, "N/A"), _this2.state.task.tJudDeviation)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Techincal Deviation: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          ref: _this2.dev3Ref
+        }, "N/A"), _this2.state.task.tTechDeviation)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "prog-task-pm-stat"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Communication Deviation: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          ref: _this2.dev4Ref
+        }, "N/A"), _this2.state.task.tCuDeviation))))));
       }));
     }
   }]);
@@ -111689,8 +111715,8 @@ function (_React$Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\majed\Documents\Final Project\sppd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Development/projects/laravelProjects/sppd/sppd/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

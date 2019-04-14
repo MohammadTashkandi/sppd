@@ -1,6 +1,7 @@
 import React from 'react';
 import {Spring} from 'react-spring/renderprops';
 import {Radar} from 'react-chartjs-2';
+import {NavLink} from "react-router-dom";
 
 export default class TaskPage extends React.Component {
 
@@ -40,7 +41,11 @@ export default class TaskPage extends React.Component {
             }
         })
         .then((res)=>{
-           this.setState({programmer: res.data.first_name + ' ' + res.data.last_name});
+            console.log(res.data)
+            this.setState({
+                programmer: res.data.first_name + ' ' + res.data.last_name,
+                PrID: res.data.id,
+            });
         })
         .catch((err)=>{
             console.log(err)
@@ -73,7 +78,7 @@ export default class TaskPage extends React.Component {
                 }
                 this.buttonRef1.current.style.display = "none";
             }
-            console.log(res.data)
+
             this.setState({
                 task: res.data,
                 barData:{ //the data here should also be dynamic depending on what the PM wants to see
@@ -163,48 +168,58 @@ export default class TaskPage extends React.Component {
             >
             {props => (
                 <div style={props}>
-                    <div>
-                        <span><h2 className="prog-task-header"><b>Task Information:</b></h2></span>                    
-                        <span><h4 className="prog-task-pm" style={{textTransform:"capitalize"}}><b>Task Title:</b>{this.state.task.title}</h4></span>
-                        <span><h4 className="prog-task-pm" style={{textTransform:"capitalize"}}><b>Employee Assigned:</b>{this.state.programmer}</h4></span>
-                        <span><h4 className="prog-task-pm"><b>Severity:</b>{this.state.task.severity}</h4></span>
-                        <span><h4 className="prog-task-pm"><b>Status:</b><span ref={this.statusRef}>{this.state.task.status}</span></h4></span>                        
-                    </div>
-                    <div style={{marginLeft:"79rem", marginTop:"-31.5rem", position:'absolute'}}>
-
-                        <Radar height = '350' width = '800' //everything here can be dynamic depending on results 
-                            data={this.state.barData} //this should alawys be dynamic   
-                            options={{
-                                maintainAspectRatio: true,
-                                legend: {
-                                    display: true
-                                    },
-                                    title:{ 
-                                        display:true,
-                                        text:'Task Skill Requirement Vs Actual Employee Performance', //this should also be dynamic
-                                        fontSize:25,
+                    <div className="task-flex">
+                        <div className="task-flex-box">
+                            <div style={{marginBottom:'10rem'}}>
+                                <Radar height = '265' width = '600' //everything here can be dynamic depending on results 
+                                    data={this.state.barData} //this should alawys be dynamic   
+                                    options={{
+                                        maintainAspectRatio: true,
+                                        legend: {
+                                            display: true
+                                        },
+                                        title:{ 
+                                            display:true,
+                                            text:'Task Skill Requirement Vs Actual Employee Performance', //this should also be dynamic
+                                            fontSize:25,
                                         },
                                         scale: {
                                             ticks: {
-                                            beginAtZero: true,
-                                            min: 0,
-                                            max: 5
+                                                beginAtZero: true,
+                                                min: 0,
+                                                max: 5
                                             }
                                         }
                                     }}
-                        />
+                                    />
+                            </div>
+
+                            <div ref={this.buttonRef1} style={{display:"none", marginLeft:'10rem'}}>
+                                <button className="login-btn"  style={{borderColor:'rgb(105, 18, 18)', color: 'rgb(105, 18, 18)'}} onClick={this.closeTask}>Close This Task</button>
+                                <button className="login-btn-2"  style={{ borderColor:'red', marginLeft:"2rem"}} onClick={this.reOpenTask}>Re-Open This Task</button>
+                            </div>
                         </div>
-                    <div className="deviation-container">
-                        <span><h4 className="prog-task-pm-stat"><b>Stress Deviation (Negative = Below Required Level): </b><span><span ref={this.dev1Ref}>N/A</span>{this.state.task.tStrDeviation}</span></h4></span>
-                        <span><h4 className="prog-task-pm-stat"><b>Judgement Deviation (Negative = Below Required Level):</b><span><span ref={this.dev2Ref}>N/A</span>{this.state.task.tJudDeviation}</span></h4></span>
-                        <span><h4 className="prog-task-pm-stat"><b>Techincal Deviation (Negative = Below Required Level):</b><span><span ref={this.dev3Ref}>N/A</span>{this.state.task.tTechDeviation}</span></h4></span>
-                        <span><h4 className="prog-task-pm-stat"><b>Communication Deviation (Negative = Below Required Level):</b><span><span ref={this.dev4Ref}>N/A</span>{this.state.task.tCuDeviation}</span></h4></span>
-                    </div>
-                    <div ref={this.buttonRef1} style={{display:"none", marginLeft:"9rem"}}>
-                        <button className="login-btn"  style={{borderColor:'rgb(105, 18, 18)', color: 'rgb(105, 18, 18)'}} onClick={this.closeTask}>Close This Task</button>
-                        <button className="login-btn-2"  style={{ borderColor:'red', marginLeft:"2rem"}} onClick={this.reOpenTask}>Re-Open This Task</button>
-                    </div>
+                        <div className="task-flex-box">
+                            <div>
+                                <h2 className="prog-task-header"><b>Task Information:</b></h2>                   
+                                <h4 className="prog-task-pm" style={{textTransform:"capitalize"}}><b>Task Title:</b>{this.state.task.title}</h4>
+                                <h4 className="prog-task-pm" style={{textTransform:"capitalize"}}><b>Employee Assigned:</b> {this.state.programmer}
+                                            <span className="task-page-btn"><NavLink to={`/index/employeePage/${this.state.PrID}`} className="btn btn-default btn-sm" id="task-visit-page">
+                                                <span className="glyphicon glyphicon-stats"></span> View Stats
+                                            </NavLink></span></h4>
+                                <h4 className="prog-task-pm"><b>Severity:</b>{this.state.task.severity}</h4>
+                                <h4 className="prog-task-pm"><b>Status:</b><span ref={this.statusRef}>{this.state.task.status}</span></h4>                      
+                            </div>
+                            <div style={{marginTop:'4rem'}}>
+                                <h2 className="prog-task-header" style={{color: '#019494'}}><b>Deviation <span style={{fontSize: '1.5rem'}}>(Negative = Below Required Level)</span> :</b></h2>
+                                <h4 className="prog-task-pm-stat"><b>Stress Deviation: </b><span><span ref={this.dev1Ref}>N/A</span>{this.state.task.tStrDeviation}</span></h4>
+                                <h4 className="prog-task-pm-stat"><b>Judgement Deviation: </b><span><span ref={this.dev2Ref}>N/A</span>{this.state.task.tJudDeviation}</span></h4>
+                                <h4 className="prog-task-pm-stat"><b>Techincal Deviation: </b><span><span ref={this.dev3Ref}>N/A</span>{this.state.task.tTechDeviation}</span></h4>
+                                <h4 className="prog-task-pm-stat"><b>Communication Deviation: </b><span><span ref={this.dev4Ref}>N/A</span>{this.state.task.tCuDeviation}</span></h4>
+                            </div>
+                        </div>
                 </div>
+            </div>
             )}
         </Spring>
             </React.Fragment>
