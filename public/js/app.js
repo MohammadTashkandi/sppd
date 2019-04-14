@@ -109182,7 +109182,8 @@ function (_React$Component) {
         } // you must wrap the part of the component you want animated in this spring syntax
         ,
         to: {
-          opacity: 1
+          opacity: 1,
+          textAlign: "center"
         },
         config: {
           duration: 1500
@@ -109405,7 +109406,7 @@ function (_React$Component) {
         ,
         to: {
           opacity: 1,
-          marginLeft: 400
+          marginLeft: 500
         },
         config: {
           duration: 1000

@@ -22,7 +22,7 @@ export default class Home extends React.Component {
                 <hr className="hr" style={{margin:'0'}} />
                 
                     <Spring from={{opacity:0}} // you must wrap the part of the component you want animated in this spring syntax
-                    to={{opacity:1}}
+                    to={{opacity:1, textAlign:"center"}}
                     config={{duration:1500}}
                     >
                         {props => (
@@ -40,7 +40,7 @@ export default class Home extends React.Component {
                     </Spring>
                     
                     <Spring from={{opacity:0 , marginLeft: 0}} // you must wrap the part of the component you want animated in this spring syntax
-                    to={{opacity:1, marginLeft: 400}}
+                    to={{opacity:1, marginLeft: 500}}
                     config={{duration:1000}}
                     >
                         {props => (
